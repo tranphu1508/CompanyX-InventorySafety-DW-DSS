@@ -1,0 +1,10 @@
+[
+    {
+        "database_name":  "CompanyX_DW_ACT_20261107",
+        "product_version":  "16.0.1000.6",
+        "compatibility_level":  160,
+        "collation_name":  "SQL_Latin1_General_CP1_CI_AS",
+        "snapshot_isolation_state_desc":  "ON",
+        "is_read_committed_snapshot_on":  true
+    }
+]

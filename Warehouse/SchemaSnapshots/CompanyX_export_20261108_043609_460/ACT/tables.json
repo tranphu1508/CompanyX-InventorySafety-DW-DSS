@@ -1,0 +1,870 @@
+[
+    {
+        "object_id":  1893581784,
+        "schema_name":  "dss",
+        "table_name":  "Fact_DemandDaily",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  546100986,
+        "schema_name":  "dw",
+        "table_name":  "Bridge_BillOfMaterials",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  578101100,
+        "schema_name":  "dw",
+        "table_name":  "Bridge_ProductPromotion",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  610101214,
+        "schema_name":  "dw",
+        "table_name":  "Dim_Channel",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  642101328,
+        "schema_name":  "dw",
+        "table_name":  "Dim_Customer",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1509580416,
+        "schema_name":  "dw",
+        "table_name":  "Dim_Date",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  674101442,
+        "schema_name":  "dw",
+        "table_name":  "Dim_Location",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  706101556,
+        "schema_name":  "dw",
+        "table_name":  "Dim_Product",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  738101670,
+        "schema_name":  "dw",
+        "table_name":  "Dim_Promotion",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  770101784,
+        "schema_name":  "dw",
+        "table_name":  "Dim_PurchaseStatus",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  802101898,
+        "schema_name":  "dw",
+        "table_name":  "Dim_SalesStatus",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  834102012,
+        "schema_name":  "dw",
+        "table_name":  "Dim_ScrapReason",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  866102126,
+        "schema_name":  "dw",
+        "table_name":  "Dim_UnitMeasure",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  898102240,
+        "schema_name":  "dw",
+        "table_name":  "Dim_Vendor",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  930102354,
+        "schema_name":  "dw",
+        "table_name":  "Fact_InventoryOnHand",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  962102468,
+        "schema_name":  "dw",
+        "table_name":  "Fact_ProductVendorTerms",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  994102582,
+        "schema_name":  "dw",
+        "table_name":  "Fact_PurchaseOrderLine",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1026102696,
+        "schema_name":  "dw",
+        "table_name":  "Fact_SalesOrderLine",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1221579390,
+        "schema_name":  "dw",
+        "table_name":  "Fact_WorkOrder",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1058102810,
+        "schema_name":  "dw",
+        "table_name":  "Fact_WorkOrderOperation",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1090102924,
+        "schema_name":  "dw",
+        "table_name":  "Ref_ProductPriceHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1122103038,
+        "schema_name":  "etl",
+        "table_name":  "Audit_DataCorrection",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1154103152,
+        "schema_name":  "etl",
+        "table_name":  "ETL_LoadBatch",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1186103266,
+        "schema_name":  "etl",
+        "table_name":  "SchemaMigrationHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1835153583,
+        "schema_name":  "etl_calc",
+        "table_name":  "Bridge_BillOfMaterials",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1867153697,
+        "schema_name":  "etl_calc",
+        "table_name":  "Bridge_ProductPromotion",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1899153811,
+        "schema_name":  "etl_calc",
+        "table_name":  "Dim_Channel",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1931153925,
+        "schema_name":  "etl_calc",
+        "table_name":  "Dim_Customer",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1963154039,
+        "schema_name":  "etl_calc",
+        "table_name":  "Dim_Date",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1995154153,
+        "schema_name":  "etl_calc",
+        "table_name":  "Dim_Location",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  2027154267,
+        "schema_name":  "etl_calc",
+        "table_name":  "Dim_Product",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  2059154381,
+        "schema_name":  "etl_calc",
+        "table_name":  "Dim_Promotion",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  2091154495,
+        "schema_name":  "etl_calc",
+        "table_name":  "Dim_PurchaseStatus",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  2123154609,
+        "schema_name":  "etl_calc",
+        "table_name":  "Dim_SalesStatus",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  7671075,
+        "schema_name":  "etl_calc",
+        "table_name":  "Dim_ScrapReason",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  39671189,
+        "schema_name":  "etl_calc",
+        "table_name":  "Dim_UnitMeasure",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  71671303,
+        "schema_name":  "etl_calc",
+        "table_name":  "Dim_Vendor",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  327672215,
+        "schema_name":  "etl_calc",
+        "table_name":  "Fact_DemandDaily",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  103671417,
+        "schema_name":  "etl_calc",
+        "table_name":  "Fact_InventoryOnHand",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  135671531,
+        "schema_name":  "etl_calc",
+        "table_name":  "Fact_ProductVendorTerms",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  167671645,
+        "schema_name":  "etl_calc",
+        "table_name":  "Fact_PurchaseOrderLine",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  199671759,
+        "schema_name":  "etl_calc",
+        "table_name":  "Fact_SalesOrderLine",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  231671873,
+        "schema_name":  "etl_calc",
+        "table_name":  "Fact_WorkOrder",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  263671987,
+        "schema_name":  "etl_calc",
+        "table_name":  "Fact_WorkOrderOperation",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  295672101,
+        "schema_name":  "etl_calc",
+        "table_name":  "Ref_ProductPriceHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  359672329,
+        "schema_name":  "etl_effective",
+        "table_name":  "SalesOrderDetail",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1099150961,
+        "schema_name":  "etl_raw",
+        "table_name":  "BillOfMaterials",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1675153013,
+        "schema_name":  "etl_raw",
+        "table_name":  "Customer",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1131151075,
+        "schema_name":  "etl_raw",
+        "table_name":  "Location",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1163151189,
+        "schema_name":  "etl_raw",
+        "table_name":  "Product",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1195151303,
+        "schema_name":  "etl_raw",
+        "table_name":  "ProductCategory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1227151417,
+        "schema_name":  "etl_raw",
+        "table_name":  "ProductCostHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1259151531,
+        "schema_name":  "etl_raw",
+        "table_name":  "ProductInventory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1291151645,
+        "schema_name":  "etl_raw",
+        "table_name":  "ProductListPriceHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1323151759,
+        "schema_name":  "etl_raw",
+        "table_name":  "ProductSubcategory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1547152557,
+        "schema_name":  "etl_raw",
+        "table_name":  "ProductVendor",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1579152671,
+        "schema_name":  "etl_raw",
+        "table_name":  "PurchaseOrderDetail",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1611152785,
+        "schema_name":  "etl_raw",
+        "table_name":  "PurchaseOrderHeader",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1707153127,
+        "schema_name":  "etl_raw",
+        "table_name":  "SalesOrderDetail",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1739153241,
+        "schema_name":  "etl_raw",
+        "table_name":  "SalesOrderHeader",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1355151873,
+        "schema_name":  "etl_raw",
+        "table_name":  "ScrapReason",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1771153355,
+        "schema_name":  "etl_raw",
+        "table_name":  "SpecialOffer",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1803153469,
+        "schema_name":  "etl_raw",
+        "table_name":  "SpecialOfferProduct",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1387151987,
+        "schema_name":  "etl_raw",
+        "table_name":  "TransactionHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1419152101,
+        "schema_name":  "etl_raw",
+        "table_name":  "TransactionHistoryArchive",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1451152215,
+        "schema_name":  "etl_raw",
+        "table_name":  "UnitMeasure",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1643152899,
+        "schema_name":  "etl_raw",
+        "table_name":  "Vendor",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1483152329,
+        "schema_name":  "etl_raw",
+        "table_name":  "WorkOrder",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1515152443,
+        "schema_name":  "etl_raw",
+        "table_name":  "WorkOrderRouting",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1035150733,
+        "schema_name":  "etl_v2",
+        "table_name":  "BatchState",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1003150619,
+        "schema_name":  "etl_v2",
+        "table_name":  "SalesEvidence",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  955150448,
+        "schema_name":  "etl_v2",
+        "table_name":  "SourceChange",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  907150277,
+        "schema_name":  "etl_v2",
+        "table_name":  "State",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  971150505,
+        "schema_name":  "etl_v2",
+        "table_name":  "TargetChange",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1067150847,
+        "schema_name":  "etl_v2",
+        "table_name":  "Validation",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  935674381,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Context",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  983674552,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_BillOfMaterials",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1271675578,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_Customer",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  999674609,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_Location",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1015674666,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_Product",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1031674723,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_ProductCategory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1047674780,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_ProductCostHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1063674837,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_ProductInventory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1079674894,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_ProductListPriceHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1095674951,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_ProductSubcategory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1207675350,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_ProductVendor",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1223675407,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_PurchaseOrderDetail",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1239675464,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_PurchaseOrderHeader",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1287675635,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_SalesOrderDetail",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1303675692,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_SalesOrderHeader",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1111675008,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_ScrapReason",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1319675749,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_SpecialOffer",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1335675806,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_SpecialOfferProduct",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1127675065,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_TransactionHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1143675122,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_TransactionHistoryArchive",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1159675179,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_UnitMeasure",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1255675521,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_Vendor",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1175675236,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_WorkOrder",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1191675293,
+        "schema_name":  "ssis_flow",
+        "table_name":  "Delta_WorkOrderRouting",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1383675977,
+        "schema_name":  "ssis_flow",
+        "table_name":  "ResultStage",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1351675863,
+        "schema_name":  "ssis_flow",
+        "table_name":  "V02Lookup",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1218103380,
+        "schema_name":  "stg",
+        "table_name":  "BillOfMaterials",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1234103437,
+        "schema_name":  "stg",
+        "table_name":  "Customer",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1250103494,
+        "schema_name":  "stg",
+        "table_name":  "Location",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1266103551,
+        "schema_name":  "stg",
+        "table_name":  "Product",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1282103608,
+        "schema_name":  "stg",
+        "table_name":  "ProductCategory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1298103665,
+        "schema_name":  "stg",
+        "table_name":  "ProductCostHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1314103722,
+        "schema_name":  "stg",
+        "table_name":  "ProductInventory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1330103779,
+        "schema_name":  "stg",
+        "table_name":  "ProductListPriceHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1346103836,
+        "schema_name":  "stg",
+        "table_name":  "ProductSubcategory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1362103893,
+        "schema_name":  "stg",
+        "table_name":  "ProductVendor",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1378103950,
+        "schema_name":  "stg",
+        "table_name":  "PurchaseOrderDetail",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1394104007,
+        "schema_name":  "stg",
+        "table_name":  "PurchaseOrderHeader",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1410104064,
+        "schema_name":  "stg",
+        "table_name":  "SalesOrderDetail",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1426104121,
+        "schema_name":  "stg",
+        "table_name":  "SalesOrderHeader",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1442104178,
+        "schema_name":  "stg",
+        "table_name":  "ScrapReason",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1458104235,
+        "schema_name":  "stg",
+        "table_name":  "SpecialOffer",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1474104292,
+        "schema_name":  "stg",
+        "table_name":  "SpecialOfferProduct",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1490104349,
+        "schema_name":  "stg",
+        "table_name":  "TransactionHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1506104406,
+        "schema_name":  "stg",
+        "table_name":  "TransactionHistoryArchive",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1522104463,
+        "schema_name":  "stg",
+        "table_name":  "UnitMeasure",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1538104520,
+        "schema_name":  "stg",
+        "table_name":  "Vendor",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1554104577,
+        "schema_name":  "stg",
+        "table_name":  "WorkOrder",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1570104634,
+        "schema_name":  "stg",
+        "table_name":  "WorkOrderRouting",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    }
+]

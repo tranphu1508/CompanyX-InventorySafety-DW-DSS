@@ -1,0 +1,1202 @@
+[
+    {
+        "object_id":  297768118,
+        "schema_name":  "act_input",
+        "name":  "DSSSales",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW act_input.DSSSales AS SELECT * FROM act_input.BusinessSalesLine",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  839674039,
+        "schema_name":  "bi",
+        "name":  "CompletedRuns",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW bi.CompletedRuns AS\r\nSELECT r.* FROM dss.v_PlanningRunContext r\r\nJOIN bi.ExperimentCases c ON c.ExperimentCaseKey=r.ExperimentCaseKey\r\nWHERE r.RunStatus=\u0027SUCCEEDED\u0027;\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  823673982,
+        "schema_name":  "bi",
+        "name":  "ExperimentCases",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW bi.ExperimentCases AS\r\nSELECT c.* FROM dss.ExperimentCase c JOIN dss.Dim_ExperimentVersion e ON e.ExperimentVersionKey=c.ExperimentVersionKey WHERE e.LifecycleStatus=\u0027PUBLISHED\u0027;\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  919674324,
+        "schema_name":  "bi",
+        "name":  "InventoryPerRunDay",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW bi.InventoryPerRunDay AS\r\nSELECT PlanningRunKey, DateKey,\r\n SUM(OnHandQty) AS OnHandQty, SUM(ProductionWIPQty) AS ProductionWIPQty,\r\n SUM(OnHandValue) AS OnHandValue, SUM(WIPValue) AS WIPValue,\r\n SUM(OwnedInTransitValue) AS OwnedInTransitValue\r\nFROM bi.SimulationDaily GROUP BY PlanningRunKey,DateKey;\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  903674267,
+        "schema_name":  "bi",
+        "name":  "OptimizationSolve",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW bi.OptimizationSolve AS\r\nSELECT f.* FROM dss.Fact_OptimizationSolve f\r\nJOIN bi.CompletedRuns r ON r.PlanningRunKey=f.PlanningRunKey;\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  855674096,
+        "schema_name":  "bi",
+        "name":  "RunSummary",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW bi.RunSummary AS\r\nSELECT f.* FROM dss.Fact_RunSummary f\r\nJOIN bi.CompletedRuns r ON r.PlanningRunKey=f.PlanningRunKey;\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  871674153,
+        "schema_name":  "bi",
+        "name":  "SimulationDaily",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW bi.SimulationDaily AS\r\nSELECT f.* FROM dss.Fact_SimulationDaily f\r\nJOIN bi.CompletedRuns r ON r.PlanningRunKey=f.PlanningRunKey;\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  887674210,
+        "schema_name":  "bi",
+        "name":  "SimulationOrder",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW bi.SimulationOrder AS\r\nSELECT f.* FROM dss.Fact_SimulationOrder f\r\nJOIN bi.CompletedRuns r ON r.PlanningRunKey=f.PlanningRunKey;\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  2036202304,
+        "schema_name":  "cxactive",
+        "name":  "ActiveRunScope",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.ActiveRunScope AS\nSELECT d.PlanningRunKey,d.ExecutionSpecHash,d.SupplyMode,d.AllowBackorders,d.PolicyHash FROM cxactive.RunScopeDecision d JOIN cxactive.ScopePolicy p ON p.PolicyHash=d.PolicyHash AND p.ScopeKey=1 JOIN cxdetail.RunDetail ready ON ready.PlanningRunKey=d.PlanningRunKey AND ready.ContractVersion=\u0027companyx.execution-detail.v1\u0027 WHERE d.IsActive=1;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  32719169,
+        "schema_name":  "cxactive",
+        "name":  "DimActivity",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimActivity AS\nSELECT * FROM cxcontrol.DimActivity;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  128719511,
+        "schema_name":  "cxactive",
+        "name":  "DimBaseline",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimBaseline AS\nSELECT d.* FROM cxcontrol.DimBaseline d JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=d.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  64719283,
+        "schema_name":  "cxactive",
+        "name":  "DimCandidate",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimCandidate AS\nSELECT d.* FROM cxcontrol.DimCandidate d JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=d.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  2068202418,
+        "schema_name":  "cxactive",
+        "name":  "DimDate",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimDate AS\nSELECT * FROM cxolap.DimDate;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  2132202646,
+        "schema_name":  "cxactive",
+        "name":  "DimEvaluationCohort",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimEvaluationCohort AS\nSELECT * FROM cxolap.DimEvaluationCohort;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  80719340,
+        "schema_name":  "cxactive",
+        "name":  "DimInquiry",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimInquiry AS\nSELECT d.* FROM cxcontrol.DimInquiry d WHERE EXISTS(SELECT 1 FROM cxactive.DimCandidate c WHERE c.InquiryKey=d.InquiryKey);",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  2100202532,
+        "schema_name":  "cxactive",
+        "name":  "DimLocation",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimLocation AS\nSELECT * FROM cxolap.DimLocation;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  719055,
+        "schema_name":  "cxactive",
+        "name":  "DimOrderStatus",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimOrderStatus AS\nSELECT * FROM cxolap.DimOrderStatus;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  2084202475,
+        "schema_name":  "cxactive",
+        "name":  "DimProduct",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimProduct AS\nSELECT * FROM cxolap.DimProduct;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  112719454,
+        "schema_name":  "cxactive",
+        "name":  "DimRequestedWindow",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimRequestedWindow AS\nSELECT d.* FROM cxcontrol.DimRequestedWindow d WHERE EXISTS(SELECT 1 FROM cxcontrol.WindowCandidate c JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=c.PlanningRunKey WHERE c.WindowKey=d.WindowKey);",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  2052202361,
+        "schema_name":  "cxactive",
+        "name":  "DimRun",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimRun AS\nSELECT r.* FROM cxcontrol.DimControlRun r JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=r.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  48719226,
+        "schema_name":  "cxactive",
+        "name":  "DimSolveKey",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimSolveKey AS\nSELECT d.* FROM cxolap.DimSolveKey d JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=d.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  16719112,
+        "schema_name":  "cxactive",
+        "name":  "DimSolveStatus",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimSolveStatus AS\nSELECT * FROM cxolap.DimSolveStatus;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  96719397,
+        "schema_name":  "cxactive",
+        "name":  "DimTranche",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimTranche AS\nSELECT d.* FROM cxcontrol.DimTranche d JOIN cxactive.DimCandidate c ON c.CandidateKey=d.CandidateKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  2116202589,
+        "schema_name":  "cxactive",
+        "name":  "DimUnit",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.DimUnit AS\nSELECT * FROM cxolap.DimUnit;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  304720138,
+        "schema_name":  "cxactive",
+        "name":  "FactBaselineActivity",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactBaselineActivity AS\nSELECT f.* FROM cxcontrol.FactBaselineActivity f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  256719967,
+        "schema_name":  "cxactive",
+        "name":  "FactInquiryLineDelivery",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactInquiryLineDelivery AS\nSELECT f.* FROM cxcontrol.FactInquiryLineDelivery f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  272720024,
+        "schema_name":  "cxactive",
+        "name":  "FactInquiryTranche",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactInquiryTranche AS\nSELECT f.* FROM cxcontrol.FactInquiryTranche f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  320720195,
+        "schema_name":  "cxactive",
+        "name":  "FactInquiryWindowSummary",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactInquiryWindowSummary AS\nSELECT f.* FROM cxcontrol.FactInquiryWindowSummary f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  176719682,
+        "schema_name":  "cxactive",
+        "name":  "FactOrderLineService",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactOrderLineService AS\nSELECT f.* FROM cxcontrol.FactOrderLineService f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  192719739,
+        "schema_name":  "cxactive",
+        "name":  "FactOrderService",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactOrderService AS\nSELECT f.* FROM cxolap.FactOrderService f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  288720081,
+        "schema_name":  "cxactive",
+        "name":  "FactProductionActivity",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactProductionActivity AS\nSELECT f.* FROM cxcontrol.FactProductionActivity f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  352720309,
+        "schema_name":  "cxactive",
+        "name":  "FactRequestedWindowLine",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactRequestedWindowLine AS\nSELECT f.* FROM cxcontrol.FactRequestedWindowLine f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  336720252,
+        "schema_name":  "cxactive",
+        "name":  "FactRequestedWindowSummary",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactRequestedWindowSummary AS\nSELECT f.* FROM cxcontrol.FactRequestedWindowSummary f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  368720366,
+        "schema_name":  "cxactive",
+        "name":  "FactRequestedWindowTranche",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactRequestedWindowTranche AS\nSELECT f.* FROM cxcontrol.FactRequestedWindowTranche f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  224719853,
+        "schema_name":  "cxactive",
+        "name":  "FactRunDay",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactRunDay AS\nSELECT f.* FROM cxcontrol.FactRunDay f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  240719910,
+        "schema_name":  "cxactive",
+        "name":  "FactRunSummary",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactRunSummary AS\nSELECT f.* FROM cxolap.FactRunSummary f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  160719625,
+        "schema_name":  "cxactive",
+        "name":  "FactSimulationDaily",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactSimulationDaily AS\nSELECT f.* FROM cxcontrol.FactSimulationDaily f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  208719796,
+        "schema_name":  "cxactive",
+        "name":  "FactSolveAudit",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.FactSolveAudit AS\nSELECT f.* FROM cxolap.FactSolveAudit f JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  144719568,
+        "schema_name":  "cxactive",
+        "name":  "VerifiedCoverageExecution",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxactive.VerifiedCoverageExecution AS\nSELECT d.* FROM cxcontrol.VerifiedCoverageExecution d JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=d.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  452196661,
+        "schema_name":  "cxcontrol",
+        "name":  "DimActivity",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxcontrol.DimActivity AS\nSELECT EventCode,EventName,QuantityMeaning FROM dss.Dim_EventType\nWHERE EventCode IN(\u0027PRODUCTION_REQUEST\u0027,\u0027PRODUCTION_START\u0027,\u0027PRODUCTION_GOOD\u0027,\u0027BOM_ISSUE\u0027,\u0027BUY_ORDER\u0027);\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  788197858,
+        "schema_name":  "cxcontrol",
+        "name":  "DimBaseline",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxcontrol.DimBaseline AS\nSELECT b.BaselineKey,b.BaselineID,b.PlanningRunKey,CONVERT(nvarchar(36),b.RunCode) RunCode,\n b.SourceMatrixIndex,b.ScenarioIndex,b.StartDate,b.EndDate,b.InitialStateRule,b.Interpretation,\n b.PublicationMode,b.RawStochasticDrawRows,b.ArtifactFolder\nFROM cxcontrol.Baseline b JOIN cxolap.DimRun r ON r.PlanningRunKey=b.PlanningRunKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  388196433,
+        "schema_name":  "cxcontrol",
+        "name":  "DimCandidate",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxcontrol.DimCandidate AS\nSELECT c.CandidateKey,c.InquiryKey,c.CandidateID,c.CandidateKind,c.PlanningRunKey,\n CONVERT(nvarchar(180),CONCAT(c.CandidateKind,N\u0027 | \u0027,c.CandidateID)) CandidateName,\n i.InquiryID,i.KnownAt,i.AnalysisEnd,c.SharedStateHash,c.PrefixProofHash\nFROM cxcontrol.Candidate c JOIN cxcontrol.Inquiry i ON i.InquiryKey=c.InquiryKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  820197972,
+        "schema_name":  "cxcontrol",
+        "name":  "DimControlRun",
+        "type_desc":  "VIEW",
+        "definition":  "\nCREATE   VIEW cxcontrol.DimControlRun AS\nSELECT r.*,\n CONVERT(nvarchar(40),CASE WHEN b.BaselineKey IS NOT NULL THEN \u0027ROP_BASELINE\u0027\n  WHEN ip.Purpose=\u0027ORDER_INQUIRY\u0027 THEN \u0027SELECTED_MILP_INQUIRY\u0027\n  WHEN ip.Purpose=\u0027PIPELINE_SMOKE\u0027 THEN \u0027PIPELINE_SMOKE\u0027\n  WHEN JSON_VALUE(i.RequestJSON,\u0027$.schema\u0027)=\u0027companyx.inquiry.request.v2\u0027 THEN \u0027UNCLASSIFIED_INQUIRY\u0027\n  ELSE \u0027PIPELINE_SMOKE\u0027 END) RunPurpose,\n CONVERT(nvarchar(40),CASE WHEN b.BaselineKey IS NOT NULL THEN \u0027FIXED_PRESET\u0027\n  ELSE COALESCE(JSON_VALUE(i.RequestJSON,\u0027$.initialization_mode\u0027),\u0027LEGACY_SMOKE\u0027) END) InitializationMode,\n CONVERT(nvarchar(100),COALESCE(b.BaselineID,ref.BaselineID,\u0027NOT_APPLICABLE\u0027)) ReferenceBaselineID,\n CONVERT(int,COALESCE(b.ScenarioIndex,ref.ScenarioIndex,0)) PhysicalScenarioIndex,\n CONVERT(nvarchar(50),CASE WHEN b.BaselineKey IS NOT NULL THEN b.InitialStateRule\n  ELSE COALESCE(JSON_VALUE(i.RequestJSON,\u0027$.initial_stock_rule\u0027),\u0027LEGACY\u0027) END) RequestedInitialStockRule\nFROM cxolap.DimRun r\nLEFT JOIN cxcontrol.Baseline b ON b.PlanningRunKey=r.PlanningRunKey\nLEFT JOIN cxcontrol.Candidate c ON c.PlanningRunKey=r.PlanningRunKey\nLEFT JOIN cxcontrol.Inquiry i ON i.InquiryKey=c.InquiryKey\nLEFT JOIN cxcontrol.InquiryPurpose ip ON ip.InquiryKey=i.InquiryKey\nLEFT JOIN cxcontrol.Baseline ref ON ref.PlanningRunKey=TRY_CONVERT(int,JSON_VALUE(i.RequestJSON,\u0027$.base_run_key\u0027));\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  372196376,
+        "schema_name":  "cxcontrol",
+        "name":  "DimInquiry",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxcontrol.DimInquiry AS\nSELECT InquiryKey,InquiryID,KnownAt,AnalysisEnd,CONVERT(nvarchar(36),BaseRunCode) BaseRunCode,\n CONVERT(nvarchar(160),CONCAT(InquiryID,N\u0027 | known \u0027,CONVERT(nvarchar(10),KnownAt,23))) InquiryName,\n CONVERT(int,CONVERT(char(8),KnownAt,112)) KnownDateKey,\n CONVERT(int,CONVERT(char(8),AnalysisEnd,112)) AnalysisEndDateKey\nFROM cxcontrol.Inquiry;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1652200936,
+        "schema_name":  "cxcontrol",
+        "name":  "DimRequestedWindow",
+        "type_desc":  "VIEW",
+        "definition":  "\nCREATE   VIEW cxcontrol.DimRequestedWindow AS\nSELECT WindowKey,WindowID,FamilyHash,KnownAt,AnalysisEnd,Purpose,CacheAction,\n CONVERT(nvarchar(200),CONCAT(WindowID,N\u0027 | \u0027,CONVERT(nvarchar(10),KnownAt,23),N\u0027..\u0027,CONVERT(nvarchar(10),AnalysisEnd,23))) WindowName\nFROM cxcontrol.RequestedWindow;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  404196490,
+        "schema_name":  "cxcontrol",
+        "name":  "DimTranche",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxcontrol.DimTranche AS\nSELECT t.TrancheKey,t.CandidateKey,c.InquiryKey,t.TrancheNumber,t.SourceSalesOrderID,t.DueDate,\n CONVERT(nvarchar(180),CONCAT(c.CandidateID,N\u0027 / tranche \u0027,t.TrancheNumber,N\u0027 / \u0027,CONVERT(nvarchar(10),t.DueDate,23))) TrancheName\nFROM cxcontrol.Tranche t JOIN cxcontrol.Candidate c ON c.CandidateKey=t.CandidateKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  804197915,
+        "schema_name":  "cxcontrol",
+        "name":  "FactBaselineActivity",
+        "type_desc":  "VIEW",
+        "definition":  "\nCREATE   VIEW cxcontrol.FactBaselineActivity AS\nSELECT a.*,sp.StockUnitMeasureKey FROM cxcontrol.BaselineActivity a\nJOIN cxcontrol.EligibleRunSnapshot r ON r.PlanningRunKey=a.PlanningRunKey\nJOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=a.ProductKey;\n\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  420196547,
+        "schema_name":  "cxcontrol",
+        "name":  "FactInquiryLineDelivery",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxcontrol.FactInquiryLineDelivery AS\nWITH Delivery AS(\n SELECT c.PlanningRunKey,l.InquiryLineKey,\n SUM(CASE WHEN e.EventCode=\u0027SHIP_ON_TIME\u0027 THEN e.Quantity ELSE 0 END) OnTimeQty,\n SUM(CASE WHEN e.EventCode=\u0027SHIP_LATE\u0027 THEN e.Quantity ELSE 0 END) LateQty,\n SUM(CASE WHEN e.EventCode=\u0027LOST_SALE\u0027 THEN e.Quantity ELSE 0 END) LostQty,\n MAX(CASE WHEN e.EventCode IN(\u0027SHIP_ON_TIME\u0027,\u0027SHIP_LATE\u0027) THEN e.EventAt END) LastShipmentAt\n FROM cxcontrol.InquiryLine l JOIN cxcontrol.Tranche t ON t.TrancheKey=l.TrancheKey\n JOIN cxcontrol.Candidate c ON c.CandidateKey=t.CandidateKey\n JOIN cxcontrol.Inquiry i ON i.InquiryKey=c.InquiryKey\n LEFT JOIN dss.Fact_SimulationEvent e ON e.PlanningRunKey=c.PlanningRunKey\n AND e.EntityCode=CONCAT(\u0027SO_LINE:\u0027,l.SourceSalesOrderDetailID)\n AND e.EventCode IN(\u0027SHIP_ON_TIME\u0027,\u0027SHIP_LATE\u0027,\u0027LOST_SALE\u0027)\n AND CONVERT(date,e.EventAt) BETWEEN i.KnownAt AND i.AnalysisEnd\n GROUP BY c.PlanningRunKey,l.InquiryLineKey\n)\nSELECT l.InquiryLineKey,i.InquiryKey,c.CandidateKey,t.TrancheKey,c.PlanningRunKey,\n l.ProductKey,sp.StockUnitMeasureKey,CONVERT(int,CONVERT(char(8),i.KnownAt,112)) KnownDateKey,\n CONVERT(int,CONVERT(char(8),t.DueDate,112)) DueDateKey,\n CASE WHEN d.OnTimeQty+d.LateQty\u003e=l.RequestedQty THEN COALESCE(CONVERT(int,CONVERT(char(8),d.LastShipmentAt,112)),0) ELSE 0 END CompletionDateKey,\n l.RequestedQty,d.OnTimeQty,d.LateQty,CONVERT(decimal(28,8),d.OnTimeQty+d.LateQty) FilledQty,d.LostQty,\n CONVERT(decimal(28,8),l.RequestedQty-d.OnTimeQty-d.LateQty-d.LostQty) EndingBacklogQty,\n CONVERT(bigint,1) InquiryLineCount,\n CONVERT(bigint,CASE WHEN d.OnTimeQty+d.LateQty\u003e=l.RequestedQty THEN 1 ELSE 0 END) CompletedLineCount,\n CONVERT(bigint,CASE WHEN d.OnTimeQty\u003e=l.RequestedQty THEN 1 ELSE 0 END) OnTimeCompleteLineCount\nFROM cxcontrol.InquiryLine l JOIN cxcontrol.Tranche t ON t.TrancheKey=l.TrancheKey\nJOIN cxcontrol.Candidate c ON c.CandidateKey=t.CandidateKey\nJOIN cxcontrol.Inquiry i ON i.InquiryKey=c.InquiryKey\nJOIN cxolap.DimRun r ON r.PlanningRunKey=c.PlanningRunKey\nJOIN dss.RunEntity re ON re.PlanningRunKey=c.PlanningRunKey AND re.EntityCode=CONCAT(\u0027SO_LINE:\u0027,l.SourceSalesOrderDetailID)\n AND re.ProductKey=l.ProductKey AND re.EntityType=\u0027CUSTOMER_ORDER_LINE\u0027\nJOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=l.ProductKey\nJOIN Delivery d ON d.InquiryLineKey=l.InquiryLineKey AND d.PlanningRunKey=c.PlanningRunKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  436196604,
+        "schema_name":  "cxcontrol",
+        "name":  "FactInquiryTranche",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxcontrol.FactInquiryTranche AS\nSELECT i.InquiryKey,c.CandidateKey,t.TrancheKey,c.PlanningRunKey,\n CONVERT(int,CONVERT(char(8),i.KnownAt,112)) KnownDateKey,\n CONVERT(int,CONVERT(char(8),t.DueDate,112)) DueDateKey,\n COALESCE(CONVERT(int,CONVERT(char(8),f.CompletedAt,112)),0) CompletionDateKey,\n f.OrderStatus,CONVERT(bigint,1) TrancheCount,\n CONVERT(bigint,CASE WHEN f.OrderStatus=\u0027FULFILLED\u0027 AND CONVERT(date,f.CompletedAt)\u003c=i.AnalysisEnd THEN 1 ELSE 0 END) CompletedTrancheCount,\n CONVERT(bigint,CASE WHEN f.OrderStatus=\u0027FULFILLED\u0027 AND CONVERT(date,f.CompletedAt)\u003c=t.DueDate THEN 1 ELSE 0 END) OnTimeCompleteTrancheCount,\n CONVERT(bigint,CASE WHEN f.OrderStatus=\u0027LOST\u0027 THEN 1 ELSE 0 END) LostTrancheCount,\n CONVERT(bigint,f.ExpectedLineCount) RequestedLineCount\nFROM cxcontrol.Tranche t JOIN cxcontrol.Candidate c ON c.CandidateKey=t.CandidateKey\nJOIN cxcontrol.Inquiry i ON i.InquiryKey=c.InquiryKey\nJOIN cxolap.DimRun r ON r.PlanningRunKey=c.PlanningRunKey\nJOIN dss.Fact_SimulationOrder f ON f.PlanningRunKey=c.PlanningRunKey AND f.CustomerOrderCode=CONCAT(\u0027SO:\u0027,t.SourceSalesOrderID);\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1060198827,
+        "schema_name":  "cxcontrol",
+        "name":  "FactInquiryWindowSummary",
+        "type_desc":  "VIEW",
+        "definition":  "\nCREATE   VIEW cxcontrol.FactInquiryWindowSummary AS\nSELECT c.PlanningRunKey,c.InquiryKey,c.CandidateKey,\n CONVERT(int,CONVERT(char(8),i.KnownAt,112)) WindowStartDateKey,\n CONVERT(int,CONVERT(char(8),i.AnalysisEnd,112)) WindowEndDateKey,\n TRY_CONVERT(int,JSON_VALUE(i.RequestJSON,\u0027$.base_run_key\u0027)) ReferenceRunKey,\n d.CalendarDays WindowDays,d.InventoryValueDaySum WindowInventoryValueDaySum,\n CONVERT(float,d.InventoryValueDaySum)/NULLIF(d.CalendarDays,0) WindowAverageInventoryValue,\n o.DueOrderCount WindowDueOrderCount,o.OnTimeFullOrderCount WindowOnTimeFullOrderCount,\n CONVERT(float,o.OnTimeFullOrderCount)/NULLIF(o.DueOrderCount,0) WindowOTIF,\n rd.CalendarDays ReferenceROPDays,\n CONVERT(float,rd.InventoryValueDaySum)/NULLIF(rd.CalendarDays,0) ReferenceROPAverageInventoryValue,\n ro.DueOrderCount ReferenceROPDueOrderCount,ro.OnTimeFullOrderCount ReferenceROPOnTimeFullOrderCount,\n CONVERT(float,ro.OnTimeFullOrderCount)/NULLIF(ro.DueOrderCount,0) ReferenceROPOTIF\nFROM cxcontrol.Candidate c JOIN cxcontrol.Inquiry i ON i.InquiryKey=c.InquiryKey\nJOIN cxolap.DimRun r ON r.PlanningRunKey=c.PlanningRunKey\nOUTER APPLY(SELECT COUNT(DISTINCT f.DateKey) CalendarDays,SUM(f.InventoryValueDaySum) InventoryValueDaySum\n FROM cxcontrol.FactSimulationDaily f WHERE f.PlanningRunKey=c.PlanningRunKey\n AND f.DateKey BETWEEN CONVERT(int,CONVERT(char(8),i.KnownAt,112)) AND CONVERT(int,CONVERT(char(8),i.AnalysisEnd,112))) d\nOUTER APPLY(SELECT SUM(f.DueOrderCount) DueOrderCount,SUM(f.OnTimeFullOrderCount) OnTimeFullOrderCount\n FROM cxolap.FactOrderService f WHERE f.PlanningRunKey=c.PlanningRunKey\n AND f.DueDateKey BETWEEN CONVERT(int,CONVERT(char(8),i.KnownAt,112)) AND CONVERT(int,CONVERT(char(8),i.AnalysisEnd,112))) o\nOUTER APPLY(SELECT COUNT(DISTINCT f.DateKey) CalendarDays,SUM(f.InventoryValueDaySum) InventoryValueDaySum\n FROM cxcontrol.FactSimulationDaily f WHERE f.PlanningRunKey=TRY_CONVERT(int,JSON_VALUE(i.RequestJSON,\u0027$.base_run_key\u0027))\n AND f.DateKey BETWEEN CONVERT(int,CONVERT(char(8),i.KnownAt,112)) AND CONVERT(int,CONVERT(char(8),i.AnalysisEnd,112))) rd\nOUTER APPLY(SELECT SUM(f.DueOrderCount) DueOrderCount,SUM(f.OnTimeFullOrderCount) OnTimeFullOrderCount\n FROM cxolap.FactOrderService f WHERE f.PlanningRunKey=TRY_CONVERT(int,JSON_VALUE(i.RequestJSON,\u0027$.base_run_key\u0027))\n AND f.DueDateKey BETWEEN CONVERT(int,CONVERT(char(8),i.KnownAt,112)) AND CONVERT(int,CONVERT(char(8),i.AnalysisEnd,112))) ro;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1764201335,
+        "schema_name":  "cxcontrol",
+        "name":  "FactOrderLineService",
+        "type_desc":  "VIEW",
+        "definition":  "\nCREATE   VIEW cxcontrol.FactOrderLineService AS\nSELECT f.PlanningRunKey,f.EntityCode,f.ProductKey,sp.StockUnitMeasureKey,\n f.DueDateKey,COALESCE(f.CompletionDateKey,0) CompletionDateKey,\n f.CustomerOrderCode,f.EvaluationCohort,f.IsDueInEvaluationPeriod,\n f.ObligationQty,f.OTUDemandQty,f.OTUOnTimeQty,f.OnTimeQty,f.LateQty,f.FilledQty,f.LostQty,\n f.UnfilledQtyAtEnd,f.OverdueUnfilledQtyAtEnd,f.LateUnitDays,\n f.CompletionLateDays,CONVERT(bigint,1) LineCount,\n CONVERT(bigint,CASE WHEN f.CompletionDateKey IS NOT NULL THEN 1 ELSE 0 END) CompletedLineCount,\n CONVERT(decimal(28,8),CASE WHEN f.IsDueInEvaluationPeriod=1 THEN f.FilledQty ELSE 0 END) DueCohortFilledQty,\n CONVERT(decimal(28,8),CASE WHEN f.IsDueInEvaluationPeriod=1 THEN f.LostQty ELSE 0 END) DueCohortLostQty,\n CONVERT(decimal(28,8),CASE WHEN f.IsDueInEvaluationPeriod=1 THEN f.UnfilledQtyAtEnd ELSE 0 END) DueCohortEndingBacklogQty\nFROM cxolap.OrderLineSnapshot f\nJOIN cxcontrol.EligibleRunSnapshot r ON r.PlanningRunKey=f.PlanningRunKey\nJOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=f.ProductKey;\n\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  468196718,
+        "schema_name":  "cxcontrol",
+        "name":  "FactProductionActivity",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxcontrol.FactProductionActivity AS\nSELECT c.InquiryKey,c.CandidateKey,f.PlanningRunKey,f.DateKey,f.ProductKey,sp.StockUnitMeasureKey,\n f.EventCode,f.Quantity,CONVERT(bigint,1) ActivityCount\nFROM dss.Fact_SimulationEvent f JOIN cxcontrol.Candidate c ON c.PlanningRunKey=f.PlanningRunKey\nJOIN cxcontrol.Inquiry i ON i.InquiryKey=c.InquiryKey\nJOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey\nJOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=f.ProductKey\nWHERE f.EventCode IN(\u0027PRODUCTION_REQUEST\u0027,\u0027PRODUCTION_START\u0027,\u0027PRODUCTION_GOOD\u0027,\u0027BOM_ISSUE\u0027,\u0027BUY_ORDER\u0027)\nAND CONVERT(date,f.EventAt) BETWEEN i.KnownAt AND i.AnalysisEnd\nAND JSON_VALUE(c.ScopeJSON,\u0027$.schema\u0027)\u003c\u003e\u0027companyx.inquiry.scope.v2\u0027\nUNION ALL\nSELECT c.InquiryKey,c.CandidateKey,a.PlanningRunKey,a.DateKey,a.ProductKey,sp.StockUnitMeasureKey,\n a.EventCode,a.Quantity,a.EventCount ActivityCount\nFROM cxcontrol.InquiryActivity a JOIN cxcontrol.Candidate c ON c.PlanningRunKey=a.PlanningRunKey\nJOIN cxcontrol.Inquiry i ON i.InquiryKey=c.InquiryKey\nJOIN cxolap.DimRun r ON r.PlanningRunKey=a.PlanningRunKey\nJOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=a.ProductKey\nWHERE JSON_VALUE(c.ScopeJSON,\u0027$.schema\u0027)=\u0027companyx.inquiry.scope.v2\u0027\nAND a.EventCode IN(\u0027PRODUCTION_REQUEST\u0027,\u0027PRODUCTION_START\u0027,\u0027PRODUCTION_GOOD\u0027,\u0027BOM_ISSUE\u0027,\u0027BUY_ORDER\u0027)\nAND a.DateKey BETWEEN CONVERT(int,CONVERT(char(8),i.KnownAt,112)) AND CONVERT(int,CONVERT(char(8),i.AnalysisEnd,112));\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1684201050,
+        "schema_name":  "cxcontrol",
+        "name":  "FactRequestedWindowLine",
+        "type_desc":  "VIEW",
+        "definition":  "\nCREATE   VIEW cxcontrol.FactRequestedWindowLine AS\nSELECT w.WindowKey,c.CandidateKey,c.PlanningRunKey,t.TrancheKey,l.InquiryLineKey,l.ProductKey,sp.StockUnitMeasureKey,\n CONVERT(int,CONVERT(char(8),w.KnownAt,112)) KnownDateKey,\n CONVERT(int,CONVERT(char(8),t.DueDate,112)) DueDateKey,\n CASE WHEN d.FilledQty\u003e=l.RequestedQty THEN COALESCE(CONVERT(int,CONVERT(char(8),d.LastShipmentAt,112)),0) ELSE 0 END CompletionDateKey,\n l.RequestedQty,d.OnTimeQty,d.LateQty,d.FilledQty,d.LostQty,\n CONVERT(decimal(28,8),l.RequestedQty-d.FilledQty-d.LostQty) EndingBacklogQty,\n CONVERT(bigint,1) InquiryLineCount,\n CONVERT(bigint,CASE WHEN d.FilledQty\u003e=l.RequestedQty THEN 1 ELSE 0 END) CompletedLineCount,\n CONVERT(bigint,CASE WHEN d.OnTimeQty\u003e=l.RequestedQty THEN 1 ELSE 0 END) OnTimeCompleteLineCount\nFROM cxcontrol.RequestedWindow w JOIN cxcontrol.WindowCandidate c ON c.WindowKey=w.WindowKey\nJOIN cxcontrol.Tranche t ON t.CandidateKey=c.CandidateKey JOIN cxcontrol.InquiryLine l ON l.TrancheKey=t.TrancheKey\nJOIN cxolap.DimRun r ON r.PlanningRunKey=c.PlanningRunKey\nJOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=l.ProductKey\nOUTER APPLY(SELECT\n COALESCE(SUM(CASE WHEN e.EventCode=\u0027SHIP_ON_TIME\u0027 THEN e.Quantity ELSE 0 END),0) OnTimeQty,\n COALESCE(SUM(CASE WHEN e.EventCode=\u0027SHIP_LATE\u0027 THEN e.Quantity ELSE 0 END),0) LateQty,\n COALESCE(SUM(CASE WHEN e.EventCode IN(\u0027SHIP_ON_TIME\u0027,\u0027SHIP_LATE\u0027) THEN e.Quantity ELSE 0 END),0) FilledQty,\n COALESCE(SUM(CASE WHEN e.EventCode=\u0027LOST_SALE\u0027 THEN e.Quantity ELSE 0 END),0) LostQty,\n MAX(CASE WHEN e.EventCode IN(\u0027SHIP_ON_TIME\u0027,\u0027SHIP_LATE\u0027) THEN e.EventAt END) LastShipmentAt\n FROM dss.Fact_SimulationEvent e WHERE e.PlanningRunKey=c.PlanningRunKey\n AND e.EntityCode=CONCAT(\u0027SO_LINE:\u0027,l.SourceSalesOrderDetailID)\n AND e.EventCode IN(\u0027SHIP_ON_TIME\u0027,\u0027SHIP_LATE\u0027,\u0027LOST_SALE\u0027)\n AND CONVERT(date,e.EventAt) BETWEEN w.KnownAt AND w.AnalysisEnd) d;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1668200993,
+        "schema_name":  "cxcontrol",
+        "name":  "FactRequestedWindowSummary",
+        "type_desc":  "VIEW",
+        "definition":  "\nCREATE   VIEW cxcontrol.FactRequestedWindowSummary AS\nSELECT w.WindowKey,c.CandidateKey,c.PlanningRunKey,\n CONVERT(int,CONVERT(char(8),w.KnownAt,112)) WindowStartDateKey,\n CONVERT(int,CONVERT(char(8),w.AnalysisEnd,112)) WindowEndDateKey,\n TRY_CONVERT(int,JSON_VALUE(w.RequestJSON,\u0027$.base_run_key\u0027)) ReferenceRunKey,\n d.CalendarDays WindowDays,CONVERT(float,d.InventoryValueDaySum)/NULLIF(d.CalendarDays,0) WindowAverageInventoryValue,\n o.DueOrderCount WindowDueOrderCount,o.OnTimeFullOrderCount WindowOnTimeFullOrderCount,\n CONVERT(float,o.OnTimeFullOrderCount)/NULLIF(o.DueOrderCount,0) WindowOTIF,\n rd.CalendarDays ReferenceROPDays,CONVERT(float,rd.InventoryValueDaySum)/NULLIF(rd.CalendarDays,0) ReferenceROPAverageInventoryValue,\n ro.DueOrderCount ReferenceROPDueOrderCount,ro.OnTimeFullOrderCount ReferenceROPOnTimeFullOrderCount,\n CONVERT(float,ro.OnTimeFullOrderCount)/NULLIF(ro.DueOrderCount,0) ReferenceROPOTIF\nFROM cxcontrol.RequestedWindow w JOIN cxcontrol.WindowCandidate c ON c.WindowKey=w.WindowKey\nJOIN cxolap.DimRun r ON r.PlanningRunKey=c.PlanningRunKey\nOUTER APPLY(SELECT COUNT(DISTINCT f.DateKey) CalendarDays,SUM(f.InventoryValueDaySum) InventoryValueDaySum\n FROM cxcontrol.FactSimulationDaily f WHERE f.PlanningRunKey=c.PlanningRunKey\n AND f.DateKey BETWEEN CONVERT(int,CONVERT(char(8),w.KnownAt,112)) AND CONVERT(int,CONVERT(char(8),w.AnalysisEnd,112))) d\nOUTER APPLY(SELECT COUNT_BIG(*) DueOrderCount,\n COALESCE(SUM(CONVERT(bigint,CASE WHEN f.CompletedAt IS NOT NULL AND CONVERT(date,f.CompletedAt)\u003c=CONVERT(date,f.DueAt) THEN 1 ELSE 0 END)),0) OnTimeFullOrderCount\n FROM dss.Fact_SimulationOrder f WHERE f.PlanningRunKey=c.PlanningRunKey\n AND CONVERT(date,f.DueAt) BETWEEN w.KnownAt AND w.AnalysisEnd AND CONVERT(date,f.KnownAt)\u003c=w.AnalysisEnd) o\nOUTER APPLY(SELECT COUNT(DISTINCT f.DateKey) CalendarDays,SUM(f.InventoryValueDaySum) InventoryValueDaySum\n FROM cxcontrol.FactSimulationDaily f WHERE f.PlanningRunKey=TRY_CONVERT(int,JSON_VALUE(w.RequestJSON,\u0027$.base_run_key\u0027))\n AND f.DateKey BETWEEN CONVERT(int,CONVERT(char(8),w.KnownAt,112)) AND CONVERT(int,CONVERT(char(8),w.AnalysisEnd,112))) rd\nOUTER APPLY(SELECT COUNT_BIG(*) DueOrderCount,\n COALESCE(SUM(CONVERT(bigint,CASE WHEN f.CompletedAt IS NOT NULL AND CONVERT(date,f.CompletedAt)\u003c=CONVERT(date,f.DueAt) THEN 1 ELSE 0 END)),0) OnTimeFullOrderCount\n FROM dss.Fact_SimulationOrder f WHERE f.PlanningRunKey=TRY_CONVERT(int,JSON_VALUE(w.RequestJSON,\u0027$.base_run_key\u0027))\n AND CONVERT(date,f.DueAt) BETWEEN w.KnownAt AND w.AnalysisEnd AND CONVERT(date,f.KnownAt)\u003c=w.AnalysisEnd) ro;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1700201107,
+        "schema_name":  "cxcontrol",
+        "name":  "FactRequestedWindowTranche",
+        "type_desc":  "VIEW",
+        "definition":  "\nCREATE   VIEW cxcontrol.FactRequestedWindowTranche AS\nSELECT w.WindowKey,c.CandidateKey,c.PlanningRunKey,t.TrancheKey,\n CONVERT(int,CONVERT(char(8),w.KnownAt,112)) KnownDateKey,\n CONVERT(int,CONVERT(char(8),t.DueDate,112)) DueDateKey,\n CASE WHEN f.CompletedAt IS NOT NULL AND CONVERT(date,f.CompletedAt)\u003c=w.AnalysisEnd THEN CONVERT(int,CONVERT(char(8),f.CompletedAt,112)) ELSE 0 END CompletionDateKey,\n CONVERT(nvarchar(20),CASE WHEN f.CompletedAt IS NOT NULL AND CONVERT(date,f.CompletedAt)\u003c=w.AnalysisEnd THEN \u0027FULFILLED\u0027\n WHEN f.CancelledAt IS NOT NULL AND CONVERT(date,f.CancelledAt)\u003c=w.AnalysisEnd THEN \u0027LOST\u0027 ELSE \u0027OPEN\u0027 END) OrderStatus,\n CONVERT(bigint,1) TrancheCount,\n CONVERT(bigint,CASE WHEN f.CompletedAt IS NOT NULL AND CONVERT(date,f.CompletedAt)\u003c=w.AnalysisEnd THEN 1 ELSE 0 END) CompletedTrancheCount,\n CONVERT(bigint,CASE WHEN f.CompletedAt IS NOT NULL AND CONVERT(date,f.CompletedAt)\u003c=w.AnalysisEnd AND CONVERT(date,f.CompletedAt)\u003c=t.DueDate THEN 1 ELSE 0 END) OnTimeCompleteTrancheCount,\n CONVERT(bigint,CASE WHEN f.CancelledAt IS NOT NULL AND CONVERT(date,f.CancelledAt)\u003c=w.AnalysisEnd THEN 1 ELSE 0 END) LostTrancheCount,\n CONVERT(bigint,f.ExpectedLineCount) RequestedLineCount\nFROM cxcontrol.RequestedWindow w JOIN cxcontrol.WindowCandidate c ON c.WindowKey=w.WindowKey\nJOIN cxcontrol.Tranche t ON t.CandidateKey=c.CandidateKey\nJOIN cxolap.DimRun r ON r.PlanningRunKey=c.PlanningRunKey\nJOIN dss.Fact_SimulationOrder f ON f.PlanningRunKey=c.PlanningRunKey AND f.CustomerOrderCode=CONCAT(\u0027SO:\u0027,t.SourceSalesOrderID);\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1124199055,
+        "schema_name":  "cxcontrol",
+        "name":  "FactRunDay",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxcontrol.FactRunDay AS\n SELECT PlanningRunKey,DateKey,CalendarDayCount FROM cxcontrol.RunDaySnapshot;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1748201278,
+        "schema_name":  "cxcontrol",
+        "name":  "FactSimulationDaily",
+        "type_desc":  "VIEW",
+        "definition":  "\nCREATE   VIEW cxcontrol.FactSimulationDaily AS\nSELECT f.*,sp.StockUnitMeasureKey,\n CONVERT(decimal(28,8),f.OnHandValue+f.WIPValue) InventoryValue,\n CONVERT(decimal(28,8),f.OnHandValue+f.WIPValue) InventoryValueDaySum,\n CONVERT(bigint,1) DailyRowCount\nFROM dss.Fact_SimulationDaily f\nJOIN cxcontrol.EligibleRunSnapshot r ON r.PlanningRunKey=f.PlanningRunKey\nJOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=f.ProductKey;\n\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1396200024,
+        "schema_name":  "cxcontrol",
+        "name":  "VerifiedCoverageExecution",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxcontrol.VerifiedCoverageExecution AS\nSELECT e.*\nFROM cxcontrol.CoverageExecution e\nJOIN cxolap.DimRun r ON r.PlanningRunKey=e.PlanningRunKey\nJOIN cxcontrol.Candidate c ON c.PlanningRunKey=e.PlanningRunKey AND c.CandidateID=e.CandidateID\nJOIN cxcontrol.InquiryPurpose p ON p.InquiryKey=c.InquiryKey AND p.Purpose=e.Purpose\nJOIN cxcontrol.InquiryPublication ip ON ip.PlanningRunKey=e.PlanningRunKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1584724698,
+        "schema_name":  "cxdetail",
+        "name":  "DimAllocationConsumer",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[DimAllocationConsumer] AS\nSELECT CONVERT(nvarchar(120),v.Code) ConsumerCode,CONVERT(nvarchar(120),v.Code) ConsumerName FROM (VALUES (N\u0027SALES_ORDER_LINE\u0027),(N\u0027PLANNED_BOM\u0027),(N\u0027FORECAST\u0027)) v(Code);",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1568724641,
+        "schema_name":  "cxdetail",
+        "name":  "DimAllocationSupply",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[DimAllocationSupply] AS\nSELECT CONVERT(nvarchar(300),CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.DecisionVersionID,N\u0027:\u0027,f.SupplyCode)) SupplyKey,CONVERT(nvarchar(500),CONCAT(f.SupplyCode,N\u0027 | \u0027,CONVERT(char(10),f.DecisionAt,120),N\u0027 | Run \u0027,f.PlanningRunKey)) SupplyName,f.SupplyCode,f.SupplyKind,COALESCE(CONVERT(int,CONVERT(char(8),f.[AvailableAt],112)),0) AvailableDateKey FROM cxdetail.SourcePlanSupplyBalance f;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1840725610,
+        "schema_name":  "cxdetail",
+        "name":  "DimMaterialLevel",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[DimMaterialLevel] AS\nSELECT DISTINCT CONVERT(nvarchar(40),CONCAT(MaterialDepth,\u0027:\u0027,CONVERT(int,IsLeafComponent))) MaterialLevelKey,CONVERT(nvarchar(80),CONCAT(\u0027Depth \u0027,MaterialDepth,\u0027 | \u0027,CASE WHEN IsLeafComponent=1 THEN \u0027leaf\u0027 ELSE \u0027intermediate\u0027 END)) MaterialLevelName,CONVERT(int,MaterialDepth) MaterialDepth,IsLeafComponent FROM cxdetail.SourcePlanOrderMaterial;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1552724584,
+        "schema_name":  "cxdetail",
+        "name":  "DimOrderLineStatus",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[DimOrderLineStatus] AS\nSELECT DISTINCT OrderStatus StatusCode,OrderStatus StatusName FROM cxdetail.SourceOrderLineDay UNION SELECT DISTINCT OrderStatus,OrderStatus FROM cxdetail.SourceOrderDay;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1520724470,
+        "schema_name":  "cxdetail",
+        "name":  "DimPlanAction",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[DimPlanAction] AS\nSELECT CONVERT(nvarchar(120),c.ActionCode) ActionCode,CONVERT(nvarchar(120),c.ActionCode) ActionName,CONVERT(nvarchar(120),COALESCE(o.ValueKind,c.ValueKind)) ValueKind FROM (VALUES (N\u0027PRODUCTION_REQUEST\u0027,N\u0027PLANNED_MATERIAL_QUANTITY\u0027),(N\u0027PRODUCTION_START\u0027,N\u0027PLANNED_MATERIAL_QUANTITY\u0027),(N\u0027PURCHASE_ORDER\u0027,N\u0027PLANNED_MATERIAL_QUANTITY\u0027),(N\u0027ORDER_LINE_SHIPMENT\u0027,N\u0027PLANNED_ORDER_LINE_QUANTITY\u0027),(N\u0027ORDER_LINE_LOSS\u0027,N\u0027PLANNED_ORDER_LINE_QUANTITY\u0027),(N\u0027ORDER_LINE_UNSERVED\u0027,N\u0027PLANNED_ORDER_LINE_QUANTITY\u0027),(N\u0027FORECAST_SHIPMENT\u0027,N\u0027PLANNED_MATERIAL_QUANTITY\u0027),(N\u0027PLANNED_BOM_ISSUE\u0027,N\u0027PLANNED_MATERIAL_QUANTITY\u0027),(N\u0027PLANNED_PRODUCTION_RECEIPT\u0027,N\u0027PLANNED_MATERIAL_QUANTITY\u0027),(N\u0027PLANNED_PURCHASE_RECEIPT\u0027,N\u0027PLANNED_MATERIAL_QUANTITY\u0027),(N\u0027PROJECTED_ON_HAND\u0027,N\u0027PREDICTED_STATE\u0027),(N\u0027PROJECTED_ACTUAL_BACKLOG\u0027,N\u0027PREDICTED_STATE\u0027),(N\u0027PROJECTED_FORECAST_SHORTAGE\u0027,N\u0027PREDICTED_STATE\u0027),(N\u0027WHOLE_ORDER_SHIPMENT\u0027,N\u0027WHOLE_ORDER_BINARY_DECISION\u0027),(N\u0027WHOLE_ORDER_LOSS\u0027,N\u0027WHOLE_ORDER_BINARY_DECISION\u0027),(N\u0027WHOLE_ORDER_UNSERVED\u0027,N\u0027WHOLE_ORDER_BINARY_DECISION\u0027)) c(ActionCode,ValueKind) LEFT JOIN (SELECT ActionCode,MIN(ValueKind) ValueKind FROM cxdetail.SourcePlanAction GROUP BY ActionCode) o ON o.ActionCode=c.ActionCode;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1744725268,
+        "schema_name":  "cxdetail",
+        "name":  "DimPlanPeriod",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[DimPlanPeriod] AS\nSELECT DISTINCT CONVERT(int,PeriodOffset) PeriodOffset,CONVERT(nvarchar(40),CONCAT(N\u0027t+\u0027,PeriodOffset)) PeriodName,IsFirstPeriod,IsTentativeFuture FROM cxdetail.SourcePlanAction;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1504724413,
+        "schema_name":  "cxdetail",
+        "name":  "DimPlanVersion",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[DimPlanVersion] AS\nSELECT CONVERT(nvarchar(240),CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.DecisionVersionID)) PlanVersionKey,CONVERT(nvarchar(240),CONCAT(CONVERT(char(10),f.DecisionAt,120),N\u0027 | Run \u0027,f.PlanningRunKey,N\u0027 | Solve \u0027,f.SolveSequence)) PlanVersionName,f.DecisionSHA256 DecisionHash,CONVERT(nvarchar(80),N\u0027ACCEPTED_ADVISORY\u0027) PlanStatus,COALESCE(CONVERT(int,CONVERT(char(8),f.[DecisionAt],112)),0) DecisionDateKey,CONVERT(int,ROW_NUMBER() OVER(PARTITION BY f.PlanningRunKey ORDER BY f.DecisionAt,f.DecisionVersionID)) PlanVersionOrdinal,f.PlanningRunKey,f.DecisionVersionID FROM cxdetail.SourcePlanVersion f;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1488724356,
+        "schema_name":  "cxdetail",
+        "name":  "DimProductionExecution",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[DimProductionExecution] AS\nSELECT CONVERT(nvarchar(240),CASE WHEN f.[ExecutionCode] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[ExecutionCode]) END) ExecutionKey,CONVERT(nvarchar(240),CONCAT(f.ExecutionCode,N\u0027 | Run \u0027,f.PlanningRunKey)) ExecutionName,f.ExecutionCode FROM cxdetail.SourceProductionExecution f UNION ALL SELECT N\u00270\u0027,N\u0027Không áp dụng\u0027,N\u0027Không áp dụng\u0027;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1472724299,
+        "schema_name":  "cxdetail",
+        "name":  "DimProductionJob",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[DimProductionJob] AS\nSELECT CONVERT(nvarchar(240),CASE WHEN f.[JobCode] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[JobCode]) END) JobKey,CONVERT(nvarchar(240),CONCAT(f.JobCode,N\u0027 | Run \u0027,f.PlanningRunKey)) JobName,f.JobCode FROM cxdetail.SourceProductionJobDay f GROUP BY f.PlanningRunKey,f.JobCode UNION ALL SELECT N\u00270\u0027,N\u0027Không áp dụng\u0027,N\u0027Không áp dụng\u0027;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1440724185,
+        "schema_name":  "cxdetail",
+        "name":  "DimSalesOrder",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[DimSalesOrder] AS\nSELECT CONVERT(nvarchar(240),CASE WHEN f.[SalesOrderID] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[SalesOrderID]) END) SalesOrderKey,CONVERT(nvarchar(240),CONCAT(N\u0027SO \u0027,f.SalesOrderID,N\u0027 | Run \u0027,f.PlanningRunKey)) SalesOrderName,CONVERT(nvarchar(60),f.SalesOrderID) SalesOrderID FROM cxdetail.SourceOrderDay f GROUP BY f.PlanningRunKey,f.SalesOrderID UNION ALL SELECT N\u00270\u0027,N\u0027Không áp dụng\u0027,N\u0027Không áp dụng\u0027;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1456724242,
+        "schema_name":  "cxdetail",
+        "name":  "DimSalesOrderLine",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[DimSalesOrderLine] AS\nSELECT CONVERT(nvarchar(240),CASE WHEN f.[SalesOrderDetailID] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[SalesOrderDetailID]) END) SalesOrderLineKey,CONVERT(nvarchar(240),CONCAT(N\u0027SO \u0027,f.SalesOrderID,N\u0027 / Line \u0027,f.SalesOrderDetailID,N\u0027 | Run \u0027,f.PlanningRunKey)) LineName,CONVERT(nvarchar(60),f.SalesOrderDetailID) SourceLineID FROM cxdetail.SourceOrderLineDay f GROUP BY f.PlanningRunKey,f.SalesOrderID,f.SalesOrderDetailID UNION ALL SELECT N\u00270\u0027,N\u0027Không áp dụng\u0027,N\u0027Không áp dụng\u0027;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1536724527,
+        "schema_name":  "cxdetail",
+        "name":  "DimTraceMethod",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[DimTraceMethod] AS\nSELECT DISTINCT TraceMethod MethodCode,TraceMethod MethodName FROM cxdetail.SourceMaterialTrace UNION SELECT DISTINCT Method,Method FROM cxdetail.SourceAdvisoryAllocation UNION SELECT DISTINCT Method,Method FROM cxdetail.SourcePlanOrderMaterial;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1632724869,
+        "schema_name":  "cxdetail",
+        "name":  "FactJobDaily",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[FactJobDaily] AS\nSELECT f.*,COALESCE(p.ProductKey,-1) ProductKey,COALESCE(sp.StockUnitMeasureKey,0) StockUnitMeasureKey,CONVERT(nvarchar(240),CASE WHEN f.[JobCode] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[JobCode]) END) JobKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[Date],112)),0) DateKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[CreatedAt],112)),0) CreatedDateKey FROM cxdetail.SourceProductionJobDay f LEFT JOIN cxolap.DimProduct p ON p.ProductID=f.[ProductID] AND p.ProductID\u003e0 LEFT JOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey LEFT JOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=p.ProductKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1664724983,
+        "schema_name":  "cxdetail",
+        "name":  "FactMaterialTrace",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[FactMaterialTrace] AS\nSELECT f.*,COALESCE(p.ProductKey,-1) ProductKey,COALESCE(sp.StockUnitMeasureKey,0) StockUnitMeasureKey,COALESCE(pp.ProductKey,-1) ParentProductKey,CONVERT(nvarchar(240),CASE WHEN f.[JobCode] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[JobCode]) END) JobKey,CONVERT(nvarchar(240),CASE WHEN f.[ExecutionCode] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[ExecutionCode]) END) ExecutionKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[EventAt],112)),0) DateKey,CONVERT(bigint,1) IssueCount FROM cxdetail.SourceMaterialTrace f LEFT JOIN cxolap.DimProduct p ON p.ProductID=f.[ComponentProductID] AND p.ProductID\u003e0 LEFT JOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey LEFT JOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=p.ProductKey LEFT JOIN cxolap.DimProduct pp ON pp.ProductID=f.ParentProductID AND pp.ProductID\u003e0;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1600724755,
+        "schema_name":  "cxdetail",
+        "name":  "FactOrderDaily",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[FactOrderDaily] AS\nSELECT f.*, CONVERT(nvarchar(240),CASE WHEN f.[SalesOrderID] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[SalesOrderID]) END) SalesOrderKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[Date],112)),0) DateKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[KnownAt],112)),0) KnownDateKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[DueAt],112)),0) DueDateKey FROM cxdetail.SourceOrderDay f;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1616724812,
+        "schema_name":  "cxdetail",
+        "name":  "FactOrderLineDaily",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[FactOrderLineDaily] AS\nSELECT f.*,COALESCE(p.ProductKey,-1) ProductKey,COALESCE(sp.StockUnitMeasureKey,0) StockUnitMeasureKey,CONVERT(nvarchar(240),CASE WHEN f.[SalesOrderID] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[SalesOrderID]) END) SalesOrderKey,CONVERT(nvarchar(240),CASE WHEN f.[SalesOrderDetailID] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[SalesOrderDetailID]) END) SalesOrderLineKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[Date],112)),0) DateKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[KnownAt],112)),0) KnownDateKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[DueAt],112)),0) DueDateKey FROM cxdetail.SourceOrderLineDay f LEFT JOIN cxolap.DimProduct p ON p.ProductID=f.[ProductID] AND p.ProductID\u003e0 LEFT JOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey LEFT JOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=p.ProductKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1712725154,
+        "schema_name":  "cxdetail",
+        "name":  "FactPlannedAllocation",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[FactPlannedAllocation] AS\nSELECT f.*,COALESCE(p.ProductKey,-1) ProductKey,COALESCE(sp.StockUnitMeasureKey,0) StockUnitMeasureKey,COALESCE(pp.ProductKey,-1) ParentProductKey,pv.PlanVersionKey,pv.PlanVersionOrdinal,CONVERT(nvarchar(240),CASE WHEN f.[SalesOrderID] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[SalesOrderID]) END) SalesOrderKey,CONVERT(nvarchar(240),CASE WHEN f.[SalesOrderDetailID] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[SalesOrderDetailID]) END) SalesOrderLineKey,CONVERT(nvarchar(300),CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.DecisionVersionID,N\u0027:\u0027,f.SupplyCode)) SupplyKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[DecisionAt],112)),0) DecisionDateKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[PlanAt],112)),0) PlannedDateKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[SupplyAvailableAt],112)),0) SupplyDateKey,CONVERT(bigint,1) AllocationCount FROM cxdetail.SourceAdvisoryAllocation f JOIN cxdetail.DimPlanVersion pv ON pv.PlanningRunKey=f.PlanningRunKey AND pv.DecisionVersionID=f.DecisionVersionID LEFT JOIN cxolap.DimProduct p ON p.ProductID=f.[ProductID] AND p.ProductID\u003e0 LEFT JOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey LEFT JOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=p.ProductKey LEFT JOIN cxolap.DimProduct pp ON pp.ProductID=f.ParentProductID AND pp.ProductID\u003e0;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1856725667,
+        "schema_name":  "cxdetail",
+        "name":  "FactPlanOrderMaterial",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[FactPlanOrderMaterial] AS\nSELECT f.*,COALESCE(p.ProductKey,-1) ProductKey,COALESCE(sp.StockUnitMeasureKey,0) StockUnitMeasureKey,COALESCE(pp.ProductKey,-1) ParentProductKey,COALESCE(rp.ProductKey,-1) RootProductKey,pv.PlanVersionKey,pv.PlanVersionOrdinal,CONVERT(nvarchar(240),CASE WHEN f.[SalesOrderID] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[SalesOrderID]) END) SalesOrderKey,CONVERT(nvarchar(240),CASE WHEN f.[SalesOrderDetailID] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[SalesOrderDetailID]) END) SalesOrderLineKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[DecisionAt],112)),0) DecisionDateKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[PlanAt],112)),0) PlannedDateKey,CONVERT(nvarchar(40),CONCAT(f.MaterialDepth,\u0027:\u0027,CONVERT(int,f.IsLeafComponent))) MaterialLevelKey FROM cxdetail.SourcePlanOrderMaterial f JOIN cxdetail.DimPlanVersion pv ON pv.PlanningRunKey=f.PlanningRunKey AND pv.DecisionVersionID=f.DecisionVersionID LEFT JOIN cxolap.DimProduct p ON p.ProductID=f.[ComponentProductID] AND p.ProductID\u003e0 LEFT JOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey LEFT JOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=p.ProductKey LEFT JOIN cxolap.DimProduct pp ON pp.ProductID=f.ParentProductID AND pp.ProductID\u003e0 LEFT JOIN cxolap.DimProduct rp ON rp.ProductID=f.RootProductID AND rp.ProductID\u003e0;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1728725211,
+        "schema_name":  "cxdetail",
+        "name":  "FactPlanSupplyBalance",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[FactPlanSupplyBalance] AS\nSELECT f.*,COALESCE(p.ProductKey,-1) ProductKey,COALESCE(sp.StockUnitMeasureKey,0) StockUnitMeasureKey,pv.PlanVersionKey,pv.PlanVersionOrdinal,CONVERT(nvarchar(300),CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.DecisionVersionID,N\u0027:\u0027,f.SupplyCode)) SupplyKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[DecisionAt],112)),0) DecisionDateKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[AvailableAt],112)),0) SupplyDateKey FROM cxdetail.SourcePlanSupplyBalance f JOIN cxdetail.DimPlanVersion pv ON pv.PlanningRunKey=f.PlanningRunKey AND pv.DecisionVersionID=f.DecisionVersionID LEFT JOIN cxolap.DimProduct p ON p.ProductID=f.[ProductID] AND p.ProductID\u003e0 LEFT JOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey LEFT JOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=p.ProductKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1648724926,
+        "schema_name":  "cxdetail",
+        "name":  "FactProductionExecution",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[FactProductionExecution] AS\nSELECT f.*,COALESCE(p.ProductKey,-1) ProductKey,COALESCE(sp.StockUnitMeasureKey,0) StockUnitMeasureKey,CONVERT(nvarchar(240),CASE WHEN f.[JobCode] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[JobCode]) END) JobKey,CONVERT(nvarchar(240),CASE WHEN f.[ExecutionCode] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[ExecutionCode]) END) ExecutionKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[StartAt],112)),0) StartDateKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[CompletedAt],112)),0) CompletionDateKey,CONVERT(bigint,1) ExecutionCount FROM cxdetail.SourceProductionExecution f LEFT JOIN cxolap.DimProduct p ON p.ProductID=f.[ProductID] AND p.ProductID\u003e0 LEFT JOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey LEFT JOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=p.ProductKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1696725097,
+        "schema_name":  "cxdetail",
+        "name":  "FactRollingOrderPlan",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[FactRollingOrderPlan] AS\nSELECT f.*,pv.PlanVersionKey,pv.PlanVersionOrdinal,CONVERT(nvarchar(240),CASE WHEN f.[SalesOrderID] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[SalesOrderID]) END) SalesOrderKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[DecisionAt],112)),0) DecisionDateKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[PlanAt],112)),0) PlannedDateKey FROM cxdetail.SourcePlanAction f JOIN cxdetail.DimPlanVersion pv ON pv.PlanningRunKey=f.PlanningRunKey AND pv.DecisionVersionID=f.DecisionVersionID WHERE f.OrderDecisionFlag IS NOT NULL;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1680725040,
+        "schema_name":  "cxdetail",
+        "name":  "FactRollingPlan",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[FactRollingPlan] AS\nSELECT f.*,COALESCE(p.ProductKey,-1) ProductKey,COALESCE(sp.StockUnitMeasureKey,0) StockUnitMeasureKey,COALESCE(pp.ProductKey,-1) ParentProductKey,pv.PlanVersionKey,pv.PlanVersionOrdinal,CONVERT(nvarchar(240),CASE WHEN f.[SalesOrderID] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[SalesOrderID]) END) SalesOrderKey,CONVERT(nvarchar(240),CASE WHEN f.[SalesOrderDetailID] IS NULL THEN N\u00270\u0027 ELSE CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.[SalesOrderDetailID]) END) SalesOrderLineKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[DecisionAt],112)),0) DecisionDateKey,COALESCE(CONVERT(int,CONVERT(char(8),f.[PlanAt],112)),0) PlannedDateKey FROM cxdetail.SourcePlanAction f JOIN cxdetail.DimPlanVersion pv ON pv.PlanningRunKey=f.PlanningRunKey AND pv.DecisionVersionID=f.DecisionVersionID LEFT JOIN cxolap.DimProduct p ON p.ProductID=f.[ProductID] AND p.ProductID\u003e0 LEFT JOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey LEFT JOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=p.ProductKey LEFT JOIN cxolap.DimProduct pp ON pp.ProductID=f.ParentProductID AND pp.ProductID\u003e0 WHERE f.Quantity IS NOT NULL;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1280723615,
+        "schema_name":  "cxdetail",
+        "name":  "PublishedRun",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[PublishedRun] AS\nSELECT d.* FROM cxdetail.RunDetail d JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=d.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1376723957,
+        "schema_name":  "cxdetail",
+        "name":  "SourceAdvisoryAllocation",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[SourceAdvisoryAllocation] AS\nSELECT f.* FROM cxdetail.[AdvisoryAllocation] f JOIN cxdetail.PublishedRun pr ON pr.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1360723900,
+        "schema_name":  "cxdetail",
+        "name":  "SourceMaterialTrace",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[SourceMaterialTrace] AS\nSELECT f.* FROM cxdetail.[MaterialTrace] f JOIN cxdetail.PublishedRun pr ON pr.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1312723729,
+        "schema_name":  "cxdetail",
+        "name":  "SourceOrderDay",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[SourceOrderDay] AS\nSELECT f.* FROM cxdetail.[OrderDay] f JOIN cxdetail.PublishedRun pr ON pr.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1296723672,
+        "schema_name":  "cxdetail",
+        "name":  "SourceOrderLineDay",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[SourceOrderLineDay] AS\nSELECT f.* FROM cxdetail.[OrderLineDay] f JOIN cxdetail.PublishedRun pr ON pr.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1424724128,
+        "schema_name":  "cxdetail",
+        "name":  "SourcePlanAction",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[SourcePlanAction] AS\nSELECT f.* FROM cxdetail.[PlanAction] f JOIN cxdetail.PublishedRun pr ON pr.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1824725553,
+        "schema_name":  "cxdetail",
+        "name":  "SourcePlanOrderMaterial",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[SourcePlanOrderMaterial] AS\nSELECT f.* FROM cxdetail.[PlanOrderMaterial] f JOIN cxdetail.PublishedRun pr ON pr.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1392724014,
+        "schema_name":  "cxdetail",
+        "name":  "SourcePlanSupplyBalance",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[SourcePlanSupplyBalance] AS\nSELECT f.* FROM cxdetail.[PlanSupplyBalance] f JOIN cxdetail.PublishedRun pr ON pr.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1408724071,
+        "schema_name":  "cxdetail",
+        "name":  "SourcePlanVersion",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[SourcePlanVersion] AS\nSELECT f.* FROM cxdetail.[PlanVersion] f JOIN cxdetail.PublishedRun pr ON pr.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1344723843,
+        "schema_name":  "cxdetail",
+        "name":  "SourceProductionExecution",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[SourceProductionExecution] AS\nSELECT f.* FROM cxdetail.[ProductionExecution] f JOIN cxdetail.PublishedRun pr ON pr.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1328723786,
+        "schema_name":  "cxdetail",
+        "name":  "SourceProductionJobDay",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxdetail.[SourceProductionJobDay] AS\nSELECT f.* FROM cxdetail.[ProductionJobDay] f JOIN cxdetail.PublishedRun pr ON pr.PlanningRunKey=f.PlanningRunKey;",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1591676718,
+        "schema_name":  "cxolap",
+        "name":  "DimDate",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.DimDate AS\nSELECT DateKey,CalendarDate,CONVERT(nvarchar(10),CalendarDate,23) DateName,\n CalendarYear, CalendarQuarter, CalendarMonth, DayOfMonth,\n CalendarYear*100+CalendarMonth MonthKey,\n CONVERT(nvarchar(7),CalendarDate,23) MonthName,\n CalendarYear*10+CalendarQuarter QuarterKey,\n CONVERT(nvarchar(10),CONCAT(CalendarYear,N\u0027-Q\u0027,CalendarQuarter)) QuarterName\nFROM dw.Dim_Date WHERE DateKey\u003e0 AND CalendarDate IS NOT NULL\nUNION ALL\nSELECT 0,CONVERT(date,\u002719000101\u0027),N\u0027Not completed / not applicable\u0027,0,0,0,0,0,N\u0027N/A\u0027,0,N\u0027N/A\u0027;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1655676946,
+        "schema_name":  "cxolap",
+        "name":  "DimEvaluationCohort",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.DimEvaluationCohort AS\nSELECT CONVERT(nvarchar(30),v.Cohort) EvaluationCohort\nFROM (VALUES(N\u0027OPENING_OVERDUE\u0027),(N\u0027DUE_IN_RUN\u0027),(N\u0027FUTURE_DUE\u0027)) v(Cohort);\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1623676832,
+        "schema_name":  "cxolap",
+        "name":  "DimLocation",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.DimLocation AS\nSELECT LocationKey,COALESCE(LocationName,N\u0027Unknown\u0027) LocationName,\n COALESCE(LocationType,N\u0027UNKNOWN\u0027) LocationType FROM dw.Dim_Location;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1671677003,
+        "schema_name":  "cxolap",
+        "name":  "DimOrderStatus",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.DimOrderStatus AS\nSELECT DISTINCT OrderStatus FROM dss.Fact_SimulationOrder\nUNION SELECT CONVERT(nvarchar(30),N\u0027NOT_APPLICABLE\u0027);\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1607676775,
+        "schema_name":  "cxolap",
+        "name":  "DimProduct",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.DimProduct AS\nSELECT ProductKey,COALESCE(ProductID,-1) ProductID,\n COALESCE(ProductNumber,N\u0027UNKNOWN\u0027) ProductNumber,\n CONVERT(nvarchar(160),CONCAT(COALESCE(ProductNumber,N\u0027?\u0027),N\u0027 | \u0027,COALESCE(ProductName,N\u0027Unknown\u0027))) ProductName,\n COALESCE(ProductCategoryID,-1) CategoryKey,COALESCE(CategoryName,N\u0027Unclassified\u0027) CategoryName,\n COALESCE(ProductSubcategoryID,-1) SubcategoryKey,COALESCE(SubcategoryName,N\u0027Unclassified\u0027) SubcategoryName,\n COALESCE(SupplyType,N\u0027UNKNOWN\u0027) SupplyType,COALESCE(ProductRole,N\u0027UNKNOWN\u0027) ProductRole,\n CONVERT(int,COALESCE(MakeFlag,0)) MakeFlag,CONVERT(int,COALESCE(FinishedGoodsFlag,0)) FinishedGoodsFlag\nFROM dw.Dim_Product;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1575676661,
+        "schema_name":  "cxolap",
+        "name":  "DimRun",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.DimRun AS\nSELECT r.PlanningRunKey, r.RunCode,\n CONVERT(nvarchar(240),CONCAT(r.PlanningRunKey,N\u0027 | \u0027,p.PolicyCode,N\u0027 | \u0027,r.RunCode)) RunName,\n r.ExperimentCaseKey,r.ExperimentVersionKey,c.CaseCode,c.CaseName,\n e.ExperimentCode,e.ExperimentName,r.ScenarioVersionKey,s.ScenarioCode,s.ScenarioName,\n r.PolicyConfigVersionKey,pc.PolicyConfigCode,p.PolicyCode,p.PolicyName,\n COALESCE(r.ReplicationNo,0) ReplicationNo,COALESCE(r.RandomSeed,0) RandomSeed,\n COALESCE(r.RandomStreamVersion,N\u0027UNSPECIFIED\u0027) RandomStreamVersion,\n r.SimulationStartDateKey,r.SimulationEndDateKey,r.InputSnapshotKey,\n r.DataCutoffDateKey,r.DemandInputMode,r.DemandRuleVersion,r.RuleSetVersion,\n r.AttemptNo,r.MetricDefinitionVersion,r.RunAt,r.CompletedAt,\n s.CustomerShipmentMode,s.ShortageHandlingMode,COALESCE(s.LostSalesScope,N\u0027NOT_APPLICABLE\u0027) LostSalesScope,\n s.InitialStateRule,s.InventoryValuationRule,s.HoldingCostRatePerYear,\n rs.EvaluationScope,CONVERT(nvarchar(100),N\u0027Published / Succeeded / Passed\u0027) Eligibility,\n CONVERT(nvarchar(200),N\u0027Independent run; experiment key alone is not a comparison set\u0027) ComparisonScope\nFROM dss.v_PlanningRunContext r\nJOIN dss.ExperimentCase c ON c.ExperimentCaseKey=r.ExperimentCaseKey\nJOIN dss.Dim_ExperimentVersion e ON e.ExperimentVersionKey=c.ExperimentVersionKey\nJOIN dss.Dim_ScenarioVersion s ON s.ScenarioVersionKey=r.ScenarioVersionKey\nJOIN dss.Dim_PolicyConfigVersion pc ON pc.PolicyConfigVersionKey=r.PolicyConfigVersionKey\nJOIN dss.Dim_PolicyType p ON p.PolicyTypeKey=pc.PolicyTypeKey\nJOIN dss.Fact_RunSummary rs ON rs.PlanningRunKey=r.PlanningRunKey\nWHERE r.RunPurpose=N\u0027SIMULATION\u0027 AND r.RunStatus=N\u0027SUCCEEDED\u0027\n AND e.LifecycleStatus=N\u0027PUBLISHED\u0027 AND rs.ValidationStatus=N\u0027PASSED\u0027;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1751677288,
+        "schema_name":  "cxolap",
+        "name":  "DimSolveKey",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.DimSolveKey AS\nSELECT CONVERT(nvarchar(80),CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.SolveSequence)) SolveKey,\n CONVERT(nvarchar(180),CONCAT(N\u0027Run \u0027,f.PlanningRunKey,N\u0027 / Solve \u0027,f.SolveSequence,N\u0027 / \u0027,CONVERT(nvarchar(19),f.DecisionAt,126))) SolveName,\n f.PlanningRunKey,f.SolveSequence,f.DecisionAt,f.InformationCutoffAt,f.HorizonEndAt,\n f.AttemptNo,f.ObjectiveStage,f.ActionSource,\n COALESCE(CONVERT(nvarchar(30),f.PlanningForecastRunKey),N\u0027NULL: external frozen forecast\u0027) PlanningForecastSource,\n f.ForecastInputReference,f.StateInputReference,COALESCE(f.DecisionOutputReference,N\u0027\u0027) DecisionOutputReference\nFROM dss.Fact_OptimizationSolve f JOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1687677060,
+        "schema_name":  "cxolap",
+        "name":  "DimSolveStatus",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.DimSolveStatus AS\nSELECT DISTINCT SolverStatus FROM dss.Fact_OptimizationSolve\nUNION SELECT CONVERT(nvarchar(50),N\u0027NOT_APPLICABLE\u0027);\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1639676889,
+        "schema_name":  "cxolap",
+        "name":  "DimUnit",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.DimUnit AS\nSELECT UnitMeasureKey StockUnitMeasureKey,\n COALESCE(UnitMeasureCode,N\u0027?\u0027) UnitCode,COALESCE(UnitMeasureName,N\u0027Unknown unit\u0027) UnitName\nFROM dw.Dim_UnitMeasure;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1719677174,
+        "schema_name":  "cxolap",
+        "name":  "FactOrderLineService",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.FactOrderLineService AS\nSELECT f.PlanningRunKey,f.EntityCode,f.ProductKey,sp.StockUnitMeasureKey,\n f.DueDateKey,COALESCE(f.CompletionDateKey,0) CompletionDateKey,\n f.CustomerOrderCode,f.EvaluationCohort,f.IsDueInEvaluationPeriod,\n f.ObligationQty,f.OTUDemandQty,f.OTUOnTimeQty,f.OnTimeQty,f.LateQty,f.FilledQty,f.LostQty,\n f.UnfilledQtyAtEnd,f.OverdueUnfilledQtyAtEnd,f.LateUnitDays,\n f.CompletionLateDays,CONVERT(bigint,1) LineCount,\n CONVERT(bigint,CASE WHEN f.CompletionDateKey IS NOT NULL THEN 1 ELSE 0 END) CompletedLineCount,\n CONVERT(decimal(28,8),CASE WHEN f.IsDueInEvaluationPeriod=1 THEN f.FilledQty ELSE 0 END) DueCohortFilledQty,\n CONVERT(decimal(28,8),CASE WHEN f.IsDueInEvaluationPeriod=1 THEN f.LostQty ELSE 0 END) DueCohortLostQty,\n CONVERT(decimal(28,8),CASE WHEN f.IsDueInEvaluationPeriod=1 THEN f.UnfilledQtyAtEnd ELSE 0 END) DueCohortEndingBacklogQty\nFROM cxolap.OrderLineSnapshot f\nJOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey\nJOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=f.ProductKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1735677231,
+        "schema_name":  "cxolap",
+        "name":  "FactOrderService",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.FactOrderService AS\nSELECT f.PlanningRunKey,f.CustomerOrderCode,\n CONVERT(int,CONVERT(char(8),f.DueAt,112)) DueDateKey,\n COALESCE(CONVERT(int,CONVERT(char(8),f.CompletedAt,112)),0) CompletionDateKey,\n f.OrderStatus,f.ExpectedLineCount,\n CONVERT(nvarchar(30),CASE WHEN CONVERT(int,CONVERT(char(8),f.DueAt,112))\u003cr.SimulationStartDateKey THEN N\u0027OPENING_OVERDUE\u0027\n  WHEN CONVERT(int,CONVERT(char(8),f.DueAt,112))\u003er.SimulationEndDateKey THEN N\u0027FUTURE_DUE\u0027 ELSE N\u0027DUE_IN_RUN\u0027 END) EvaluationCohort,\n CONVERT(bigint,1) OrderCount,\n CONVERT(bigint,CASE WHEN CONVERT(int,CONVERT(char(8),f.DueAt,112)) BETWEEN r.SimulationStartDateKey AND r.SimulationEndDateKey THEN 1 ELSE 0 END) DueOrderCount,\n CONVERT(bigint,CASE WHEN CONVERT(int,CONVERT(char(8),f.DueAt,112)) BETWEEN r.SimulationStartDateKey AND r.SimulationEndDateKey\n  AND f.OrderStatus=N\u0027FULFILLED\u0027 AND CONVERT(date,f.CompletedAt)\u003c=CONVERT(date,f.DueAt) THEN 1 ELSE 0 END) OnTimeFullOrderCount,\n CONVERT(bigint,CASE WHEN CONVERT(int,CONVERT(char(8),f.DueAt,112)) BETWEEN r.SimulationStartDateKey AND r.SimulationEndDateKey\n  AND f.OrderStatus=N\u0027LOST\u0027 THEN 1 ELSE 0 END) LostOrderCount,\n CONVERT(bigint,CASE WHEN CONVERT(int,CONVERT(char(8),f.DueAt,112)) BETWEEN r.SimulationStartDateKey AND r.SimulationEndDateKey\n  AND f.OrderStatus=N\u0027OPEN\u0027 THEN 1 ELSE 0 END) OpenDueOrderCount\nFROM dss.Fact_SimulationOrder f JOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1783677402,
+        "schema_name":  "cxolap",
+        "name":  "FactRunDay",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.FactRunDay AS\nSELECT f.PlanningRunKey,f.DateKey,CONVERT(bigint,1) CalendarDayCount\nFROM cxolap.FactSimulationDaily f GROUP BY f.PlanningRunKey,f.DateKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1799677459,
+        "schema_name":  "cxolap",
+        "name":  "FactRunSummary",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.FactRunSummary AS\nSELECT f.*,CONVERT(bigint,1) RunCount\nFROM dss.Fact_RunSummary f JOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1703677117,
+        "schema_name":  "cxolap",
+        "name":  "FactSimulationDaily",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.FactSimulationDaily AS\nSELECT f.*,sp.StockUnitMeasureKey,\n CONVERT(decimal(28,8),f.OnHandValue+f.WIPValue) InventoryValue,\n CONVERT(decimal(28,8),f.OnHandValue+f.WIPValue) InventoryValueDaySum,\n CONVERT(bigint,1) DailyRowCount\nFROM dss.Fact_SimulationDaily f\nJOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey\nJOIN dss.Scenario_Product sp ON sp.ScenarioVersionKey=r.ScenarioVersionKey AND sp.ProductKey=f.ProductKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1767677345,
+        "schema_name":  "cxolap",
+        "name":  "FactSolveAudit",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxolap.FactSolveAudit AS\nSELECT f.*,CONVERT(nvarchar(80),CONCAT(f.PlanningRunKey,N\u0027:\u0027,f.SolveSequence)) SolveKey,\n CONVERT(int,CONVERT(char(8),f.DecisionAt,112)) DecisionDateKey,\n CONVERT(bigint,1) SolveCount,\n CONVERT(bigint,f.HasFeasibleSolution) FeasibleSolveCount,\n CONVERT(bigint,CASE WHEN f.SolverStatus=N\u0027OPTIMAL\u0027 THEN 1 ELSE 0 END) OptimalSolveCount,\n CONVERT(bigint,CASE WHEN f.SolverStatus=N\u0027FEASIBLE_TIME_LIMIT\u0027 THEN 1 ELSE 0 END) FeasibleTimeLimitCount,\n CONVERT(bigint,CASE WHEN f.RelativeGap IS NOT NULL THEN 1 ELSE 0 END) GapObservedCount,\n f.RelativeGap RelativeGapSum\nFROM dss.Fact_OptimizationSolve f JOIN cxolap.DimRun r ON r.PlanningRunKey=f.PlanningRunKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  400720480,
+        "schema_name":  "cxsim",
+        "name":  "DimRun",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW cxsim.DimRun AS SELECT r.*,CONVERT(nvarchar(40),COALESCE(s.InputOrigin,\u0027UNBOUND\u0027)) InputOrigin,CONVERT(nvarchar(64),COALESCE(s.ACTSnapshotID,\u0027LEGACY_NOT_RECORDED\u0027)) ACTSnapshotID FROM cxsim.DimRunBase r LEFT JOIN cxsim.RunInputSnapshot s ON s.PlanningRunKey=r.PlanningRunKey",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  669245439,
+        "schema_name":  "cxsim",
+        "name":  "DimRunBase",
+        "type_desc":  "VIEW",
+        "definition":  "\nCREATE   VIEW cxsim.DimRunBase AS\nSELECT r.*,\n CONVERT(nvarchar(100),CASE WHEN r.PolicyCode=N\u0027ROP\u0027 THEN N\u0027ROP_ORIGINAL\u0027 ELSE COALESCE(JSON_VALUE(c.ScopeJSON,\u0027$.optimizer_release.version\u0027),N\u0027LEGACY_PRE_V3\u0027) END) OptimizerVersion,\n CONVERT(nvarchar(100),CASE WHEN r.PolicyCode=N\u0027ROP\u0027 THEN N\u0027NOT_APPLICABLE\u0027 ELSE COALESCE(JSON_VALUE(c.ScopeJSON,\u0027$.optimizer_release.sha256\u0027),N\u0027LEGACY\u0027) END) OptimizerHash,\n CONVERT(nvarchar(100),CASE WHEN r.PolicyCode=N\u0027ROP\u0027 THEN N\u0027ROP_SIMULATED_BASELINE\u0027 WHEN JSON_VALUE(c.ScopeJSON,\u0027$.optimizer_release.version\u0027) IS NOT NULL THEN N\u0027CORRECTED_MILP\u0027 ELSE N\u0027HISTORICAL_MILP\u0027 END) ResultModelStatus\nFROM cxactive.DimRun r LEFT JOIN cxcontrol.Candidate c ON c.PlanningRunKey=r.PlanningRunKey;\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1621580815,
+        "schema_name":  "dss",
+        "name":  "v_ExperimentCaseExecution",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW dss.v_ExperimentCaseExecution AS\r\nSELECT c.*, e.ExperimentCode,\r\n CASE WHEN c.RuleSetVersion=\u0027companyx.ssis.native.v1\u0027 THEN \u0027SSIS_NATIVE\u0027\r\n      WHEN c.RuleSetVersion=\u0027companyx.dw.sql63.v2\u0027 THEN \u0027PORTABLE_V2\u0027\r\n      ELSE \u0027LEGACY_READ_ONLY\u0027 END ExecutionCompatibility\r\nFROM dss.ExperimentCase c JOIN dss.Dim_ExperimentVersion e ON c.ExperimentVersionKey=e.ExperimentVersionKey;\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1365579903,
+        "schema_name":  "dss",
+        "name":  "v_PlanningRunContext",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW dss.v_PlanningRunContext\r\nAS\r\nSELECT\r\n    r.[PlanningRunKey],\r\n    r.[RunCode],\r\n    r.[RunPurpose],\r\n    CASE WHEN r.RunPurpose = N\u0027SIMULATION\u0027 THEN c.[ScenarioVersionKey] WHEN r.RunPurpose = N\u0027RECOMMENDATION\u0027 THEN r.[ScenarioVersionKey] ELSE CAST(NULL AS bigint) END AS [ScenarioVersionKey],\r\n    CASE WHEN r.RunPurpose = N\u0027SIMULATION\u0027 THEN c.[PolicyConfigVersionKey] ELSE CAST(NULL AS bigint) END AS [PolicyConfigVersionKey],\r\n    c.[DemandSourceKind],\r\n    COALESCE(r.[ReplicationNo], rep.[ReplicationNo]) AS [ReplicationNo],\r\n    COALESCE(r.[RandomSeed], rep.[BaseSeed]) AS [RandomSeed],\r\n    COALESCE(r.[RandomStreamVersion], rep.[RandomStreamVersion]) AS [RandomStreamVersion],\r\n    CASE WHEN r.RunPurpose = N\u0027SIMULATION\u0027 THEN c.[DataCutoffDateKey] WHEN r.RunPurpose IN (N\u0027FORECAST\u0027, N\u0027RECOMMENDATION\u0027) THEN r.[DataCutoffDateKey] ELSE CAST(NULL AS int) END AS [DataCutoffDateKey],\r\n    CASE WHEN r.RunPurpose = N\u0027SIMULATION\u0027 THEN c.[SimulationStartDateKey] ELSE CAST(NULL AS int) END AS [SimulationStartDateKey],\r\n    CASE WHEN r.RunPurpose = N\u0027SIMULATION\u0027 THEN c.[SimulationEndDateKey] ELSE CAST(NULL AS int) END AS [SimulationEndDateKey],\r\n    CASE WHEN r.RunPurpose = N\u0027SIMULATION\u0027 THEN c.[DemandInputMode] ELSE CAST(NULL AS nvarchar(30)) END AS [DemandInputMode],\r\n    CASE WHEN r.RunPurpose = N\u0027SIMULATION\u0027 THEN c.[DemandRuleVersion] WHEN r.RunPurpose IN (N\u0027FORECAST\u0027, N\u0027RECOMMENDATION\u0027) THEN r.[DemandRuleVersion] ELSE CAST(NULL AS nvarchar(100)) END AS [DemandRuleVersion],\r\n    CASE WHEN r.RunPurpose = N\u0027SIMULATION\u0027 THEN c.[RuleSetVersion] WHEN r.RunPurpose IN (N\u0027FORECAST\u0027, N\u0027RECOMMENDATION\u0027) THEN r.[RuleSetVersion] ELSE CAST(NULL AS nvarchar(200)) END AS [RuleSetVersion],\r\n    r.[RunStatus],\r\n    r.[RunAt],\r\n    r.[CompletedAt],\r\n    r.[RunNote],\r\n    r.[LoadBatchID],\r\n    r.[DemandBucket],\r\n    r.[HistoryWindowPeriods],\r\n    r.[ForecastModel],\r\n    r.[ForecastHorizonPeriods],\r\n    r.[SigmaMethod],\r\n    r.[PromoKnowledgeLeadDays],\r\n    CASE WHEN r.RunPurpose = N\u0027SIMULATION\u0027 THEN c.[InputSnapshotKey] WHEN r.RunPurpose IN (N\u0027FORECAST\u0027, N\u0027RECOMMENDATION\u0027) THEN r.[InputSnapshotKey] ELSE CAST(NULL AS bigint) END AS [InputSnapshotKey],\r\n    r.[ExperimentCaseKey],\r\n    r.[ExperimentReplicationKey],\r\n    r.[AttemptNo],\r\n    r.[MetricDefinitionVersion],\r\n    CASE WHEN r.RunPurpose = N\u0027SIMULATION\u0027 THEN c.[SourceForecastRunKey] WHEN r.RunPurpose = N\u0027RECOMMENDATION\u0027 THEN r.[SourceForecastRunKey] ELSE CAST(NULL AS bigint) END AS [SourceForecastRunKey],\r\n    r.[ExperimentVersionKey],\r\n    r.[RunRequestId],\r\n    r.[ExecutionSpecHash],\r\n    r.[ExecutionSpecVersion],\r\n    r.[ExecutionSpecReference]\r\nFROM dss.Dim_PlanningRun AS r\r\nLEFT JOIN dss.ExperimentCase AS c\r\n  ON r.RunPurpose = N\u0027SIMULATION\u0027\r\n AND c.ExperimentVersionKey = r.ExperimentVersionKey\r\n AND c.ExperimentCaseKey = r.ExperimentCaseKey\r\nLEFT JOIN dss.ExperimentReplication rep ON rep.ExperimentReplicationKey=r.ExperimentReplicationKey;\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  1573580644,
+        "schema_name":  "dss",
+        "name":  "v_SimulationOrderLine",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW dss.v_SimulationOrderLine\r\nAS\r\nWITH B AS (\r\n SELECT e.PlanningRunKey,e.EntityCode,c.InputSnapshotKey,e.SourceRecordReference,\r\n e.ProductKey,CONVERT(date,e.DueAt) DueDate,ds.CalendarDate StartDate,de.CalendarDate EndDate,\r\n e.IsOpeningEntity,e.OriginalQty,e.OpeningRemainingQty,\r\n CONVERT(decimal(28,8),CASE WHEN e.IsOpeningEntity=1 THEN e.OpeningRemainingQty ELSE e.OriginalQty END) Q0,\r\n CONVERT(date,e.CreatedAt) CreatedDate,e.CustomerOrderCode,\r\n CASE WHEN e.IsOpeningEntity=1 THEN i.ClosedBeforeStartQty ELSE CONVERT(decimal(28,8),0) END ClosedBeforeStartQty\r\n FROM dss.RunEntity e\r\n JOIN dss.v_PlanningRunContext c ON c.PlanningRunKey=e.PlanningRunKey\r\n JOIN dss.Fact_RunSummary s ON s.PlanningRunKey=e.PlanningRunKey AND s.ValidationStatus=N\u0027PASSED\u0027\r\n JOIN dss.Fact_SimulationOrder o ON o.PlanningRunKey=e.PlanningRunKey AND o.CustomerOrderCode=e.CustomerOrderCode\r\n JOIN dw.Dim_Date ds ON ds.DateKey=c.SimulationStartDateKey\r\n JOIN dw.Dim_Date de ON de.DateKey=c.SimulationEndDateKey\r\n LEFT JOIN dss.Scenario_InitialCustomerOrder i ON i.ScenarioVersionKey=e.ScenarioVersionKey AND i.DemandLineCode=e.InitialDemandLineCode\r\n WHERE c.RunPurpose=N\u0027SIMULATION\u0027 AND c.RunStatus=N\u0027SUCCEEDED\u0027 AND e.EntityType=N\u0027CUSTOMER_ORDER_LINE\u0027\r\n AND CONVERT(date,e.CreatedAt)\u003c=de.CalendarDate\r\n), Periods AS (\r\n SELECT B.*,v.LateStart,\r\n CASE WHEN v.LateStart\u003c=EndDate THEN DATEDIFF(day,v.LateStart,EndDate)+1 ELSE 0 END LateDayCount\r\n FROM B CROSS APPLY(SELECT MAX(d) LateStart FROM (VALUES(StartDate),(DueDate),(CreatedDate)) x(d)) v\r\n), E AS (\r\n SELECT b.PlanningRunKey,b.EntityCode,f.EventSequence,f.EventAt,CONVERT(date,f.EventAt) EventDate,\r\n f.EventCode,f.Quantity,b.Q0,b.LateStart,b.EndDate,\r\n SUM(CASE WHEN f.EventCode IN(N\u0027SHIP_ON_TIME\u0027,N\u0027SHIP_LATE\u0027) THEN f.Quantity ELSE CONVERT(decimal(28,8),0) END)\r\n OVER(PARTITION BY b.PlanningRunKey,b.EntityCode ORDER BY f.EventAt,f.EventSequence ROWS UNBOUNDED PRECEDING) RunningFilled\r\n FROM Periods b JOIN dss.Fact_SimulationEvent f ON f.PlanningRunKey=b.PlanningRunKey AND f.EntityCode=b.EntityCode\r\n WHERE CONVERT(date,f.EventAt) BETWEEN b.StartDate AND b.EndDate\r\n AND ((f.EventCode=N\u0027SHIP_ON_TIME\u0027 AND CONVERT(date,f.EventAt)\u003c=b.DueDate)\r\n OR (f.EventCode=N\u0027SHIP_LATE\u0027 AND CONVERT(date,f.EventAt)\u003eb.DueDate)\r\n OR f.EventCode=N\u0027LOST_SALE\u0027)\r\n), A AS (\r\n SELECT PlanningRunKey,EntityCode,\r\n SUM(CASE WHEN EventCode=N\u0027SHIP_ON_TIME\u0027 THEN Quantity ELSE 0 END) OnTimeQty,\r\n SUM(CASE WHEN EventCode=N\u0027SHIP_LATE\u0027 THEN Quantity ELSE 0 END) LateQty,\r\n SUM(CASE WHEN EventCode=N\u0027LOST_SALE\u0027 THEN Quantity ELSE 0 END) LostQty,\r\n MAX(CASE WHEN EventCode IN(N\u0027SHIP_ON_TIME\u0027,N\u0027SHIP_LATE\u0027) THEN EventDate END) LastDeliveryDate,\r\n MIN(CASE WHEN EventCode IN(N\u0027SHIP_ON_TIME\u0027,N\u0027SHIP_LATE\u0027) AND RunningFilled\u003e=Q0 THEN EventDate END) FullDeliveryDate,\r\n SUM(Quantity*CONVERT(decimal(10,0),CASE WHEN LateStart\u003eEndDate THEN 0 ELSE DATEDIFF(day,CASE WHEN EventDate\u003eLateStart THEN EventDate ELSE LateStart END,EndDate)+1 END)) RemovedUnitDays\r\n FROM E GROUP BY PlanningRunKey,EntityCode\r\n), Q AS (\r\n SELECT b.*,\r\n CONVERT(decimal(28,8),COALESCE(a.OnTimeQty,0)) OnTimeQty,\r\n CONVERT(decimal(28,8),COALESCE(a.LateQty,0)) LateQty,\r\n CONVERT(decimal(28,8),COALESCE(a.LostQty,0)) LostQty,\r\n a.LastDeliveryDate,\r\n CASE WHEN COALESCE(a.LostQty,0)=0 AND b.ClosedBeforeStartQty=0 THEN a.FullDeliveryDate END CompletionDate,\r\n CONVERT(decimal(28,8),b.Q0*b.LateDayCount-COALESCE(a.RemovedUnitDays,0)) LateUnitDays\r\n FROM Periods b LEFT JOIN A a ON a.PlanningRunKey=b.PlanningRunKey AND a.EntityCode=b.EntityCode\r\n)\r\nSELECT PlanningRunKey,EntityCode,InputSnapshotKey,SourceRecordReference,ProductKey,\r\n CONVERT(int,CONVERT(char(8),DueDate,112)) DueDateKey,\r\n CONVERT(int,CONVERT(char(8),StartDate,112)) EvaluationStartDateKey,\r\n CONVERT(int,CONVERT(char(8),EndDate,112)) EvaluationEndDateKey,\r\n IsOpeningEntity,OriginalQty OriginalOrderQty,OpeningRemainingQty,Q0 ObligationQty,\r\n OnTimeQty,LateQty,CONVERT(decimal(28,8),OnTimeQty+LateQty) FilledQty,LostQty,\r\n CONVERT(decimal(28,8),Q0-OnTimeQty-LateQty-LostQty) UnfilledQtyAtEnd,\r\n CONVERT(decimal(28,8),CASE WHEN DueDate\u003c=EndDate THEN Q0-OnTimeQty-LateQty-LostQty ELSE 0 END) OverdueUnfilledQtyAtEnd,\r\n LateUnitDays,\r\n CONVERT(int,CONVERT(char(8),LastDeliveryDate,112)) LastDeliveryDateKey,\r\n CONVERT(int,CONVERT(char(8),CompletionDate,112)) CompletionDateKey,\r\n CASE WHEN CompletionDate IS NULL THEN NULL WHEN CompletionDate\u003c=DueDate THEN 0 ELSE DATEDIFF(day,DueDate,CompletionDate) END CompletionLateDays,\r\n CONVERT(nvarchar(30),CASE WHEN DueDate\u003cStartDate THEN N\u0027OPENING_OVERDUE\u0027 WHEN DueDate\u003eEndDate THEN N\u0027FUTURE_DUE\u0027 ELSE N\u0027DUE_IN_RUN\u0027 END) EvaluationCohort,\r\n CONVERT(bit,CASE WHEN DueDate BETWEEN StartDate AND EndDate THEN 1 ELSE 0 END) IsDueInEvaluationPeriod,\r\n CONVERT(decimal(28,8),CASE WHEN DueDate BETWEEN StartDate AND EndDate THEN Q0 ELSE 0 END) OTUDemandQty,\r\n CONVERT(decimal(28,8),CASE WHEN DueDate BETWEEN StartDate AND EndDate THEN OnTimeQty ELSE 0 END) OTUOnTimeQty,\r\n CustomerOrderCode\r\nFROM Q;\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  2080726465,
+        "schema_name":  "dw",
+        "name":  "Bridge_BillOfMaterials",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW dw.Bridge_BillOfMaterials AS SELECT * FROM act_input.BusinessBOM",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  2144726693,
+        "schema_name":  "dw",
+        "name":  "Dim_Date",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW [dw].[Dim_Date] AS SELECT * FROM act_input.[Dim_Date];\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  13243102,
+        "schema_name":  "dw",
+        "name":  "Dim_Location",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW [dw].[Dim_Location] AS SELECT * FROM act_input.[Dim_Location];\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  29243159,
+        "schema_name":  "dw",
+        "name":  "Dim_Product",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW [dw].[Dim_Product] AS SELECT * FROM act_input.[Dim_Product];\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  109243444,
+        "schema_name":  "dw",
+        "name":  "Dim_UnitMeasure",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW [dw].[Dim_UnitMeasure] AS SELECT * FROM act_input.[Dim_UnitMeasure];\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  125243501,
+        "schema_name":  "dw",
+        "name":  "Dim_Vendor",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW [dw].[Dim_Vendor] AS SELECT * FROM act_input.[Dim_Vendor];\r\n",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  false,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  189243729,
+        "schema_name":  "dw",
+        "name":  "Fact_SalesOrderLine",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW dw.Fact_SalesOrderLine AS SELECT * FROM act_input.BusinessSalesLine",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  269244014,
+        "schema_name":  "etl_raw",
+        "name":  "ProductCostHistory",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW etl_raw.ProductCostHistory AS SELECT ProductID,StartDate,EndDate,StandardCost,ModifiedDate FROM act_input.BusinessCostHistory",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    },
+    {
+        "object_id":  253243957,
+        "schema_name":  "etl_raw",
+        "name":  "ProductVendor",
+        "type_desc":  "VIEW",
+        "definition":  "CREATE   VIEW etl_raw.ProductVendor AS SELECT ProductID,ReplenishmentVendorID BusinessEntityID,ReplenishmentBaseLeadDays AverageLeadTime,ReplenishmentStandardPrice StandardPrice,ReplenishmentMinOrderQty MinOrderQty,ReplenishmentMaxOrderQty MaxOrderQty,ReplenishmentUnit UnitMeasureCode,ReplenishmentTermsModifiedAt ModifiedDate FROM act_input.BusinessProduct WHERE ReplenishmentVendorID IS NOT NULL",
+        "uses_ansi_nulls":  true,
+        "uses_quoted_identifier":  true,
+        "is_schema_bound":  false
+    }
+]

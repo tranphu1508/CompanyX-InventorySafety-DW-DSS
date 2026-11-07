@@ -1,0 +1,597 @@
+[
+    {
+        "object_id":  73767320,
+        "schema_name":  "act_input",
+        "table_name":  "BusinessBOM",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  105767434,
+        "schema_name":  "act_input",
+        "table_name":  "BusinessCostHistory",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  169767662,
+        "schema_name":  "act_input",
+        "table_name":  "BusinessDate",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  137767548,
+        "schema_name":  "act_input",
+        "table_name":  "BusinessDemandDaily",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  201767776,
+        "schema_name":  "act_input",
+        "table_name":  "BusinessLocation",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  41767206,
+        "schema_name":  "act_input",
+        "table_name":  "BusinessProduct",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  9767092,
+        "schema_name":  "act_input",
+        "table_name":  "BusinessSalesLine",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  265768004,
+        "schema_name":  "act_input",
+        "table_name":  "BusinessUnit",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  233767890,
+        "schema_name":  "act_input",
+        "table_name":  "BusinessVendor",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1509580416,
+        "schema_name":  "act_input",
+        "table_name":  "Dim_Date",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  674101442,
+        "schema_name":  "act_input",
+        "table_name":  "Dim_Location",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  706101556,
+        "schema_name":  "act_input",
+        "table_name":  "Dim_Product",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  866102126,
+        "schema_name":  "act_input",
+        "table_name":  "Dim_UnitMeasure",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  898102240,
+        "schema_name":  "act_input",
+        "table_name":  "Dim_Vendor",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1085246921,
+        "schema_name":  "act_input",
+        "table_name":  "SnapshotManifest",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1956202019,
+        "schema_name":  "cxactive",
+        "table_name":  "RunScopeDecision",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1876201734,
+        "schema_name":  "cxactive",
+        "table_name":  "ScopePolicy",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  484196775,
+        "schema_name":  "cxcontrol",
+        "table_name":  "Baseline",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  660197402,
+        "schema_name":  "cxcontrol",
+        "table_name":  "BaselineActivity",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  20195122,
+        "schema_name":  "cxcontrol",
+        "table_name":  "Candidate",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1780201392,
+        "schema_name":  "cxcontrol",
+        "table_name":  "CandidateRequestIdentity",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1252199511,
+        "schema_name":  "cxcontrol",
+        "table_name":  "CoverageExecution",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1716201164,
+        "schema_name":  "cxcontrol",
+        "table_name":  "EligibleRunSnapshot",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  2071678428,
+        "schema_name":  "cxcontrol",
+        "table_name":  "Inquiry",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  932198371,
+        "schema_name":  "cxcontrol",
+        "table_name":  "InquiryActivity",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  260195977,
+        "schema_name":  "cxcontrol",
+        "table_name":  "InquiryLine",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  836198029,
+        "schema_name":  "cxcontrol",
+        "table_name":  "InquiryPublication",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1140199112,
+        "schema_name":  "cxcontrol",
+        "table_name":  "InquiryPurpose",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1412200081,
+        "schema_name":  "cxcontrol",
+        "table_name":  "RequestedWindow",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1076198884,
+        "schema_name":  "cxcontrol",
+        "table_name":  "RunDaySnapshot",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  164195635,
+        "schema_name":  "cxcontrol",
+        "table_name":  "Tranche",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1540200537,
+        "schema_name":  "cxcontrol",
+        "table_name":  "WindowCandidate",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1024722703,
+        "schema_name":  "cxdetail",
+        "table_name":  "AdvisoryAllocation",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  601769201,
+        "schema_name":  "cxdetail",
+        "table_name":  "DayOfferPlan",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  960722475,
+        "schema_name":  "cxdetail",
+        "table_name":  "MaterialTrace",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  768721791,
+        "schema_name":  "cxdetail",
+        "table_name":  "OrderDay",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  704721563,
+        "schema_name":  "cxdetail",
+        "table_name":  "OrderLineDay",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1216723387,
+        "schema_name":  "cxdetail",
+        "table_name":  "PlanAction",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1760725325,
+        "schema_name":  "cxdetail",
+        "table_name":  "PlanOrderMaterial",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1088722931,
+        "schema_name":  "cxdetail",
+        "table_name":  "PlanSupplyBalance",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1152723159,
+        "schema_name":  "cxdetail",
+        "table_name":  "PlanVersion",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  896722247,
+        "schema_name":  "cxdetail",
+        "table_name":  "ProductionExecution",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  832722019,
+        "schema_name":  "cxdetail",
+        "table_name":  "ProductionJobDay",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  624721278,
+        "schema_name":  "cxdetail",
+        "table_name":  "RunDetail",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1815677516,
+        "schema_name":  "cxolap",
+        "table_name":  "OrderLineSnapshot",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  605245211,
+        "schema_name":  "cxsim",
+        "table_name":  "RunInputSnapshot",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1637580872,
+        "schema_name":  "dss",
+        "table_name":  "ArtifactObject",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1669580986,
+        "schema_name":  "dss",
+        "table_name":  "Bridge_RunEntityRelation",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1701581100,
+        "schema_name":  "dss",
+        "table_name":  "Dim_EventType",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1589580701,
+        "schema_name":  "dss",
+        "table_name":  "Dim_ExperimentVersion",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1733581214,
+        "schema_name":  "dss",
+        "table_name":  "Dim_InputSnapshot",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1333579789,
+        "schema_name":  "dss",
+        "table_name":  "Dim_PlanningRun",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1765581328,
+        "schema_name":  "dss",
+        "table_name":  "Dim_PolicyConfigVersion",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1797581442,
+        "schema_name":  "dss",
+        "table_name":  "Dim_PolicyType",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1829581556,
+        "schema_name":  "dss",
+        "table_name":  "Dim_ScenarioVersion",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1861581670,
+        "schema_name":  "dss",
+        "table_name":  "Dim_ServiceLevel",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1269579561,
+        "schema_name":  "dss",
+        "table_name":  "ExperimentCase",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1301579675,
+        "schema_name":  "dss",
+        "table_name":  "ExperimentReplication",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1925581898,
+        "schema_name":  "dss",
+        "table_name":  "Fact_DemandForecast",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1957582012,
+        "schema_name":  "dss",
+        "table_name":  "Fact_OptimizationSolve",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1989582126,
+        "schema_name":  "dss",
+        "table_name":  "Fact_PolicySimulation",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1381579960,
+        "schema_name":  "dss",
+        "table_name":  "Fact_RunSummary",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  2021582240,
+        "schema_name":  "dss",
+        "table_name":  "Fact_SafetyStockRecommendation",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  2053582354,
+        "schema_name":  "dss",
+        "table_name":  "Fact_SimulationDaily",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1541580530,
+        "schema_name":  "dss",
+        "table_name":  "Fact_SimulationEvent",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1477580302,
+        "schema_name":  "dss",
+        "table_name":  "Fact_SimulationOrder",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  2085582468,
+        "schema_name":  "dss",
+        "table_name":  "Fact_StochasticDraw",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  663673412,
+        "schema_name":  "dss",
+        "table_name":  "InputSnapshot_ProductionLeadTime",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  2117582582,
+        "schema_name":  "dss",
+        "table_name":  "PolicyParameterDefinition",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  2099048,
+        "schema_name":  "dss",
+        "table_name":  "PolicyParameterValue",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  34099162,
+        "schema_name":  "dss",
+        "table_name":  "PolicyProductConfig",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1445580188,
+        "schema_name":  "dss",
+        "table_name":  "RunEntity",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  66099276,
+        "schema_name":  "dss",
+        "table_name":  "Scenario_CustomerOrder",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  98099390,
+        "schema_name":  "dss",
+        "table_name":  "Scenario_Distribution",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  1413580074,
+        "schema_name":  "dss",
+        "table_name":  "Scenario_InitialCustomerOrder",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  130099504,
+        "schema_name":  "dss",
+        "table_name":  "Scenario_InitialEntity",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  162099618,
+        "schema_name":  "dss",
+        "table_name":  "Scenario_InitialPosition",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  194099732,
+        "schema_name":  "dss",
+        "table_name":  "Scenario_Product",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  226099846,
+        "schema_name":  "dss",
+        "table_name":  "Scenario_Production",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  258099960,
+        "schema_name":  "dss",
+        "table_name":  "Scenario_Route",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  290100074,
+        "schema_name":  "dss",
+        "table_name":  "Scenario_RouteStep",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  322100188,
+        "schema_name":  "dss",
+        "table_name":  "Scenario_Supply",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  354100302,
+        "schema_name":  "dss",
+        "table_name":  "Scenario_SupplyCalendar",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  386100416,
+        "schema_name":  "dss",
+        "table_name":  "Scenario_UnitConversion",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    },
+    {
+        "object_id":  573245097,
+        "schema_name":  "sim_etl",
+        "table_name":  "LoadBatch",
+        "temporal_type_desc":  "NON_TEMPORAL_TABLE",
+        "is_memory_optimized":  false
+    }
+]
