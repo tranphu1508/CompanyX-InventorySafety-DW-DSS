@@ -1,0 +1,265 @@
+CompanyX control integration — new files only, 2026-11-05
+
+SSIS orchestration
+  CompanyX_Control_Run.dtsx is a standalone SQL Server 2022 package.
+  Four success-dependent Execute Process Tasks: prepare, simulate, publish, process.
+  Each runs Python -B -X utf8 <WorkerPath> --stage <stage>
+    --request <RequestPath> --run-folder <RunFolder>.
+  Package variables, namespace User:
+    RequestPath, RunFolder, WorkerPath, PythonExecutable, WorkingDirectory.
+  DTExec override form (one argument after /SET):
+    \Package.Variables[User::RunFolder].Properties[Value];D:\...\job
+  Supply arguments as a process argument list, not a shell command string.
+  PythonExecutable defaults to the existing frozen demo .venv Python.
+  No SSIS project or package under the frozen demo is edited.
+  No successful later stage runs after a failed preceding stage.
+
+Scoped publication API (historical selected-cohort backend)
+  from publish.publisher import publish_run
+  receipt = publish_run(job / 'artifacts', project_root=project)
+  Requires exact completed immutable-runtime outputs, input_source.json,
+  request.json and scope.json emitted by simulation.adapter.
+  Reconstructs the request from the immutable base before generating canonical
+  files; validates runtime, input, spec, valuation, manifests and every table.
+  ONLY database CompanyX_MOLAP_Source_20261105 on localhost is allowed.
+  Original source CompanyX_Demo is read-only for this workflow.
+  PublishScoped.sql is derived from SHA-pinned original native Publish.sql.
+  Original 9-fact typed comparisons, FK checks, event/quantity reconciliation,
+  complete daily grids and KPI checks remain inside one transaction.
+  All new dimensions/scenarios, facts, ETL proof and ControlRunScope commit
+  together. Any failure rolls back the complete publication.
+  Existing runs are not rewritten; before/after counts and row checksums are
+  checked in the transaction. These checksums are not cryptographic hashes.
+  RunCode replay compares all 9 fact tables exactly and returns ALREADY_LOADED.
+  Repeating a request with different contents cannot overwrite the unique
+  ControlRunScope request identity.
+  Source BOM and lead assumptions retain the ORIGINAL frozen cutoff date.
+  SELECTED_LINES service is explicitly labelled as a projected-order cohort;
+  WHOLE_ORDERS retains all original sibling lines.
+
+Hypothetical inquiry publication
+  InquirySchema.sql installs additive cxcontrol Inquiry, Candidate, Tranche,
+  InquiryLine tables and inquiry-only analytical views. Run once in the owned
+  source copy before publishing; no historical DW or DSS schema is altered.
+  publisher.publish_run detects companyx.inquiry.scope.v1 and uses the separate
+  PublishInquiry.sql. It independently verifies the adapter's replay prefix,
+  branch-state artifacts and exact base-plus-hypothetical source reconstruction.
+  SQL retains live DW comparisons for observed orders, accepts only exact
+  declared hypothetical rows, rejects natural-key collisions, and preserves
+  their explicit Inquiry source references. Candidate, tranche and line mapping
+  commit in the same transaction as the nine facts and validated ETL proof.
+  Candidates in one inquiry must have the same shared-state SHA256 at X.
+  V03 lead estimation provenance retains the original input_source.json hash;
+  replay starting-state provenance separately identifies saved input.json.
+  Full-period Fact_RunSummary is not an after-X inquiry-window metric.
+  FactInquiryLineDelivery and FactInquiryTranche cover only new hypothetical
+  order identities. FactProductionActivity covers all network jobs from X to
+  analysis end; it does not assert exclusive customer-order allocation.
+
+Cube processing
+  powershell.exe -NoProfile -ExecutionPolicy Bypass -File process_cube.ps1
+    -RunFolder <job>
+  Requires job/publication_receipt.json, schema companyx.inquiry.publication.v1,
+  database CompanyX_MOLAP_Source_20261105, and candidates list. Each entry has
+  candidate_id, artifact_folder and receipt (publisher return value). All must
+  match the saved candidate publication receipts and belong to one inquiry.
+  Guards copied warehouse + SSAS ownership markers, runs existing read-only
+  dynamic source preflight, refreshes the owned canonical cache with existing
+  rows guarded by counts/checksums (no ALTER of old views), then ProcessFull
+  only on CompanyX_InquirySimulation at localhost\COMPANYXOLAP, requiring its
+  CompanyXMOLAPOwner annotation value companyx-control-20261105.
+  No deployment/Alter is issued and no previous MOLAP output file is replaced.
+  Logs and each receipt go to job/process-attempts/<timestamp>; the first
+  successful receipt is retained as job/process-receipt.json.
+
+Validation completed before live deployment
+  SQL Server DTExec /VALIDATE: DTSER_SUCCESS.
+  Real DTExec with harmless Python probe: prepare/simulate/publish/process ran
+  in order. Failure exit 19 at simulate prevented publish/process.
+  Evidence: GPT/output/companyx-control-20261105/publish/
+    ssis-validation-20261105-014543/receipt.json and per-case dtexec.log.
+  SQL Server PARSEONLY of PublishScoped.sql: success; no SQL statements ran.
+  Evidence: GPT/output/companyx-control-20261105/publish/sql-parse-only.log.
+  Inquiry schema and publisher also passed SQL Server PARSEONLY, with logs
+  inquiry-schema-parse-only.log and inquiry-sql-parse-only.log beside that log.
+  Additive InquirySchema.sql installation succeeded; existing principal
+  CompanyXMOLAPReader was verified and granted SELECT on cxcontrol only.
+  CandidateID uniqueness is scoped to InquiryKey, allowing each inquiry to
+  use conventional candidate names such as baseline/full_requested/staged.
+  Real baseline artifact validation passed for RunCode
+  02d1107d-dca4-4873-88ec-285ebd64ea7d under
+  runs/smoke-bdaf8a05-8dca-4298-a237-f3637689bdee/candidates/baseline/artifacts.
+  All replay, snapshot/spec, profile, valuation, table and frozen-core checks
+  passed; canonical publication sidecars were generated beside that new run.
+  Live baseline publication succeeded, RunKey 2 / LoadBatch 6. Immediate
+  replay returned ALREADY_LOADED with exact typed equality of all nine facts.
+  Evidence: publish/live-baseline-20261105-020001/validation.json and receipts.
+  Original Run1 counts and row checksums for every fact remained unchanged.
+  Full preservation audit: all 6,208 frozen demo files (7,769,395,786 bytes)
+  match the original SHA256 manifest; no new files were found inside the demo.
+  Evidence: GPT/output/companyx-control-20261105/preservation.json.
+  The root pipeline subsequently published and processed the four-candidate
+  smoke-164d4674-a5b9-4f1f-acbd-bd2d0e806244 comparison (RunKeys 3-6).
+  Independent read-only artifact -> SQL -> SSAS QA passed 296/296 checks.
+  Evidence: publish/qa-four-cases-20261105-020626/validation.json, checks.json,
+  per-query MDX/results, SQL evidence, and another original Run1 fact check.
+  Cross-run aggregation guards were exercised; these smoke rows contain no
+  mixed-unit event, so the mixed-unit null branch lacks a real-row smoke case.
+  All three proposed deals remain unfilled by their very short analysis end;
+  this validates the pipeline, not an improved delivery recommendation.
+  These zero-stock smoke runs are NOT the requested SafetyStock demo baseline.
+
+Full-history SafetyStock baseline publication
+  baseline_publisher.publish_baseline(folder, project_root=project) validates
+  baseline_inputs.build_scenario and verify_snapshot before publication. The
+  eight scenario indices 17-24 represent the frozen ROP SafetyStock matrix.
+  Period: 2011-05-31 through 2014-06-30, 1127 inclusive days. The approved
+  cohort contains 373 products and 92,147 lines in 18,608 whole orders after
+  explicit whole-order quarantine. Master data, prices and forecasts are fixed
+  retrospective assumptions; this is not an as-of-2011 or out-of-sample test.
+  The separate BaselineSchema.sql installs cxcontrol.Baseline and activity
+  aggregates; source extraction and the immutable demo remain unchanged.
+
+  Publication mode is ANALYTICAL_PROJECTION_FULL_RAW_ARTIFACT. SQL retains all
+  Daily, Order, Policy and summary rows, all customer order/line RunEntities and
+  customer events, and relations whose endpoints are retained. Physical
+  production/purchase activity is represented by exact Date/Product/EventCode
+  Quantity and EventCount aggregates. Per-unit stochastic draws and physical
+  entity/event detail remain in the exact verified raw artifact archive.
+  baseline_projection.json records original versus SQL row counts and hashes.
+  This mode must not be described as loading all raw nine-table event detail.
+  Typed retained-row equality, customer-service reconstruction, daily aggregate
+  conservation, source provenance and before/after old-run checks remain active.
+  Temporary indexes accelerate native validation joins; no DQ is disabled.
+
+  baseline_archive.archive_baseline(folder, project_root=project) requires a
+  verified successful publication receipt. It writes ZIP64, independently
+  checks every decompressed SHA256 and byte count against original manifests,
+  then removes only checked raw tables/*.jsonl and daily_totals.json inside the
+  dedicated GPT run folder. All metadata and SQL projection files are retained.
+  The archival API is idempotent. Publication should precede archival; calling
+  publish_baseline again after archival requires a restored copy of raw tables.
+  baseline_archive.open_artifact_text(folder, relative, project_root=project)
+  is a context manager yielding UTF-8 text from raw files or verified ZIP data.
+  restore_archive requires a NEW destination folder under GPT and never
+  overwrites existing files.
+
+  Scenario17 succeeded: RunCode d43bd127-d1d1-4692-b38c-e964b337237a,
+  PlanningRunKey8 / LoadBatch12. Second publication returned ALREADY_LOADED.
+  All nine fact families for existing RunKeys1-6 were unchanged. Evidence:
+  publish/first-safety-baseline-20261105-023505/validation.json.
+  Exact archive: 306,842,534 raw bytes to 10,919,791 ZIP bytes, independent
+  decompression verification and streaming read passed. Evidence in baseline
+  rop_ss_s17_20110531_20140630/archive_manifest.json and
+  archive_smoke_validation.json. SQL estimated retained size:187,240,145 bytes.
+  An earlier slow attempt was explicitly cancelled and fully rolled back;
+  old RunKeys1-6 remained unchanged. Failed diagnostics are retained separately.
+
+Inquiry V2 storage and publication
+  publisher.publish_run routes companyx.inquiry.scope.v2 to the separate
+  inquiry_v2_publisher implementation. It calls inquiry_storage.verify_stored_inquiry
+  and accepts the verified archive plus analytical projection after raw table
+  removal. Frozen inquiry_v2 and inquiry_storage modules are not altered.
+  FIXED_PRESET starts at X with the selected preset and no replay prefix;
+  BASELINE_AT_START replays a selected READY full-history baseline to X and
+  independently checks its exact shared prefix. Original source cohort, BOM
+  cutoff and valuation provenance come from the selected verified baseline.
+  Source V03 lead lineage remains bound to its original frozen estimator input.
+  InquiryActivity contains five public activity codes only in X..analysis_end;
+  InquiryFlowAudit contains seven codes for the full simulation interval for
+  conservation checks. The aggregate view excludes V2 raw event rows to prevent
+  double counting, while preserving existing V1 smoke activities.
+  InquiryV2Schema.sql is installed; PublishInquiryV2.sql passed PARSEONLY.
+  No live V2 solve or publication is implied by these static validations.
+
+New-cube RunDay helper (prepared; installation coordinated by root)
+  RunDayCache.sql creates/refreshes only cxcontrol.RunDaySnapshot and
+  cxcontrol.FactRunDay in the marked copied database. It materializes the exact
+  cxolap.DimRun run/scenario eligibility relation, joins raw Daily to the same
+  Scenario_Product membership, and groups by Run/Date with bigint count one.
+  Existing cache rows and run calendars are exact-compared before new runs are
+  appended. It does not generate absent calendar days or alter old views.
+  Run this script immediately before ControlSourcePreflight.sql. The latter
+  preserves every old grid/date/unit/coverage predicate and changes only the
+  denominator view reference to the refreshed new cache. Then refresh canonical
+  service cache and process the NEW cube whose RunDay source points at cxcontrol.
+  Live read-only comparison covered all1512 eligible Run/Date rows (Runs1-6,8),
+  with zero bidirectional EXCEPT differences. Observed old hinted view15.258s;
+  materialized keys plus direct grouped query0.169s. This single observation is
+  not a controlled benchmark or a guarantee of future total cube process time.
+  Evidence: publish/runday-performance/equivalence-result.json and review.txt.
+  Both scripts passed PARSEONLY; no persistent helper objects were installed
+  during the read-only performance investigation.
+
+Purpose binding and continuation registration
+  inquiry_purpose.build_publication_purpose validates the exact controller-owned
+  job/candidate path, equal parent/request/scope identities and explicit metadata.
+  publication_purpose.json is immutable and hash-bound into publication export.
+  InquiryPurposeSchema.sql is installed. V2 publication atomically inserts or
+  exactly checks the inquiry-purpose record. ControlRunView labels explicit
+  ORDER_INQUIRY as SELECTED_MILP_INQUIRY, PIPELINE_SMOKE as PIPELINE_SMOKE, and
+  unbound V2 rows as UNCLASSIFIED_INQUIRY. Existing run labels were unchanged.
+  Evidence: inquiry-purpose-tests.json (13 checks), inquiry-purpose-install.json.
+
+  continuation_storage.prepare_continuation_storage wraps the unchanged V2
+  storage module with independent simulation.continuation verification of the
+  effective executor, checkpoint and every inherited-prefix row. Its separate
+  attestation/receipt binds checkpoint, continuation receipt, raw table manifest,
+  projection and archive hashes. Checkpoints and lineage files remain unarchived.
+  verify_stored_continuation repeats archive-aware core and continuation checks.
+  No successful live continuation publication is implied by these code contracts.
+
+  CoverageSchema.sql installs CoverageExecution and VerifiedCoverageExecution.
+  Cache lookup uses the latter so published/succeeded/passed status, candidate,
+  purpose and analytical-publication records are mandatory. Registry rows are
+  immutable per PlanningRunKey; extending coverage always creates a new run.
+  coverage_registry.register_cache_execution(folder, identity, project_root=...)
+  verifies stored continuation, reproduces job cache_identity.json from full
+  source/configuration identity, checks SQL publication and same-family parent,
+  then inserts or exactly checks registration. Return: schema/status/record.
+  Dates alone never identify cache equivalence. Requested-window KPI projection
+  is maintained separately by the control layer; full-run summaries cannot be
+  reused unchanged for an earlier requested end.
+
+Purchase NPZ archival and publication/process gate
+  baseline_archive now invokes baseline_purchase_archive after the raw-table
+  archive succeeds. It verifies exact index membership, source SHA, independent
+  ZIP CRC/decompressed SHA, unchanged index and per-file size/mtime before deleting
+  only contained NPZ originals. purchase_events/index.json remains unchanged.
+  Exact NPZ members and their per-member manifest reside in purchase_events.zip;
+  purchase_archive_manifest.json is the compact identity/checksum receipt.
+  NPZ is already compressed; ZIP_STORED coalesces small NTFS file allocations.
+  purchase_archive_reader verifies once and yields a ZipFile for efficient bulk
+  reads. open_purchase_member yields a binary member for individual reads.
+  Evidence: purchase-archive-tests.json,100 exact real NPZ fixture members.
+
+  operation_gate.publish_operation_gate holds a separate SQL session-owned
+  Exclusive application lock: companyx-control-publish-process, principal public,
+  in CompanyX_MOLAP_Source_20261105. The wait limit is600000ms. Baseline/V2
+  publishers acquire it only around final SQL, after artifact verification.
+  Cube processing acquires the same gate before cache/preflight/process so it
+  cannot see mismatched dimensions and facts across a concurrent publication.
+  Gate releases on success and exception; transient-lock tests passed. Existing
+  already-running Python processes require their own integration coordination.
+
+New-cube analytical source performance
+  FactSourceCache.sql materializes exact eligible run/scenario/start/end keys from
+  cxolap.DimRun into cxcontrol.EligibleRunSnapshot. Its new FactSimulationDaily
+  and FactOrderLineService views retain the original columns and expressions,
+  replacing only the repeatedly expanded run-context join. Original cxolap views
+  and historical fact rows remain unchanged. Refresh under the publication/process
+  gate before preflight and cube processing, then bind only the new inquiry cube.
+  All-column, bidirectional EXCEPT matched 1,405,729 daily and 327,389 service rows
+  across 13 runs before installation. See fact-source-performance evidence.
+  The helper was installed after baseline20 publication; 14 eligible runs then
+  exposed 1,826,100 daily rows. The failed prior new-cube process was cancelled
+  with fresh ownership/command checks; simulations and published facts were kept.
+
+Inquiry purchase archive
+  archive_inquiry_purchase_events uses companyx.inquiry.purchase_archive.v1 and
+  requires independent continuation/raw-storage proof before archiving NPZ data.
+  It shares exact-member SHA/CRC checks with baseline archival, but never creates
+  a baseline publication receipt. continuation_storage binds its archive receipt
+  when present; old instant scenarios without NPZ remain compatible. Tests cover
+  100 byte-exact NPZ members per schema; inquiry-positive fixtures mock only the
+  expensive continuation verifier and are explicitly not a live finite-run test.

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DSS tồn kho — giao diện trống</title>
+  <style>
+    :root { --navy:#14213d; --blue:#3476b8; --line:#d4deeb; --bg:#edf1f6; --muted:#6d7e99; --ink:#10203c; --soft:#f6f8fb; --yellow:#fff5d9; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:13px/1.45 Arial, Helvetica, sans-serif; }
+    button, input, select { font:inherit; }
+    .topbar { min-height:48px; background:var(--navy); color:#fff; display:flex; align-items:center; gap:22px; padding:6px 18px; }
+    .brand { min-width:195px; line-height:1.15; }
+    .brand strong { display:block; font-size:14px; }
+    .brand small { color:#a6c1e3; font-size:11px; }
+    .tabs { display:flex; gap:4px; }
+    .tab { border:0; border-radius:5px; color:#fff; background:transparent; cursor:pointer; padding:8px 14px; font-weight:700; }
+    .tab.active { background:#fff; color:var(--navy); }
+    main { max-width:1190px; margin:18px auto; padding:0 14px 24px; }
+    [hidden] { display:none !important; }
+    h2, h3, h4, p { margin-top:0; }
+    h2 { font-size:14px; margin-bottom:12px; }
+    h3 { font-size:13px; margin-bottom:10px; }
+    h4 { font-size:12px; margin-bottom:6px; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:7px; }
+    .order-layout { display:grid; grid-template-columns:288px minmax(0,1fr); gap:18px; }
+    .form-card { padding:16px; align-self:start; }
+    .field { display:block; margin-bottom:10px; }
+    .field span, .field-label { display:block; font-size:11px; margin-bottom:4px; }
+    .field input, .field select, .filter select { width:100%; min-height:31px; border:1px solid #b5c4d8; border-radius:4px; padding:5px 8px; color:var(--ink); background:#fff; }
+    .field input:focus, .field select:focus, .filter select:focus { outline:2px solid #8ab9e9; outline-offset:1px; }
+    .radio-stack { display:grid; gap:4px; margin:4px 0 12px; }
+    .radio-stack label { font-size:11px; display:flex; align-items:center; gap:5px; }
+    input[type=radio] { accent-color:var(--blue); }
+    .primary { border:0; background:var(--blue); color:#fff; border-radius:4px; padding:9px 12px; font-weight:700; cursor:pointer; }
+    .full { width:100%; }
+    .divider { border-top:1px solid var(--line); margin:12px 0; }
+    .status-row { display:grid; grid-template-columns:14px 1fr 44px; align-items:center; gap:6px; min-height:22px; font-size:11px; }
+    .status-dot { width:12px; height:12px; border:1px solid #a9b9cc; border-radius:50%; }
+    .status-value { min-height:12px; }
+    .section { margin-bottom:18px; }
+    .kpis { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:9px; }
+    .kpi { min-height:77px; padding:10px 12px; }
+    .kpi-label { color:var(--muted); font-size:11px; }
+    .kpi-value { min-height:27px; margin:5px 0 2px; font-size:22px; font-weight:700; }
+    .kpi-detail { min-height:14px; color:var(--muted); font-size:10px; }
+    .advice { background:var(--yellow); border:1px solid #f0c453; border-radius:7px; padding:11px 13px; min-height:70px; }
+    .advice-body { min-height:25px; }
+    .options { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; margin-top:9px; }
+    .option { display:block; padding:10px 11px; min-height:164px; cursor:pointer; }
+    .option:has(input:checked) { border-color:var(--blue); background:#f1f6fd; }
+    .option-head { display:flex; align-items:center; gap:7px; font-weight:700; min-height:25px; }
+    .option-head input { margin:0; }
+    .option-caption { height:29px; border-bottom:1px solid var(--line); }
+    .metric { display:flex; justify-content:space-between; gap:8px; font-size:10px; min-height:16px; }
+    .metric span:first-child { color:#5e708d; }
+    .metric output { min-width:35px; min-height:12px; text-align:right; }
+    .plan { padding:13px 15px 15px; }
+    .timeline { display:grid; grid-template-columns:190px repeat(8,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); overflow:auto; }
+    .timeline > div { min-width:56px; min-height:33px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:5px; font-size:10px; }
+    .timeline .tl-head { background:var(--soft); min-height:24px; color:var(--muted); }
+    .timeline .tl-label { min-width:190px; }
+    .legend { display:flex; gap:15px; color:var(--muted); font-size:10px; margin:8px 0 12px; }
+    .swatch { display:inline-block; width:10px; height:7px; margin-right:4px; background:#89b4df; }
+    .swatch.dark { background:#234476; }
+    table { width:100%; border-collapse:collapse; font-size:10px; }
+    th { text-align:left; background:#f2f5f9; }
+    td, th { border-bottom:1px solid var(--line); padding:6px 7px; }
+    td { height:26px; }
+    .overview-filter { display:flex; gap:16px; align-items:end; padding:12px 15px; margin-bottom:18px; }
+    .filter { width:200px; }
+    .filter select { background:#f8f9fb; }
+    .view-switch { margin-left:auto; align-self:end; display:flex; }
+    .view-switch button { border:1px solid #aebdd0; background:#fff; padding:6px 12px; cursor:pointer; }
+    .view-switch button:first-child { border-radius:4px 0 0 4px; }
+    .view-switch button:last-child { border-radius:0 4px 4px 0; }
+    .view-switch button.active { background:var(--blue); color:#fff; border-color:var(--blue); }
+    .overview-kpis { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:9px; }
+    .overview-kpis .kpi { min-height:105px; }
+    .overview-kpis .kpi-detail { min-height:35px; }
+    .chart-legend { float:right; font-size:10px; font-weight:400; color:var(--muted); }
+    .charts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .chart { min-height:205px; padding:12px 14px; display:flex; flex-direction:column; }
+    .chart-heading { display:flex; justify-content:space-between; gap:8px; font-weight:700; font-size:11px; }
+    .chart-range { color:var(--muted); font-size:10px; font-weight:400; }
+    .plot { flex:1; border-bottom:1px solid #b7c5d9; margin-top:10px; }
+    .recommendation { padding:14px; }
+    .recommendation ol { margin:8px 0 0; padding-left:20px; }
+    .recommendation li { min-height:24px; }
+    .data-table { padding:14px; overflow:auto; }
+    .data-table table { min-width:750px; }
+    .data-table th { text-align:center; }
+    .data-table td { height:24px; }
+    @media(max-width:850px) { .order-layout { grid-template-columns:1fr; } .kpis, .overview-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } .overview-filter { flex-wrap:wrap; } .view-switch { margin-left:0; } }
+    @media(max-width:560px) { .topbar { flex-wrap:wrap; gap:5px; } .brand { width:100%; } .options, .charts { grid-template-columns:1fr; } .overview-kpis { grid-template-columns:1fr 1fr; } .filter { width:calc(50% - 8px); } .timeline { grid-template-columns:145px repeat(8,56px); } .timeline .tl-label { min-width:145px; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><strong>DSS tồn kho CompanyX</strong><small>Mô phỏng chính sách ROP trên kho dữ liệu</small></div>
+    <nav class="tabs" aria-label="Điều hướng chính">
+      <button class="tab active" type="button" data-tab="order" aria-current="page">Đơn lớn</button>
+      <button class="tab" type="button" data-tab="overview">Tổng quan vận hành</button>
+    </nav>
+  </header>
+  <main>
+    <section id="order" class="page">
+      <div class="order-layout">
+        <aside class="card form-card">
+          <h2>Nhập đơn lớn</h2>
+          <label class="field"><span>Khách hàng</span><input type="text" autocomplete="off"></label>
+          <label class="field"><span>Sản phẩm</span><input type="text" autocomplete="off"></label>
+          <label class="field"><span>Số lượng (đơn vị)</span><input type="number" min="0"></label>
+          <label class="field"><span>Ngày nhận đơn</span><input type="text" autocomplete="off"></label>
+          <label class="field"><span>Ngày cần giao</span><input type="text" autocomplete="off"></label>
+          <label class="field"><span>Chính sách nền</span><select><option value="" selected></option><option>ROP (chính sách hiện hành)</option><option>Tối ưu (Adapt)</option></select></label>
+          <span class="field-label">Quy tắc giao</span>
+          <div class="radio-stack">
+            <label><input type="radio" name="delivery-rule">Giao nguyên đơn</label>
+            <label><input type="radio" name="delivery-rule">Giao bù</label>
+          </div>
+          <button class="primary full" type="button">Chạy mô phỏng</button>
+          <div class="divider"></div>
+          <h4>Trạng thái chạy</h4>
+          <div class="status-row"><span class="status-dot"></span><span>Ghi đơn vào kịch bản mô phỏng</span><span class="status-value"></span></div>
+          <div class="status-row"><span class="status-dot"></span><span>Chạy mô phỏng ROP</span><span class="status-value"></span></div>
+          <div class="status-row"><span class="status-dot"></span><span>Nạp kết quả vào DW</span><span class="status-value"></span></div>
+          <div class="status-row"><span class="status-dot"></span><span>Làm mới báo cáo</span><span class="status-value"></span></div>
+        </aside>
+        <div>
+          <section class="section">
+            <h2>Hiện trạng khi nhận đơn</h2>
+            <div class="kpis">
+              <div class="card kpi"><div class="kpi-label">Tồn thành phẩm hiện có</div><div class="kpi-value"></div><div class="kpi-detail"></div></div>
+              <div class="card kpi"><div class="kpi-label">Số lượng đơn lớn</div><div class="kpi-value"></div><div class="kpi-detail"></div></div>
+              <div class="card kpi"><div class="kpi-label">Cần sản xuất thêm</div><div class="kpi-value"></div><div class="kpi-detail"></div></div>
+              <div class="card kpi"><div class="kpi-label">Linh kiện thiếu</div><div class="kpi-value"></div><div class="kpi-detail"></div></div>
+            </div>
+          </section>
+          <section class="section">
+            <h2>Chọn phương án giao</h2>
+            <div class="advice"><h4>Gợi ý của DSS</h4><div class="advice-body"></div></div>
+            <div class="options">
+              <label class="card option"><span class="option-head"><input type="radio" name="option">A. Giao đúng hạn</span><div class="option-caption"></div><div class="metric"><span>Ngày giao</span><output></output></div><div class="metric"><span>Đơn lớn đúng hạn</span><output></output></div><div class="metric"><span>Đơn khác bị trễ</span><output></output></div><div class="metric"><span>Tồn bình quân</span><output></output></div><div class="metric"><span>Giá trị tồn + WIP</span><output></output></div><div class="metric"><span>Lost sales</span><output></output></div></label>
+              <label class="card option"><span class="option-head"><input type="radio" name="option">B. Hạn giao mới</span><div class="option-caption"></div><div class="metric"><span>Ngày giao</span><output></output></div><div class="metric"><span>Đơn lớn đúng hạn</span><output></output></div><div class="metric"><span>Đơn khác bị trễ</span><output></output></div><div class="metric"><span>Tồn bình quân</span><output></output></div><div class="metric"><span>Giá trị tồn + WIP</span><output></output></div><div class="metric"><span>Cần khách đồng ý</span><output></output></div></label>
+              <label class="card option"><span class="option-head"><input type="radio" name="option">C. Từ chối đơn</span><div class="option-caption"></div><div class="metric"><span>Ngày giao</span><output></output></div><div class="metric"><span>Đơn lớn đúng hạn</span><output></output></div><div class="metric"><span>Đơn khác bị trễ</span><output></output></div><div class="metric"><span>Tồn bình quân</span><output></output></div><div class="metric"><span>Giá trị tồn + WIP</span><output></output></div><div class="metric"><span>Lost sales</span><output></output></div></label>
+            </div>
+          </section>
+          <section class="card plan">
+            <h2>Kế hoạch sản xuất cho phương án đã chọn</h2>
+            <div class="timeline" aria-label="Khung tiến độ sản xuất trống">
+              <div class="tl-head tl-label"></div><div class="tl-head"></div><div class="tl-head"></div><div class="tl-head"></div><div class="tl-head"></div><div class="tl-head"></div><div class="tl-head"></div><div class="tl-head"></div><div class="tl-head"></div>
+              <div class="tl-label">Khung hàng</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+              <div class="tl-label">Linh kiện trước và sau</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+              <div class="tl-label">Lắp ráp thành phẩm</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            </div>
+            <div class="legend"><span><i class="swatch"></i>Linh kiện</span><span><i class="swatch dark"></i>Lắp ráp thành phẩm</span><span>│ Hạn giao</span></div>
+            <table><thead><tr><th>#</th><th>Mặt hàng</th><th>Số lượng</th><th>Phát hành</th><th>Khởi công</th><th>Hoàn thành</th><th>Số ngày</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+          </section>
+        </div>
+      </div>
+    </section>
+    <section id="overview" class="page" hidden>
+      <div class="card overview-filter">
+        <label class="filter"><span class="field-label">Giai đoạn</span><select><option value="" selected></option></select></label>
+        <label class="filter"><span class="field-label">Chính sách so sánh</span><select><option value="" selected></option><option>ROP (hiện hành) và Tối ưu (Adapt)</option></select></label>
+        <label class="filter"><span class="field-label">Quy tắc giao</span><select><option value="" selected></option><option>Giao nguyên đơn</option><option>Giao bù</option></select></label>
+        <div class="view-switch" aria-label="Xem theo"><button class="active" type="button" aria-pressed="true">Tháng</button><button type="button" aria-pressed="false">Quý</button></div>
+      </div>
+      <section class="section">
+        <h2>Tổng cả giai đoạn <span class="chart-legend"><i class="swatch" style="background:#9aacbf"></i>ROP (hiện hành) &nbsp; <i class="swatch" style="background:#3476b8"></i>Tối ưu (Adapt)</span></h2>
+        <div class="overview-kpis">
+          <div class="card kpi"><div class="kpi-label">Lost sales (đơn vị)</div><div class="kpi-value"></div><div class="kpi-detail"></div></div>
+          <div class="card kpi"><div class="kpi-label">Lượng giao được (đơn vị)</div><div class="kpi-value"></div><div class="kpi-detail"></div></div>
+          <div class="card kpi"><div class="kpi-label">Số đơn giao được</div><div class="kpi-value"></div><div class="kpi-detail"></div></div>
+          <div class="card kpi"><div class="kpi-label">Tồn bình quân (đơn vị)</div><div class="kpi-value"></div><div class="kpi-detail"></div></div>
+          <div class="card kpi"><div class="kpi-label">Giá trị tồn bình quân (triệu)</div><div class="kpi-value"></div><div class="kpi-detail"></div></div>
+        </div>
+      </section>
+      <section class="section"><h2>Diễn biến theo tháng</h2><div class="charts">
+        <div class="card chart"><div class="chart-heading"><span>Lost sales (đơn vị)</span><span class="chart-range"></span></div><div class="plot"></div></div>
+        <div class="card chart"><div class="chart-heading"><span>Lượng giao được (đơn vị)</span><span class="chart-range"></span></div><div class="plot"></div></div>
+        <div class="card chart"><div class="chart-heading"><span>Tồn bình quân (đơn vị)</span><span class="chart-range"></span></div><div class="plot"></div></div>
+        <div class="card chart"><div class="chart-heading"><span>Giá trị tồn bình quân (triệu)</span><span class="chart-range"></span></div><div class="plot"></div></div>
+      </div></section>
+      <section class="section advice recommendation"><h3>Gợi ý cho quyết định vận hành</h3><ol><li></li><li></li><li></li><li></li></ol><button class="primary" type="button">Chạy mô phỏng chính sách tối ưu cho giai đoạn này</button></section>
+      <section class="card data-table"><h2>Số liệu theo tháng</h2><table><thead><tr><th rowspan="2">Kỳ</th><th rowspan="2">Đơn đến hạn</th><th colspan="2">Lost sales (đơn vị)</th><th colspan="2">Đơn giao được</th><th colspan="2">Giao được (đơn vị)</th><th colspan="2">Tồn bình quân (đơn vị)</th><th colspan="2">Giá trị tồn bình quân (triệu)</th></tr><tr><th>ROP</th><th>Tối ưu</th><th>ROP</th><th>Tối ưu</th><th>ROP</th><th>Tối ưu</th><th>ROP</th><th>Tối ưu</th><th>ROP</th><th>Tối ưu</th></tr></thead><tbody><tr><td colspan="12"></td></tr><tr><td colspan="12"></td></tr><tr><td colspan="12"></td></tr></tbody></table></section>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll('.tab').forEach(button => button.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(tab => { tab.classList.toggle('active', tab === button); tab.removeAttribute('aria-current'); });
+      button.setAttribute('aria-current', 'page');
+      document.querySelectorAll('.page').forEach(page => { page.hidden = page.id !== button.dataset.tab; });
+    }));
+    document.querySelectorAll('.view-switch button').forEach(button => button.addEventListener('click', () => {
+      document.querySelectorAll('.view-switch button').forEach(item => { item.classList.toggle('active', item === button); item.setAttribute('aria-pressed', String(item === button)); });
+      document.querySelector('#overview .charts').previousElementSibling.textContent = `Diễn biến theo ${button.textContent.toLowerCase()}`;
+      document.querySelector('#overview .data-table h2').textContent = `Số liệu theo ${button.textContent.toLowerCase()}`;
+    }));
+  </script>
+</body>
+</html>

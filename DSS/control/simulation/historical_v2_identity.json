@@ -1,0 +1,13 @@
+{
+  "schema": "companyx.historical.executor.v1",
+  "execution_files": {
+    "continuation.py": "299bb4e0f032903f613636536258bd09e9637ace947dcd48d448171a84bae215",
+    "checkpoint_codec.py": "40bde83f58203354e6fcc37ae9a5daf808aa0539cf543314ab8343ca1b62b337",
+    "resumable_engine.py": "568a84c79e746a11af4903e54d1d05ae71c8ede9047d663a99c8b360286d4459",
+    "inquiry_v2.py": "d990c4b20cae93f9773978945dfe8eae7a807d40fcaa2d3b65acfaeb59279f8a",
+    "inquiry.py": "719560ab9ec49227a517915821dfe519394fd673b8b4672cff7c87904ff628a0",
+    "baseline_inputs.py": "340e137f16e1a12c0b376e9a1e56f46df765c7a8a1a1383250af03870b71bf87"
+  },
+  "effective_executor_hash": "6939846588b38f5afb612d8b25aa544a40e9a9fa58268db3867b429b7fa6d4ad",
+  "checkpoint_executor_hash": "7cca143aef3f3e127be89e5809f67a99d5d5aeca43f5036d53889c610c3414bf"
+}

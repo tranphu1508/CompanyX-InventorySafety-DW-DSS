@@ -1,0 +1,142 @@
+[
+  {
+    "kind": "check",
+    "name": "Positive event quantity",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationEvent WHERE Quantity<=0"
+  },
+  {
+    "kind": "check",
+    "name": "V6 event catalog and entity type",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationEvent e\n            LEFT JOIN #event_types t ON e.EventCode=t.code LEFT JOIN #RunEntity r\n            ON e.PlanningRunKey=r.PlanningRunKey AND e.EntityCode=r.EntityCode\n            WHERE t.code IS NULL OR r.EntityType<>t.entity"
+  },
+  {
+    "kind": "check",
+    "name": "V6 purchase supply references",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationEvent WHERE EventCode IN ('BUY_ORDER','BUY_RECEIVE_GOOD','BUY_REJECT') AND SupplyOptionKey IS NULL"
+  },
+  {
+    "kind": "check",
+    "name": "Typed entity relations",
+    "sql": "SELECT COUNT(*) FROM #Bridge_RunEntityRelation b\n            LEFT JOIN #relation_types t ON b.RelationCode=t.code\n            LEFT JOIN #RunEntity p ON b.PlanningRunKey=p.PlanningRunKey AND b.ParentEntityCode=p.EntityCode\n            LEFT JOIN #RunEntity c ON b.PlanningRunKey=c.PlanningRunKey AND b.ChildEntityCode=c.EntityCode\n            WHERE t.code IS NULL OR p.EntityCode IS NULL OR c.EntityCode IS NULL OR p.EntityType<>t.parent OR c.EntityType<>t.child\n               OR p.EntityCode=c.EntityCode OR b.AllocatedQty<0 OR ((b.AllocatedQty IS NULL AND b.AllocatedProductKey IS NOT NULL) OR (b.AllocatedQty IS NOT NULL AND b.AllocatedProductKey IS NULL))"
+  },
+  {
+    "kind": "check",
+    "name": "Receipt lot relationship and gross inspection",
+    "sql": "SELECT COUNT(*) FROM #RunEntity r LEFT JOIN\n            (SELECT PlanningRunKey,EntityCode,SUM(Quantity) qty FROM #Fact_SimulationEvent\n             WHERE EventCode IN ('BUY_RECEIVE_GOOD','BUY_REJECT') GROUP BY PlanningRunKey,EntityCode) e\n            ON r.PlanningRunKey=e.PlanningRunKey AND r.EntityCode=e.EntityCode\n            WHERE r.EntityType='RECEIPT_LOT' AND (ABS(r.OriginalQty-COALESCE(e.qty,0))>0.00001 OR\n            (SELECT COUNT(*) FROM #Bridge_RunEntityRelation b WHERE b.PlanningRunKey=r.PlanningRunKey AND b.ChildEntityCode=r.EntityCode AND b.RelationCode='HAS_RECEIPT')<>1)"
+  },
+  {
+    "kind": "check",
+    "name": "Receipt event parent relationship",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationEvent e\n            WHERE e.EventCode IN ('BUY_RECEIVE_GOOD','BUY_REJECT') AND NOT EXISTS\n            (SELECT 1 FROM #Bridge_RunEntityRelation b WHERE b.PlanningRunKey=e.PlanningRunKey AND b.ChildEntityCode=e.EntityCode\n            AND b.ParentEntityCode=e.RelatedEntityCode AND b.RelationCode='HAS_RECEIPT')"
+  },
+  {
+    "kind": "check",
+    "name": "Event entity reference",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationEvent e LEFT JOIN #RunEntity r\n            ON e.PlanningRunKey=r.PlanningRunKey AND e.EntityCode=r.EntityCode WHERE r.EntityCode IS NULL"
+  },
+  {
+    "kind": "check",
+    "name": "Related entity reference",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationEvent e LEFT JOIN #RunEntity r\n            ON e.PlanningRunKey=r.PlanningRunKey AND e.RelatedEntityCode=r.EntityCode WHERE e.RelatedEntityCode IS NOT NULL AND r.EntityCode IS NULL"
+  },
+  {
+    "kind": "check",
+    "name": "Decision solve reference",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationEvent e LEFT JOIN #Fact_OptimizationSolve s\n            ON e.PlanningRunKey=s.PlanningRunKey AND e.DecisionSolveSequence=s.SolveSequence WHERE e.DecisionSolveSequence IS NOT NULL AND s.SolveSequence IS NULL"
+  },
+  {
+    "kind": "check",
+    "name": "Execution lineage",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationEvent e LEFT JOIN #RunEntity r\n            ON e.PlanningRunKey=r.PlanningRunKey AND e.ProductionExecutionCode=r.EntityCode\n            WHERE e.EventCode IN ('PRODUCTION_START','BOM_ISSUE','PRODUCTION_GOOD')\n              AND (r.EntityCode IS NULL OR r.EntityType<>'OPERATION_EXECUTION')"
+  },
+  {
+    "kind": "check",
+    "name": "Execution job relationship",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationEvent e WHERE e.EventCode IN ('PRODUCTION_START','BOM_ISSUE','PRODUCTION_GOOD')\n            AND NOT EXISTS (SELECT 1 FROM #Bridge_RunEntityRelation b WHERE b.PlanningRunKey=e.PlanningRunKey\n            AND b.ParentEntityCode=e.EntityCode AND b.ChildEntityCode=e.ProductionExecutionCode AND b.RelationCode='HAS_OPERATION')"
+  },
+  {
+    "kind": "check",
+    "name": "Atomic order action",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationEvent WHERE EventCode IN\n            ('SHIP_ON_TIME','SHIP_LATE','LOST_SALE') AND OrderActionCode IS NULL"
+  },
+  {
+    "kind": "check",
+    "name": "Order line header reference",
+    "sql": "SELECT COUNT(*) FROM #RunEntity r LEFT JOIN #Fact_SimulationOrder o\n            ON r.PlanningRunKey=o.PlanningRunKey AND r.CustomerOrderCode=o.CustomerOrderCode\n            WHERE r.EntityType='CUSTOMER_ORDER_LINE' AND o.CustomerOrderCode IS NULL"
+  },
+  {
+    "kind": "check",
+    "name": "Header expected line count",
+    "sql": "SELECT COUNT(*) FROM (SELECT o.PlanningRunKey,o.CustomerOrderCode,o.ExpectedLineCount,\n            COUNT(r.EntityCode) actual FROM #Fact_SimulationOrder o LEFT JOIN #RunEntity r\n            ON o.PlanningRunKey=r.PlanningRunKey AND o.CustomerOrderCode=r.CustomerOrderCode AND r.EntityType='CUSTOMER_ORDER_LINE'\n            GROUP BY o.PlanningRunKey,o.CustomerOrderCode,o.ExpectedLineCount HAVING COUNT(r.EntityCode)<>o.ExpectedLineCount) q"
+  },
+  {
+    "kind": "setup",
+    "name": "settled",
+    "sql": "SELECT r.PlanningRunKey,r.EntityCode,r.CustomerOrderCode,r.OriginalQty,\n            COALESCE(SUM(CASE WHEN e.EventCode IN ('SHIP_ON_TIME','SHIP_LATE') THEN e.Quantity ELSE 0 END),0) shipped,\n            COALESCE(SUM(CASE WHEN e.EventCode='LOST_SALE' THEN e.Quantity ELSE 0 END),0) lost,\n            COUNT(DISTINCT CASE WHEN e.EventCode IN ('SHIP_ON_TIME','SHIP_LATE','LOST_SALE') THEN e.OrderActionCode END) actions\n            INTO #settled FROM #RunEntity r LEFT JOIN #Fact_SimulationEvent e ON r.PlanningRunKey=e.PlanningRunKey AND r.EntityCode=e.EntityCode\n            WHERE r.EntityType='CUSTOMER_ORDER_LINE' GROUP BY r.PlanningRunKey,r.EntityCode,r.CustomerOrderCode,r.OriginalQty"
+  },
+  {
+    "kind": "check",
+    "name": "Order conservation",
+    "sql": "SELECT COUNT(*) FROM #settled WHERE shipped<0 OR lost<0 OR shipped+lost>OriginalQty+0.00001"
+  },
+  {
+    "kind": "check",
+    "name": "Whole order settlement",
+    "sql": "SELECT COUNT(*) FROM #settled s JOIN #Fact_SimulationOrder o\n            ON s.PlanningRunKey=o.PlanningRunKey AND s.CustomerOrderCode=o.CustomerOrderCode\n            WHERE (o.OrderStatus='FULFILLED' AND (ABS(s.shipped-s.OriginalQty)>0.00001 OR s.lost<>0 OR s.actions<>1))\n               OR (o.OrderStatus='LOST' AND (ABS(s.lost-s.OriginalQty)>0.00001 OR s.shipped<>0 OR s.actions<>1))\n               OR (o.OrderStatus='OPEN' AND (s.shipped<>0 OR s.lost<>0))"
+  },
+  {
+    "kind": "check",
+    "name": "Full-order shared action",
+    "sql": "SELECT COUNT(*) FROM (SELECT r.PlanningRunKey,r.CustomerOrderCode\n            FROM #RunEntity r JOIN #Fact_SimulationEvent e ON r.PlanningRunKey=e.PlanningRunKey AND r.EntityCode=e.EntityCode\n            WHERE r.EntityType='CUSTOMER_ORDER_LINE' AND e.EventCode IN ('SHIP_ON_TIME','SHIP_LATE','LOST_SALE')\n            GROUP BY r.PlanningRunKey,r.CustomerOrderCode HAVING COUNT(DISTINCT e.OrderActionCode)<>1) q"
+  },
+  {
+    "kind": "check",
+    "name": "Nonnegative daily stock",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationDaily WHERE OnHandQty<0 OR ProductionWIPQty<0\n            OR QueuedProductionQty<0 OR PurchaseInTransitQty<0 OR OpenPurchaseQty<0 OR CustomerBacklogQty<0 OR LostQty<0"
+  },
+  {
+    "kind": "check",
+    "name": "No invented dispatch/transit",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationDaily WHERE PurchaseInTransitQty<>0 OR OwnedInTransitValue<>0"
+  },
+  {
+    "kind": "check",
+    "name": "Pending purchase state conservation",
+    "sql": "WITH movements AS (\n            SELECT PlanningRunKey,ProductKey,DateKey,SUM(CASE WHEN EventCode='BUY_ORDER' THEN Quantity ELSE -Quantity END) delta\n            FROM #Fact_SimulationEvent WHERE EventCode IN ('BUY_ORDER','BUY_RECEIVE_GOOD','BUY_REJECT')\n            GROUP BY PlanningRunKey,ProductKey,DateKey), balances AS (\n            SELECT d.OpenPurchaseQty,SUM(COALESCE(e.delta,0)) OVER\n            (PARTITION BY d.PlanningRunKey,d.ProductKey ORDER BY d.DateKey ROWS UNBOUNDED PRECEDING) expected\n            FROM #Fact_SimulationDaily d LEFT JOIN movements e ON e.PlanningRunKey=d.PlanningRunKey\n            AND e.ProductKey=d.ProductKey AND e.DateKey=d.DateKey)\n            SELECT COUNT(*) FROM balances WHERE ABS(OpenPurchaseQty-expected)>0.00001"
+  },
+  {
+    "kind": "check",
+    "name": "Daily/event customer quantities",
+    "sql": "SELECT COUNT(*) FROM #Fact_SimulationDaily d LEFT JOIN\n            (SELECT PlanningRunKey,DateKey,ProductKey,\n             SUM(CASE WHEN EventCode='SHIP_ON_TIME' THEN Quantity ELSE 0 END) ont,\n             SUM(CASE WHEN EventCode='SHIP_LATE' THEN Quantity ELSE 0 END) late,\n             SUM(CASE WHEN EventCode='LOST_SALE' THEN Quantity ELSE 0 END) lost\n             FROM #Fact_SimulationEvent GROUP BY PlanningRunKey,DateKey,ProductKey) e\n            ON d.PlanningRunKey=e.PlanningRunKey AND d.DateKey=e.DateKey AND d.ProductKey=e.ProductKey\n            WHERE ABS(d.OnTimeDeliveredQty-COALESCE(e.ont,0))>0.00001 OR ABS(d.LateDeliveredQty-COALESCE(e.late,0))>0.00001\n               OR ABS(d.LostQty-COALESCE(e.lost,0))>0.00001"
+  },
+  {
+    "kind": "check",
+    "name": "Summary inventory valuation",
+    "sql": "SELECT COUNT(*) FROM #Fact_RunSummary s JOIN\n            (SELECT PlanningRunKey,AVG(total) average_value FROM (SELECT PlanningRunKey,DateKey,SUM(OnHandValue+WIPValue) total\n             FROM #Fact_SimulationDaily GROUP BY PlanningRunKey,DateKey) totals GROUP BY PlanningRunKey) d\n            ON s.PlanningRunKey=d.PlanningRunKey WHERE ABS(s.AvgInventoryValue-d.average_value)>0.0001"
+  },
+  {
+    "kind": "check",
+    "name": "Product demand conservation",
+    "sql": "SELECT COUNT(*) FROM #Fact_PolicySimulation WHERE\n            ABS(OpeningBacklogQty+TotalDemandQty-FilledQty-LostQty-EndingBacklogQty)>0.00001"
+  },
+  {
+    "kind": "check",
+    "name": "Product calendar and valuation",
+    "sql": "SELECT COUNT(*) FROM #Fact_PolicySimulation p LEFT JOIN\n            (SELECT PlanningRunKey,ProductKey,COUNT(*) n,AVG(OnHandQty) oh,AVG(ProductionWIPQty) wip,\n              AVG(OnHandValue+WIPValue) val,SUM(CustomerBacklogQty) late FROM #Fact_SimulationDaily GROUP BY PlanningRunKey,ProductKey) d\n            ON p.PlanningRunKey=d.PlanningRunKey AND p.ProductKey=d.ProductKey WHERE d.n IS NULL OR p.SimulatedDays<>d.n\n            OR ABS(p.AvgOnHandQty-d.oh)>0.00001 OR ABS(p.AvgWIPQty-d.wip)>0.00001 OR ABS(p.AvgInventoryValue-d.val)>0.0001\n            OR ABS(p.LateUnitDays-d.late)>0.00001 OR p.AvgInTransitQty<>0 OR p.AvgInTransitValue<>0"
+  },
+  {
+    "kind": "check",
+    "name": "Product summary coverage",
+    "sql": "SELECT COUNT(*) FROM (SELECT DISTINCT PlanningRunKey,ProductKey FROM #Fact_SimulationDaily) d\n            LEFT JOIN #Fact_PolicySimulation p ON p.PlanningRunKey=d.PlanningRunKey AND p.ProductKey=d.ProductKey WHERE p.ProductKey IS NULL"
+  },
+  {
+    "kind": "check",
+    "name": "Same-cohort summary totals",
+    "sql": "SELECT COUNT(*) FROM #Fact_RunSummary s JOIN\n                (SELECT PlanningRunKey,SUM(TotalDemandQty) due,SUM(OnTimeDeliveredQty) ont,SUM(LostQty) lost,SUM(LateUnitDays) late\n                 FROM #Fact_PolicySimulation WHERE ProductKey IN (SELECT p FROM #service_products) GROUP BY PlanningRunKey) p\n                ON s.PlanningRunKey=p.PlanningRunKey WHERE ABS(s.CustomerDueQty-p.due)>0.00001 OR ABS(s.OnTimeDeliveredQty-p.ont)>0.00001\n                OR ABS(s.LostQty-p.lost)>0.00001 OR ABS(s.LateUnitDays-p.late)>0.00001"
+  },
+  {
+    "kind": "check",
+    "name": "Stochastic draw uniqueness",
+    "sql": "SELECT COUNT(*) FROM (SELECT PlanningRunKey,StreamCode,EventIdentity,DrawIndex\n            FROM #Fact_StochasticDraw GROUP BY PlanningRunKey,StreamCode,EventIdentity,DrawIndex HAVING COUNT(*)>1) q"
+  }
+]

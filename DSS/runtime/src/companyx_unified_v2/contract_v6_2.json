@@ -1,0 +1,770 @@
+{
+  "schema": "InventorySafety SQL V6.2",
+  "source": "D:\\Study\\B\u00e1ch Khoa University\\Kho D\u1eef Li\u1ec7u v\u00e0 H\u1ec7 H\u1ed7 tr\u1ee3 Quy\u1ebft \u0110\u1ecbnh\\Project\\GPT\\output\\inventorysafety-v6-2-patch-20261027\\InventorySafety_V6_2_patch.sql",
+  "source_sha256": "b2e6b28cdb85894dfd240dbb7a8cb407123e42e3dcbe45ab0d0af2d40eb8889b",
+  "tables": {
+    "Fact_PolicySimulation": [
+      {
+        "name": "PlanningRunKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "ProductKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "SimulatedDays",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "InitialOnHandQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "OpeningBacklogQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "TotalDemandQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "OnTimeDeliveredQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "LateDeliveredQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "FilledQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "LostQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "EndingBacklogQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "LateUnitDays",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "OnTimeUnitRate",
+        "sql_type": "decimal(19,8)",
+        "nullable": true
+      },
+      {
+        "name": "FillRate",
+        "sql_type": "decimal(19,8)",
+        "nullable": true
+      },
+      {
+        "name": "AvgOnHandQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "AvgWIPQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "AvgInTransitQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "AvgInventoryValue",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "AvgInTransitValue",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "HoldingCost",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "LoadBatchID",
+        "sql_type": "bigint",
+        "nullable": false
+      }
+    ],
+    "Fact_SimulationDaily": [
+      {
+        "name": "PlanningRunKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "DateKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "ProductKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "LocationKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "OnHandQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "ProductionWIPQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "QueuedProductionQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "PurchaseInTransitQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "CustomerBacklogQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "CustomerDueQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "OnTimeDeliveredQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "LateDeliveredQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "LostQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "BOMConsumedQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "PurchaseAcceptedQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "PurchaseRejectedQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "ProductionGoodQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "OnHandValue",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "WIPValue",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "OwnedInTransitValue",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "LoadBatchID",
+        "sql_type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "OpenPurchaseQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      }
+    ],
+    "Fact_SimulationEvent": [
+      {
+        "name": "PlanningRunKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "EventSequence",
+        "sql_type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "EventAt",
+        "sql_type": "datetime2",
+        "nullable": false
+      },
+      {
+        "name": "DateKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "EventCode",
+        "sql_type": "nvarchar(40)",
+        "nullable": false
+      },
+      {
+        "name": "EntityCode",
+        "sql_type": "nvarchar(150)",
+        "nullable": false
+      },
+      {
+        "name": "RelatedEntityCode",
+        "sql_type": "nvarchar(150)",
+        "nullable": true
+      },
+      {
+        "name": "SourceRecordReference",
+        "sql_type": "nvarchar(300)",
+        "nullable": true
+      },
+      {
+        "name": "ProductKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "FromLocationKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "ToLocationKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "Quantity",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "SupplyOptionKey",
+        "sql_type": "bigint",
+        "nullable": true
+      },
+      {
+        "name": "RouteStepKey",
+        "sql_type": "bigint",
+        "nullable": true
+      },
+      {
+        "name": "KnownAt",
+        "sql_type": "datetime2",
+        "nullable": false
+      },
+      {
+        "name": "LoadBatchID",
+        "sql_type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "ReasonCode",
+        "sql_type": "nvarchar(50)",
+        "nullable": true
+      },
+      {
+        "name": "ProductionExecutionCode",
+        "sql_type": "nvarchar(150)",
+        "nullable": true
+      },
+      {
+        "name": "OrderActionCode",
+        "sql_type": "nvarchar(150)",
+        "nullable": true
+      },
+      {
+        "name": "DecisionSolveSequence",
+        "sql_type": "bigint",
+        "nullable": true
+      }
+    ],
+    "Fact_StochasticDraw": [
+      {
+        "name": "PlanningRunKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "DrawSequence",
+        "sql_type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "DistributionKey",
+        "sql_type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "StreamCode",
+        "sql_type": "nvarchar(100)",
+        "nullable": false
+      },
+      {
+        "name": "EventIdentity",
+        "sql_type": "nvarchar(200)",
+        "nullable": false
+      },
+      {
+        "name": "DrawIndex",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "RawSampleValue",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "AppliedValue",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "KnownAt",
+        "sql_type": "datetime2",
+        "nullable": false
+      },
+      {
+        "name": "DrawKind",
+        "sql_type": "nvarchar(30)",
+        "nullable": false
+      },
+      {
+        "name": "TrialQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": true
+      }
+    ],
+    "Fact_RunSummary": [
+      {
+        "name": "PlanningRunKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "EvaluationScope",
+        "sql_type": "nvarchar(1000)",
+        "nullable": false
+      },
+      {
+        "name": "CustomerDueQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "OnTimeDeliveredQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "OnTimeUnitRate",
+        "sql_type": "decimal(19,8)",
+        "nullable": true
+      },
+      {
+        "name": "LostQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "EndingBacklogQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "LateUnitDays",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "AvgInventoryValue",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "AvgOwnedInTransitValue",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "WallClockSeconds",
+        "sql_type": "decimal(19,4)",
+        "nullable": false
+      },
+      {
+        "name": "SolverSeconds",
+        "sql_type": "decimal(19,4)",
+        "nullable": true
+      },
+      {
+        "name": "ValidationStatus",
+        "sql_type": "nvarchar(20)",
+        "nullable": false
+      },
+      {
+        "name": "ValidationNote",
+        "sql_type": "nvarchar(2000)",
+        "nullable": true
+      },
+      {
+        "name": "OpeningBacklogQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "LateDeliveredQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "FilledQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "DueOrderCount",
+        "sql_type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "OnTimeFullOrderCount",
+        "sql_type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "LostOrderCount",
+        "sql_type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "OnTimeFullOrderRate",
+        "sql_type": "decimal(19,8)",
+        "nullable": true
+      }
+    ],
+    "RunEntity": [
+      {
+        "name": "PlanningRunKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "EntityCode",
+        "sql_type": "nvarchar(150)",
+        "nullable": false
+      },
+      {
+        "name": "EntityType",
+        "sql_type": "nvarchar(30)",
+        "nullable": false
+      },
+      {
+        "name": "ProductKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "OriginalQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "OpeningRemainingQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": false
+      },
+      {
+        "name": "CreatedAt",
+        "sql_type": "datetime2",
+        "nullable": false
+      },
+      {
+        "name": "DueAt",
+        "sql_type": "datetime2",
+        "nullable": true
+      },
+      {
+        "name": "PromisedAvailableAt",
+        "sql_type": "datetime2",
+        "nullable": true
+      },
+      {
+        "name": "IsOpeningEntity",
+        "sql_type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "SourceRecordReference",
+        "sql_type": "nvarchar(500)",
+        "nullable": true
+      },
+      {
+        "name": "ScenarioVersionKey",
+        "sql_type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "InitialEntityCode",
+        "sql_type": "nvarchar(150)",
+        "nullable": true
+      },
+      {
+        "name": "InitialDemandLineCode",
+        "sql_type": "nvarchar(100)",
+        "nullable": true
+      },
+      {
+        "name": "CustomerOrderCode",
+        "sql_type": "nvarchar(150)",
+        "nullable": true
+      }
+    ],
+    "Bridge_RunEntityRelation": [
+      {
+        "name": "PlanningRunKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "ParentEntityCode",
+        "sql_type": "nvarchar(150)",
+        "nullable": false
+      },
+      {
+        "name": "ChildEntityCode",
+        "sql_type": "nvarchar(150)",
+        "nullable": false
+      },
+      {
+        "name": "RelationCode",
+        "sql_type": "nvarchar(30)",
+        "nullable": false
+      },
+      {
+        "name": "AllocatedQty",
+        "sql_type": "decimal(28,8)",
+        "nullable": true
+      },
+      {
+        "name": "AllocatedProductKey",
+        "sql_type": "int",
+        "nullable": true
+      }
+    ],
+    "Fact_SimulationOrder": [
+      {
+        "name": "PlanningRunKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "CustomerOrderCode",
+        "sql_type": "nvarchar(150)",
+        "nullable": false
+      },
+      {
+        "name": "SourceSalesOrderID",
+        "sql_type": "int",
+        "nullable": true
+      },
+      {
+        "name": "SourceRecordReference",
+        "sql_type": "nvarchar(500)",
+        "nullable": false
+      },
+      {
+        "name": "KnownAt",
+        "sql_type": "datetime2",
+        "nullable": false
+      },
+      {
+        "name": "DueAt",
+        "sql_type": "datetime2",
+        "nullable": false
+      },
+      {
+        "name": "ExpectedLineCount",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "OrderStatus",
+        "sql_type": "nvarchar(30)",
+        "nullable": false
+      },
+      {
+        "name": "CompletedAt",
+        "sql_type": "datetime2",
+        "nullable": true
+      },
+      {
+        "name": "CancelledAt",
+        "sql_type": "datetime2",
+        "nullable": true
+      },
+      {
+        "name": "CancellationReason",
+        "sql_type": "nvarchar(100)",
+        "nullable": true
+      },
+      {
+        "name": "LoadBatchID",
+        "sql_type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "LoadedAt",
+        "sql_type": "datetime2",
+        "nullable": false
+      }
+    ],
+    "Fact_OptimizationSolve": [
+      {
+        "name": "PlanningRunKey",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "SolveSequence",
+        "sql_type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "DecisionAt",
+        "sql_type": "datetime2",
+        "nullable": false
+      },
+      {
+        "name": "AttemptNo",
+        "sql_type": "int",
+        "nullable": false
+      },
+      {
+        "name": "ObjectiveStage",
+        "sql_type": "nvarchar(50)",
+        "nullable": false
+      },
+      {
+        "name": "InformationCutoffAt",
+        "sql_type": "datetime2",
+        "nullable": false
+      },
+      {
+        "name": "HorizonEndAt",
+        "sql_type": "datetime2",
+        "nullable": false
+      },
+      {
+        "name": "PlanningForecastRunKey",
+        "sql_type": "int",
+        "nullable": true
+      },
+      {
+        "name": "ForecastInputReference",
+        "sql_type": "nvarchar(1000)",
+        "nullable": false
+      },
+      {
+        "name": "StateInputReference",
+        "sql_type": "nvarchar(1000)",
+        "nullable": false
+      },
+      {
+        "name": "DecisionOutputReference",
+        "sql_type": "nvarchar(1000)",
+        "nullable": true
+      },
+      {
+        "name": "SolverStatus",
+        "sql_type": "nvarchar(50)",
+        "nullable": false
+      },
+      {
+        "name": "HasFeasibleSolution",
+        "sql_type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "ActionSource",
+        "sql_type": "nvarchar(30)",
+        "nullable": false
+      },
+      {
+        "name": "ObjectiveValue",
+        "sql_type": "decimal(28,8)",
+        "nullable": true
+      },
+      {
+        "name": "BestBound",
+        "sql_type": "decimal(28,8)",
+        "nullable": true
+      },
+      {
+        "name": "RelativeGap",
+        "sql_type": "decimal(19,8)",
+        "nullable": true
+      },
+      {
+        "name": "SolverSeconds",
+        "sql_type": "decimal(19,4)",
+        "nullable": false
+      },
+      {
+        "name": "LoadBatchID",
+        "sql_type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "LoadedAt",
+        "sql_type": "datetime2",
+        "nullable": false
+      }
+    ]
+  }
+}

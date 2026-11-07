@@ -1,0 +1,150 @@
+{
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "companyx.unified.input.v1"
+    },
+    "start": {
+      "type": "string",
+      "format": "date"
+    },
+    "end": {
+      "type": "string",
+      "format": "date"
+    },
+    "products": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "ProductID": {
+            "type": "integer"
+          },
+          "IsManufactured": {
+            "type": "boolean"
+          },
+          "IsResale": {
+            "type": "boolean"
+          },
+          "StockUnit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "InitialQty": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "SafetyStockQty": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "ReorderPointQty": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "UnitCost": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "ManufacturingParameters": {
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "ProductID",
+          "IsManufactured",
+          "IsResale",
+          "StockUnit",
+          "InitialQty",
+          "SafetyStockQty",
+          "ReorderPointQty",
+          "UnitCost",
+          "ManufacturingParameters"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "sales_order_lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "SalesOrderDetailID": {
+            "type": "integer"
+          },
+          "SalesOrderID": {
+            "type": "integer"
+          },
+          "ProductID": {
+            "type": "integer"
+          },
+          "OrderQty": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "OrderDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "DueDate": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "SalesOrderDetailID",
+          "SalesOrderID",
+          "ProductID",
+          "OrderQty",
+          "OrderDate",
+          "DueDate"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "bom": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "topological_order": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "uniqueItems": true
+    },
+    "supply_options": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "start",
+    "end",
+    "products",
+    "sales_order_lines",
+    "bom",
+    "topological_order",
+    "supply_options",
+    "metadata"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CompanyX normalized snapshot v1",
+  "description": "ManufacturingParameters: root, lead_days, direct_mu, bom.ss, bom.rp. BOM: ProductAssemblyID,ComponentID,PerAssemblyQty,UnitMeasureCode. Supply options: ProductID,VendorID,base_lead_days,min_order_qty,max_order_qty. Validation also checks classification, topology, dates, integer stock units and vendor coverage."
+}

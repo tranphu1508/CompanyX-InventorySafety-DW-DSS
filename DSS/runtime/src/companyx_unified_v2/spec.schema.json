@@ -1,0 +1,177 @@
+{
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "companyx.unified.spec.v2"
+    },
+    "policy": {
+      "enum": [
+        "ROP",
+        "QUETSCHLICH_ADAPT"
+      ]
+    },
+    "allow_backorders": {
+      "type": "boolean"
+    },
+    "supply": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "INSTANT_UNLIMITED",
+            "PURCHASE_WITH_LEADTIME"
+          ]
+        },
+        "finite_scope": {
+          "enum": [
+            "BOM",
+            "ALL_PURCHASED"
+          ]
+        },
+        "daily_limit_mode": {
+          "const": "UNLIMITED"
+        },
+        "lifecycle": {
+          "const": "ORDER_TO_RECEIPT_NO_DISPATCH"
+        },
+        "delay_probabilities": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "reject_probability": {
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "lead_time_multiplier": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "mode",
+        "finite_scope",
+        "daily_limit_mode",
+        "lifecycle",
+        "delay_probabilities",
+        "reject_probability",
+        "lead_time_multiplier"
+      ],
+      "additionalProperties": false
+    },
+    "solver": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "enum": [
+            "GUROBI",
+            "CPLEX"
+          ]
+        },
+        "time_limit_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Cumulative native CPLEX wall seconds per simulated day across resumed attempts; excludes model construction and IO."
+        },
+        "threads": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1024,
+          "description": "Also bounded by logical CPU count on the executing host."
+        },
+        "relative_gap": {
+          "type": "number",
+          "minimum": 0
+        },
+        "absolute_gap": {
+          "type": "number",
+          "minimum": 0
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "workmem_mb": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "max_ram_gib": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0,
+          "description": "Optional Windows job committed-memory limit for the simulation process tree in GiB; null disables it."
+        }
+      },
+      "required": [
+        "name",
+        "time_limit_seconds",
+        "threads",
+        "relative_gap",
+        "absolute_gap",
+        "seed",
+        "workmem_mb",
+        "max_ram_gib"
+      ],
+      "additionalProperties": false
+    },
+    "replication": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "lost_unit_penalty": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "holding_cost_rate_per_year": {
+      "type": "number",
+      "minimum": 0
+    },
+    "holding_cost_rate_note": {
+      "type": "string",
+      "minLength": 1
+    },
+    "late_unit_day_penalty": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "terminal_unserved_unit_penalty": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "production_lead_time_mode": {
+      "type": "string",
+      "enum": [
+        "LEGACY_REQUEST_DATE",
+        "ACTUAL_START_DATE"
+      ],
+      "description": "Omitted preserves legacy behavior. ACTUAL_START_DATE excludes component wait and enforces material-ready immediate starts."
+    }
+  },
+  "required": [
+    "schema",
+    "policy",
+    "allow_backorders",
+    "supply",
+    "solver",
+    "replication",
+    "lost_unit_penalty",
+    "holding_cost_rate_per_year",
+    "holding_cost_rate_note",
+    "late_unit_day_penalty",
+    "terminal_unserved_unit_penalty"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Resolved CompanyX portable execution spec, runtime 0.2.0",
+  "description": "For fully resolved specs. Sparse overrides are resolved by config.resolve; probability sum is also validated in code."
+}

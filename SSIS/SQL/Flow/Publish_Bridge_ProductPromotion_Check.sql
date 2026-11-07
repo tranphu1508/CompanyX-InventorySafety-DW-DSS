@@ -1,0 +1,5 @@
+DECLARE @B bigint=(SELECT BatchId FROM ssis_flow.Context);
+
+INSERT etl_v2.TargetChange(BatchID,TableName,Operation,KeyJson,BeforeJson,AfterJson) SELECT @B,N'dw.Bridge_ProductPromotion','D',(SELECT D.[ProductKey],D.[PromotionKey] FOR JSON PATH,WITHOUT_ARRAY_WRAPPER,INCLUDE_NULL_VALUES),(SELECT D.* FOR JSON PATH,WITHOUT_ARRAY_WRAPPER,INCLUDE_NULL_VALUES),NULL FROM dw.Bridge_ProductPromotion D WHERE NOT EXISTS(SELECT 1 FROM etl_calc.[Bridge_ProductPromotion] P WHERE P.[ProductKey]=D.[ProductKey] AND P.[PromotionKey]=D.[PromotionKey]);
+DELETE D FROM dw.Bridge_ProductPromotion D WHERE NOT EXISTS(SELECT 1 FROM etl_calc.[Bridge_ProductPromotion] P WHERE P.[ProductKey]=D.[ProductKey] AND P.[PromotionKey]=D.[PromotionKey]);
+IF EXISTS(SELECT [ProductKey],[PromotionKey] FROM etl_calc.[Bridge_ProductPromotion] EXCEPT SELECT [ProductKey],[PromotionKey] FROM dw.Bridge_ProductPromotion) OR EXISTS(SELECT [ProductKey],[PromotionKey] FROM dw.Bridge_ProductPromotion EXCEPT SELECT [ProductKey],[PromotionKey] FROM etl_calc.[Bridge_ProductPromotion]) THROW 51940,N'Projected target mismatch: dw.Bridge_ProductPromotion',1;

@@ -1,0 +1,6 @@
+# Python 3.11 x64. Shared runtime; no optimization solver required by ROP.
+numpy==2.4.6
+scipy==1.17.1
+highspy==1.15.1
+# Read-only SQL Server checks at the DSS input boundary.
+pyodbc==5.3.0

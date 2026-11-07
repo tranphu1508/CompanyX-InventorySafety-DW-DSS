@@ -1,0 +1,64 @@
+# CompanyX - DW / DSS / SSIS / MOLAP / Visual Studio / Python
+# Place this file at the repository root.
+
+# Python virtual environments and generated files
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Visual Studio / .NET / user-specific files
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.rsuser
+*.userosscache
+*.sln.docstates
+TestResults/
+
+# Local secrets and credentials (commit sanitized examples instead)
+.env
+.env.*
+!.env.example
+!.env.sample
+**/secrets.json
+**/appsettings.Development.json
+*.pfx
+*.key
+
+# SQL Server database, backup and logs
+*.bak
+*.mdf
+*.ndf
+*.ldf
+*.trn
+*.dif
+
+# Temporary, system and editor files
+*.log
+*.tmp
+*.temp
+*.cache
+~$*
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+
+# Generated experiment results (keep source code and notebooks)
+/KetQua/
+
+# Note: DSS/, Warehouse/, Database/, MOLAP/, SSIS/, Web/, Tools/,
+# CompanyX.Split.Integration/, *.sln, *.sql, *.dtsx, *.dtproj,
+# and documentation are NOT excluded by this file.
+# Review large data files and sensitive data before publishing.

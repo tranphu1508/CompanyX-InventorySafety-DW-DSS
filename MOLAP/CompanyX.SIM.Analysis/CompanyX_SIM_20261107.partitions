@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Cube xmlns="http://schemas.microsoft.com/analysisservices/2003/engine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ID>CompanyX_SIM_20261107</ID><MeasureGroups><MeasureGroup><ID>SimulationDaily</ID><Partitions>
+                <Partition>
+                  <ID>SimulationDaily_AllPublished</ID>
+                  <Name>SimulationDaily_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxactive.[FactSimulationDaily]</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup><MeasureGroup><ID>OrderLineService</ID><Partitions>
+                <Partition>
+                  <ID>OrderLineService_AllPublished</ID>
+                  <Name>OrderLineService_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxactive.[FactOrderLineService]</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup><MeasureGroup><ID>OrderService</ID><Partitions>
+                <Partition>
+                  <ID>OrderService_AllPublished</ID>
+                  <Name>OrderService_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxactive.[FactOrderService]</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup><MeasureGroup><ID>RunDay</ID><Partitions>
+                <Partition>
+                  <ID>RunDay_AllPublished</ID>
+                  <Name>RunDay_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxactive.[FactRunDay]</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup><MeasureGroup><ID>RunSummary</ID><Partitions>
+                <Partition>
+                  <ID>RunSummary_AllPublished</ID>
+                  <Name>RunSummary_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxactive.[FactRunSummary]</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup><MeasureGroup><ID>BaselineActivity</ID><Partitions>
+                <Partition>
+                  <ID>BaselineActivity_AllPublished</ID>
+                  <Name>BaselineActivity_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxactive.FactBaselineActivity WHERE EventCode IN('PRODUCTION_REQUEST','PRODUCTION_START','PRODUCTION_GOOD','BOM_ISSUE','BUY_ORDER')</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup><MeasureGroup><ID>OrderDaily</ID><Partitions><Partition><ID>OrderDaily_PublishedDetail</ID><Name>OrderDaily_PublishedDetail</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxdetail.[FactOrderDaily]</QueryDefinition></Source><StorageMode>Molap</StorageMode><ProcessingMode>Regular</ProcessingMode></Partition></Partitions></MeasureGroup><MeasureGroup><ID>OrderLineDaily</ID><Partitions><Partition><ID>OrderLineDaily_PublishedDetail</ID><Name>OrderLineDaily_PublishedDetail</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxdetail.[FactOrderLineDaily]</QueryDefinition></Source><StorageMode>Molap</StorageMode><ProcessingMode>Regular</ProcessingMode></Partition></Partitions></MeasureGroup><MeasureGroup><ID>JobDaily</ID><Partitions><Partition><ID>JobDaily_PublishedDetail</ID><Name>JobDaily_PublishedDetail</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxdetail.[FactJobDaily]</QueryDefinition></Source><StorageMode>Molap</StorageMode><ProcessingMode>Regular</ProcessingMode></Partition></Partitions></MeasureGroup><MeasureGroup><ID>ProductionExecution</ID><Partitions><Partition><ID>ProductionExecution_PublishedDetail</ID><Name>ProductionExecution_PublishedDetail</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxdetail.[FactProductionExecution]</QueryDefinition></Source><StorageMode>Molap</StorageMode><ProcessingMode>Regular</ProcessingMode></Partition></Partitions></MeasureGroup><MeasureGroup><ID>MaterialTrace</ID><Partitions><Partition><ID>MaterialTrace_PublishedDetail</ID><Name>MaterialTrace_PublishedDetail</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxdetail.[FactMaterialTrace]</QueryDefinition></Source><StorageMode>Molap</StorageMode><ProcessingMode>Regular</ProcessingMode></Partition></Partitions></MeasureGroup><MeasureGroup><ID>RollingPlan</ID><Partitions><Partition><ID>RollingPlan_PublishedDetail</ID><Name>RollingPlan_PublishedDetail</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxdetail.[FactRollingPlan]</QueryDefinition></Source><StorageMode>Molap</StorageMode><ProcessingMode>Regular</ProcessingMode></Partition></Partitions></MeasureGroup><MeasureGroup><ID>RollingOrderPlan</ID><Partitions><Partition><ID>RollingOrderPlan_PublishedDetail</ID><Name>RollingOrderPlan_PublishedDetail</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxdetail.[FactRollingOrderPlan]</QueryDefinition></Source><StorageMode>Molap</StorageMode><ProcessingMode>Regular</ProcessingMode></Partition></Partitions></MeasureGroup><MeasureGroup><ID>PlannedAllocation</ID><Partitions><Partition><ID>PlannedAllocation_PublishedDetail</ID><Name>PlannedAllocation_PublishedDetail</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxdetail.[FactPlannedAllocation]</QueryDefinition></Source><StorageMode>Molap</StorageMode><ProcessingMode>Regular</ProcessingMode></Partition></Partitions></MeasureGroup><MeasureGroup><ID>PlanSupplyBalance</ID><Partitions><Partition><ID>PlanSupplyBalance_PublishedDetail</ID><Name>PlanSupplyBalance_PublishedDetail</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxdetail.[FactPlanSupplyBalance]</QueryDefinition></Source><StorageMode>Molap</StorageMode><ProcessingMode>Regular</ProcessingMode></Partition></Partitions></MeasureGroup><MeasureGroup><ID>PlanOrderMaterial</ID><Partitions><Partition><ID>PlanOrderMaterial_PublishedDetail</ID><Name>PlanOrderMaterial_PublishedDetail</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxdetail.[FactPlanOrderMaterial]</QueryDefinition></Source><StorageMode>Molap</StorageMode><ProcessingMode>Regular</ProcessingMode></Partition></Partitions></MeasureGroup><MeasureGroup><ID>InquiryLineDelivery</ID><Partitions>
+                <Partition>
+                  <ID>InquiryLineDelivery_AllPublished</ID>
+                  <Name>InquiryLineDelivery_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxactive.[FactInquiryLineDelivery]</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup><MeasureGroup><ID>InquiryTranche</ID><Partitions>
+                <Partition>
+                  <ID>InquiryTranche_AllPublished</ID>
+                  <Name>InquiryTranche_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxactive.[FactInquiryTranche]</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup></MeasureGroups></Cube>

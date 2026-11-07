@@ -1,0 +1,10 @@
+{
+  "HAS_RECEIPT": [
+    "PURCHASE_ORDER_LINE",
+    "RECEIPT_LOT"
+  ],
+  "HAS_OPERATION": [
+    "PRODUCTION_JOB",
+    "OPERATION_EXECUTION"
+  ]
+}

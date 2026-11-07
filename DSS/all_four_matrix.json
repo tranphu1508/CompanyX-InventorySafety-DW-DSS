@@ -1,0 +1,1035 @@
+{
+  "scenarios": [
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; đầu vào ngoài tức thời vô hạn; tồn đầu kỳ bằng 0",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "INSTANT_UNLIMITED",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "ZERO"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; đầu vào ngoài tức thời vô hạn; tồn đầu kỳ bằng 0",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "INSTANT_UNLIMITED",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "ZERO"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; mua theo leadtime gốc nhân 1,2; trễ 0–4 ngày; loại 15% lượng nhận; tồn đầu kỳ bằng 0",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "ZERO"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; mua theo leadtime gốc nhân 1,2; trễ 0–4 ngày; loại 15% lượng nhận; tồn đầu kỳ bằng 0",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "ZERO"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; mua theo leadtime gốc ×1, không trễ bổ sung; không loại lượng; tồn đầu kỳ bằng 0",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.0
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "ZERO"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; mua theo leadtime gốc ×1, không trễ bổ sung; không loại lượng; tồn đầu kỳ bằng 0",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.0
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "ZERO"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; mua theo leadtime gốc ×1, không trễ bổ sung; loại lượng với xác suất 15% mỗi đơn vị; tồn đầu kỳ bằng 0",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "ZERO"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; mua theo leadtime gốc ×1, không trễ bổ sung; loại lượng với xác suất 15% mỗi đơn vị; tồn đầu kỳ bằng 0",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "ZERO"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; đầu vào ngoài tức thời vô hạn; tồn đầu kỳ bằng ReorderPoint",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "INSTANT_UNLIMITED",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "REORDER_POINT"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; đầu vào ngoài tức thời vô hạn; tồn đầu kỳ bằng ReorderPoint",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "INSTANT_UNLIMITED",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "REORDER_POINT"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; mua theo leadtime gốc nhân 1,2; trễ 0–4 ngày; loại 15% lượng nhận; tồn đầu kỳ bằng ReorderPoint",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "REORDER_POINT"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; mua theo leadtime gốc nhân 1,2; trễ 0–4 ngày; loại 15% lượng nhận; tồn đầu kỳ bằng ReorderPoint",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "REORDER_POINT"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; mua theo leadtime gốc ×1, không trễ bổ sung; không loại lượng; tồn đầu kỳ bằng ReorderPoint",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.0
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "REORDER_POINT"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; mua theo leadtime gốc ×1, không trễ bổ sung; không loại lượng; tồn đầu kỳ bằng ReorderPoint",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.0
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "REORDER_POINT"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; mua theo leadtime gốc ×1, không trễ bổ sung; loại lượng với xác suất 15% mỗi đơn vị; tồn đầu kỳ bằng ReorderPoint",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "REORDER_POINT"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; mua theo leadtime gốc ×1, không trễ bổ sung; loại lượng với xác suất 15% mỗi đơn vị; tồn đầu kỳ bằng ReorderPoint",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "REORDER_POINT"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; đầu vào ngoài tức thời vô hạn; tồn đầu kỳ bằng SafetyStockLevel",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "INSTANT_UNLIMITED",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "SAFETY_STOCK_LEVEL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; đầu vào ngoài tức thời vô hạn; tồn đầu kỳ bằng SafetyStockLevel",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "INSTANT_UNLIMITED",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "SAFETY_STOCK_LEVEL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; mua theo leadtime gốc nhân 1,2; trễ 0–4 ngày; loại 15% lượng nhận; tồn đầu kỳ bằng SafetyStockLevel",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "SAFETY_STOCK_LEVEL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; mua theo leadtime gốc nhân 1,2; trễ 0–4 ngày; loại 15% lượng nhận; tồn đầu kỳ bằng SafetyStockLevel",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "SAFETY_STOCK_LEVEL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; mua theo leadtime gốc ×1, không trễ bổ sung; không loại lượng; tồn đầu kỳ bằng SafetyStockLevel",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.0
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "SAFETY_STOCK_LEVEL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; mua theo leadtime gốc ×1, không trễ bổ sung; không loại lượng; tồn đầu kỳ bằng SafetyStockLevel",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.0
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "SAFETY_STOCK_LEVEL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; mua theo leadtime gốc ×1, không trễ bổ sung; loại lượng với xác suất 15% mỗi đơn vị; tồn đầu kỳ bằng SafetyStockLevel",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "SAFETY_STOCK_LEVEL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; mua theo leadtime gốc ×1, không trễ bổ sung; loại lượng với xác suất 15% mỗi đơn vị; tồn đầu kỳ bằng SafetyStockLevel",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "SAFETY_STOCK_LEVEL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; đầu vào ngoài tức thời vô hạn; tồn đầu kỳ bằng CEILING((RP+SS)/2)",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "INSTANT_UNLIMITED",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "MIDPOINT_CEIL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; đầu vào ngoài tức thời vô hạn; tồn đầu kỳ bằng CEILING((RP+SS)/2)",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "INSTANT_UNLIMITED",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "MIDPOINT_CEIL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; mua theo leadtime gốc nhân 1,2; trễ 0–4 ngày; loại 15% lượng nhận; tồn đầu kỳ bằng CEILING((RP+SS)/2)",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "MIDPOINT_CEIL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; mua theo leadtime gốc nhân 1,2; trễ 0–4 ngày; loại 15% lượng nhận; tồn đầu kỳ bằng CEILING((RP+SS)/2)",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.2,
+        "delay_probabilities": [
+          0.6,
+          0.25,
+          0.1,
+          0.05,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "MIDPOINT_CEIL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; mua theo leadtime gốc ×1, không trễ bổ sung; không loại lượng; tồn đầu kỳ bằng CEILING((RP+SS)/2)",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.0
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "MIDPOINT_CEIL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; mua theo leadtime gốc ×1, không trễ bổ sung; không loại lượng; tồn đầu kỳ bằng CEILING((RP+SS)/2)",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.0
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "MIDPOINT_CEIL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và cho phép giao bù; mua theo leadtime gốc ×1, không trễ bổ sung; loại lượng với xác suất 15% mỗi đơn vị; tồn đầu kỳ bằng CEILING((RP+SS)/2)",
+      "allow_backorders": true,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "MIDPOINT_CEIL"
+    },
+    {
+      "name": "Giao nguyên SalesOrder và hủy toàn đơn nếu quá hạn; mua theo leadtime gốc ×1, không trễ bổ sung; loại lượng với xác suất 15% mỗi đơn vị; tồn đầu kỳ bằng CEILING((RP+SS)/2)",
+      "allow_backorders": false,
+      "supply": {
+        "mode": "PURCHASE_WITH_LEADTIME",
+        "finite_scope": "ALL_PURCHASED",
+        "lead_time_multiplier": 1.0,
+        "delay_probabilities": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "reject_probability": 0.15
+      },
+      "solver": {
+        "name": "GUROBI",
+        "time_limit_seconds": 900,
+        "threads": 8,
+        "relative_gap": 0,
+        "absolute_gap": 0,
+        "seed": 0,
+        "workmem_mb": null,
+        "max_ram_gib": null
+      },
+      "holding_cost_rate_per_year": 0,
+      "lost_unit_penalty": 3000.0,
+      "late_unit_day_penalty": 1000.0,
+      "terminal_unserved_unit_penalty": 3000.0,
+      "initial_state_rule": "MIDPOINT_CEIL"
+    }
+  ],
+  "policies": [
+    "ROP",
+    "QUETSCHLICH_ADAPT"
+  ],
+  "replications": [
+    0
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "contract": "companyx.cache.ui-contract.v1",
+  "lookup": {
+    "method": "POST",
+    "path": "/api/cache/lookup",
+    "body": "The unchanged complete controller-v2 form payload; no extra manifest fields.",
+    "headers": ["Content-Type: application/json", "X-CompanyX-CSRF"],
+    "side_effects": "Read cache metadata and issue an opaque lookup token only. Never run a solver, publish a job or process the cube.",
+    "response_schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "required": ["schema", "lookup_id", "request_fingerprint", "checked_at", "action", "can_submit", "requested", "covered_ranges", "missing_ranges", "reasons", "candidates", "result_scope", "continuation_verified"],
+      "properties": {
+        "schema": {"const": "companyx.cache.lookup.v1"},
+        "lookup_id": {"type": "string"},
+        "request_fingerprint": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+        "checked_at": {"type": "string", "format": "date-time"},
+        "action": {"enum": ["NEW", "EXTEND", "REUSE", "ERROR"]},
+        "can_submit": {"type": "boolean"},
+        "requested": {"$ref": "#/$defs/range"},
+        "covered_ranges": {"type": "array", "items": {"$ref": "#/$defs/range"}},
+        "missing_ranges": {"type": "array", "items": {"$ref": "#/$defs/range"}},
+        "reasons": {"type": "array", "items": {"type": "object", "required": ["code", "message"], "properties": {"code": {"type": "string"}, "field": {"type": ["string", "null"]}, "message": {"type": "string"}}}},
+        "candidates": {"type": "array", "items": {"type": "object", "required": ["candidate_id", "action"], "properties": {"candidate_id": {"enum": ["baseline", "full_requested", "full_delayed", "staged"]}, "action": {"enum": ["NEW", "EXTEND", "REUSE", "ERROR"]}, "source_request_id": {"type": ["string", "null"]}, "source_run_key": {"type": ["integer", "null"]}, "covered_start": {"type": ["string", "null"]}, "covered_end": {"type": ["string", "null"]}, "missing_ranges": {"type": "array", "items": {"$ref": "#/$defs/range"}}, "continuation_verified": {"type": "boolean"}}}},
+        "result_scope": {"type": "object", "required": ["start", "end", "as_of_end"], "properties": {"start": {"type": "string", "format": "date"}, "end": {"type": "string", "format": "date"}, "as_of_end": {"type": "string", "format": "date"}, "source_end": {"type": ["string", "null"]}}},
+        "continuation_verified": {"type": "boolean"}
+      },
+      "$defs": {"range": {"type": "object", "required": ["start", "end"], "properties": {"start": {"type": "string", "format": "date"}, "end": {"type": "string", "format": "date"}, "days": {"type": "integer", "minimum": 1}}}}
+    }
+  },
+  "semantics": {
+    "intervals": "Inclusive calendar dates; missing range days count both endpoints. Overall ranges summarize dates, not solver work across four candidates; candidate details are authoritative.",
+    "family": "Same semantic start, scenario, initialization and baseline state, master/source/forecast versions, inquiry tranches, penalties, solver settings and random identities. Volatile UUIDs are not semantic identity. Backend owns canonicalization and fingerprinting.",
+    "overall_action": "ERROR if blocked; otherwise NEW if any candidate is NEW, else EXTEND if any is EXTEND, else REUSE. Four distinct candidate decisions are required for submission.",
+    "extension": "EXTEND is allowed only when backend has verified the appropriate checkpoint and continuation semantics; existing published runs stay immutable.",
+    "reuse": "Source RunKeys are provenance. A shorter requested interval requires a distinct cutoff-safe projection; never return final source-run outcomes as the shorter result."
+  },
+  "submit": {
+    "method": "POST",
+    "path": "/api/runs",
+    "extra_header": "X-Cache-Lookup: <lookup_id>",
+    "existing_headers": ["X-CompanyX-CSRF", "Idempotency-Key", "Content-Type: application/json"],
+    "backend_rule": "Revalidate payload, dependency identities and cache coverage under the submission lock. Never rely on a client action or source RunKey.",
+    "stale_status": 409,
+    "stale_body": {"error": "The cache decision changed; review and submit again.", "decision": "Fresh companyx.cache.lookup.v1 response"},
+    "success_body": {"request_id": "Requested-window/view identity", "status_url": "/api/runs/<id>", "result_url": "/api/runs/<id>/result", "cache": "Accepted lookup decision"},
+    "http_statuses": {"REUSE": [200, 202], "EXTEND": [200, 202], "NEW": [200, 202]},
+    "reuse_queue": "REUSE may queue SQL requested-window projection and cube processing. No DES/MILP execution is implied; poll the compatible status endpoint."
+  },
+  "result": {
+    "required_for_cache_actions": ["result_scope", "window_results"],
+    "result_scope": "start/end/as_of_end must equal the accepted requested range; source full intervals and RunKeys may be included separately as provenance.",
+    "window_results": "Backend-produced candidate KPIs/order state truncated or recomputed at requested end. UI renders only this projection for REUSE/EXTEND, never the old full result.json.",
+    "legacy": "Historical outputs without a bounded envelope are labeled original whole-run diagnostics; they are not linked to the dates currently entered in the form."
+  },
+  "frontend": {
+    "lookup_debounce_ms": 450,
+    "invalidation": "Any input edit, product add/remove or catalog reload invalidates token and disables submit. Ignore responses from older edit generations, even when values later return to the same text.",
+    "stale_409": "Display fresh decision if structurally valid and still for the current form. Require a new explicit click; never retry submit automatically.",
+    "failed_lookup": "Display the API error and keep Run disabled. Do not fall back to assuming NEW.",
+    "power_bi": "DAX passes selected parameters to the local form; live cache decisions are not inferred in DAX. Imported cube result pages need a requested-window identity to show reused shorter windows."
+  },
+  "messages": {
+    "REUSE": "Dùng kết quả đã có trong khoảng ngày yêu cầu",
+    "EXTEND": "Chạy tiếp phần ngày còn thiếu",
+    "NEW": "Chạy mới theo cấu hình đã chọn",
+    "ERROR": "Chưa thể gửi yêu cầu",
+    "NO_MATCH": "Chưa có kết quả khớp toàn bộ cấu hình.",
+    "CONFIG_MISMATCH": "Cấu hình khác kết quả đã lưu; cần chạy mới.",
+    "CHECKPOINT_UNAVAILABLE": "Không có checkpoint hợp lệ để chạy tiếp.",
+    "STALE_LOOKUP": "Dữ liệu hoặc kế hoạch đã thay đổi. Xem lại quyết định rồi bấm nút lần nữa.",
+    "UNVERIFIED_RESULT_SCOPE": "Chưa xác minh được kết quả cho đúng khoảng ngày yêu cầu; chưa hiển thị KPI toàn lượt chạy thay thế."
+  }
+}

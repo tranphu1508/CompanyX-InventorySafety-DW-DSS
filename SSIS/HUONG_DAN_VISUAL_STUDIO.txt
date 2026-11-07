@@ -1,0 +1,82 @@
+CHẠY COMPANYX TRONG VISUAL STUDIO
+
+1. MỞ DEMO
+
+Chuẩn bị các phần mềm và môi trường Python .venv theo README.txt trên máy nhận.
+Chạy "Lay duong dan thu muc.cmd" ở thư mục gốc demo để cập nhật đường dẫn.
+Tự mở CompanyX.sln trong Visual Studio để xem hoặc chạy các gói của demo gốc.
+Trong Solution Explorer, mở CompanyX.Integration > SSIS Packages.
+
+Project.params chứa cấu hình chạy:
+- ServerName: localhost, SQL Server 2022 instance mặc định trên cùng máy.
+- SourceDatabase / TargetDatabase: database nguồn và warehouse của demo.
+- DataDirectory: <folder demo>\Warehouse.
+- OutputFolder: <folder demo>\KetQua\<tên lượt chạy>.
+- Policy, SolverName, ScenarioIndex: chính sách, bộ giải và kịch bản.
+- GurobiLicenseFile: đường dẫn license của máy đang chạy, nếu cần.
+
+Tệp lấy đường dẫn cập nhật bốn giá trị PackageRoot, PythonExecutable,
+DataDirectory và OutputFolder; giữ thư mục con của lượt chạy đã chọn.
+Mỗi lượt mô phỏng mới dùng một thư mục kết quả mới, không ghi đè lượt cũ.
+
+2. CHỌN PACKAGE
+
+10_KhoiTao.dtsx: chạy lần đầu hoặc sau khi nhận/di chuyển gói đã đóng.
+Chuẩn bị nguồn từ Database/Source; tạo warehouse mới trong Warehouse hoặc
+kiểm tra manifest rồi attach warehouse đã đóng gói. Database có sẵn hợp lệ
+được giữ lại; xung đột tên hoặc đường dẫn được báo lỗi để xử lý.
+
+20_ETL.dtsx: nạp dữ liệu nguồn vào warehouse bằng SSIS/SQL.
+
+30_MoPhong.dtsx: xuất đầu vào từ warehouse, kiểm tra đầu vào rồi chạy Python.
+Mặc định dùng kịch bản 365 ngày. ROP không gọi bộ giải; muốn tối ưu chọn
+Policy=QUETSCHLICH_ADAPT và SolverName=GUROBI hoặc CPLEX.
+Kết quả, nhật ký và dữ liệu trung gian nằm trong OutputFolder dưới KetQua.
+Gurobi hỗ trợ folder có dấu qua bộ điều phối I/O; vẫn cần ít nhất 10 GiB trống.
+
+40_NapKetQua.dtsx: kiểm tra và nạp kết quả vào warehouse bằng Execute SQL
+Task gọi SSIS/SQL/Results/Publish.sql. Mapping và quy tắc nạp giữ nguyên.
+Chạy lại cùng kết quả hợp lệ trả ALREADY_LOADED sau đối chiếu, không mô phỏng lại.
+
+00_ETL_DSS.dtsx: chạy toàn tuyến ETL -> chuẩn bị đầu vào -> mô phỏng -> nạp
+kết quả. Chạy 10_KhoiTao trước nếu nguồn/warehouse chưa sẵn sàng.
+
+90_DongGoi.dtsx: đóng warehouse an toàn để gửi hoặc đổi vị trí folder;
+làm theo mục 4 dưới đây.
+
+Muốn chạy từng bước: 10 -> 20 -> 30 -> 40. Muốn chạy cả tuyến: 10 -> 00.
+Nhấp phải package > Execute Package; xem tiến trình/lỗi trong Progress.
+Không gọi simulate_only.py trực tiếp vào folder chưa được SSIS chuẩn bị.
+
+3. XEM LUỒNG VÀ MAPPING
+
+Double-click package để xem Control Flow; mở Data Flow Task để xem dữ liệu.
+Trong 20_ETL, các nhóm EXTRACT, TRANSFORM và LOAD thể hiện luồng nguồn -> DW.
+Mở Destination > Mappings để xem ánh xạ; Lookup > Columns để xem khóa ghép;
+Derived Column để xem công thức làm sạch.
+Trong 30_MoPhong, DSS INPUT xuất SalesOrders, BOM, ProductKeys và SupplyKeys.
+Trong 40_NapKetQua, mở task DSS OUTPUT để xem file SQL và Parameter Mapping.
+Build Solution chỉ biên dịch; Execute Package/F5 mới thực thi.
+
+4. GỬI NHÓM, ĐỔI TÊN HOẶC DI CHUYỂN FOLDER
+
+1) Chờ ETL, mô phỏng và nạp kết quả hoàn tất; đóng các kết nối khác đang dùng
+   warehouse, kể cả cửa sổ truy vấn SSMS.
+2) Chạy 90_DongGoi trong Visual Studio. Chỉ tiếp tục khi package thành công
+   và trả DETACHED_BUNDLE_READY. Package detach warehouse và tạo manifest
+   kiểm tra file trong Warehouse; các kết quả trong KetQua được giữ nguyên.
+3) Đóng solution rồi copy/nén toàn bộ folder demo để gửi, hoặc đổi tên/chuyển
+   folder. Giữ đủ Database/Source, Warehouse, KetQua và các file chương trình.
+   Không copy MDF/LDF đang được SQL Server sử dụng.
+4) Tại vị trí/máy nhận, chuẩn bị phần mềm theo README.txt và .venv cho máy đó.
+   Chạy "Lay duong dan thu muc.cmd", tự mở CompanyX.sln rồi chạy 10_KhoiTao để attach warehouse
+   đã đóng gói. Dữ liệu và kết quả cũ được giữ lại.
+
+Sau khi chạy 90, muốn tiếp tục dùng demo trên chính máy gửi cũng chạy lại 10.
+Không cần chạy 00/30 chỉ để xem kết quả đã có. Chọn OutputFolder mới khi muốn
+thực hiện một lượt mô phỏng mới.
+
+TECH STACK
+
+Visual Studio/SSIS: điều phối, ETL và nạp kết quả; Microsoft SQL Server: DWH;
+Python: kiểm tra đầu vào và mô phỏng; Gurobi/IBM CPLEX: tối ưu.

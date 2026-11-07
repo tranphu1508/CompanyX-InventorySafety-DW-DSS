@@ -1,0 +1,9 @@
+{
+  "scope": "Four unchanged runtime mathematical dependencies; not the full historical release",
+  "sha256": {
+    "code/companyx_active_days.py": "ca8903ae36f45f59bc0a0f3f6a3fdcc4a67d7efd601f67fbde03a83ebbf36009",
+    "code/companyx_bom_graph.py": "a3c04f7a18252aff8864f7435a134b8865398154dc9cdbfcd8320949ce3c4021",
+    "code/companyx_workorder_median.py": "2be8e550bb77c39ea5790c7a67c5d85319fd62e6fa34c5ef8c821294a4cad25f",
+    "code/companyx_nonopt_mid2013.py": "04ba464849d3f7bc872281787da63153e76b29d12607ec91cf0875991e77a50a"
+  }
+}

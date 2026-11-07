@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:refId="Package" DTS:CreationName="Microsoft.Package" DTS:ExecutableType="Microsoft.Package" DTS:DTSID="{129EF8FD-16ED-40AE-A9C5-08B78A7C2B1C}" DTS:ObjectName="CompanyX_Control_Run" DTS:VersionGUID="{B5D08503-0FB5-427A-AD90-06367CBED103}" DTS:ProtectionLevel="0" DTS:DelayValidation="True" DTS:MaxConcurrentExecutables="1" DTS:MaximumErrorCount="1" DTS:LastModifiedProductVersion="16.0.1000.6" DTS:LocaleID="1033" DTS:Description="New scoped CompanyX control pipeline: prepare -&gt; MILP/DES -&gt; atomic copied warehouse publication -&gt; MOLAP ProcessFull.">
+  <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{8606854A-C9E6-4E77-9A81-17A2AC62FF7E}" DTS:Namespace="User" DTS:ObjectName="RequestPath">
+      <DTS:VariableValue DTS:DataType="8">D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\tmp\companyx-control-20261105\UNSET\request.json</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{31638654-8FB4-4F88-90D4-A53BD82572A9}" DTS:Namespace="User" DTS:ObjectName="RunFolder">
+      <DTS:VariableValue DTS:DataType="8">D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\tmp\companyx-control-20261105\UNSET</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{08FEF3E3-F332-4011-B6DA-4596BA3656DD}" DTS:Namespace="User" DTS:ObjectName="WorkerPath">
+      <DTS:VariableValue DTS:DataType="8">D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\src\companyx-control-20261105\worker.py</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{D4602DED-032C-4853-A064-05AC6C00BCAF}" DTS:Namespace="User" DTS:ObjectName="PythonExecutable">
+      <DTS:VariableValue DTS:DataType="8">D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\DSS\CompX_InventorySafetyDemo_20261104\.venv\Scripts\python.exe</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{65CFC429-C3E4-4B27-9B2F-D69E0D9CFE74}" DTS:Namespace="User" DTS:ObjectName="WorkingDirectory">
+      <DTS:VariableValue DTS:DataType="8">D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{DE42C07B-CB37-4EA3-A450-54DCC4EAFA83}" DTS:Namespace="User" DTS:ObjectName="ProcessOutput">
+      <DTS:VariableValue DTS:DataType="8" />
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{161559CF-36C9-4B92-832F-DF4537F4A228}" DTS:Namespace="User" DTS:ObjectName="ProcessError">
+      <DTS:VariableValue DTS:DataType="8" />
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable DTS:refId="Package\01_prepare" DTS:CreationName="Microsoft.ExecuteProcess" DTS:ExecutableType="Microsoft.ExecuteProcess" DTS:DTSID="{055E6FE7-ACF6-4C95-93B4-8D961F218081}" DTS:ObjectName="01_prepare" DTS:DelayValidation="True" DTS:FailPackageOnFailure="True" DTS:FailParentOnFailure="True" DTS:LocaleID="-1">
+      <DTS:Variables />
+      <DTS:PropertyExpression DTS:Name="Arguments">"-B -X utf8 \"" + @[User::WorkerPath] + "\" --stage prepare --request \"" + @[User::RequestPath] + "\" --run-folder \"" + @[User::RunFolder] + "\""</DTS:PropertyExpression>
+      <DTS:PropertyExpression DTS:Name="Executable">@[User::PythonExecutable]</DTS:PropertyExpression>
+      <DTS:PropertyExpression DTS:Name="WorkingDirectory">@[User::WorkingDirectory]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData Executable="D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\DSS\CompX_InventorySafetyDemo_20261104\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\src\companyx-control-20261105\worker.py&quot; --stage prepare --request &quot;D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\tmp\companyx-control-20261105\UNSET\request.json&quot; --run-folder &quot;D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\tmp\companyx-control-20261105\UNSET&quot;" WorkingDirectory="D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:refId="Package\02_simulate" DTS:CreationName="Microsoft.ExecuteProcess" DTS:ExecutableType="Microsoft.ExecuteProcess" DTS:DTSID="{519198FE-253F-4285-9674-211A44A63658}" DTS:ObjectName="02_simulate" DTS:DelayValidation="True" DTS:FailPackageOnFailure="True" DTS:FailParentOnFailure="True" DTS:LocaleID="-1">
+      <DTS:Variables />
+      <DTS:PropertyExpression DTS:Name="Arguments">"-B -X utf8 \"" + @[User::WorkerPath] + "\" --stage simulate --request \"" + @[User::RequestPath] + "\" --run-folder \"" + @[User::RunFolder] + "\""</DTS:PropertyExpression>
+      <DTS:PropertyExpression DTS:Name="Executable">@[User::PythonExecutable]</DTS:PropertyExpression>
+      <DTS:PropertyExpression DTS:Name="WorkingDirectory">@[User::WorkingDirectory]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData Executable="D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\DSS\CompX_InventorySafetyDemo_20261104\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\src\companyx-control-20261105\worker.py&quot; --stage simulate --request &quot;D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\tmp\companyx-control-20261105\UNSET\request.json&quot; --run-folder &quot;D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\tmp\companyx-control-20261105\UNSET&quot;" WorkingDirectory="D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:refId="Package\03_publish" DTS:CreationName="Microsoft.ExecuteProcess" DTS:ExecutableType="Microsoft.ExecuteProcess" DTS:DTSID="{F50D6229-2C3A-412D-95C9-F53322873230}" DTS:ObjectName="03_publish" DTS:DelayValidation="True" DTS:FailPackageOnFailure="True" DTS:FailParentOnFailure="True" DTS:LocaleID="-1">
+      <DTS:Variables />
+      <DTS:PropertyExpression DTS:Name="Arguments">"-B -X utf8 \"" + @[User::WorkerPath] + "\" --stage publish --request \"" + @[User::RequestPath] + "\" --run-folder \"" + @[User::RunFolder] + "\""</DTS:PropertyExpression>
+      <DTS:PropertyExpression DTS:Name="Executable">@[User::PythonExecutable]</DTS:PropertyExpression>
+      <DTS:PropertyExpression DTS:Name="WorkingDirectory">@[User::WorkingDirectory]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData Executable="D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\DSS\CompX_InventorySafetyDemo_20261104\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\src\companyx-control-20261105\worker.py&quot; --stage publish --request &quot;D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\tmp\companyx-control-20261105\UNSET\request.json&quot; --run-folder &quot;D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\tmp\companyx-control-20261105\UNSET&quot;" WorkingDirectory="D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:refId="Package\04_process" DTS:CreationName="Microsoft.ExecuteProcess" DTS:ExecutableType="Microsoft.ExecuteProcess" DTS:DTSID="{894552A3-30CF-4BCB-8F31-D6F6635DE1F5}" DTS:ObjectName="04_process" DTS:DelayValidation="True" DTS:FailPackageOnFailure="True" DTS:FailParentOnFailure="True" DTS:LocaleID="-1">
+      <DTS:Variables />
+      <DTS:PropertyExpression DTS:Name="Arguments">"-B -X utf8 \"" + @[User::WorkerPath] + "\" --stage process --request \"" + @[User::RequestPath] + "\" --run-folder \"" + @[User::RunFolder] + "\""</DTS:PropertyExpression>
+      <DTS:PropertyExpression DTS:Name="Executable">@[User::PythonExecutable]</DTS:PropertyExpression>
+      <DTS:PropertyExpression DTS:Name="WorkingDirectory">@[User::WorkingDirectory]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData Executable="D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\DSS\CompX_InventorySafetyDemo_20261104\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\src\companyx-control-20261105\worker.py&quot; --stage process --request &quot;D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\tmp\companyx-control-20261105\UNSET\request.json&quot; --run-folder &quot;D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\GPT\tmp\companyx-control-20261105\UNSET&quot;" WorkingDirectory="D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint DTS:refId="Package.PrecedenceConstraints[Constraint1]" DTS:DTSID="{691E6418-9735-4EDD-B438-2697F111998E}" DTS:From="Package\01_prepare" DTS:To="Package\02_simulate" DTS:LogicalAnd="True" DTS:ObjectName="Constraint1" DTS:Value="0" />
+    <DTS:PrecedenceConstraint DTS:refId="Package.PrecedenceConstraints[Constraint2]" DTS:DTSID="{AADF08BF-D4FB-47CD-B05C-F8A007BC1598}" DTS:From="Package\02_simulate" DTS:To="Package\03_publish" DTS:LogicalAnd="True" DTS:ObjectName="Constraint2" DTS:Value="0" />
+    <DTS:PrecedenceConstraint DTS:refId="Package.PrecedenceConstraints[Constraint3]" DTS:DTSID="{4229B980-18C3-413A-BAC3-253626DFA0E7}" DTS:From="Package\03_publish" DTS:To="Package\04_process" DTS:LogicalAnd="True" DTS:ObjectName="Constraint3" DTS:Value="0" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>

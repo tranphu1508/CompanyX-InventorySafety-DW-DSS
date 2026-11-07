@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Dimension xmlns="http://schemas.microsoft.com/analysisservices/2003/engine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <ID>Date</ID>
+          <Name>Date</Name>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>CompanyXSourceView</DataSourceViewID>
+          </Source>
+          <Type>Time</Type>
+          <ErrorConfiguration>
+            <KeyNotFound>ReportAndStop</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyConvertedToUnknown>ReportAndStop</NullKeyConvertedToUnknown>
+          </ErrorConfiguration>
+          <Attributes>
+            <Attribute>
+              <ID>Date</ID>
+              <Name>Date</Name>
+              <Type>Date</Type>
+              <Usage>Key</Usage>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>Month</AttributeID>
+                  <Name>Month</Name>
+                </AttributeRelationship>
+              <AttributeRelationship><AttributeID>Source Row</AttributeID></AttributeRelationship></AttributeRelationships>
+              <KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>DimDate</TableID><ColumnID>DateKey</ColumnID></Source></KeyColumn></KeyColumns><NameColumn><DataType>WChar</DataType><DataSize>40</DataSize><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>DimDate</TableID><ColumnID>DateName</ColumnID></Source></NameColumn><ValueColumn><DataType>Date</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>DimDate</TableID><ColumnID>CalendarDate</ColumnID></Source></ValueColumn></Attribute>
+            <Attribute>
+              <ID>Year</ID>
+              <Name>Year</Name>
+              <Type>Years</Type>
+              <KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>DimDate</TableID><ColumnID>CalendarYear</ColumnID></Source></KeyColumn></KeyColumns></Attribute>
+            <Attribute>
+              <ID>Quarter</ID>
+              <Name>Quarter</Name>
+              <Type>Quarters</Type>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>Year</AttributeID>
+                  <Name>Year</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+            <KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>DimDate</TableID><ColumnID>QuarterKey</ColumnID></Source></KeyColumn></KeyColumns><NameColumn><DataType>WChar</DataType><DataSize>20</DataSize><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>DimDate</TableID><ColumnID>QuarterName</ColumnID></Source></NameColumn></Attribute>
+            <Attribute>
+              <ID>Month</ID>
+              <Name>Month</Name>
+              <Type>Months</Type>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>Quarter</AttributeID>
+                  <Name>Quarter</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+            <KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>DimDate</TableID><ColumnID>MonthKey</ColumnID></Source></KeyColumn></KeyColumns><NameColumn><DataType>WChar</DataType><DataSize>7</DataSize><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>DimDate</TableID><ColumnID>MonthName</ColumnID></Source></NameColumn></Attribute>
+          <Attribute><ID>Source Row</ID><Name>Source Row</Name><KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>DimDate</TableID><ColumnID>DateKey</ColumnID></Source></KeyColumn></KeyColumns><NameColumn><DataType>WChar</DataType><DataSize>16384</DataSize><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>DimDate</TableID><ColumnID>SourceRow</ColumnID></Source></NameColumn><AttributeHierarchyVisible>false</AttributeHierarchyVisible></Attribute></Attributes>
+          <AttributeAllMemberName>All Date</AttributeAllMemberName>
+          <Hierarchies>
+            <Hierarchy>
+              <ID>Calendar</ID>
+              <Name>Calendar</Name>
+              <Levels>
+                <Level>
+                  <ID>Year</ID>
+                  <Name>Year</Name>
+                  <SourceAttributeID>Year</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>Quarter</ID>
+                  <Name>Quarter</Name>
+                  <SourceAttributeID>Quarter</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>Month</ID>
+                  <Name>Month</Name>
+                  <SourceAttributeID>Month</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>Date</ID>
+                  <Name>Date</Name>
+                  <SourceAttributeID>Date</SourceAttributeID>
+                </Level>
+              </Levels>
+            </Hierarchy>
+          </Hierarchies>
+        </Dimension>
+        

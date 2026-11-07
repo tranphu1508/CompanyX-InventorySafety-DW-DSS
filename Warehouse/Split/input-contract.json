@@ -1,0 +1,1137 @@
+{
+  "schema": "companyx.business-input-contract.v2",
+  "datasets": {
+    "sales": {
+      "table": "OpsFactSales",
+      "view": "SalesLineDetail",
+      "dimension": "Sales Line",
+      "key": "SalesOrderLineKey",
+      "group": "ActualSales",
+      "measure": "Actual Sales Line Count",
+      "query": "SELECT s.*,f.IsDemandEligible,f.OrderAt,f.DueAt,f.DQReasonCode,p.ProductID,p.MakeFlag,ss.StatusCode,ss.StatusName\n FROM cxoperations.FactSales s JOIN dw.Fact_SalesOrderLine f ON f.SalesOrderLineKey=s.SalesOrderLineKey\n JOIN dw.Dim_Product p ON p.ProductKey=f.ProductKey LEFT JOIN dw.Dim_SalesStatus ss ON ss.SalesStatusKey=f.SalesStatusKey",
+      "fields": [
+        "SalesOrderLineKey",
+        "SalesOrderDetailID",
+        "SalesOrderID",
+        "ProductKey",
+        "ProductID",
+        "OrderQty",
+        "OrderDateKey",
+        "DueDateKey",
+        "IsDemandEligible",
+        "MakeFlag",
+        "DQReasonCode",
+        "StatusCode",
+        "StatusName",
+        "OrderAt",
+        "DueAt"
+      ],
+      "types": {
+        "SalesOrderLineKey": {
+          "sql_type": "bigint",
+          "declaration": "bigint",
+          "max_length": 8,
+          "nullable": false
+        },
+        "SalesOrderDetailID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "SalesOrderID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "ProductKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "ProductID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "OrderQty": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "OrderDateKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "DueDateKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "IsDemandEligible": {
+          "sql_type": "bit",
+          "declaration": "bit",
+          "max_length": 1,
+          "nullable": false
+        },
+        "MakeFlag": {
+          "sql_type": "bit",
+          "declaration": "bit",
+          "max_length": 1,
+          "nullable": true
+        },
+        "DQReasonCode": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(200)",
+          "max_length": 400,
+          "nullable": true
+        },
+        "StatusCode": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "StatusName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(40)",
+          "max_length": 80,
+          "nullable": true
+        },
+        "OrderAt": {
+          "sql_type": "datetime2",
+          "declaration": "datetime2(7)",
+          "max_length": 8,
+          "nullable": true
+        },
+        "DueAt": {
+          "sql_type": "datetime2",
+          "declaration": "datetime2(7)",
+          "max_length": 8,
+          "nullable": true
+        }
+      },
+      "view_query": "SELECT v.[SalesOrderLineKey] AS [SalesOrderLineKey],v.[SalesOrderID] AS [SalesOrderID],v.[SalesOrderDetailID] AS [SalesOrderDetailID],v.[OrderDateKey] AS [OrderDateKey],v.[DueDateKey] AS [DueDateKey],v.[ShipDateKey] AS [ShipDateKey],v.[ProductKey] AS [ProductKey],v.[CustomerKey] AS [CustomerKey],v.[ChannelKey] AS [ChannelKey],v.[SalesStatusKey] AS [SalesStatusKey],v.[OrderQty] AS [OrderQty],v.[LineTotal] AS [LineTotal],v.[DQCode] AS [DQCode],v.[LineCount] AS [LineCount],v.[EligibleLineCount] AS [EligibleLineCount],v.[DQLineCount] AS [DQLineCount],v.[ShipDateObservedLineCount] AS [ShipDateObservedLineCount],v.[RecordedShipByDueLineCount] AS [RecordedShipByDueLineCount],v.[EligibleOrderQty] AS [EligibleOrderQty],v.[EligibleLineAmount] AS [EligibleLineAmount],v.[RecordedShipLagDaysSum] AS [RecordedShipLagDaysSum],v.[LoadBatchID] AS [LoadBatchID],v.[IsDemandEligible] AS [IsDemandEligible],v.[OrderAt] AS [OrderAt],v.[DueAt] AS [DueAt],v.[DQReasonCode] AS [DQReasonCode],v.[ProductID] AS [ProductID],v.[MakeFlag] AS [MakeFlag],v.[StatusCode] AS [StatusCode],v.[StatusName] AS [StatusName],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[SalesOrderLineKey],126) [SalesOrderLineKey],CONVERT(nvarchar(1000),q.[SalesOrderDetailID],126) [SalesOrderDetailID],CONVERT(nvarchar(1000),q.[SalesOrderID],126) [SalesOrderID],CONVERT(nvarchar(1000),q.[ProductKey],126) [ProductKey],CONVERT(nvarchar(1000),q.[ProductID],126) [ProductID],CONVERT(nvarchar(1000),q.[OrderQty],126) [OrderQty],CONVERT(nvarchar(1000),q.[OrderDateKey],126) [OrderDateKey],CONVERT(nvarchar(1000),q.[DueDateKey],126) [DueDateKey],CONVERT(nvarchar(1000),q.[IsDemandEligible],126) [IsDemandEligible],CONVERT(nvarchar(1000),q.[MakeFlag],126) [MakeFlag],CONVERT(nvarchar(1000),q.[DQReasonCode],126) [DQReasonCode],CONVERT(nvarchar(1000),q.[StatusCode],126) [StatusCode],CONVERT(nvarchar(1000),q.[StatusName],126) [StatusName],CONVERT(nvarchar(1000),q.[OrderAt],126) [OrderAt],CONVERT(nvarchar(1000),q.[DueAt],126) [DueAt] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow,CONVERT(nvarchar(160),q.[SalesOrderLineKey]) DetailCaption FROM (SELECT s.*,f.IsDemandEligible,f.OrderAt,f.DueAt,f.DQReasonCode,p.ProductID,p.MakeFlag,ss.StatusCode,ss.StatusName\n FROM cxoperations.FactSales s JOIN dw.Fact_SalesOrderLine f ON f.SalesOrderLineKey=s.SalesOrderLineKey\n JOIN dw.Dim_Product p ON p.ProductKey=f.ProductKey LEFT JOIN dw.Dim_SalesStatus ss ON ss.SalesStatusKey=f.SalesStatusKey) q) v",
+      "property_codec": "json-row-v1",
+      "property_max_chars": 16384,
+      "null_flags": [],
+      "keys": [
+        "SalesOrderLineKey"
+      ],
+      "transport": "drillthrough"
+    },
+    "products": {
+      "table": "DimProduct",
+      "view": "ProductPlanning",
+      "dimension": "Product",
+      "key": "ProductKey",
+      "query": "SELECT d.*,CONVERT(nvarchar(160),CONCAT(COALESCE(d.ProductNumber,N'?'),N' | ',COALESCE(d.ProductName,N'Unknown'))) ProductCaption,COALESCE(d.ProductCategoryID,-1) CategoryKey,COALESCE(d.ProductSubcategoryID,-1) SubcategoryKey,COALESCE(d.CategoryName,N'Unclassified') CategoryCaption,COALESCE(d.SubcategoryName,N'Unclassified') SubcategoryCaption,COALESCE(d.SupplyType,N'UNKNOWN') SupplyCaption,COALESCE(d.ProductRole,N'UNKNOWN') RoleCaption,CONVERT(int,COALESCE(d.MakeFlag,0)) MakeFlagDisplay,COALESCE(CONVERT(int,d.[ProductID]),-1) [B_ProductID],CONVERT(nvarchar(160),CASE WHEN d.[ProductID] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductID],126) END) [L_ProductID],COALESCE(NULLIF(RTRIM(d.[ProductNumber]),N''),N'N/A') [B_ProductNumber],CONVERT(nvarchar(160),CASE WHEN d.[ProductNumber] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductNumber],126) END) [L_ProductNumber],COALESCE(NULLIF(RTRIM(d.[ProductName]),N''),N'N/A') [B_ProductName],CONVERT(nvarchar(160),CASE WHEN d.[ProductName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductName],126) END) [L_ProductName],COALESCE(CONVERT(int,d.[ProductModelID]),-1) [B_ProductModelID],CONVERT(nvarchar(160),CASE WHEN d.[ProductModelID] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductModelID],126) END) [L_ProductModelID],COALESCE(CONVERT(int,d.[FinishedGoodsFlag]),-1) [B_FinishedGoodsFlag],CONVERT(nvarchar(160),CASE WHEN d.[FinishedGoodsFlag] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[FinishedGoodsFlag],126) END) [L_FinishedGoodsFlag],COALESCE(CONVERT(int,d.[IsBOMAssembly]),-1) [B_IsBOMAssembly],CONVERT(nvarchar(160),CASE WHEN d.[IsBOMAssembly] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[IsBOMAssembly],126) END) [L_IsBOMAssembly],COALESCE(CONVERT(int,d.[IsBOMComponent]),-1) [B_IsBOMComponent],CONVERT(nvarchar(160),CASE WHEN d.[IsBOMComponent] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[IsBOMComponent],126) END) [L_IsBOMComponent],COALESCE(NULLIF(RTRIM(d.[Color]),N''),N'N/A') [B_Color],CONVERT(nvarchar(160),CASE WHEN d.[Color] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Color],126) END) [L_Color],COALESCE(NULLIF(RTRIM(d.[Size]),N''),N'N/A') [B_Size],CONVERT(nvarchar(160),CASE WHEN d.[Size] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Size],126) END) [L_Size],COALESCE(NULLIF(RTRIM(d.[SizeUnitName]),N''),N'N/A') [B_SizeUnitName],CONVERT(nvarchar(160),CASE WHEN d.[SizeUnitName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[SizeUnitName],126) END) [L_SizeUnitName],COALESCE(CONVERT(decimal(8,2),d.[Weight]),-1) [B_Weight],CONVERT(nvarchar(160),CASE WHEN d.[Weight] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Weight],126) END) [L_Weight],COALESCE(NULLIF(RTRIM(d.[WeightUnitName]),N''),N'N/A') [B_WeightUnitName],CONVERT(nvarchar(160),CASE WHEN d.[WeightUnitName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[WeightUnitName],126) END) [L_WeightUnitName],COALESCE(NULLIF(RTRIM(d.[ProductLine]),N''),N'N/A') [B_ProductLine],CONVERT(nvarchar(160),CASE WHEN d.[ProductLine] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductLine],126) END) [L_ProductLine],COALESCE(NULLIF(RTRIM(d.[ProductLineName]),N''),N'N/A') [B_ProductLineName],CONVERT(nvarchar(160),CASE WHEN d.[ProductLineName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductLineName],126) END) [L_ProductLineName],COALESCE(NULLIF(RTRIM(d.[Class]),N''),N'N/A') [B_Class],CONVERT(nvarchar(160),CASE WHEN d.[Class] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Class],126) END) [L_Class],COALESCE(NULLIF(RTRIM(d.[ClassName]),N''),N'N/A') [B_ClassName],CONVERT(nvarchar(160),CASE WHEN d.[ClassName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ClassName],126) END) [L_ClassName],COALESCE(NULLIF(RTRIM(d.[Style]),N''),N'N/A') [B_Style],CONVERT(nvarchar(160),CASE WHEN d.[Style] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Style],126) END) [L_Style],COALESCE(NULLIF(RTRIM(d.[StyleName]),N''),N'N/A') [B_StyleName],CONVERT(nvarchar(160),CASE WHEN d.[StyleName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[StyleName],126) END) [L_StyleName],COALESCE(CONVERT(int,d.[DaysToManufacture]),-1) [B_DaysToManufacture],CONVERT(nvarchar(160),CASE WHEN d.[DaysToManufacture] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[DaysToManufacture],126) END) [L_DaysToManufacture],COALESCE(CONVERT(int,d.[SafetyStockLevel]),-1) [B_SafetyStockLevel],CONVERT(nvarchar(160),CASE WHEN d.[SafetyStockLevel] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[SafetyStockLevel],126) END) [L_SafetyStockLevel],COALESCE(CONVERT(int,d.[ReorderPoint]),-1) [B_ReorderPoint],CONVERT(nvarchar(160),CASE WHEN d.[ReorderPoint] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ReorderPoint],126) END) [L_ReorderPoint],COALESCE(CONVERT(decimal(19,4),d.[StandardCost]),-1) [B_StandardCost],CONVERT(nvarchar(160),CASE WHEN d.[StandardCost] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[StandardCost],126) END) [L_StandardCost],COALESCE(CONVERT(decimal(19,4),d.[ListPrice]),-1) [B_ListPrice],CONVERT(nvarchar(160),CASE WHEN d.[ListPrice] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ListPrice],126) END) [L_ListPrice],COALESCE(d.[SellStartDate],CONVERT(date,'19000101')) [B_SellStartDate],CONVERT(nvarchar(160),CASE WHEN d.[SellStartDate] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[SellStartDate],126) END) [L_SellStartDate],COALESCE(d.[SellEndDate],CONVERT(date,'19000101')) [B_SellEndDate],CONVERT(nvarchar(160),CASE WHEN d.[SellEndDate] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[SellEndDate],126) END) [L_SellEndDate],COALESCE(d.[DiscontinuedDate],CONVERT(date,'19000101')) [B_DiscontinuedDate],CONVERT(nvarchar(160),CASE WHEN d.[DiscontinuedDate] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[DiscontinuedDate],126) END) [L_DiscontinuedDate],v.BusinessEntityID ReplenishmentVendorID,v.AverageLeadTime ReplenishmentBaseLeadDays,v.StandardPrice ReplenishmentStandardPrice,v.MinOrderQty ReplenishmentMinOrderQty,v.MaxOrderQty ReplenishmentMaxOrderQty,RTRIM(v.UnitMeasureCode) ReplenishmentUnit,v.ModifiedDate ReplenishmentTermsModifiedAt FROM dw.Dim_Product d LEFT JOIN etl_raw.ProductVendor v ON v.ProductID=d.ProductID AND d.ProductID IN (709,710,841,843,844,850,853,857,863)",
+      "fields": [
+        "ProductKey",
+        "ProductID",
+        "ProductNumber",
+        "ProductName",
+        "ProductSubcategoryID",
+        "SubcategoryName",
+        "ProductCategoryID",
+        "CategoryName",
+        "ProductModelID",
+        "MakeFlag",
+        "FinishedGoodsFlag",
+        "SupplyType",
+        "ProductRole",
+        "IsBOMAssembly",
+        "IsBOMComponent",
+        "Color",
+        "Size",
+        "SizeUnitName",
+        "Weight",
+        "WeightUnitName",
+        "ProductLine",
+        "ProductLineName",
+        "Class",
+        "ClassName",
+        "Style",
+        "StyleName",
+        "DaysToManufacture",
+        "SafetyStockLevel",
+        "ReorderPoint",
+        "StandardCost",
+        "ListPrice",
+        "SellStartDate",
+        "SellEndDate",
+        "DiscontinuedDate",
+        "DQStatus",
+        "DQReasonCode",
+        "DQRuleVersion",
+        "LoadBatchID",
+        "LoadedAt",
+        "ReplenishmentVendorID",
+        "ReplenishmentBaseLeadDays",
+        "ReplenishmentStandardPrice",
+        "ReplenishmentMinOrderQty",
+        "ReplenishmentMaxOrderQty",
+        "ReplenishmentUnit",
+        "ReplenishmentTermsModifiedAt"
+      ],
+      "replenishment_scope": [
+        709,
+        710,
+        841,
+        843,
+        844,
+        850,
+        853,
+        857,
+        863
+      ],
+      "replenishment_export_mapping": {
+        "VendorID": "ReplenishmentVendorID",
+        "AverageLeadTime": "ReplenishmentBaseLeadDays",
+        "StandardPrice": "ReplenishmentStandardPrice",
+        "MinOrderQty": "ReplenishmentMinOrderQty",
+        "MaxOrderQty": "ReplenishmentMaxOrderQty",
+        "PurchaseUnit": "ReplenishmentUnit",
+        "ModifiedDate": "ReplenishmentTermsModifiedAt"
+      },
+      "replenishment_note": "DSS input properties only, not a purchasing analysis subject. Multiple suppliers for these fixed-scope items must fail validation; no arbitrary supplier selection.",
+      "types": {
+        "ProductKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "ProductID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ProductNumber": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(25)",
+          "max_length": 50,
+          "nullable": true
+        },
+        "ProductName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(100)",
+          "max_length": 200,
+          "nullable": true
+        },
+        "ProductSubcategoryID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "SubcategoryName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(100)",
+          "max_length": 200,
+          "nullable": true
+        },
+        "ProductCategoryID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "CategoryName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(100)",
+          "max_length": 200,
+          "nullable": true
+        },
+        "ProductModelID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "MakeFlag": {
+          "sql_type": "bit",
+          "declaration": "bit",
+          "max_length": 1,
+          "nullable": true
+        },
+        "FinishedGoodsFlag": {
+          "sql_type": "bit",
+          "declaration": "bit",
+          "max_length": 1,
+          "nullable": true
+        },
+        "SupplyType": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(10)",
+          "max_length": 20,
+          "nullable": true
+        },
+        "ProductRole": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(30)",
+          "max_length": 60,
+          "nullable": true
+        },
+        "IsBOMAssembly": {
+          "sql_type": "bit",
+          "declaration": "bit",
+          "max_length": 1,
+          "nullable": true
+        },
+        "IsBOMComponent": {
+          "sql_type": "bit",
+          "declaration": "bit",
+          "max_length": 1,
+          "nullable": true
+        },
+        "Color": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(15)",
+          "max_length": 30,
+          "nullable": true
+        },
+        "Size": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(5)",
+          "max_length": 10,
+          "nullable": true
+        },
+        "SizeUnitName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(50)",
+          "max_length": 100,
+          "nullable": true
+        },
+        "Weight": {
+          "sql_type": "decimal",
+          "declaration": "decimal(8,2)",
+          "max_length": 5,
+          "nullable": true
+        },
+        "WeightUnitName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(50)",
+          "max_length": 100,
+          "nullable": true
+        },
+        "ProductLine": {
+          "sql_type": "nchar",
+          "declaration": "nchar(2)",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ProductLineName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(20)",
+          "max_length": 40,
+          "nullable": true
+        },
+        "Class": {
+          "sql_type": "nchar",
+          "declaration": "nchar(2)",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ClassName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(20)",
+          "max_length": 40,
+          "nullable": true
+        },
+        "Style": {
+          "sql_type": "nchar",
+          "declaration": "nchar(2)",
+          "max_length": 4,
+          "nullable": true
+        },
+        "StyleName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(20)",
+          "max_length": 40,
+          "nullable": true
+        },
+        "DaysToManufacture": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "SafetyStockLevel": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ReorderPoint": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "StandardCost": {
+          "sql_type": "decimal",
+          "declaration": "decimal(19,4)",
+          "max_length": 9,
+          "nullable": true
+        },
+        "ListPrice": {
+          "sql_type": "decimal",
+          "declaration": "decimal(19,4)",
+          "max_length": 9,
+          "nullable": true
+        },
+        "SellStartDate": {
+          "sql_type": "date",
+          "declaration": "date",
+          "max_length": 3,
+          "nullable": true
+        },
+        "SellEndDate": {
+          "sql_type": "date",
+          "declaration": "date",
+          "max_length": 3,
+          "nullable": true
+        },
+        "DiscontinuedDate": {
+          "sql_type": "date",
+          "declaration": "date",
+          "max_length": 3,
+          "nullable": true
+        },
+        "DQStatus": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(20)",
+          "max_length": 40,
+          "nullable": true
+        },
+        "DQReasonCode": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(200)",
+          "max_length": 400,
+          "nullable": true
+        },
+        "DQRuleVersion": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(50)",
+          "max_length": 100,
+          "nullable": true
+        },
+        "LoadBatchID": {
+          "sql_type": "bigint",
+          "declaration": "bigint",
+          "max_length": 8,
+          "nullable": false
+        },
+        "LoadedAt": {
+          "sql_type": "datetime2",
+          "declaration": "datetime2(7)",
+          "max_length": 8,
+          "nullable": true
+        },
+        "ReplenishmentVendorID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ReplenishmentBaseLeadDays": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ReplenishmentStandardPrice": {
+          "sql_type": "money",
+          "declaration": "money",
+          "max_length": 8,
+          "nullable": true
+        },
+        "ReplenishmentMinOrderQty": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ReplenishmentMaxOrderQty": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ReplenishmentUnit": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(3)",
+          "max_length": 6,
+          "nullable": true
+        },
+        "ReplenishmentTermsModifiedAt": {
+          "sql_type": "datetime",
+          "declaration": "datetime",
+          "max_length": 8,
+          "nullable": true
+        }
+      },
+      "view_query": "SELECT v.[ProductKey] AS [ProductKey],v.[ProductCaption] AS [ProductCaption],v.[CategoryKey] AS [ProductCategoryID],v.[SubcategoryKey] AS [ProductSubcategoryID],v.[CategoryCaption] AS [CategoryName],v.[SubcategoryCaption] AS [SubcategoryName],v.[SupplyCaption] AS [SupplyType],v.[RoleCaption] AS [ProductRole],v.[MakeFlagDisplay] AS [MakeFlag],v.[B_ProductID] AS [ProductID],v.[L_ProductID] AS [ProductIDCaption],v.[B_ProductNumber] AS [ProductNumber],v.[B_ProductName] AS [ProductName],v.[B_ProductModelID] AS [ProductModelID],v.[L_ProductModelID] AS [ProductModelIDCaption],v.[B_FinishedGoodsFlag] AS [FinishedGoodsFlag],v.[L_FinishedGoodsFlag] AS [FinishedGoodsFlagCaption],v.[B_IsBOMAssembly] AS [IsBOMAssembly],v.[L_IsBOMAssembly] AS [IsBOMAssemblyCaption],v.[B_IsBOMComponent] AS [IsBOMComponent],v.[L_IsBOMComponent] AS [IsBOMComponentCaption],v.[B_Color] AS [Color],v.[B_Size] AS [Size],v.[B_SizeUnitName] AS [SizeUnitName],v.[B_Weight] AS [Weight],v.[L_Weight] AS [WeightCaption],v.[B_WeightUnitName] AS [WeightUnitName],v.[B_ProductLine] AS [ProductLine],v.[B_ProductLineName] AS [ProductLineName],v.[B_Class] AS [Class],v.[B_ClassName] AS [ClassName],v.[B_Style] AS [Style],v.[B_StyleName] AS [StyleName],v.[B_DaysToManufacture] AS [DaysToManufacture],v.[L_DaysToManufacture] AS [DaysToManufactureCaption],v.[B_SafetyStockLevel] AS [SafetyStockLevel],v.[L_SafetyStockLevel] AS [SafetyStockLevelCaption],v.[B_ReorderPoint] AS [ReorderPoint],v.[L_ReorderPoint] AS [ReorderPointCaption],v.[B_StandardCost] AS [StandardCost],v.[L_StandardCost] AS [StandardCostCaption],v.[B_ListPrice] AS [ListPrice],v.[L_ListPrice] AS [ListPriceCaption],v.[B_SellStartDate] AS [SellStartDate],v.[L_SellStartDate] AS [SellStartDateCaption],v.[B_SellEndDate] AS [SellEndDate],v.[L_SellEndDate] AS [SellEndDateCaption],v.[B_DiscontinuedDate] AS [DiscontinuedDate],v.[L_DiscontinuedDate] AS [DiscontinuedDateCaption],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[ProductKey],126) [ProductKey],CONVERT(nvarchar(1000),q.[ProductID],126) [ProductID],CONVERT(nvarchar(1000),q.[ProductNumber],126) [ProductNumber],CONVERT(nvarchar(1000),q.[ProductName],126) [ProductName],CONVERT(nvarchar(1000),q.[ProductSubcategoryID],126) [ProductSubcategoryID],CONVERT(nvarchar(1000),q.[SubcategoryName],126) [SubcategoryName],CONVERT(nvarchar(1000),q.[ProductCategoryID],126) [ProductCategoryID],CONVERT(nvarchar(1000),q.[CategoryName],126) [CategoryName],CONVERT(nvarchar(1000),q.[ProductModelID],126) [ProductModelID],CONVERT(nvarchar(1000),q.[MakeFlag],126) [MakeFlag],CONVERT(nvarchar(1000),q.[FinishedGoodsFlag],126) [FinishedGoodsFlag],CONVERT(nvarchar(1000),q.[SupplyType],126) [SupplyType],CONVERT(nvarchar(1000),q.[ProductRole],126) [ProductRole],CONVERT(nvarchar(1000),q.[IsBOMAssembly],126) [IsBOMAssembly],CONVERT(nvarchar(1000),q.[IsBOMComponent],126) [IsBOMComponent],CONVERT(nvarchar(1000),q.[Color],126) [Color],CONVERT(nvarchar(1000),q.[Size],126) [Size],CONVERT(nvarchar(1000),q.[SizeUnitName],126) [SizeUnitName],CONVERT(nvarchar(1000),q.[Weight],126) [Weight],CONVERT(nvarchar(1000),q.[WeightUnitName],126) [WeightUnitName],CONVERT(nvarchar(1000),RTRIM(q.[ProductLine]),126) [ProductLine],CONVERT(nvarchar(1000),q.[ProductLineName],126) [ProductLineName],CONVERT(nvarchar(1000),RTRIM(q.[Class]),126) [Class],CONVERT(nvarchar(1000),q.[ClassName],126) [ClassName],CONVERT(nvarchar(1000),RTRIM(q.[Style]),126) [Style],CONVERT(nvarchar(1000),q.[StyleName],126) [StyleName],CONVERT(nvarchar(1000),q.[DaysToManufacture],126) [DaysToManufacture],CONVERT(nvarchar(1000),q.[SafetyStockLevel],126) [SafetyStockLevel],CONVERT(nvarchar(1000),q.[ReorderPoint],126) [ReorderPoint],CONVERT(nvarchar(1000),q.[StandardCost],126) [StandardCost],CONVERT(nvarchar(1000),q.[ListPrice],126) [ListPrice],CONVERT(nvarchar(1000),q.[SellStartDate],126) [SellStartDate],CONVERT(nvarchar(1000),q.[SellEndDate],126) [SellEndDate],CONVERT(nvarchar(1000),q.[DiscontinuedDate],126) [DiscontinuedDate],CONVERT(nvarchar(1000),q.[DQStatus],126) [DQStatus],CONVERT(nvarchar(1000),q.[DQReasonCode],126) [DQReasonCode],CONVERT(nvarchar(1000),q.[DQRuleVersion],126) [DQRuleVersion],CONVERT(nvarchar(1000),q.[LoadBatchID],126) [LoadBatchID],CONVERT(nvarchar(1000),q.[LoadedAt],126) [LoadedAt],CONVERT(nvarchar(1000),q.[ReplenishmentVendorID],126) [ReplenishmentVendorID],CONVERT(nvarchar(1000),q.[ReplenishmentBaseLeadDays],126) [ReplenishmentBaseLeadDays],CONVERT(nvarchar(1000),q.[ReplenishmentStandardPrice],126) [ReplenishmentStandardPrice],CONVERT(nvarchar(1000),q.[ReplenishmentMinOrderQty],126) [ReplenishmentMinOrderQty],CONVERT(nvarchar(1000),q.[ReplenishmentMaxOrderQty],126) [ReplenishmentMaxOrderQty],CONVERT(nvarchar(1000),q.[ReplenishmentUnit],126) [ReplenishmentUnit],CONVERT(nvarchar(1000),q.[ReplenishmentTermsModifiedAt],126) [ReplenishmentTermsModifiedAt] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow FROM (SELECT d.*,CONVERT(nvarchar(160),CONCAT(COALESCE(d.ProductNumber,N'?'),N' | ',COALESCE(d.ProductName,N'Unknown'))) ProductCaption,COALESCE(d.ProductCategoryID,-1) CategoryKey,COALESCE(d.ProductSubcategoryID,-1) SubcategoryKey,COALESCE(d.CategoryName,N'Unclassified') CategoryCaption,COALESCE(d.SubcategoryName,N'Unclassified') SubcategoryCaption,COALESCE(d.SupplyType,N'UNKNOWN') SupplyCaption,COALESCE(d.ProductRole,N'UNKNOWN') RoleCaption,CONVERT(int,COALESCE(d.MakeFlag,0)) MakeFlagDisplay,COALESCE(CONVERT(int,d.[ProductID]),-1) [B_ProductID],CONVERT(nvarchar(160),CASE WHEN d.[ProductID] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductID],126) END) [L_ProductID],COALESCE(NULLIF(RTRIM(d.[ProductNumber]),N''),N'N/A') [B_ProductNumber],CONVERT(nvarchar(160),CASE WHEN d.[ProductNumber] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductNumber],126) END) [L_ProductNumber],COALESCE(NULLIF(RTRIM(d.[ProductName]),N''),N'N/A') [B_ProductName],CONVERT(nvarchar(160),CASE WHEN d.[ProductName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductName],126) END) [L_ProductName],COALESCE(CONVERT(int,d.[ProductModelID]),-1) [B_ProductModelID],CONVERT(nvarchar(160),CASE WHEN d.[ProductModelID] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductModelID],126) END) [L_ProductModelID],COALESCE(CONVERT(int,d.[FinishedGoodsFlag]),-1) [B_FinishedGoodsFlag],CONVERT(nvarchar(160),CASE WHEN d.[FinishedGoodsFlag] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[FinishedGoodsFlag],126) END) [L_FinishedGoodsFlag],COALESCE(CONVERT(int,d.[IsBOMAssembly]),-1) [B_IsBOMAssembly],CONVERT(nvarchar(160),CASE WHEN d.[IsBOMAssembly] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[IsBOMAssembly],126) END) [L_IsBOMAssembly],COALESCE(CONVERT(int,d.[IsBOMComponent]),-1) [B_IsBOMComponent],CONVERT(nvarchar(160),CASE WHEN d.[IsBOMComponent] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[IsBOMComponent],126) END) [L_IsBOMComponent],COALESCE(NULLIF(RTRIM(d.[Color]),N''),N'N/A') [B_Color],CONVERT(nvarchar(160),CASE WHEN d.[Color] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Color],126) END) [L_Color],COALESCE(NULLIF(RTRIM(d.[Size]),N''),N'N/A') [B_Size],CONVERT(nvarchar(160),CASE WHEN d.[Size] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Size],126) END) [L_Size],COALESCE(NULLIF(RTRIM(d.[SizeUnitName]),N''),N'N/A') [B_SizeUnitName],CONVERT(nvarchar(160),CASE WHEN d.[SizeUnitName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[SizeUnitName],126) END) [L_SizeUnitName],COALESCE(CONVERT(decimal(8,2),d.[Weight]),-1) [B_Weight],CONVERT(nvarchar(160),CASE WHEN d.[Weight] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Weight],126) END) [L_Weight],COALESCE(NULLIF(RTRIM(d.[WeightUnitName]),N''),N'N/A') [B_WeightUnitName],CONVERT(nvarchar(160),CASE WHEN d.[WeightUnitName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[WeightUnitName],126) END) [L_WeightUnitName],COALESCE(NULLIF(RTRIM(d.[ProductLine]),N''),N'N/A') [B_ProductLine],CONVERT(nvarchar(160),CASE WHEN d.[ProductLine] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductLine],126) END) [L_ProductLine],COALESCE(NULLIF(RTRIM(d.[ProductLineName]),N''),N'N/A') [B_ProductLineName],CONVERT(nvarchar(160),CASE WHEN d.[ProductLineName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductLineName],126) END) [L_ProductLineName],COALESCE(NULLIF(RTRIM(d.[Class]),N''),N'N/A') [B_Class],CONVERT(nvarchar(160),CASE WHEN d.[Class] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Class],126) END) [L_Class],COALESCE(NULLIF(RTRIM(d.[ClassName]),N''),N'N/A') [B_ClassName],CONVERT(nvarchar(160),CASE WHEN d.[ClassName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ClassName],126) END) [L_ClassName],COALESCE(NULLIF(RTRIM(d.[Style]),N''),N'N/A') [B_Style],CONVERT(nvarchar(160),CASE WHEN d.[Style] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Style],126) END) [L_Style],COALESCE(NULLIF(RTRIM(d.[StyleName]),N''),N'N/A') [B_StyleName],CONVERT(nvarchar(160),CASE WHEN d.[StyleName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[StyleName],126) END) [L_StyleName],COALESCE(CONVERT(int,d.[DaysToManufacture]),-1) [B_DaysToManufacture],CONVERT(nvarchar(160),CASE WHEN d.[DaysToManufacture] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[DaysToManufacture],126) END) [L_DaysToManufacture],COALESCE(CONVERT(int,d.[SafetyStockLevel]),-1) [B_SafetyStockLevel],CONVERT(nvarchar(160),CASE WHEN d.[SafetyStockLevel] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[SafetyStockLevel],126) END) [L_SafetyStockLevel],COALESCE(CONVERT(int,d.[ReorderPoint]),-1) [B_ReorderPoint],CONVERT(nvarchar(160),CASE WHEN d.[ReorderPoint] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ReorderPoint],126) END) [L_ReorderPoint],COALESCE(CONVERT(decimal(19,4),d.[StandardCost]),-1) [B_StandardCost],CONVERT(nvarchar(160),CASE WHEN d.[StandardCost] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[StandardCost],126) END) [L_StandardCost],COALESCE(CONVERT(decimal(19,4),d.[ListPrice]),-1) [B_ListPrice],CONVERT(nvarchar(160),CASE WHEN d.[ListPrice] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ListPrice],126) END) [L_ListPrice],COALESCE(d.[SellStartDate],CONVERT(date,'19000101')) [B_SellStartDate],CONVERT(nvarchar(160),CASE WHEN d.[SellStartDate] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[SellStartDate],126) END) [L_SellStartDate],COALESCE(d.[SellEndDate],CONVERT(date,'19000101')) [B_SellEndDate],CONVERT(nvarchar(160),CASE WHEN d.[SellEndDate] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[SellEndDate],126) END) [L_SellEndDate],COALESCE(d.[DiscontinuedDate],CONVERT(date,'19000101')) [B_DiscontinuedDate],CONVERT(nvarchar(160),CASE WHEN d.[DiscontinuedDate] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[DiscontinuedDate],126) END) [L_DiscontinuedDate],v.BusinessEntityID ReplenishmentVendorID,v.AverageLeadTime ReplenishmentBaseLeadDays,v.StandardPrice ReplenishmentStandardPrice,v.MinOrderQty ReplenishmentMinOrderQty,v.MaxOrderQty ReplenishmentMaxOrderQty,RTRIM(v.UnitMeasureCode) ReplenishmentUnit,v.ModifiedDate ReplenishmentTermsModifiedAt FROM dw.Dim_Product d LEFT JOIN etl_raw.ProductVendor v ON v.ProductID=d.ProductID AND d.ProductID IN (709,710,841,843,844,850,853,857,863)) q) v",
+      "property_codec": "json-row-v1",
+      "property_max_chars": 16384,
+      "null_flags": [],
+      "keys": [
+        "ProductKey"
+      ],
+      "transport": "dimension"
+    },
+    "bom": {
+      "table": "ACT_BillOfMaterials",
+      "view": "BillOfMaterials",
+      "dimension": "BOM Line",
+      "key": "BOMKey",
+      "group": "ActualBOM",
+      "measure": "Actual BOM Relationship Count",
+      "query": "SELECT b.*,a.ProductID ProductAssemblyID,c.ProductID ComponentID,RTRIM(u.UnitMeasureCode) UnitMeasureCode,CONVERT(int,1) RelationshipCount\n FROM dw.Bridge_BillOfMaterials b JOIN dw.Dim_Product a ON a.ProductKey=b.AssemblyProductKey\n JOIN dw.Dim_Product c ON c.ProductKey=b.ComponentProductKey JOIN dw.Dim_UnitMeasure u ON u.UnitMeasureKey=b.UnitMeasureKey",
+      "fields": [
+        "BOMKey",
+        "BillOfMaterialsID",
+        "AssemblyProductKey",
+        "ComponentProductKey",
+        "ProductAssemblyID",
+        "ComponentID",
+        "PerAssemblyQty",
+        "UnitMeasureCode",
+        "StartDate",
+        "EndDate",
+        "IsStructureValid",
+        "UnitMeasureKey",
+        "BOMLevel",
+        "DQReasonCode",
+        "DQRuleVersion",
+        "LoadBatchID",
+        "LoadedAt"
+      ],
+      "types": {
+        "BOMKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "BillOfMaterialsID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "AssemblyProductKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "ComponentProductKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "ProductAssemblyID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ComponentID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "PerAssemblyQty": {
+          "sql_type": "decimal",
+          "declaration": "decimal(8,2)",
+          "max_length": 5,
+          "nullable": true
+        },
+        "UnitMeasureCode": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(3)",
+          "max_length": 6,
+          "nullable": true
+        },
+        "StartDate": {
+          "sql_type": "date",
+          "declaration": "date",
+          "max_length": 3,
+          "nullable": true
+        },
+        "EndDate": {
+          "sql_type": "date",
+          "declaration": "date",
+          "max_length": 3,
+          "nullable": true
+        },
+        "IsStructureValid": {
+          "sql_type": "bit",
+          "declaration": "bit",
+          "max_length": 1,
+          "nullable": true
+        },
+        "UnitMeasureKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "BOMLevel": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "DQReasonCode": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(200)",
+          "max_length": 400,
+          "nullable": true
+        },
+        "DQRuleVersion": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(50)",
+          "max_length": 100,
+          "nullable": true
+        },
+        "LoadBatchID": {
+          "sql_type": "bigint",
+          "declaration": "bigint",
+          "max_length": 8,
+          "nullable": false
+        },
+        "LoadedAt": {
+          "sql_type": "datetime2",
+          "declaration": "datetime2(7)",
+          "max_length": 8,
+          "nullable": true
+        }
+      },
+      "view_query": "SELECT v.[BOMKey] AS [BOMKey],v.[BillOfMaterialsID] AS [BillOfMaterialsID],v.[AssemblyProductKey] AS [AssemblyProductKey],v.[ComponentProductKey] AS [ComponentProductKey],v.[UnitMeasureKey] AS [UnitMeasureKey],v.[BOMLevel] AS [BOMLevel],v.[PerAssemblyQty] AS [PerAssemblyQty],v.[StartDate] AS [StartDate],v.[EndDate] AS [EndDate],v.[IsStructureValid] AS [IsStructureValid],v.[DQReasonCode] AS [DQReasonCode],v.[DQRuleVersion] AS [DQRuleVersion],v.[LoadBatchID] AS [LoadBatchID],v.[LoadedAt] AS [LoadedAt],v.[ProductAssemblyID] AS [ProductAssemblyID],v.[ComponentID] AS [ComponentID],v.[UnitMeasureCode] AS [UnitMeasureCode],v.[RelationshipCount] AS [RelationshipCount],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[BOMKey],126) [BOMKey],CONVERT(nvarchar(1000),q.[BillOfMaterialsID],126) [BillOfMaterialsID],CONVERT(nvarchar(1000),q.[AssemblyProductKey],126) [AssemblyProductKey],CONVERT(nvarchar(1000),q.[ComponentProductKey],126) [ComponentProductKey],CONVERT(nvarchar(1000),q.[ProductAssemblyID],126) [ProductAssemblyID],CONVERT(nvarchar(1000),q.[ComponentID],126) [ComponentID],CONVERT(nvarchar(1000),q.[PerAssemblyQty],126) [PerAssemblyQty],CONVERT(nvarchar(1000),q.[UnitMeasureCode],126) [UnitMeasureCode],CONVERT(nvarchar(1000),q.[StartDate],126) [StartDate],CONVERT(nvarchar(1000),q.[EndDate],126) [EndDate],CONVERT(nvarchar(1000),q.[IsStructureValid],126) [IsStructureValid],CONVERT(nvarchar(1000),q.[UnitMeasureKey],126) [UnitMeasureKey],CONVERT(nvarchar(1000),q.[BOMLevel],126) [BOMLevel],CONVERT(nvarchar(1000),q.[DQReasonCode],126) [DQReasonCode],CONVERT(nvarchar(1000),q.[DQRuleVersion],126) [DQRuleVersion],CONVERT(nvarchar(1000),q.[LoadBatchID],126) [LoadBatchID],CONVERT(nvarchar(1000),q.[LoadedAt],126) [LoadedAt] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow,CONVERT(nvarchar(160),q.[BOMKey]) DetailCaption FROM (SELECT b.*,a.ProductID ProductAssemblyID,c.ProductID ComponentID,RTRIM(u.UnitMeasureCode) UnitMeasureCode,CONVERT(int,1) RelationshipCount\n FROM dw.Bridge_BillOfMaterials b JOIN dw.Dim_Product a ON a.ProductKey=b.AssemblyProductKey\n JOIN dw.Dim_Product c ON c.ProductKey=b.ComponentProductKey JOIN dw.Dim_UnitMeasure u ON u.UnitMeasureKey=b.UnitMeasureKey) q) v",
+      "property_codec": "json-row-v1",
+      "property_max_chars": 16384,
+      "null_flags": [],
+      "keys": [
+        "BOMKey"
+      ],
+      "transport": "drillthrough"
+    },
+    "costs": {
+      "table": "ACT_ProductCostHistory",
+      "view": "ProductCostHistory",
+      "dimension": "Cost Period",
+      "key": "CostPeriodKey",
+      "group": "ActualProductCostHistory",
+      "measure": "Actual Cost Period Count",
+      "query": "SELECT CONVERT(nvarchar(70),CONCAT(r.ProductID,':',CONVERT(nvarchar(33),r.StartDate,126))) CostPeriodKey,r.ProductID,p.ProductKey,r.StartDate,r.EndDate,r.StandardCost,r.ModifiedDate,CONVERT(int,1) PeriodCount\n FROM etl_raw.ProductCostHistory r JOIN dw.Dim_Product p ON p.ProductID=r.ProductID AND p.ProductKey>0",
+      "fields": [
+        "CostPeriodKey",
+        "ProductID",
+        "ProductKey",
+        "StartDate",
+        "EndDate",
+        "StandardCost",
+        "ModifiedDate"
+      ],
+      "types": {
+        "CostPeriodKey": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(70)",
+          "max_length": 140,
+          "nullable": true
+        },
+        "ProductID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "ProductKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "StartDate": {
+          "sql_type": "datetime",
+          "declaration": "datetime",
+          "max_length": 8,
+          "nullable": false
+        },
+        "EndDate": {
+          "sql_type": "datetime",
+          "declaration": "datetime",
+          "max_length": 8,
+          "nullable": true
+        },
+        "StandardCost": {
+          "sql_type": "money",
+          "declaration": "money",
+          "max_length": 8,
+          "nullable": false
+        },
+        "ModifiedDate": {
+          "sql_type": "datetime",
+          "declaration": "datetime",
+          "max_length": 8,
+          "nullable": false
+        }
+      },
+      "view_query": "SELECT v.[CostPeriodKey] AS [CostPeriodKey],v.[ProductID] AS [ProductID],v.[ProductKey] AS [ProductKey],v.[StartDate] AS [StartDate],v.[EndDate] AS [EndDate],v.[StandardCost] AS [StandardCost],v.[ModifiedDate] AS [ModifiedDate],v.[PeriodCount] AS [PeriodCount],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[CostPeriodKey],126) [CostPeriodKey],CONVERT(nvarchar(1000),q.[ProductID],126) [ProductID],CONVERT(nvarchar(1000),q.[ProductKey],126) [ProductKey],CONVERT(nvarchar(1000),q.[StartDate],126) [StartDate],CONVERT(nvarchar(1000),q.[EndDate],126) [EndDate],CONVERT(nvarchar(1000),q.[StandardCost],126) [StandardCost],CONVERT(nvarchar(1000),q.[ModifiedDate],126) [ModifiedDate] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow,CONVERT(nvarchar(160),q.[CostPeriodKey]) DetailCaption FROM (SELECT CONVERT(nvarchar(70),CONCAT(r.ProductID,':',CONVERT(nvarchar(33),r.StartDate,126))) CostPeriodKey,r.ProductID,p.ProductKey,r.StartDate,r.EndDate,r.StandardCost,r.ModifiedDate,CONVERT(int,1) PeriodCount\n FROM etl_raw.ProductCostHistory r JOIN dw.Dim_Product p ON p.ProductID=r.ProductID AND p.ProductKey>0) q) v",
+      "property_codec": "json-row-v1",
+      "property_max_chars": 16384,
+      "null_flags": [],
+      "keys": [
+        "CostPeriodKey"
+      ],
+      "transport": "drillthrough"
+    },
+    "demand": {
+      "table": "ACT_DemandDaily",
+      "view": "DemandDaily",
+      "group": "ActualDemandDaily",
+      "measure": "Raw Actual Demand Product Day Count",
+      "query": "SELECT DateKey,ProductKey,DemandRuleVersion,IndependentQty,DependentQty,TotalDemandQty,EligibleSalesLineCount,ExcludedSalesLineCount,ParentWorkOrderCount,IsInSellWindow,LoadBatchID,LoadedAt,CONVERT(int,1) ProductDayCount FROM dss.Fact_DemandDaily",
+      "types": {
+        "DateKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "ProductKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "DemandRuleVersion": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(50)",
+          "max_length": 100,
+          "nullable": false
+        },
+        "IndependentQty": {
+          "sql_type": "decimal",
+          "declaration": "decimal(19,4)",
+          "max_length": 9,
+          "nullable": true
+        },
+        "DependentQty": {
+          "sql_type": "decimal",
+          "declaration": "decimal(19,4)",
+          "max_length": 9,
+          "nullable": true
+        },
+        "TotalDemandQty": {
+          "sql_type": "decimal",
+          "declaration": "decimal(19,4)",
+          "max_length": 9,
+          "nullable": true
+        },
+        "EligibleSalesLineCount": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ExcludedSalesLineCount": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ParentWorkOrderCount": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ProductDayCount": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        }
+      },
+      "fields": [
+        "DateKey",
+        "ProductKey",
+        "DemandRuleVersion",
+        "IndependentQty",
+        "DependentQty",
+        "TotalDemandQty",
+        "EligibleSalesLineCount",
+        "ExcludedSalesLineCount",
+        "ParentWorkOrderCount",
+        "ProductDayCount"
+      ],
+      "grain": [
+        "DateKey",
+        "ProductKey",
+        "DemandRuleVersion"
+      ],
+      "version_aggregation": "Public measures require exactly one rule version in the current context; otherwise NULL.",
+      "promotion": "No separate promotion dimension or measure. Valid promotional sales remain included in IndependentQty.",
+      "keys": [
+        "DateKey",
+        "ProductKey",
+        "DemandRuleVersion"
+      ],
+      "transport": "demand"
+    },
+    "dates": {
+      "table": "DimDate",
+      "view": "DatePlanning",
+      "dimension": "Date",
+      "key": "DateKey",
+      "query": "SELECT d.*,\n CONVERT(nvarchar(40),CASE WHEN DateKey=-1 THEN N'Not applicable' WHEN DateKey=0 THEN N'Unknown / not completed' ELSE CONVERT(nvarchar(10),CalendarDate,23) END) DateName,\n COALESCE(CalendarYear,0) YearKey,\n COALESCE(CalendarYear*100+CalendarMonth,0) MonthKey,COALESCE(CONVERT(nvarchar(7),CalendarDate,23),N'N/A') MonthName,\n COALESCE(CalendarYear*10+CalendarQuarter,0) QuarterKey,CONVERT(nvarchar(20),CASE WHEN CalendarYear IS NULL THEN N'N/A' ELSE CONCAT(CalendarYear,N'-Q',CalendarQuarter) END) QuarterName\n FROM dw.Dim_Date d",
+      "fields": [
+        "DateKey",
+        "CalendarDate",
+        "CalendarYear",
+        "CalendarQuarter",
+        "CalendarMonth",
+        "DayOfMonth",
+        "DayOfWeek",
+        "IsWeekend",
+        "ISOWeek",
+        "ISOYear",
+        "WeekStartDate",
+        "MonthStartDate"
+      ],
+      "property_codec": "json-row-v1",
+      "types": {
+        "DateKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "CalendarDate": {
+          "sql_type": "date",
+          "declaration": "date",
+          "max_length": 3,
+          "nullable": true
+        },
+        "CalendarYear": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "CalendarQuarter": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "CalendarMonth": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "DayOfMonth": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "DayOfWeek": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "IsWeekend": {
+          "sql_type": "bit",
+          "declaration": "bit",
+          "max_length": 1,
+          "nullable": true
+        },
+        "ISOWeek": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "ISOYear": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "WeekStartDate": {
+          "sql_type": "date",
+          "declaration": "date",
+          "max_length": 3,
+          "nullable": true
+        },
+        "MonthStartDate": {
+          "sql_type": "date",
+          "declaration": "date",
+          "max_length": 3,
+          "nullable": true
+        }
+      },
+      "property_max_chars": 16384,
+      "null_flags": [],
+      "view_query": "SELECT v.[DateKey] AS [DateKey],v.[CalendarDate] AS [CalendarDate],v.[CalendarQuarter] AS [CalendarQuarter],v.[CalendarMonth] AS [CalendarMonth],v.[DayOfMonth] AS [DayOfMonth],v.[DayOfWeek] AS [DayOfWeek],v.[IsWeekend] AS [IsWeekend],v.[ISOWeek] AS [ISOWeek],v.[ISOYear] AS [ISOYear],v.[WeekStartDate] AS [WeekStartDate],v.[MonthStartDate] AS [MonthStartDate],v.[DateName] AS [DateName],v.[YearKey] AS [CalendarYear],v.[MonthKey] AS [MonthKey],v.[MonthName] AS [MonthName],v.[QuarterKey] AS [QuarterKey],v.[QuarterName] AS [QuarterName],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[DateKey],126) [DateKey],CONVERT(nvarchar(1000),q.[CalendarDate],126) [CalendarDate],CONVERT(nvarchar(1000),q.[CalendarYear],126) [CalendarYear],CONVERT(nvarchar(1000),q.[CalendarQuarter],126) [CalendarQuarter],CONVERT(nvarchar(1000),q.[CalendarMonth],126) [CalendarMonth],CONVERT(nvarchar(1000),q.[DayOfMonth],126) [DayOfMonth],CONVERT(nvarchar(1000),q.[DayOfWeek],126) [DayOfWeek],CONVERT(nvarchar(1000),q.[IsWeekend],126) [IsWeekend],CONVERT(nvarchar(1000),q.[ISOWeek],126) [ISOWeek],CONVERT(nvarchar(1000),q.[ISOYear],126) [ISOYear],CONVERT(nvarchar(1000),q.[WeekStartDate],126) [WeekStartDate],CONVERT(nvarchar(1000),q.[MonthStartDate],126) [MonthStartDate] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow FROM (SELECT d.*,\n CONVERT(nvarchar(40),CASE WHEN DateKey=-1 THEN N'Not applicable' WHEN DateKey=0 THEN N'Unknown / not completed' ELSE CONVERT(nvarchar(10),CalendarDate,23) END) DateName,\n COALESCE(CalendarYear,0) YearKey,\n COALESCE(CalendarYear*100+CalendarMonth,0) MonthKey,COALESCE(CONVERT(nvarchar(7),CalendarDate,23),N'N/A') MonthName,\n COALESCE(CalendarYear*10+CalendarQuarter,0) QuarterKey,CONVERT(nvarchar(20),CASE WHEN CalendarYear IS NULL THEN N'N/A' ELSE CONCAT(CalendarYear,N'-Q',CalendarQuarter) END) QuarterName\n FROM dw.Dim_Date d) q) v",
+      "keys": [
+        "DateKey"
+      ],
+      "transport": "dimension"
+    },
+    "locations": {
+      "table": "DimLocation",
+      "view": "LocationPlanning",
+      "dimension": "Location",
+      "key": "LocationKey",
+      "query": "SELECT d.*,COALESCE(LocationName,N'Unknown') LocationCaption FROM dw.Dim_Location d",
+      "fields": [
+        "LocationKey",
+        "LocationID",
+        "LocationName",
+        "CostRate",
+        "Availability",
+        "LocationType",
+        "HasProductionConflict",
+        "LoadBatchID",
+        "LoadedAt"
+      ],
+      "types": {
+        "LocationKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "LocationID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "LocationName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(100)",
+          "max_length": 200,
+          "nullable": true
+        },
+        "CostRate": {
+          "sql_type": "decimal",
+          "declaration": "decimal(10,4)",
+          "max_length": 9,
+          "nullable": true
+        },
+        "Availability": {
+          "sql_type": "decimal",
+          "declaration": "decimal(8,2)",
+          "max_length": 5,
+          "nullable": true
+        },
+        "LocationType": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(20)",
+          "max_length": 40,
+          "nullable": true
+        },
+        "HasProductionConflict": {
+          "sql_type": "bit",
+          "declaration": "bit",
+          "max_length": 1,
+          "nullable": true
+        },
+        "LoadBatchID": {
+          "sql_type": "bigint",
+          "declaration": "bigint",
+          "max_length": 8,
+          "nullable": false
+        },
+        "LoadedAt": {
+          "sql_type": "datetime2",
+          "declaration": "datetime2(7)",
+          "max_length": 8,
+          "nullable": true
+        }
+      },
+      "property_codec": "json-row-v1",
+      "property_max_chars": 16384,
+      "null_flags": [],
+      "view_query": "SELECT v.[LocationKey] AS [LocationKey],v.[LocationID] AS [LocationID],v.[CostRate] AS [CostRate],v.[Availability] AS [Availability],v.[LocationType] AS [LocationType],v.[HasProductionConflict] AS [HasProductionConflict],v.[LoadBatchID] AS [LoadBatchID],v.[LoadedAt] AS [LoadedAt],v.[LocationCaption] AS [LocationName],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[LocationKey],126) [LocationKey],CONVERT(nvarchar(1000),q.[LocationID],126) [LocationID],CONVERT(nvarchar(1000),q.[LocationName],126) [LocationName],CONVERT(nvarchar(1000),q.[CostRate],126) [CostRate],CONVERT(nvarchar(1000),q.[Availability],126) [Availability],CONVERT(nvarchar(1000),q.[LocationType],126) [LocationType],CONVERT(nvarchar(1000),q.[HasProductionConflict],126) [HasProductionConflict],CONVERT(nvarchar(1000),q.[LoadBatchID],126) [LoadBatchID],CONVERT(nvarchar(1000),q.[LoadedAt],126) [LoadedAt] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow FROM (SELECT d.*,COALESCE(LocationName,N'Unknown') LocationCaption FROM dw.Dim_Location d) q) v",
+      "keys": [
+        "LocationKey"
+      ],
+      "transport": "dimension"
+    },
+    "vendors": {
+      "table": "OpsDimVendor",
+      "view": "VendorPlanning",
+      "dimension": "Vendor",
+      "key": "VendorKey",
+      "query": "SELECT d.*,COALESCE(VendorName,N'Unknown') VendorCaption,COALESCE(CreditRatingName,N'Unknown') RatingCaption,COALESCE(CreditRating,-1) RatingKey,COALESCE(VendorID,-1) BusinessID FROM dw.Dim_Vendor d",
+      "fields": [
+        "VendorKey",
+        "VendorID",
+        "AccountNumber",
+        "VendorName",
+        "CreditRating",
+        "CreditRatingName",
+        "PreferredVendorStatus",
+        "ActiveFlag",
+        "LoadBatchID",
+        "LoadedAt"
+      ],
+      "types": {
+        "VendorKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "VendorID": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "AccountNumber": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(15)",
+          "max_length": 30,
+          "nullable": true
+        },
+        "VendorName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(100)",
+          "max_length": 200,
+          "nullable": true
+        },
+        "CreditRating": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": true
+        },
+        "CreditRatingName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(30)",
+          "max_length": 60,
+          "nullable": true
+        },
+        "PreferredVendorStatus": {
+          "sql_type": "bit",
+          "declaration": "bit",
+          "max_length": 1,
+          "nullable": true
+        },
+        "ActiveFlag": {
+          "sql_type": "bit",
+          "declaration": "bit",
+          "max_length": 1,
+          "nullable": true
+        },
+        "LoadBatchID": {
+          "sql_type": "bigint",
+          "declaration": "bigint",
+          "max_length": 8,
+          "nullable": false
+        },
+        "LoadedAt": {
+          "sql_type": "datetime2",
+          "declaration": "datetime2(7)",
+          "max_length": 8,
+          "nullable": true
+        }
+      },
+      "property_codec": "json-row-v1",
+      "property_max_chars": 16384,
+      "null_flags": [],
+      "view_query": "SELECT v.[VendorKey] AS [VendorKey],v.[AccountNumber] AS [AccountNumber],v.[PreferredVendorStatus] AS [PreferredVendorStatus],v.[ActiveFlag] AS [ActiveFlag],v.[LoadBatchID] AS [LoadBatchID],v.[LoadedAt] AS [LoadedAt],v.[VendorCaption] AS [VendorName],v.[RatingCaption] AS [CreditRatingName],v.[RatingKey] AS [CreditRating],v.[BusinessID] AS [VendorID],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[VendorKey],126) [VendorKey],CONVERT(nvarchar(1000),q.[VendorID],126) [VendorID],CONVERT(nvarchar(1000),q.[AccountNumber],126) [AccountNumber],CONVERT(nvarchar(1000),q.[VendorName],126) [VendorName],CONVERT(nvarchar(1000),q.[CreditRating],126) [CreditRating],CONVERT(nvarchar(1000),q.[CreditRatingName],126) [CreditRatingName],CONVERT(nvarchar(1000),q.[PreferredVendorStatus],126) [PreferredVendorStatus],CONVERT(nvarchar(1000),q.[ActiveFlag],126) [ActiveFlag],CONVERT(nvarchar(1000),q.[LoadBatchID],126) [LoadBatchID],CONVERT(nvarchar(1000),q.[LoadedAt],126) [LoadedAt] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow FROM (SELECT d.*,COALESCE(VendorName,N'Unknown') VendorCaption,COALESCE(CreditRatingName,N'Unknown') RatingCaption,COALESCE(CreditRating,-1) RatingKey,COALESCE(VendorID,-1) BusinessID FROM dw.Dim_Vendor d) q) v",
+      "keys": [
+        "VendorKey"
+      ],
+      "transport": "dimension"
+    },
+    "units": {
+      "table": "DimUnit",
+      "view": "UnitPlanning",
+      "dimension": "Unit",
+      "key": "UnitMeasureKey",
+      "query": "SELECT d.*,CONVERT(nvarchar(160),CONCAT(COALESCE(UnitMeasureCode,N'?'),N' | ',COALESCE(UnitMeasureName,N'Unknown'))) UnitCaption FROM dw.Dim_UnitMeasure d",
+      "fields": [
+        "UnitMeasureKey",
+        "UnitMeasureCode",
+        "UnitMeasureName",
+        "LoadBatchID",
+        "LoadedAt"
+      ],
+      "types": {
+        "UnitMeasureKey": {
+          "sql_type": "int",
+          "declaration": "int",
+          "max_length": 4,
+          "nullable": false
+        },
+        "UnitMeasureCode": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(3)",
+          "max_length": 6,
+          "nullable": true
+        },
+        "UnitMeasureName": {
+          "sql_type": "nvarchar",
+          "declaration": "nvarchar(100)",
+          "max_length": 200,
+          "nullable": true
+        },
+        "LoadBatchID": {
+          "sql_type": "bigint",
+          "declaration": "bigint",
+          "max_length": 8,
+          "nullable": false
+        },
+        "LoadedAt": {
+          "sql_type": "datetime2",
+          "declaration": "datetime2(7)",
+          "max_length": 8,
+          "nullable": true
+        }
+      },
+      "property_codec": "json-row-v1",
+      "property_max_chars": 16384,
+      "null_flags": [],
+      "view_query": "SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[UnitMeasureKey],126) [UnitMeasureKey],CONVERT(nvarchar(1000),q.[UnitMeasureCode],126) [UnitMeasureCode],CONVERT(nvarchar(1000),q.[UnitMeasureName],126) [UnitMeasureName],CONVERT(nvarchar(1000),q.[LoadBatchID],126) [LoadBatchID],CONVERT(nvarchar(1000),q.[LoadedAt],126) [LoadedAt] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow FROM (SELECT d.*,CONVERT(nvarchar(160),CONCAT(COALESCE(UnitMeasureCode,N'?'),N' | ',COALESCE(UnitMeasureName,N'Unknown'))) UnitCaption FROM dw.Dim_UnitMeasure d) q",
+      "keys": [
+        "UnitMeasureKey"
+      ],
+      "transport": "dimension"
+    }
+  },
+  "views": [
+    "CREATE OR ALTER VIEW cxoperations.DemandDaily AS SELECT DateKey,ProductKey,DemandRuleVersion,IndependentQty,DependentQty,TotalDemandQty,EligibleSalesLineCount,ExcludedSalesLineCount,ParentWorkOrderCount,IsInSellWindow,LoadBatchID,LoadedAt,CONVERT(int,1) ProductDayCount FROM dss.Fact_DemandDaily",
+    "CREATE OR ALTER VIEW cxoperations.DemandRule AS SELECT DISTINCT DemandRuleVersion FROM dss.Fact_DemandDaily",
+    "CREATE OR ALTER VIEW cxoperations.[SalesLineDetail] AS SELECT v.[SalesOrderLineKey] AS [SalesOrderLineKey],v.[SalesOrderID] AS [SalesOrderID],v.[SalesOrderDetailID] AS [SalesOrderDetailID],v.[OrderDateKey] AS [OrderDateKey],v.[DueDateKey] AS [DueDateKey],v.[ShipDateKey] AS [ShipDateKey],v.[ProductKey] AS [ProductKey],v.[CustomerKey] AS [CustomerKey],v.[ChannelKey] AS [ChannelKey],v.[SalesStatusKey] AS [SalesStatusKey],v.[OrderQty] AS [OrderQty],v.[LineTotal] AS [LineTotal],v.[DQCode] AS [DQCode],v.[LineCount] AS [LineCount],v.[EligibleLineCount] AS [EligibleLineCount],v.[DQLineCount] AS [DQLineCount],v.[ShipDateObservedLineCount] AS [ShipDateObservedLineCount],v.[RecordedShipByDueLineCount] AS [RecordedShipByDueLineCount],v.[EligibleOrderQty] AS [EligibleOrderQty],v.[EligibleLineAmount] AS [EligibleLineAmount],v.[RecordedShipLagDaysSum] AS [RecordedShipLagDaysSum],v.[LoadBatchID] AS [LoadBatchID],v.[IsDemandEligible] AS [IsDemandEligible],v.[OrderAt] AS [OrderAt],v.[DueAt] AS [DueAt],v.[DQReasonCode] AS [DQReasonCode],v.[ProductID] AS [ProductID],v.[MakeFlag] AS [MakeFlag],v.[StatusCode] AS [StatusCode],v.[StatusName] AS [StatusName],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[SalesOrderLineKey],126) [SalesOrderLineKey],CONVERT(nvarchar(1000),q.[SalesOrderDetailID],126) [SalesOrderDetailID],CONVERT(nvarchar(1000),q.[SalesOrderID],126) [SalesOrderID],CONVERT(nvarchar(1000),q.[ProductKey],126) [ProductKey],CONVERT(nvarchar(1000),q.[ProductID],126) [ProductID],CONVERT(nvarchar(1000),q.[OrderQty],126) [OrderQty],CONVERT(nvarchar(1000),q.[OrderDateKey],126) [OrderDateKey],CONVERT(nvarchar(1000),q.[DueDateKey],126) [DueDateKey],CONVERT(nvarchar(1000),q.[IsDemandEligible],126) [IsDemandEligible],CONVERT(nvarchar(1000),q.[MakeFlag],126) [MakeFlag],CONVERT(nvarchar(1000),q.[DQReasonCode],126) [DQReasonCode],CONVERT(nvarchar(1000),q.[StatusCode],126) [StatusCode],CONVERT(nvarchar(1000),q.[StatusName],126) [StatusName],CONVERT(nvarchar(1000),q.[OrderAt],126) [OrderAt],CONVERT(nvarchar(1000),q.[DueAt],126) [DueAt] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow,CONVERT(nvarchar(160),q.[SalesOrderLineKey]) DetailCaption FROM (SELECT s.*,f.IsDemandEligible,f.OrderAt,f.DueAt,f.DQReasonCode,p.ProductID,p.MakeFlag,ss.StatusCode,ss.StatusName\n FROM cxoperations.FactSales s JOIN dw.Fact_SalesOrderLine f ON f.SalesOrderLineKey=s.SalesOrderLineKey\n JOIN dw.Dim_Product p ON p.ProductKey=f.ProductKey LEFT JOIN dw.Dim_SalesStatus ss ON ss.SalesStatusKey=f.SalesStatusKey) q) v",
+    "CREATE OR ALTER VIEW cxoperations.[ProductPlanning] AS SELECT v.[ProductKey] AS [ProductKey],v.[ProductCaption] AS [ProductCaption],v.[CategoryKey] AS [ProductCategoryID],v.[SubcategoryKey] AS [ProductSubcategoryID],v.[CategoryCaption] AS [CategoryName],v.[SubcategoryCaption] AS [SubcategoryName],v.[SupplyCaption] AS [SupplyType],v.[RoleCaption] AS [ProductRole],v.[MakeFlagDisplay] AS [MakeFlag],v.[B_ProductID] AS [ProductID],v.[L_ProductID] AS [ProductIDCaption],v.[B_ProductNumber] AS [ProductNumber],v.[B_ProductName] AS [ProductName],v.[B_ProductModelID] AS [ProductModelID],v.[L_ProductModelID] AS [ProductModelIDCaption],v.[B_FinishedGoodsFlag] AS [FinishedGoodsFlag],v.[L_FinishedGoodsFlag] AS [FinishedGoodsFlagCaption],v.[B_IsBOMAssembly] AS [IsBOMAssembly],v.[L_IsBOMAssembly] AS [IsBOMAssemblyCaption],v.[B_IsBOMComponent] AS [IsBOMComponent],v.[L_IsBOMComponent] AS [IsBOMComponentCaption],v.[B_Color] AS [Color],v.[B_Size] AS [Size],v.[B_SizeUnitName] AS [SizeUnitName],v.[B_Weight] AS [Weight],v.[L_Weight] AS [WeightCaption],v.[B_WeightUnitName] AS [WeightUnitName],v.[B_ProductLine] AS [ProductLine],v.[B_ProductLineName] AS [ProductLineName],v.[B_Class] AS [Class],v.[B_ClassName] AS [ClassName],v.[B_Style] AS [Style],v.[B_StyleName] AS [StyleName],v.[B_DaysToManufacture] AS [DaysToManufacture],v.[L_DaysToManufacture] AS [DaysToManufactureCaption],v.[B_SafetyStockLevel] AS [SafetyStockLevel],v.[L_SafetyStockLevel] AS [SafetyStockLevelCaption],v.[B_ReorderPoint] AS [ReorderPoint],v.[L_ReorderPoint] AS [ReorderPointCaption],v.[B_StandardCost] AS [StandardCost],v.[L_StandardCost] AS [StandardCostCaption],v.[B_ListPrice] AS [ListPrice],v.[L_ListPrice] AS [ListPriceCaption],v.[B_SellStartDate] AS [SellStartDate],v.[L_SellStartDate] AS [SellStartDateCaption],v.[B_SellEndDate] AS [SellEndDate],v.[L_SellEndDate] AS [SellEndDateCaption],v.[B_DiscontinuedDate] AS [DiscontinuedDate],v.[L_DiscontinuedDate] AS [DiscontinuedDateCaption],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[ProductKey],126) [ProductKey],CONVERT(nvarchar(1000),q.[ProductID],126) [ProductID],CONVERT(nvarchar(1000),q.[ProductNumber],126) [ProductNumber],CONVERT(nvarchar(1000),q.[ProductName],126) [ProductName],CONVERT(nvarchar(1000),q.[ProductSubcategoryID],126) [ProductSubcategoryID],CONVERT(nvarchar(1000),q.[SubcategoryName],126) [SubcategoryName],CONVERT(nvarchar(1000),q.[ProductCategoryID],126) [ProductCategoryID],CONVERT(nvarchar(1000),q.[CategoryName],126) [CategoryName],CONVERT(nvarchar(1000),q.[ProductModelID],126) [ProductModelID],CONVERT(nvarchar(1000),q.[MakeFlag],126) [MakeFlag],CONVERT(nvarchar(1000),q.[FinishedGoodsFlag],126) [FinishedGoodsFlag],CONVERT(nvarchar(1000),q.[SupplyType],126) [SupplyType],CONVERT(nvarchar(1000),q.[ProductRole],126) [ProductRole],CONVERT(nvarchar(1000),q.[IsBOMAssembly],126) [IsBOMAssembly],CONVERT(nvarchar(1000),q.[IsBOMComponent],126) [IsBOMComponent],CONVERT(nvarchar(1000),q.[Color],126) [Color],CONVERT(nvarchar(1000),q.[Size],126) [Size],CONVERT(nvarchar(1000),q.[SizeUnitName],126) [SizeUnitName],CONVERT(nvarchar(1000),q.[Weight],126) [Weight],CONVERT(nvarchar(1000),q.[WeightUnitName],126) [WeightUnitName],CONVERT(nvarchar(1000),RTRIM(q.[ProductLine]),126) [ProductLine],CONVERT(nvarchar(1000),q.[ProductLineName],126) [ProductLineName],CONVERT(nvarchar(1000),RTRIM(q.[Class]),126) [Class],CONVERT(nvarchar(1000),q.[ClassName],126) [ClassName],CONVERT(nvarchar(1000),RTRIM(q.[Style]),126) [Style],CONVERT(nvarchar(1000),q.[StyleName],126) [StyleName],CONVERT(nvarchar(1000),q.[DaysToManufacture],126) [DaysToManufacture],CONVERT(nvarchar(1000),q.[SafetyStockLevel],126) [SafetyStockLevel],CONVERT(nvarchar(1000),q.[ReorderPoint],126) [ReorderPoint],CONVERT(nvarchar(1000),q.[StandardCost],126) [StandardCost],CONVERT(nvarchar(1000),q.[ListPrice],126) [ListPrice],CONVERT(nvarchar(1000),q.[SellStartDate],126) [SellStartDate],CONVERT(nvarchar(1000),q.[SellEndDate],126) [SellEndDate],CONVERT(nvarchar(1000),q.[DiscontinuedDate],126) [DiscontinuedDate],CONVERT(nvarchar(1000),q.[DQStatus],126) [DQStatus],CONVERT(nvarchar(1000),q.[DQReasonCode],126) [DQReasonCode],CONVERT(nvarchar(1000),q.[DQRuleVersion],126) [DQRuleVersion],CONVERT(nvarchar(1000),q.[LoadBatchID],126) [LoadBatchID],CONVERT(nvarchar(1000),q.[LoadedAt],126) [LoadedAt],CONVERT(nvarchar(1000),q.[ReplenishmentVendorID],126) [ReplenishmentVendorID],CONVERT(nvarchar(1000),q.[ReplenishmentBaseLeadDays],126) [ReplenishmentBaseLeadDays],CONVERT(nvarchar(1000),q.[ReplenishmentStandardPrice],126) [ReplenishmentStandardPrice],CONVERT(nvarchar(1000),q.[ReplenishmentMinOrderQty],126) [ReplenishmentMinOrderQty],CONVERT(nvarchar(1000),q.[ReplenishmentMaxOrderQty],126) [ReplenishmentMaxOrderQty],CONVERT(nvarchar(1000),q.[ReplenishmentUnit],126) [ReplenishmentUnit],CONVERT(nvarchar(1000),q.[ReplenishmentTermsModifiedAt],126) [ReplenishmentTermsModifiedAt] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow FROM (SELECT d.*,CONVERT(nvarchar(160),CONCAT(COALESCE(d.ProductNumber,N'?'),N' | ',COALESCE(d.ProductName,N'Unknown'))) ProductCaption,COALESCE(d.ProductCategoryID,-1) CategoryKey,COALESCE(d.ProductSubcategoryID,-1) SubcategoryKey,COALESCE(d.CategoryName,N'Unclassified') CategoryCaption,COALESCE(d.SubcategoryName,N'Unclassified') SubcategoryCaption,COALESCE(d.SupplyType,N'UNKNOWN') SupplyCaption,COALESCE(d.ProductRole,N'UNKNOWN') RoleCaption,CONVERT(int,COALESCE(d.MakeFlag,0)) MakeFlagDisplay,COALESCE(CONVERT(int,d.[ProductID]),-1) [B_ProductID],CONVERT(nvarchar(160),CASE WHEN d.[ProductID] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductID],126) END) [L_ProductID],COALESCE(NULLIF(RTRIM(d.[ProductNumber]),N''),N'N/A') [B_ProductNumber],CONVERT(nvarchar(160),CASE WHEN d.[ProductNumber] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductNumber],126) END) [L_ProductNumber],COALESCE(NULLIF(RTRIM(d.[ProductName]),N''),N'N/A') [B_ProductName],CONVERT(nvarchar(160),CASE WHEN d.[ProductName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductName],126) END) [L_ProductName],COALESCE(CONVERT(int,d.[ProductModelID]),-1) [B_ProductModelID],CONVERT(nvarchar(160),CASE WHEN d.[ProductModelID] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductModelID],126) END) [L_ProductModelID],COALESCE(CONVERT(int,d.[FinishedGoodsFlag]),-1) [B_FinishedGoodsFlag],CONVERT(nvarchar(160),CASE WHEN d.[FinishedGoodsFlag] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[FinishedGoodsFlag],126) END) [L_FinishedGoodsFlag],COALESCE(CONVERT(int,d.[IsBOMAssembly]),-1) [B_IsBOMAssembly],CONVERT(nvarchar(160),CASE WHEN d.[IsBOMAssembly] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[IsBOMAssembly],126) END) [L_IsBOMAssembly],COALESCE(CONVERT(int,d.[IsBOMComponent]),-1) [B_IsBOMComponent],CONVERT(nvarchar(160),CASE WHEN d.[IsBOMComponent] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[IsBOMComponent],126) END) [L_IsBOMComponent],COALESCE(NULLIF(RTRIM(d.[Color]),N''),N'N/A') [B_Color],CONVERT(nvarchar(160),CASE WHEN d.[Color] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Color],126) END) [L_Color],COALESCE(NULLIF(RTRIM(d.[Size]),N''),N'N/A') [B_Size],CONVERT(nvarchar(160),CASE WHEN d.[Size] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Size],126) END) [L_Size],COALESCE(NULLIF(RTRIM(d.[SizeUnitName]),N''),N'N/A') [B_SizeUnitName],CONVERT(nvarchar(160),CASE WHEN d.[SizeUnitName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[SizeUnitName],126) END) [L_SizeUnitName],COALESCE(CONVERT(decimal(8,2),d.[Weight]),-1) [B_Weight],CONVERT(nvarchar(160),CASE WHEN d.[Weight] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Weight],126) END) [L_Weight],COALESCE(NULLIF(RTRIM(d.[WeightUnitName]),N''),N'N/A') [B_WeightUnitName],CONVERT(nvarchar(160),CASE WHEN d.[WeightUnitName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[WeightUnitName],126) END) [L_WeightUnitName],COALESCE(NULLIF(RTRIM(d.[ProductLine]),N''),N'N/A') [B_ProductLine],CONVERT(nvarchar(160),CASE WHEN d.[ProductLine] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductLine],126) END) [L_ProductLine],COALESCE(NULLIF(RTRIM(d.[ProductLineName]),N''),N'N/A') [B_ProductLineName],CONVERT(nvarchar(160),CASE WHEN d.[ProductLineName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ProductLineName],126) END) [L_ProductLineName],COALESCE(NULLIF(RTRIM(d.[Class]),N''),N'N/A') [B_Class],CONVERT(nvarchar(160),CASE WHEN d.[Class] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Class],126) END) [L_Class],COALESCE(NULLIF(RTRIM(d.[ClassName]),N''),N'N/A') [B_ClassName],CONVERT(nvarchar(160),CASE WHEN d.[ClassName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ClassName],126) END) [L_ClassName],COALESCE(NULLIF(RTRIM(d.[Style]),N''),N'N/A') [B_Style],CONVERT(nvarchar(160),CASE WHEN d.[Style] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[Style],126) END) [L_Style],COALESCE(NULLIF(RTRIM(d.[StyleName]),N''),N'N/A') [B_StyleName],CONVERT(nvarchar(160),CASE WHEN d.[StyleName] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[StyleName],126) END) [L_StyleName],COALESCE(CONVERT(int,d.[DaysToManufacture]),-1) [B_DaysToManufacture],CONVERT(nvarchar(160),CASE WHEN d.[DaysToManufacture] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[DaysToManufacture],126) END) [L_DaysToManufacture],COALESCE(CONVERT(int,d.[SafetyStockLevel]),-1) [B_SafetyStockLevel],CONVERT(nvarchar(160),CASE WHEN d.[SafetyStockLevel] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[SafetyStockLevel],126) END) [L_SafetyStockLevel],COALESCE(CONVERT(int,d.[ReorderPoint]),-1) [B_ReorderPoint],CONVERT(nvarchar(160),CASE WHEN d.[ReorderPoint] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ReorderPoint],126) END) [L_ReorderPoint],COALESCE(CONVERT(decimal(19,4),d.[StandardCost]),-1) [B_StandardCost],CONVERT(nvarchar(160),CASE WHEN d.[StandardCost] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[StandardCost],126) END) [L_StandardCost],COALESCE(CONVERT(decimal(19,4),d.[ListPrice]),-1) [B_ListPrice],CONVERT(nvarchar(160),CASE WHEN d.[ListPrice] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[ListPrice],126) END) [L_ListPrice],COALESCE(d.[SellStartDate],CONVERT(date,'19000101')) [B_SellStartDate],CONVERT(nvarchar(160),CASE WHEN d.[SellStartDate] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[SellStartDate],126) END) [L_SellStartDate],COALESCE(d.[SellEndDate],CONVERT(date,'19000101')) [B_SellEndDate],CONVERT(nvarchar(160),CASE WHEN d.[SellEndDate] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[SellEndDate],126) END) [L_SellEndDate],COALESCE(d.[DiscontinuedDate],CONVERT(date,'19000101')) [B_DiscontinuedDate],CONVERT(nvarchar(160),CASE WHEN d.[DiscontinuedDate] IS NULL THEN N'N/A' ELSE CONVERT(nvarchar(160),d.[DiscontinuedDate],126) END) [L_DiscontinuedDate],v.BusinessEntityID ReplenishmentVendorID,v.AverageLeadTime ReplenishmentBaseLeadDays,v.StandardPrice ReplenishmentStandardPrice,v.MinOrderQty ReplenishmentMinOrderQty,v.MaxOrderQty ReplenishmentMaxOrderQty,RTRIM(v.UnitMeasureCode) ReplenishmentUnit,v.ModifiedDate ReplenishmentTermsModifiedAt FROM dw.Dim_Product d LEFT JOIN etl_raw.ProductVendor v ON v.ProductID=d.ProductID AND d.ProductID IN (709,710,841,843,844,850,853,857,863)) q) v",
+    "CREATE OR ALTER VIEW cxoperations.[BillOfMaterials] AS SELECT v.[BOMKey] AS [BOMKey],v.[BillOfMaterialsID] AS [BillOfMaterialsID],v.[AssemblyProductKey] AS [AssemblyProductKey],v.[ComponentProductKey] AS [ComponentProductKey],v.[UnitMeasureKey] AS [UnitMeasureKey],v.[BOMLevel] AS [BOMLevel],v.[PerAssemblyQty] AS [PerAssemblyQty],v.[StartDate] AS [StartDate],v.[EndDate] AS [EndDate],v.[IsStructureValid] AS [IsStructureValid],v.[DQReasonCode] AS [DQReasonCode],v.[DQRuleVersion] AS [DQRuleVersion],v.[LoadBatchID] AS [LoadBatchID],v.[LoadedAt] AS [LoadedAt],v.[ProductAssemblyID] AS [ProductAssemblyID],v.[ComponentID] AS [ComponentID],v.[UnitMeasureCode] AS [UnitMeasureCode],v.[RelationshipCount] AS [RelationshipCount],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[BOMKey],126) [BOMKey],CONVERT(nvarchar(1000),q.[BillOfMaterialsID],126) [BillOfMaterialsID],CONVERT(nvarchar(1000),q.[AssemblyProductKey],126) [AssemblyProductKey],CONVERT(nvarchar(1000),q.[ComponentProductKey],126) [ComponentProductKey],CONVERT(nvarchar(1000),q.[ProductAssemblyID],126) [ProductAssemblyID],CONVERT(nvarchar(1000),q.[ComponentID],126) [ComponentID],CONVERT(nvarchar(1000),q.[PerAssemblyQty],126) [PerAssemblyQty],CONVERT(nvarchar(1000),q.[UnitMeasureCode],126) [UnitMeasureCode],CONVERT(nvarchar(1000),q.[StartDate],126) [StartDate],CONVERT(nvarchar(1000),q.[EndDate],126) [EndDate],CONVERT(nvarchar(1000),q.[IsStructureValid],126) [IsStructureValid],CONVERT(nvarchar(1000),q.[UnitMeasureKey],126) [UnitMeasureKey],CONVERT(nvarchar(1000),q.[BOMLevel],126) [BOMLevel],CONVERT(nvarchar(1000),q.[DQReasonCode],126) [DQReasonCode],CONVERT(nvarchar(1000),q.[DQRuleVersion],126) [DQRuleVersion],CONVERT(nvarchar(1000),q.[LoadBatchID],126) [LoadBatchID],CONVERT(nvarchar(1000),q.[LoadedAt],126) [LoadedAt] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow,CONVERT(nvarchar(160),q.[BOMKey]) DetailCaption FROM (SELECT b.*,a.ProductID ProductAssemblyID,c.ProductID ComponentID,RTRIM(u.UnitMeasureCode) UnitMeasureCode,CONVERT(int,1) RelationshipCount\n FROM dw.Bridge_BillOfMaterials b JOIN dw.Dim_Product a ON a.ProductKey=b.AssemblyProductKey\n JOIN dw.Dim_Product c ON c.ProductKey=b.ComponentProductKey JOIN dw.Dim_UnitMeasure u ON u.UnitMeasureKey=b.UnitMeasureKey) q) v",
+    "CREATE OR ALTER VIEW cxoperations.[ProductCostHistory] AS SELECT v.[CostPeriodKey] AS [CostPeriodKey],v.[ProductID] AS [ProductID],v.[ProductKey] AS [ProductKey],v.[StartDate] AS [StartDate],v.[EndDate] AS [EndDate],v.[StandardCost] AS [StandardCost],v.[ModifiedDate] AS [ModifiedDate],v.[PeriodCount] AS [PeriodCount],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[CostPeriodKey],126) [CostPeriodKey],CONVERT(nvarchar(1000),q.[ProductID],126) [ProductID],CONVERT(nvarchar(1000),q.[ProductKey],126) [ProductKey],CONVERT(nvarchar(1000),q.[StartDate],126) [StartDate],CONVERT(nvarchar(1000),q.[EndDate],126) [EndDate],CONVERT(nvarchar(1000),q.[StandardCost],126) [StandardCost],CONVERT(nvarchar(1000),q.[ModifiedDate],126) [ModifiedDate] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow,CONVERT(nvarchar(160),q.[CostPeriodKey]) DetailCaption FROM (SELECT CONVERT(nvarchar(70),CONCAT(r.ProductID,':',CONVERT(nvarchar(33),r.StartDate,126))) CostPeriodKey,r.ProductID,p.ProductKey,r.StartDate,r.EndDate,r.StandardCost,r.ModifiedDate,CONVERT(int,1) PeriodCount\n FROM etl_raw.ProductCostHistory r JOIN dw.Dim_Product p ON p.ProductID=r.ProductID AND p.ProductKey>0) q) v",
+    "CREATE OR ALTER VIEW cxoperations.[DatePlanning] AS SELECT v.[DateKey] AS [DateKey],v.[CalendarDate] AS [CalendarDate],v.[CalendarQuarter] AS [CalendarQuarter],v.[CalendarMonth] AS [CalendarMonth],v.[DayOfMonth] AS [DayOfMonth],v.[DayOfWeek] AS [DayOfWeek],v.[IsWeekend] AS [IsWeekend],v.[ISOWeek] AS [ISOWeek],v.[ISOYear] AS [ISOYear],v.[WeekStartDate] AS [WeekStartDate],v.[MonthStartDate] AS [MonthStartDate],v.[DateName] AS [DateName],v.[YearKey] AS [CalendarYear],v.[MonthKey] AS [MonthKey],v.[MonthName] AS [MonthName],v.[QuarterKey] AS [QuarterKey],v.[QuarterName] AS [QuarterName],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[DateKey],126) [DateKey],CONVERT(nvarchar(1000),q.[CalendarDate],126) [CalendarDate],CONVERT(nvarchar(1000),q.[CalendarYear],126) [CalendarYear],CONVERT(nvarchar(1000),q.[CalendarQuarter],126) [CalendarQuarter],CONVERT(nvarchar(1000),q.[CalendarMonth],126) [CalendarMonth],CONVERT(nvarchar(1000),q.[DayOfMonth],126) [DayOfMonth],CONVERT(nvarchar(1000),q.[DayOfWeek],126) [DayOfWeek],CONVERT(nvarchar(1000),q.[IsWeekend],126) [IsWeekend],CONVERT(nvarchar(1000),q.[ISOWeek],126) [ISOWeek],CONVERT(nvarchar(1000),q.[ISOYear],126) [ISOYear],CONVERT(nvarchar(1000),q.[WeekStartDate],126) [WeekStartDate],CONVERT(nvarchar(1000),q.[MonthStartDate],126) [MonthStartDate] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow FROM (SELECT d.*,\n CONVERT(nvarchar(40),CASE WHEN DateKey=-1 THEN N'Not applicable' WHEN DateKey=0 THEN N'Unknown / not completed' ELSE CONVERT(nvarchar(10),CalendarDate,23) END) DateName,\n COALESCE(CalendarYear,0) YearKey,\n COALESCE(CalendarYear*100+CalendarMonth,0) MonthKey,COALESCE(CONVERT(nvarchar(7),CalendarDate,23),N'N/A') MonthName,\n COALESCE(CalendarYear*10+CalendarQuarter,0) QuarterKey,CONVERT(nvarchar(20),CASE WHEN CalendarYear IS NULL THEN N'N/A' ELSE CONCAT(CalendarYear,N'-Q',CalendarQuarter) END) QuarterName\n FROM dw.Dim_Date d) q) v",
+    "CREATE OR ALTER VIEW cxoperations.[LocationPlanning] AS SELECT v.[LocationKey] AS [LocationKey],v.[LocationID] AS [LocationID],v.[CostRate] AS [CostRate],v.[Availability] AS [Availability],v.[LocationType] AS [LocationType],v.[HasProductionConflict] AS [HasProductionConflict],v.[LoadBatchID] AS [LoadBatchID],v.[LoadedAt] AS [LoadedAt],v.[LocationCaption] AS [LocationName],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[LocationKey],126) [LocationKey],CONVERT(nvarchar(1000),q.[LocationID],126) [LocationID],CONVERT(nvarchar(1000),q.[LocationName],126) [LocationName],CONVERT(nvarchar(1000),q.[CostRate],126) [CostRate],CONVERT(nvarchar(1000),q.[Availability],126) [Availability],CONVERT(nvarchar(1000),q.[LocationType],126) [LocationType],CONVERT(nvarchar(1000),q.[HasProductionConflict],126) [HasProductionConflict],CONVERT(nvarchar(1000),q.[LoadBatchID],126) [LoadBatchID],CONVERT(nvarchar(1000),q.[LoadedAt],126) [LoadedAt] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow FROM (SELECT d.*,COALESCE(LocationName,N'Unknown') LocationCaption FROM dw.Dim_Location d) q) v",
+    "CREATE OR ALTER VIEW cxoperations.[VendorPlanning] AS SELECT v.[VendorKey] AS [VendorKey],v.[AccountNumber] AS [AccountNumber],v.[PreferredVendorStatus] AS [PreferredVendorStatus],v.[ActiveFlag] AS [ActiveFlag],v.[LoadBatchID] AS [LoadBatchID],v.[LoadedAt] AS [LoadedAt],v.[VendorCaption] AS [VendorName],v.[RatingCaption] AS [CreditRatingName],v.[RatingKey] AS [CreditRating],v.[BusinessID] AS [VendorID],v.[SourceRow] AS [SourceRow] FROM (SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[VendorKey],126) [VendorKey],CONVERT(nvarchar(1000),q.[VendorID],126) [VendorID],CONVERT(nvarchar(1000),q.[AccountNumber],126) [AccountNumber],CONVERT(nvarchar(1000),q.[VendorName],126) [VendorName],CONVERT(nvarchar(1000),q.[CreditRating],126) [CreditRating],CONVERT(nvarchar(1000),q.[CreditRatingName],126) [CreditRatingName],CONVERT(nvarchar(1000),q.[PreferredVendorStatus],126) [PreferredVendorStatus],CONVERT(nvarchar(1000),q.[ActiveFlag],126) [ActiveFlag],CONVERT(nvarchar(1000),q.[LoadBatchID],126) [LoadBatchID],CONVERT(nvarchar(1000),q.[LoadedAt],126) [LoadedAt] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow FROM (SELECT d.*,COALESCE(VendorName,N'Unknown') VendorCaption,COALESCE(CreditRatingName,N'Unknown') RatingCaption,COALESCE(CreditRating,-1) RatingKey,COALESCE(VendorID,-1) BusinessID FROM dw.Dim_Vendor d) q) v",
+    "CREATE OR ALTER VIEW cxoperations.[UnitPlanning] AS SELECT q.*,(SELECT CONVERT(nvarchar(1000),q.[UnitMeasureKey],126) [UnitMeasureKey],CONVERT(nvarchar(1000),q.[UnitMeasureCode],126) [UnitMeasureCode],CONVERT(nvarchar(1000),q.[UnitMeasureName],126) [UnitMeasureName],CONVERT(nvarchar(1000),q.[LoadBatchID],126) [LoadBatchID],CONVERT(nvarchar(1000),q.[LoadedAt],126) [LoadedAt] FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) SourceRow FROM (SELECT d.*,CONVERT(nvarchar(160),CONCAT(COALESCE(UnitMeasureCode,N'?'),N' | ',COALESCE(UnitMeasureName,N'Unknown'))) UnitCaption FROM dw.Dim_UnitMeasure d) q"
+  ]
+}

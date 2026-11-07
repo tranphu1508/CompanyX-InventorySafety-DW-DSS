@@ -1,0 +1,40 @@
+DANH MỤC CUBE ACT / SIM — sinh từ source XMLA hiện hành
+
+ACT — CompanyX ACT
+  ActualSales -> Sales Document Status, Product, Due Date, Order Date, Channel, Recorded Ship Date, Sales Line
+  ActualPurchases -> Expected Receipt Date, Expected Ship Date, Purchase Document Status, Order Date, Product, Vendor
+  ActualInventory -> Product, Location, Inventory Snapshot Date
+  ActualWorkOrders -> Planned Start Date, Recorded End Date, Due Date, Actual End Date, Product, Actual Start Date
+  ActualOperations -> Actual End Date, Scheduled Start Date, Location, Product, Scheduled End Date, Actual Start Date
+  ActualBOM -> BOM Line, Assembly Product, Component Product, Unit
+  ActualProductCostHistory -> Cost Period, Product
+  ActualDemandDaily -> Product, Demand Date, Demand Rule
+
+Phân cấp người dùng:
+  Date / Calendar: Year -> Quarter -> Month -> Date
+  Product / Products: Category -> Subcategory -> Product
+
+SIM — CompanyX SIM
+  SimulationDaily -> Product, Unit, Run, Location, Simulation Date
+  OrderLineService -> Run, Unit, Due Date, Evaluation Cohort, Product, Completion Date
+  OrderService -> Order Status, Evaluation Cohort, Run, Completion Date, Due Date
+  RunDay -> Simulation Date, Run
+  RunSummary -> Run
+  BaselineActivity -> Product, Unit, Run, Activity, Simulation Date
+  OrderDaily -> Run, Simulation Date, Sales Order, Known Date, Due Date, Daily Order Status
+  OrderLineDaily -> Run, Simulation Date, Sales Order, Sales Order Line, Product, Unit, Known Date, Due Date, Daily Order Status
+  JobDaily -> Run, Simulation Date, Production Job, Product, Unit, Job Created Date
+  ProductionExecution -> Run, Production Job, Production Execution, Product, Unit, Execution Start Date, Execution Completion Date
+  MaterialTrace -> Run, Simulation Date, Production Job, Production Execution, Product, Parent Product, Unit
+  RollingPlan -> Run, Plan Version, Decision Date, Planned Date, Plan Period, Plan Action, Product, Parent Product, Unit, Sales Order, Sales Order Line
+  RollingOrderPlan -> Run, Plan Version, Decision Date, Planned Date, Plan Period, Plan Action, Sales Order
+  PlannedAllocation -> Run, Plan Version, Decision Date, Planned Date, Product, Parent Product, Unit, Sales Order, Sales Order Line, Allocation Supply, Allocation Consumer, Supply Available Date
+  PlanSupplyBalance -> Run, Plan Version, Decision Date, Product, Unit, Allocation Supply, Supply Available Date
+  PlanOrderMaterial -> Run, Plan Version, Decision Date, Planned Date, Product, Parent Product, Root Product, Unit, Sales Order, Sales Order Line, Material Level
+  InquiryLineDelivery -> Inquiry, Due Date, Run, Product, Unit, Tranche, Known Date, Candidate, Completion Date
+  InquiryTranche -> Known Date, Completion Date, Tranche, Due Date, Order Status, Run, Inquiry, Candidate
+
+Phân cấp người dùng:
+  Date / Calendar: Year -> Quarter -> Month -> Date
+  Product / Products: Category -> Subcategory -> Product
+

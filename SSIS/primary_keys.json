@@ -1,0 +1,41 @@
+{
+  "RunEntity": [
+    "PlanningRunKey",
+    "EntityCode"
+  ],
+  "Fact_SimulationEvent": [
+    "PlanningRunKey",
+    "EventSequence"
+  ],
+  "Fact_SimulationDaily": [
+    "PlanningRunKey",
+    "DateKey",
+    "ProductKey",
+    "LocationKey"
+  ],
+  "Fact_SimulationOrder": [
+    "PlanningRunKey",
+    "CustomerOrderCode"
+  ],
+  "Fact_OptimizationSolve": [
+    "PlanningRunKey",
+    "SolveSequence"
+  ],
+  "Fact_StochasticDraw": [
+    "PlanningRunKey",
+    "DrawSequence"
+  ],
+  "Fact_PolicySimulation": [
+    "PlanningRunKey",
+    "ProductKey"
+  ],
+  "Bridge_RunEntityRelation": [
+    "PlanningRunKey",
+    "ParentEntityCode",
+    "ChildEntityCode",
+    "RelationCode"
+  ],
+  "Fact_RunSummary": [
+    "PlanningRunKey"
+  ]
+}

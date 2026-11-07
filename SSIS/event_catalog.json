@@ -1,0 +1,121 @@
+[
+  {
+    "EventCode": "CUSTOMER_ORDER_CREATED",
+    "EventName": "Biết đơn khách",
+    "EntityType": "CUSTOMER_ORDER_LINE",
+    "QuantityMeaning": "Lượng đơn mới",
+    "RequiredReferences": "ProductKey và DueAt ở RunEntity"
+  },
+  {
+    "EventCode": "CUSTOMER_DUE",
+    "EventName": "Đơn khách đến hạn",
+    "EntityType": "CUSTOMER_ORDER_LINE",
+    "QuantityMeaning": "Lượng còn phải giao tại hạn",
+    "RequiredReferences": "Cùng EntityCode của dòng đơn"
+  },
+  {
+    "EventCode": "SHIP_ON_TIME",
+    "EventName": "Giao đúng hạn",
+    "EntityType": "CUSTOMER_ORDER_LINE",
+    "QuantityMeaning": "Lượng thực giao đúng hạn",
+    "RequiredReferences": "FromLocationKey"
+  },
+  {
+    "EventCode": "SHIP_LATE",
+    "EventName": "Giao trễ",
+    "EntityType": "CUSTOMER_ORDER_LINE",
+    "QuantityMeaning": "Lượng thực giao sau hạn",
+    "RequiredReferences": "FromLocationKey"
+  },
+  {
+    "EventCode": "LOST_SALE",
+    "EventName": "Hủy dòng thuộc đơn mất toàn bộ",
+    "EntityType": "CUSTOMER_ORDER_LINE",
+    "QuantityMeaning": "Lượng không giao và không giữ chờ",
+    "RequiredReferences": "EntityCode"
+  },
+  {
+    "EventCode": "BUY_ORDER",
+    "EventName": "Tạo đơn mua",
+    "EntityType": "PURCHASE_ORDER_LINE",
+    "QuantityMeaning": "Lượng mới đặt mua",
+    "RequiredReferences": "SupplyOptionKey"
+  },
+  {
+    "EventCode": "BUY_DISPATCH",
+    "EventName": "Vendor xuất hàng",
+    "EntityType": "PURCHASE_ORDER_LINE",
+    "QuantityMeaning": "Lượng vendor đã xuất",
+    "RequiredReferences": "SupplyOptionKey và RelatedEntityCode của TRANSFER_LOT"
+  },
+  {
+    "EventCode": "BUY_RECEIVE_GOOD",
+    "EventName": "Nhận hàng mua đạt",
+    "EntityType": "RECEIPT_LOT",
+    "QuantityMeaning": "Lượng tốt trong lần nhận",
+    "RequiredReferences": "SupplyOptionKey và quan hệ HAS_RECEIPT tới đơn mua"
+  },
+  {
+    "EventCode": "BUY_REJECT",
+    "EventName": "Loại hàng mua",
+    "EntityType": "RECEIPT_LOT",
+    "QuantityMeaning": "Lượng bị loại trong lần nhận",
+    "RequiredReferences": "SupplyOptionKey và quan hệ HAS_RECEIPT tới đơn mua"
+  },
+  {
+    "EventCode": "PRODUCTION_REQUEST",
+    "EventName": "Tạo yêu cầu sản xuất",
+    "EntityType": "PRODUCTION_JOB",
+    "QuantityMeaning": "Lượng yêu cầu mới",
+    "RequiredReferences": "ProductKey"
+  },
+  {
+    "EventCode": "PRODUCTION_START",
+    "EventName": "Khởi công lệnh",
+    "EntityType": "PRODUCTION_JOB",
+    "QuantityMeaning": "Lượng thực khởi công",
+    "RequiredReferences": "EntityCode; ProductionExecutionCode theo G34"
+  },
+  {
+    "EventCode": "BOM_ISSUE",
+    "EventName": "Xuất linh kiện",
+    "EntityType": "PRODUCTION_JOB",
+    "QuantityMeaning": "Lượng linh kiện thực tiêu hao",
+    "RequiredReferences": "ProductKey là linh kiện và FromLocationKey; ProductionExecutionCode theo G34"
+  },
+  {
+    "EventCode": "PRODUCTION_GOOD",
+    "EventName": "Hoàn tất hàng tốt",
+    "EntityType": "PRODUCTION_JOB",
+    "QuantityMeaning": "Lượng tốt thực nhập",
+    "RequiredReferences": "ToLocationKey; ProductionExecutionCode theo G34"
+  },
+  {
+    "EventCode": "OPERATION_QUEUE",
+    "EventName": "Chờ công đoạn",
+    "EntityType": "OPERATION_EXECUTION",
+    "QuantityMeaning": "Lượng chờ tại công đoạn",
+    "RequiredReferences": "RouteStepKey và quan hệ HAS_OPERATION"
+  },
+  {
+    "EventCode": "OPERATION_START",
+    "EventName": "Bắt đầu công đoạn",
+    "EntityType": "OPERATION_EXECUTION",
+    "QuantityMeaning": "Lượng bắt đầu xử lý",
+    "RequiredReferences": "RouteStepKey"
+  },
+  {
+    "EventCode": "OPERATION_COMPLETE",
+    "EventName": "Kết thúc công đoạn",
+    "EntityType": "OPERATION_EXECUTION",
+    "QuantityMeaning": "Lượng hoàn tất công đoạn",
+    "RequiredReferences": "RouteStepKey"
+  },
+  {
+    "EventCode": "TRANSFER_ARRIVE",
+    "EventName": "Hàng mua đến nơi nhận",
+    "EntityType": "TRANSFER_LOT",
+    "QuantityMeaning": "Lượng thực đến nơi nhận",
+    "RequiredReferences": "ToLocationKey, SupplyOptionKey và lô TRANSFER_LOT thuộc đơn mua"
+  }
+]

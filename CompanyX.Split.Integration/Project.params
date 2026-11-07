@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='utf-8'?>
+<SSIS:Parameters xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
+  <SSIS:Parameter SSIS:Name="ServerName">
+    <SSIS:Properties>
+      <SSIS:Property SSIS:Name="ID">{3143e551-8e19-4763-b3c4-93f4147b99a3}</SSIS:Property>
+      <SSIS:Property SSIS:Name="CreationName" />
+      <SSIS:Property SSIS:Name="Description">Local SQL instance</SSIS:Property>
+      <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">localhost</SSIS:Property>
+      <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+    </SSIS:Properties>
+  </SSIS:Parameter>
+  <SSIS:Parameter SSIS:Name="SourceDatabase">
+    <SSIS:Properties>
+      <SSIS:Property SSIS:Name="ID">{8912ae53-c2bd-4b74-8bc4-80d4a1b4b0ae}</SSIS:Property>
+      <SSIS:Property SSIS:Name="CreationName" />
+      <SSIS:Property SSIS:Name="Description">Owned CompanyX_Demo source</SSIS:Property>
+      <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">CompanyX_Demo</SSIS:Property>
+      <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+    </SSIS:Properties>
+  </SSIS:Parameter>
+  <SSIS:Parameter SSIS:Name="TargetDatabase">
+    <SSIS:Properties>
+      <SSIS:Property SSIS:Name="ID">{c30f8324-c800-4f79-a1ae-3f1b41827d71}</SSIS:Property>
+      <SSIS:Property SSIS:Name="CreationName" />
+      <SSIS:Property SSIS:Name="Description">Owned InventorySafety_Demo warehouse</SSIS:Property>
+      <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">CompanyX_DW_ACT_20261107</SSIS:Property>
+      <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+    </SSIS:Properties>
+  </SSIS:Parameter>
+  <SSIS:Parameter SSIS:Name="PackageRoot">
+    <SSIS:Properties>
+      <SSIS:Property SSIS:Name="ID">{63cadaa4-87ab-4b4e-98ed-3ecd9bce4203}</SSIS:Property>
+      <SSIS:Property SSIS:Name="CreationName" />
+      <SSIS:Property SSIS:Name="Description">Extracted demo folder. Update after moving the package.</SSIS:Property>
+      <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">E:\Study-BKU\New Inventory Safety\SSIS\ACT</SSIS:Property>
+      <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+    </SSIS:Properties>
+  </SSIS:Parameter>
+  <SSIS:Parameter SSIS:Name="PythonExecutable">
+    <SSIS:Properties>
+      <SSIS:Property SSIS:Name="ID">{9de21f60-02a9-4ae9-8bc0-e1fdd94cdf5b}</SSIS:Property>
+      <SSIS:Property SSIS:Name="CreationName" />
+      <SSIS:Property SSIS:Name="Description">Python with installed DSS requirements. Default is the demo .venv.</SSIS:Property>
+      <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\DSS\CompX_InventorySafetyDemo_20261104\.venv\Scripts\python.exe</SSIS:Property>
+      <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+    </SSIS:Properties>
+  </SSIS:Parameter>
+  <SSIS:Parameter SSIS:Name="Policy">
+    <SSIS:Properties>
+      <SSIS:Property SSIS:Name="ID">{86633d29-274b-41e2-935b-272ee2045810}</SSIS:Property>
+      <SSIS:Property SSIS:Name="CreationName" />
+      <SSIS:Property SSIS:Name="Description">ROP or QUETSCHLICH_ADAPT</SSIS:Property>
+      <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">ROP</SSIS:Property>
+      <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+    </SSIS:Properties>
+  </SSIS:Parameter>
+  <SSIS:Parameter SSIS:Name="SolverName">
+    <SSIS:Properties>
+      <SSIS:Property SSIS:Name="ID">{7a456760-d71f-4228-b012-bab67432c168}</SSIS:Property>
+      <SSIS:Property SSIS:Name="CreationName" />
+      <SSIS:Property SSIS:Name="Description">GUROBI or CPLEX</SSIS:Property>
+      <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">GUROBI</SSIS:Property>
+      <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+    </SSIS:Properties>
+  </SSIS:Parameter>
+  <SSIS:Parameter SSIS:Name="ProductionLeadTimeMode">
+    <SSIS:Properties>
+      <SSIS:Property SSIS:Name="ID">{1791de15-024c-4bd0-9a7e-9b4837ef5e8e}</SSIS:Property>
+      <SSIS:Property SSIS:Name="CreationName" />
+      <SSIS:Property SSIS:Name="Description">LEGACY_REQUEST_DATE or ACTUAL_START_DATE</SSIS:Property>
+      <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">LEGACY_REQUEST_DATE</SSIS:Property>
+      <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+    </SSIS:Properties>
+  </SSIS:Parameter>
+  <SSIS:Parameter SSIS:Name="GurobiLicenseFile">
+    <SSIS:Properties>
+      <SSIS:Property SSIS:Name="ID">{9ddb9bfc-7062-4d5f-ad54-a7ccc98a68e3}</SSIS:Property>
+      <SSIS:Property SSIS:Name="CreationName" />
+      <SSIS:Property SSIS:Name="Description">Optional license file path for Python simulation; never include the license in the package</SSIS:Property>
+      <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">E:\Gurobi\gurobi.lic</SSIS:Property>
+      <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+    </SSIS:Properties>
+  </SSIS:Parameter>
+  <SSIS:Parameter SSIS:Name="ScenarioIndex">
+    <SSIS:Properties>
+      <SSIS:Property SSIS:Name="ID">{ea729e85-9964-4147-9bfc-baf692b2fcb3}</SSIS:Property>
+      <SSIS:Property SSIS:Name="CreationName" />
+      <SSIS:Property SSIS:Name="Description">One-based scenario in DSS/all_four_matrix.json</SSIS:Property>
+      <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">1</SSIS:Property>
+      <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+    </SSIS:Properties>
+  </SSIS:Parameter>
+  <SSIS:Parameter SSIS:Name="OutputFolder">
+    <SSIS:Properties>
+      <SSIS:Property SSIS:Name="ID">{eae536b7-637a-4a36-ad3d-a77b32e925e3}</SSIS:Property>
+      <SSIS:Property SSIS:Name="CreationName" />
+      <SSIS:Property SSIS:Name="Description">Fresh folder for one immutable run</SSIS:Property>
+      <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\DSS\CompX_InventorySafetyDemo_20261104\KetQua\Demo_01</SSIS:Property>
+      <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+    </SSIS:Properties>
+  </SSIS:Parameter>
+  <SSIS:Parameter SSIS:Name="DataDirectory">
+    <SSIS:Properties>
+      <SSIS:Property SSIS:Name="ID">{d07e5472-41b7-47db-9f0d-a1926e1c687f}</SSIS:Property>
+      <SSIS:Property SSIS:Name="CreationName" />
+      <SSIS:Property SSIS:Name="Description">SQL host directory for a new warehouse; empty uses SQL default</SSIS:Property>
+      <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\DSS\CompX_InventorySafetyDemo_20261104\Warehouse</SSIS:Property>
+      <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+    </SSIS:Properties>
+  </SSIS:Parameter>
+</SSIS:Parameters>

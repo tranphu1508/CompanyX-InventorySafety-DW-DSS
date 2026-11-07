@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Dimension xmlns="http://schemas.microsoft.com/analysisservices/2003/engine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <ID>Channel</ID>
+          <Name>Channel</Name>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>CompanyXSourceView</DataSourceViewID>
+          </Source>
+          <ErrorConfiguration>
+            <KeyNotFound>ReportAndStop</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyConvertedToUnknown>ReportAndStop</NullKeyConvertedToUnknown>
+          </ErrorConfiguration>
+          <Attributes>
+            <Attribute>
+              <ID>Channel</ID>
+              <Name>Channel</Name>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>OpsDimChannel</TableID>
+                    <ColumnID>ChannelKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>40</DataSize>
+                <NullProcessing>Preserve</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>OpsDimChannel</TableID>
+                  <ColumnID>ChannelName</ColumnID>
+                </Source>
+              </NameColumn>
+            </Attribute>
+          </Attributes>
+          <AttributeAllMemberName>All Channel</AttributeAllMemberName>
+        </Dimension>
+        

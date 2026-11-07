@@ -1,0 +1,188 @@
+{
+  "source_tables": {
+    "BillOfMaterials": "Production.BillOfMaterials",
+    "Location": "Production.Location",
+    "Product": "Production.Product",
+    "ProductCategory": "Production.ProductCategory",
+    "ProductCostHistory": "Production.ProductCostHistory",
+    "ProductInventory": "Production.ProductInventory",
+    "ProductListPriceHistory": "Production.ProductListPriceHistory",
+    "ProductSubcategory": "Production.ProductSubcategory",
+    "ScrapReason": "Production.ScrapReason",
+    "TransactionHistory": "Production.TransactionHistory",
+    "TransactionHistoryArchive": "Production.TransactionHistoryArchive",
+    "UnitMeasure": "Production.UnitMeasure",
+    "WorkOrder": "Production.WorkOrder",
+    "WorkOrderRouting": "Production.WorkOrderRouting",
+    "ProductVendor": "Purchasing.ProductVendor",
+    "PurchaseOrderDetail": "Purchasing.PurchaseOrderDetail",
+    "PurchaseOrderHeader": "Purchasing.PurchaseOrderHeader",
+    "Vendor": "Purchasing.Vendor",
+    "Customer": "Sales.Customer",
+    "SalesOrderDetail": "Sales.SalesOrderDetail",
+    "SalesOrderHeader": "Sales.SalesOrderHeader",
+    "SpecialOffer": "Sales.SpecialOffer",
+    "SpecialOfferProduct": "Sales.SpecialOfferProduct"
+  },
+  "primary_keys": {
+    "Production.BillOfMaterials": [
+      "BillOfMaterialsID"
+    ],
+    "Production.Location": [
+      "LocationID"
+    ],
+    "Production.Product": [
+      "ProductID"
+    ],
+    "Production.ProductCategory": [
+      "ProductCategoryID"
+    ],
+    "Production.ProductCostHistory": [
+      "ProductID",
+      "StartDate"
+    ],
+    "Production.ProductInventory": [
+      "ProductID",
+      "LocationID"
+    ],
+    "Production.ProductListPriceHistory": [
+      "ProductID",
+      "StartDate"
+    ],
+    "Production.ProductSubcategory": [
+      "ProductSubcategoryID"
+    ],
+    "Production.ScrapReason": [
+      "ScrapReasonID"
+    ],
+    "Production.TransactionHistory": [
+      "TransactionID"
+    ],
+    "Production.TransactionHistoryArchive": [
+      "TransactionID"
+    ],
+    "Production.UnitMeasure": [
+      "UnitMeasureCode"
+    ],
+    "Production.WorkOrder": [
+      "WorkOrderID"
+    ],
+    "Production.WorkOrderRouting": [
+      "WorkOrderID",
+      "ProductID",
+      "OperationSequence"
+    ],
+    "Purchasing.ProductVendor": [
+      "ProductID",
+      "BusinessEntityID"
+    ],
+    "Purchasing.PurchaseOrderDetail": [
+      "PurchaseOrderID",
+      "PurchaseOrderDetailID"
+    ],
+    "Purchasing.PurchaseOrderHeader": [
+      "PurchaseOrderID"
+    ],
+    "Purchasing.Vendor": [
+      "BusinessEntityID"
+    ],
+    "Sales.Customer": [
+      "CustomerID"
+    ],
+    "Sales.SalesOrderDetail": [
+      "SalesOrderID",
+      "SalesOrderDetailID"
+    ],
+    "Sales.SalesOrderHeader": [
+      "SalesOrderID"
+    ],
+    "Sales.SpecialOffer": [
+      "SpecialOfferID"
+    ],
+    "Sales.SpecialOfferProduct": [
+      "SpecialOfferID",
+      "ProductID"
+    ]
+  },
+  "target_keys": {
+    "dw.Bridge_BillOfMaterials": [
+      "BillOfMaterialsID"
+    ],
+    "dw.Bridge_ProductPromotion": [
+      "ProductKey",
+      "PromotionKey"
+    ],
+    "dw.Dim_Channel": [
+      "ChannelKey"
+    ],
+    "dw.Dim_Customer": [
+      "CustomerKey"
+    ],
+    "dw.Dim_Date": [
+      "DateKey"
+    ],
+    "dw.Dim_Location": [
+      "LocationKey"
+    ],
+    "dw.Dim_Product": [
+      "ProductKey"
+    ],
+    "dw.Dim_Promotion": [
+      "PromotionKey"
+    ],
+    "dw.Dim_PurchaseStatus": [
+      "PurchaseStatusKey"
+    ],
+    "dw.Dim_SalesStatus": [
+      "SalesStatusKey"
+    ],
+    "dw.Dim_ScrapReason": [
+      "ScrapReasonKey"
+    ],
+    "dw.Dim_UnitMeasure": [
+      "UnitMeasureKey"
+    ],
+    "dw.Dim_Vendor": [
+      "VendorKey"
+    ],
+    "dw.Fact_InventoryOnHand": [
+      "ProductKey",
+      "LocationKey",
+      "AsOfDateKey"
+    ],
+    "dw.Fact_ProductVendorTerms": [
+      "ProductKey",
+      "VendorKey",
+      "AsOfDateKey"
+    ],
+    "dw.Fact_PurchaseOrderLine": [
+      "PurchaseOrderID",
+      "PurchaseOrderDetailID"
+    ],
+    "dw.Fact_SalesOrderLine": [
+      "SalesOrderID",
+      "SalesOrderDetailID"
+    ],
+    "dw.Fact_WorkOrder": [
+      "WorkOrderID"
+    ],
+    "dw.Fact_WorkOrderOperation": [
+      "WorkOrderID",
+      "ProductKey",
+      "OperationSequence"
+    ],
+    "dw.Ref_ProductPriceHistory": [
+      "ProductKey",
+      "PriceType",
+      "StartDate"
+    ],
+    "dss.Fact_DemandDaily": [
+      "DateKey",
+      "ProductKey",
+      "DemandRuleVersion"
+    ]
+  },
+  "source_capture": "CHANGE_TRACKING",
+  "target_load": "DIFFERENTIAL",
+  "projection": "full relational recomputation on delta batches; unchanged live rows untouched"
+}

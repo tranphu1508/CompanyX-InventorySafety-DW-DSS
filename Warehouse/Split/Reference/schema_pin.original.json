@@ -1,0 +1,7437 @@
+{
+  "unified_version": "0.2.0",
+  "unified_code_sha256": "420575dd171542face326102d1e0204426e6047f70db7d330041065410fd497c",
+  "columns": [
+    {
+      "TableName": "dss.Bridge_RunEntityRelation",
+      "ColumnName": "PlanningRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Bridge_RunEntityRelation",
+      "ColumnName": "ParentEntityCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Bridge_RunEntityRelation",
+      "ColumnName": "ChildEntityCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Bridge_RunEntityRelation",
+      "ColumnName": "RelationCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Bridge_RunEntityRelation",
+      "ColumnName": "AllocatedQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Bridge_RunEntityRelation",
+      "ColumnName": "AllocatedProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_EventType",
+      "ColumnName": "EventCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 80,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_EventType",
+      "ColumnName": "EventName",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_EventType",
+      "ColumnName": "EntityType",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_EventType",
+      "ColumnName": "QuantityMeaning",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_EventType",
+      "ColumnName": "RequiredReferences",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "ExperimentVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "ExperimentCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "VersionNo",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "ExperimentName",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "ResearchQuestion",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "ChangedFactors",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "ControlledFactors",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "RandomizationMode",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "RandomizationRuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "MetricDefinitionVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "PlannedReplicationCount",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "LifecycleStatus",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "ConfigHash",
+      "TypeName": "char",
+      "MaxLength": 64,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ExperimentVersion",
+      "ColumnName": "PublishedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_InputSnapshot",
+      "ColumnName": "InputSnapshotKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dss.Dim_InputSnapshot",
+      "ColumnName": "SnapshotCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_InputSnapshot",
+      "ColumnName": "SnapshotReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_InputSnapshot",
+      "ColumnName": "InputHash",
+      "TypeName": "char",
+      "MaxLength": 64,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_InputSnapshot",
+      "ColumnName": "SnapshotAsOfAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_InputSnapshot",
+      "ColumnName": "SnapshotScope",
+      "TypeName": "nvarchar",
+      "MaxLength": 4000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_InputSnapshot",
+      "ColumnName": "SourceLoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_InputSnapshot",
+      "ColumnName": "CreatedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "PlanningRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "RunCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "RunPurpose",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "ReplicationNo",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "RandomSeed",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "RandomStreamVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "DataCutoffDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "DemandRuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "RuleSetVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "RunStatus",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "RunAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "CompletedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "RunNote",
+      "TypeName": "nvarchar",
+      "MaxLength": 4000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "DemandBucket",
+      "TypeName": "nvarchar",
+      "MaxLength": 20,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "HistoryWindowPeriods",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "ForecastModel",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "ForecastHorizonPeriods",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "SigmaMethod",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "PromoKnowledgeLeadDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "InputSnapshotKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "ExperimentCaseKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "ExperimentReplicationKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "AttemptNo",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "MetricDefinitionVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "SourceForecastRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "ExperimentVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "RunRequestId",
+      "TypeName": "uniqueidentifier",
+      "MaxLength": 16,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "ExecutionSpecHash",
+      "TypeName": "char",
+      "MaxLength": 64,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "ExecutionSpecVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PlanningRun",
+      "ColumnName": "ExecutionSpecReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PolicyConfigVersion",
+      "ColumnName": "PolicyConfigVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dss.Dim_PolicyConfigVersion",
+      "ColumnName": "PolicyConfigCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PolicyConfigVersion",
+      "ColumnName": "VersionNo",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PolicyConfigVersion",
+      "ColumnName": "PolicyTypeKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PolicyConfigVersion",
+      "ColumnName": "ConfigOrigin",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PolicyConfigVersion",
+      "ColumnName": "LifecycleStatus",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PolicyConfigVersion",
+      "ColumnName": "ConfigHash",
+      "TypeName": "char",
+      "MaxLength": 64,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PolicyType",
+      "ColumnName": "PolicyTypeKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dss.Dim_PolicyType",
+      "ColumnName": "PolicyCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PolicyType",
+      "ColumnName": "PolicyName",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PolicyType",
+      "ColumnName": "DecisionScope",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PolicyType",
+      "ColumnName": "Description",
+      "TypeName": "nvarchar",
+      "MaxLength": 4000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_PolicyType",
+      "ColumnName": "IsActive",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "ScenarioCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "VersionNo",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "ScenarioName",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "ShortageHandlingMode",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "TimeBasis",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "InitialStateMode",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "InitialStateRule",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "InventoryValuationRule",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "HoldingCostRatePerYear",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "AssumptionNote",
+      "TypeName": "nvarchar",
+      "MaxLength": 4000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "LifecycleStatus",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "ConfigHash",
+      "TypeName": "char",
+      "MaxLength": 64,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "CreatedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "PublishedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "InitialStateBindingMode",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "ResolvedInputSnapshotKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "InitialStateAsOfDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "InitialStateDataCutoffDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "CustomerShipmentMode",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ScenarioVersion",
+      "ColumnName": "LostSalesScope",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ServiceLevel",
+      "ColumnName": "ServiceLevelKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ServiceLevel",
+      "ColumnName": "ServiceLevelPct",
+      "TypeName": "decimal",
+      "MaxLength": 5,
+      "Precision": 6,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Dim_ServiceLevel",
+      "ColumnName": "ZValue",
+      "TypeName": "decimal",
+      "MaxLength": 5,
+      "Precision": 9,
+      "Scale": 6,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "ExperimentCaseKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "ExperimentVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "CaseCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "CaseName",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "IsBaseline",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "PolicyConfigVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "InputSnapshotKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "DataCutoffDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "SimulationStartDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "SimulationEndDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "DemandInputMode",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "DemandRuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "RuleSetVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "CaseNote",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "DemandSourceKind",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentCase",
+      "ColumnName": "SourceForecastRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentReplication",
+      "ColumnName": "ExperimentReplicationKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dss.ExperimentReplication",
+      "ColumnName": "ExperimentVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentReplication",
+      "ColumnName": "ReplicationNo",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentReplication",
+      "ColumnName": "BaseSeed",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.ExperimentReplication",
+      "ColumnName": "RandomStreamVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "DateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "DemandRuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "IndependentQty",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "PromoIndependentQty",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "DependentQty",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "TotalDemandQty",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "EligibleSalesLineCount",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "ExcludedSalesLineCount",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "ParentWorkOrderCount",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "IsInSellWindow",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandDaily",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandForecast",
+      "ColumnName": "PlanningRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandForecast",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandForecast",
+      "ColumnName": "TargetPeriodStartDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandForecast",
+      "ColumnName": "DemandType",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandForecast",
+      "ColumnName": "HorizonPeriods",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandForecast",
+      "ColumnName": "ForecastQty",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandForecast",
+      "ColumnName": "ForecastLowerQty",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandForecast",
+      "ColumnName": "ForecastUpperQty",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandForecast",
+      "ColumnName": "PredictionIntervalPct",
+      "TypeName": "decimal",
+      "MaxLength": 5,
+      "Precision": 6,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandForecast",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_DemandForecast",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "PlanningRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "SolveSequence",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "DecisionAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "AttemptNo",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "ObjectiveStage",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "InformationCutoffAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "HorizonEndAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "PlanningForecastRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "ForecastInputReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "StateInputReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "DecisionOutputReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "SolverStatus",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "HasFeasibleSolution",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "ActionSource",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "ObjectiveValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "BestBound",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "RelativeGap",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "SolverSeconds",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_OptimizationSolve",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "PlanningRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "SimulatedDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "InitialOnHandQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "OpeningBacklogQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "TotalDemandQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "OnTimeDeliveredQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "LateDeliveredQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "FilledQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "LostQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "EndingBacklogQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "LateUnitDays",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "OnTimeUnitRate",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "FillRate",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "AvgOnHandQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "AvgWIPQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "AvgInTransitQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "AvgInventoryValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "AvgInTransitValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "HoldingCost",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_PolicySimulation",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "PlanningRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "EvaluationScope",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "CustomerDueQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "OnTimeDeliveredQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "OnTimeUnitRate",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "LostQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "EndingBacklogQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "LateUnitDays",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "AvgInventoryValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "AvgOwnedInTransitValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "WallClockSeconds",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "SolverSeconds",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "ValidationStatus",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "ValidationNote",
+      "TypeName": "nvarchar",
+      "MaxLength": 4000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "OpeningBacklogQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "LateDeliveredQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "FilledQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "DueOrderCount",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "OnTimeFullOrderCount",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "LostOrderCount",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_RunSummary",
+      "ColumnName": "OnTimeFullOrderRate",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "PlanningRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "ServiceLevelKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "VendorKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "SupplyType",
+      "TypeName": "nvarchar",
+      "MaxLength": 20,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "AvgDemandPerDay",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 6,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "DemandSigmaPerDay",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 6,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "SigmaSource",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "DemandObservationCount",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "AvgLeadTimeDays",
+      "TypeName": "decimal",
+      "MaxLength": 5,
+      "Precision": 9,
+      "Scale": 2,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "LeadTimeSigmaDays",
+      "TypeName": "decimal",
+      "MaxLength": 5,
+      "Precision": 9,
+      "Scale": 2,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "LeadTimeSource",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "LeadTimeObservationCount",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "RecommendedSafetyStock",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "RecommendedReorderPoint",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "PolicySafetyStockLevel",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "PolicyReorderPoint",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "OnHandQty",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "OnOrderQty",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "InventoryPosition",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "SafetyStockGap",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "IsBelowReorderPoint",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "UnitCostAtRun",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "SafetyStockValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 6,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "AnnualHoldingCost",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 6,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "CalcStatus",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "CalcNote",
+      "TypeName": "nvarchar",
+      "MaxLength": 1000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SafetyStockRecommendation",
+      "ColumnName": "SupplyOptionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "PlanningRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "DateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "LocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "OnHandQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "ProductionWIPQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "QueuedProductionQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "PurchaseInTransitQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "CustomerBacklogQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "CustomerDueQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "OnTimeDeliveredQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "LateDeliveredQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "LostQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "BOMConsumedQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "PurchaseAcceptedQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "PurchaseRejectedQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "ProductionGoodQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "OnHandValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "WIPValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "OwnedInTransitValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationDaily",
+      "ColumnName": "OpenPurchaseQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "PlanningRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "EventSequence",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "EventAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "DateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "EventCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 80,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "EntityCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "RelatedEntityCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "SourceRecordReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 600,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "FromLocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "ToLocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "Quantity",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "SupplyOptionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "RouteStepKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "KnownAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "ReasonCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "ProductionExecutionCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "OrderActionCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationEvent",
+      "ColumnName": "DecisionSolveSequence",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "PlanningRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "CustomerOrderCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "SourceSalesOrderID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "SourceRecordReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 1000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "KnownAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "DueAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "ExpectedLineCount",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "OrderStatus",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "CompletedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "CancelledAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "CancellationReason",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_SimulationOrder",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_StochasticDraw",
+      "ColumnName": "PlanningRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_StochasticDraw",
+      "ColumnName": "DrawSequence",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_StochasticDraw",
+      "ColumnName": "DistributionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_StochasticDraw",
+      "ColumnName": "StreamCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_StochasticDraw",
+      "ColumnName": "EventIdentity",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_StochasticDraw",
+      "ColumnName": "DrawIndex",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_StochasticDraw",
+      "ColumnName": "RawSampleValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_StochasticDraw",
+      "ColumnName": "AppliedValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_StochasticDraw",
+      "ColumnName": "KnownAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_StochasticDraw",
+      "ColumnName": "DrawKind",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Fact_StochasticDraw",
+      "ColumnName": "TrialQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterDefinition",
+      "ColumnName": "PolicyTypeKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterDefinition",
+      "ColumnName": "ParameterCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterDefinition",
+      "ColumnName": "ValueType",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterDefinition",
+      "ColumnName": "UnitCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterDefinition",
+      "ColumnName": "IsRequired",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterDefinition",
+      "ColumnName": "MinValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterDefinition",
+      "ColumnName": "MaxValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterDefinition",
+      "ColumnName": "AllowedTextValues",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterDefinition",
+      "ColumnName": "Description",
+      "TypeName": "nvarchar",
+      "MaxLength": 4000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterValue",
+      "ColumnName": "PolicyConfigVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterValue",
+      "ColumnName": "PolicyTypeKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterValue",
+      "ColumnName": "ParameterCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterValue",
+      "ColumnName": "NumericValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterValue",
+      "ColumnName": "TextValue",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyParameterValue",
+      "ColumnName": "BooleanValue",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyProductConfig",
+      "ColumnName": "PolicyConfigVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyProductConfig",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyProductConfig",
+      "ColumnName": "ReorderPointUsed",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyProductConfig",
+      "ColumnName": "TargetLevelUsed",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyProductConfig",
+      "ColumnName": "ParameterRuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyProductConfig",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.PolicyProductConfig",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "PlanningRunKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "EntityCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "EntityType",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "OriginalQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "OpeningRemainingQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "CreatedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "DueAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "PromisedAvailableAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "IsOpeningEntity",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "SourceRecordReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 1000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "InitialEntityCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "InitialDemandLineCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.RunEntity",
+      "ColumnName": "CustomerOrderCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_CustomerOrder",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_CustomerOrder",
+      "ColumnName": "DemandLineCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_CustomerOrder",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_CustomerOrder",
+      "ColumnName": "OrderOffsetDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_CustomerOrder",
+      "ColumnName": "DueOffsetDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_CustomerOrder",
+      "ColumnName": "Quantity",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_CustomerOrder",
+      "ColumnName": "ForecastReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 1000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_CustomerOrder",
+      "ColumnName": "CustomerOrderCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Distribution",
+      "ColumnName": "DistributionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dss.Scenario_Distribution",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Distribution",
+      "ColumnName": "DistributionCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Distribution",
+      "ColumnName": "InputKind",
+      "TypeName": "nvarchar",
+      "MaxLength": 80,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Distribution",
+      "ColumnName": "DistributionType",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Distribution",
+      "ColumnName": "TimeOrRatioUnit",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Distribution",
+      "ColumnName": "ParametersJson",
+      "TypeName": "nvarchar",
+      "MaxLength": -1,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Distribution",
+      "ColumnName": "LowerBound",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Distribution",
+      "ColumnName": "UpperBound",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Distribution",
+      "ColumnName": "RoundingRule",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Distribution",
+      "ColumnName": "DependenceGroupCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialCustomerOrder",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialCustomerOrder",
+      "ColumnName": "DemandLineCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialCustomerOrder",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialCustomerOrder",
+      "ColumnName": "DemandLocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialCustomerOrder",
+      "ColumnName": "OrderOffsetDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialCustomerOrder",
+      "ColumnName": "DueOffsetDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialCustomerOrder",
+      "ColumnName": "OriginalOrderQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialCustomerOrder",
+      "ColumnName": "DeliveredBeforeStartQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialCustomerOrder",
+      "ColumnName": "ClosedBeforeStartQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialCustomerOrder",
+      "ColumnName": "OutstandingQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialCustomerOrder",
+      "ColumnName": "SourceRecordReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 1000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialCustomerOrder",
+      "ColumnName": "CustomerOrderCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialEntity",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialEntity",
+      "ColumnName": "InitialEntityCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialEntity",
+      "ColumnName": "EntityType",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialEntity",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialEntity",
+      "ColumnName": "OriginalQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialEntity",
+      "ColumnName": "RemainingQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialEntity",
+      "ColumnName": "CreatedOffsetDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialEntity",
+      "ColumnName": "ParentInitialEntityCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialEntity",
+      "ColumnName": "SourceRecordReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 1000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "PositionCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "StateCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "FromLocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "ToLocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "Quantity",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "AvailableOffsetDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "RouteStepKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "InitialEntityCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 300,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "SupplyOptionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "RemainingProcessHours",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "SetupCompletedFlag",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "ExpectedAvailableOffsetDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_InitialPosition",
+      "ColumnName": "SourceRecordReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 1000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Product",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Product",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Product",
+      "ColumnName": "StockUnitMeasureKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Product",
+      "ColumnName": "DemandLocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Product",
+      "ColumnName": "IsIndependentDemandItem",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Product",
+      "ColumnName": "IsActiveInScenario",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Product",
+      "ColumnName": "SellEndHandling",
+      "TypeName": "nvarchar",
+      "MaxLength": 120,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Product",
+      "ColumnName": "StandardCostUsed",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Product",
+      "ColumnName": "CostBasisNote",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Production",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Production",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Production",
+      "ColumnName": "ProductionMode",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Production",
+      "ColumnName": "LeadTimeDistributionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Production",
+      "ColumnName": "LeadTimeSemantics",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Production",
+      "ColumnName": "RouteKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Production",
+      "ColumnName": "MaterialIssueLocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Production",
+      "ColumnName": "FinishedReceiptLocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Route",
+      "ColumnName": "RouteKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dss.Scenario_Route",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Route",
+      "ColumnName": "RouteCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Route",
+      "ColumnName": "RouteDescription",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_RouteStep",
+      "ColumnName": "RouteStepKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dss.Scenario_RouteStep",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_RouteStep",
+      "ColumnName": "RouteKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_RouteStep",
+      "ColumnName": "StepNo",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_RouteStep",
+      "ColumnName": "LocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_RouteStep",
+      "ColumnName": "SetupTimeHours",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_RouteStep",
+      "ColumnName": "ProcessTimeHoursPerStockUnit",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_RouteStep",
+      "ColumnName": "ProcessTimeFactorDistributionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "SupplyOptionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "VendorKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "ReceiptLocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "PurchaseUnitMeasureKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "DelayDistributionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "RejectRateDistributionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "SupplyLimitMode",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "MinOrderQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "MaxOrderQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "UnitPurchaseCost",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "InspectionRule",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "InTransitOwnershipRule",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "BaseLeadTimeDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_Supply",
+      "ColumnName": "RejectSamplingRule",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_SupplyCalendar",
+      "ColumnName": "SupplyOptionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_SupplyCalendar",
+      "ColumnName": "DateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_SupplyCalendar",
+      "ColumnName": "MaxDispatchQty",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_UnitConversion",
+      "ColumnName": "ScenarioVersionKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_UnitConversion",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_UnitConversion",
+      "ColumnName": "FromUnitMeasureKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_UnitConversion",
+      "ColumnName": "ToUnitMeasureKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dss.Scenario_UnitConversion",
+      "ColumnName": "ConversionFactor",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 8,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "BOMKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "BillOfMaterialsID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "AssemblyProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "ComponentProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "UnitMeasureKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "BOMLevel",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "PerAssemblyQty",
+      "TypeName": "decimal",
+      "MaxLength": 5,
+      "Precision": 8,
+      "Scale": 2,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "StartDate",
+      "TypeName": "date",
+      "MaxLength": 3,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "EndDate",
+      "TypeName": "date",
+      "MaxLength": 3,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "IsStructureValid",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "DQReasonCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "DQRuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_BillOfMaterials",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_ProductPromotion",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_ProductPromotion",
+      "ColumnName": "PromotionKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_ProductPromotion",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Bridge_ProductPromotion",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Channel",
+      "ColumnName": "ChannelKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Channel",
+      "ColumnName": "OnlineOrderFlag",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Channel",
+      "ColumnName": "ChannelName",
+      "TypeName": "nvarchar",
+      "MaxLength": 80,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Customer",
+      "ColumnName": "CustomerKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dw.Dim_Customer",
+      "ColumnName": "CustomerID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Customer",
+      "ColumnName": "PersonID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Customer",
+      "ColumnName": "StoreID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Customer",
+      "ColumnName": "CustomerType",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Customer",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Customer",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Date",
+      "ColumnName": "DateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Date",
+      "ColumnName": "CalendarDate",
+      "TypeName": "date",
+      "MaxLength": 3,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Date",
+      "ColumnName": "CalendarYear",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Date",
+      "ColumnName": "CalendarQuarter",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Date",
+      "ColumnName": "CalendarMonth",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Date",
+      "ColumnName": "DayOfMonth",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Date",
+      "ColumnName": "DayOfWeek",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Date",
+      "ColumnName": "IsWeekend",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Date",
+      "ColumnName": "ISOWeek",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Date",
+      "ColumnName": "ISOYear",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Date",
+      "ColumnName": "WeekStartDate",
+      "TypeName": "date",
+      "MaxLength": 3,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Date",
+      "ColumnName": "MonthStartDate",
+      "TypeName": "date",
+      "MaxLength": 3,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Location",
+      "ColumnName": "LocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dw.Dim_Location",
+      "ColumnName": "LocationID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Location",
+      "ColumnName": "LocationName",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Location",
+      "ColumnName": "CostRate",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 10,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Location",
+      "ColumnName": "Availability",
+      "TypeName": "decimal",
+      "MaxLength": 5,
+      "Precision": 8,
+      "Scale": 2,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Location",
+      "ColumnName": "LocationType",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Location",
+      "ColumnName": "HasProductionConflict",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Location",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Location",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ProductID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ProductNumber",
+      "TypeName": "nvarchar",
+      "MaxLength": 50,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ProductName",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ProductSubcategoryID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "SubcategoryName",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ProductCategoryID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "CategoryName",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ProductModelID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "MakeFlag",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "FinishedGoodsFlag",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "SupplyType",
+      "TypeName": "nvarchar",
+      "MaxLength": 20,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ProductRole",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "IsBOMAssembly",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "IsBOMComponent",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "Color",
+      "TypeName": "nvarchar",
+      "MaxLength": 30,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "Size",
+      "TypeName": "nvarchar",
+      "MaxLength": 10,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "SizeUnitName",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "Weight",
+      "TypeName": "decimal",
+      "MaxLength": 5,
+      "Precision": 8,
+      "Scale": 2,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "WeightUnitName",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ProductLine",
+      "TypeName": "nchar",
+      "MaxLength": 4,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ProductLineName",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "Class",
+      "TypeName": "nchar",
+      "MaxLength": 4,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ClassName",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "Style",
+      "TypeName": "nchar",
+      "MaxLength": 4,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "StyleName",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "DaysToManufacture",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "SafetyStockLevel",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ReorderPoint",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "StandardCost",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "ListPrice",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "SellStartDate",
+      "TypeName": "date",
+      "MaxLength": 3,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "SellEndDate",
+      "TypeName": "date",
+      "MaxLength": 3,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "DiscontinuedDate",
+      "TypeName": "date",
+      "MaxLength": 3,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "DQStatus",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "DQReasonCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "DQRuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Product",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "PromotionKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "SpecialOfferID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "Description",
+      "TypeName": "nvarchar",
+      "MaxLength": 510,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "OfferType",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "OfferCategory",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "DiscountPct",
+      "TypeName": "decimal",
+      "MaxLength": 5,
+      "Precision": 9,
+      "Scale": 6,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "StartDate",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "EndDate",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "MinQty",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "MaxQty",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "IsNoDiscount",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "IsScheduleValid",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "IsDiscountValid",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "IsQtyRangeValid",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "DQReasonCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "DQRuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Promotion",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_PurchaseStatus",
+      "ColumnName": "PurchaseStatusKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_PurchaseStatus",
+      "ColumnName": "StatusCode",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_PurchaseStatus",
+      "ColumnName": "StatusName",
+      "TypeName": "nvarchar",
+      "MaxLength": 80,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_PurchaseStatus",
+      "ColumnName": "IsDocumented",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_SalesStatus",
+      "ColumnName": "SalesStatusKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_SalesStatus",
+      "ColumnName": "StatusCode",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_SalesStatus",
+      "ColumnName": "StatusName",
+      "TypeName": "nvarchar",
+      "MaxLength": 80,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_SalesStatus",
+      "ColumnName": "IsDocumented",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_SalesStatus",
+      "ColumnName": "IsDemandEligible",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_ScrapReason",
+      "ColumnName": "ScrapReasonKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dw.Dim_ScrapReason",
+      "ColumnName": "ScrapReasonID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_ScrapReason",
+      "ColumnName": "ScrapReasonName",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_ScrapReason",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_ScrapReason",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_UnitMeasure",
+      "ColumnName": "UnitMeasureKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dw.Dim_UnitMeasure",
+      "ColumnName": "UnitMeasureCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 6,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_UnitMeasure",
+      "ColumnName": "UnitMeasureName",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_UnitMeasure",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_UnitMeasure",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Vendor",
+      "ColumnName": "VendorKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dw.Dim_Vendor",
+      "ColumnName": "VendorID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Vendor",
+      "ColumnName": "AccountNumber",
+      "TypeName": "nvarchar",
+      "MaxLength": 30,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Vendor",
+      "ColumnName": "VendorName",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Vendor",
+      "ColumnName": "CreditRating",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Vendor",
+      "ColumnName": "CreditRatingName",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Vendor",
+      "ColumnName": "PreferredVendorStatus",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Vendor",
+      "ColumnName": "ActiveFlag",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Vendor",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Dim_Vendor",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_InventoryOnHand",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_InventoryOnHand",
+      "ColumnName": "LocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_InventoryOnHand",
+      "ColumnName": "AsOfDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_InventoryOnHand",
+      "ColumnName": "Shelf",
+      "TypeName": "nvarchar",
+      "MaxLength": 20,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_InventoryOnHand",
+      "ColumnName": "Bin",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_InventoryOnHand",
+      "ColumnName": "QuantityOnHand",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_InventoryOnHand",
+      "ColumnName": "UnitCostAsOf",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_InventoryOnHand",
+      "ColumnName": "InventoryValue",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 6,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_InventoryOnHand",
+      "ColumnName": "IsNegativeQty",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_InventoryOnHand",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_InventoryOnHand",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "VendorKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "AsOfDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "UnitMeasureKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "AverageLeadTime",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "StandardPrice",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "LastReceiptCost",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "LastReceiptDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "MinOrderQty",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "MaxOrderQty",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "OnOrderQty",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "IsOrderQtyRangeValid",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_ProductVendorTerms",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "PurchaseOrderLineKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "PurchaseOrderID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "PurchaseOrderDetailID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "OrderDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "ExpectedShipDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "ExpectedReceiptDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "VendorKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "PurchaseStatusKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "OrderQty",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "ReceivedQty",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "RejectedQty",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "StockedQty",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "UnitPrice",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "LineTotal",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 6,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "OrderAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "ExpectedShipAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "ExpectedReceiptAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "IsVendorProductDeclared",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "DQReasonCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "DQRuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_PurchaseOrderLine",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "SalesOrderLineKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "SalesOrderID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "SalesOrderDetailID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "OrderDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "DueDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "ShipDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "PromotionKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "SalesStatusKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "CustomerKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "ChannelKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "OrderQty",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "UnitPrice",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "UnitPriceDiscount",
+      "TypeName": "decimal",
+      "MaxLength": 5,
+      "Precision": 9,
+      "Scale": 6,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "LineTotal",
+      "TypeName": "decimal",
+      "MaxLength": 13,
+      "Precision": 28,
+      "Scale": 6,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "OrderAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "DueAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "ShippedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "IsDemandEligible",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "DQReasonCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "DQRuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_SalesOrderLine",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "WorkOrderKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "WorkOrderID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "ScrapReasonKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "StartDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "DueDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "EndDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "ActualStartDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "ActualEndDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "OrderQty",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "StockedQty",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "ScrappedQty",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "PlannedLeadTimeDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "RecordedLeadTimeDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "ActualLeadTimeDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "LateDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "OperationCount",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "TotalActualResourceHrs",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "TotalPlannedCost",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "TotalActualCost",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "StartAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "DueAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "EndAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "ActualStartAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "ActualEndAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "IsComplete",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "DQReasonCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "DQRuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrder",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "WorkOrderOperationKey",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "WorkOrderID",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "OperationSequence",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "LocationKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "ScheduledStartDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "ScheduledEndDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "ActualStartDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "ActualEndDateKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "ScheduledDurationDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "ActualDurationDays",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "ActualResourceHrs",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "PlannedCost",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "ActualCost",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "IsLastOperation",
+      "TypeName": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "DQReasonCode",
+      "TypeName": "nvarchar",
+      "MaxLength": 400,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "DQRuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Fact_WorkOrderOperation",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Ref_ProductPriceHistory",
+      "ColumnName": "ProductKey",
+      "TypeName": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Ref_ProductPriceHistory",
+      "ColumnName": "PriceType",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Ref_ProductPriceHistory",
+      "ColumnName": "StartDate",
+      "TypeName": "date",
+      "MaxLength": 3,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Ref_ProductPriceHistory",
+      "ColumnName": "EndDate",
+      "TypeName": "date",
+      "MaxLength": 3,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Ref_ProductPriceHistory",
+      "ColumnName": "Amount",
+      "TypeName": "decimal",
+      "MaxLength": 9,
+      "Precision": 19,
+      "Scale": 4,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Ref_ProductPriceHistory",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "dw.Ref_ProductPriceHistory",
+      "ColumnName": "LoadedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "CorrectionID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "SourceSystem",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "SourceTable",
+      "TypeName": "nvarchar",
+      "MaxLength": 256,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "SourceRecordKey",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "ColumnName",
+      "TypeName": "nvarchar",
+      "MaxLength": 256,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "OriginalValue",
+      "TypeName": "nvarchar",
+      "MaxLength": -1,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "CorrectedValue",
+      "TypeName": "nvarchar",
+      "MaxLength": -1,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "SourceDataType",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "RuleID",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "RuleVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 100,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "EvidenceTable",
+      "TypeName": "nvarchar",
+      "MaxLength": 256,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "EvidenceRecordKey",
+      "TypeName": "nvarchar",
+      "MaxLength": 2000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.Audit_DataCorrection",
+      "ColumnName": "CorrectedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "LoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "SourceSystem",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "PipelineName",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "ExtractionMode",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "LoadMode",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "ExtractStartedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "ExtractCompletedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "LoadStartedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "LoadCompletedAt",
+      "TypeName": "datetime2",
+      "MaxLength": 8,
+      "Precision": 27,
+      "Scale": 7,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "RuleSetVersion",
+      "TypeName": "nvarchar",
+      "MaxLength": 200,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "Status",
+      "TypeName": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "ValidationStatus",
+      "TypeName": "nvarchar",
+      "MaxLength": 60,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "SourceSnapshotReference",
+      "TypeName": "nvarchar",
+      "MaxLength": 4000,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "ValidationSummary",
+      "TypeName": "nvarchar",
+      "MaxLength": -1,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "ErrorMessage",
+      "TypeName": "nvarchar",
+      "MaxLength": -1,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    },
+    {
+      "TableName": "etl.ETL_LoadBatch",
+      "ColumnName": "RetryOfLoadBatchID",
+      "TypeName": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false
+    }
+  ],
+  "update_note": "2026-11-03: tested optional ACTUAL_START_DATE timing and Gurobi default; database column contract and frozen legacy core unchanged."
+}

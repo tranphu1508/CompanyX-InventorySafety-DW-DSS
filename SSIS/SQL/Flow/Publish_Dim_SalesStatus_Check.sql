@@ -1,0 +1,3 @@
+DECLARE @B bigint=(SELECT BatchId FROM ssis_flow.Context);
+
+IF EXISTS(SELECT [SalesStatusKey],[StatusCode],[StatusName],[IsDocumented],[IsDemandEligible] FROM etl_calc.[Dim_SalesStatus] EXCEPT SELECT [SalesStatusKey],[StatusCode],[StatusName],[IsDocumented],[IsDemandEligible] FROM dw.Dim_SalesStatus) OR EXISTS(SELECT [SalesStatusKey],[StatusCode],[StatusName],[IsDocumented],[IsDemandEligible] FROM dw.Dim_SalesStatus EXCEPT SELECT [SalesStatusKey],[StatusCode],[StatusName],[IsDocumented],[IsDemandEligible] FROM etl_calc.[Dim_SalesStatus]) THROW 51940,N'Projected target mismatch: dw.Dim_SalesStatus',1;

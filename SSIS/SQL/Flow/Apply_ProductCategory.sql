@@ -1,0 +1,13 @@
+DECLARE @B bigint=(SELECT BatchId FROM ssis_flow.Context),@Previous bigint=(SELECT PreviousVersion FROM ssis_flow.Context),@Next bigint=(SELECT NextVersion FROM ssis_flow.Context);
+IF @Previous IS NULL BEGIN
+INSERT etl_raw.[ProductCategory]([ProductCategoryID],[Name],[rowguid],[ModifiedDate],LoadBatchID) SELECT S.[ProductCategoryID],S.[Name],S.[rowguid],S.[ModifiedDate],@B FROM ssis_flow.Delta_ProductCategory S;
+INSERT stg.[ProductCategory]([ProductCategoryID],[Name],[rowguid],[ModifiedDate],LoadBatchID) SELECT [ProductCategoryID],[Name],[rowguid],[ModifiedDate],@B FROM etl_raw.[ProductCategory];
+INSERT etl_v2.SourceChange SELECT @B,N'Production.ProductCategory','I',@Next,(SELECT R.[ProductCategoryID] FOR JSON PATH,WITHOUT_ARRAY_WRAPPER),NULL FROM etl_raw.[ProductCategory] R;
+END ELSE BEGIN
+SELECT [ProductCategoryID],CONVERT(char(1),FlowOperation) SYS_CHANGE_OPERATION,FlowVersion SYS_CHANGE_VERSION INTO #CT_ProductCategory FROM ssis_flow.Delta_ProductCategory;
+INSERT etl_v2.SourceChange SELECT @B,N'Production.ProductCategory',C.SYS_CHANGE_OPERATION,C.SYS_CHANGE_VERSION,(SELECT C.[ProductCategoryID] FOR JSON PATH,WITHOUT_ARRAY_WRAPPER),(SELECT R.* FOR JSON PATH,WITHOUT_ARRAY_WRAPPER,INCLUDE_NULL_VALUES) FROM #CT_ProductCategory C LEFT JOIN etl_raw.[ProductCategory] R ON R.[ProductCategoryID]=C.[ProductCategoryID];
+DELETE R FROM etl_raw.[ProductCategory] R JOIN #CT_ProductCategory C ON R.[ProductCategoryID]=C.[ProductCategoryID] WHERE C.SYS_CHANGE_OPERATION='D';
+UPDATE R SET R.[Name]=S.[Name],R.[rowguid]=S.[rowguid],R.[ModifiedDate]=S.[ModifiedDate],R.LoadBatchID=@B FROM etl_raw.[ProductCategory] R JOIN #CT_ProductCategory C ON R.[ProductCategoryID]=C.[ProductCategoryID] JOIN ssis_flow.Delta_ProductCategory S ON S.[ProductCategoryID]=C.[ProductCategoryID] WHERE C.SYS_CHANGE_OPERATION<>'D';
+INSERT etl_raw.[ProductCategory]([ProductCategoryID],[Name],[rowguid],[ModifiedDate],LoadBatchID) SELECT S.[ProductCategoryID],S.[Name],S.[rowguid],S.[ModifiedDate],@B FROM #CT_ProductCategory C JOIN ssis_flow.Delta_ProductCategory S ON S.[ProductCategoryID]=C.[ProductCategoryID] WHERE C.SYS_CHANGE_OPERATION<>'D' AND NOT EXISTS(SELECT 1 FROM etl_raw.[ProductCategory] R WHERE R.[ProductCategoryID]=S.[ProductCategoryID]);
+INSERT stg.[ProductCategory]([ProductCategoryID],[Name],[rowguid],[ModifiedDate],LoadBatchID) SELECT R.[ProductCategoryID],R.[Name],R.[rowguid],R.[ModifiedDate],@B FROM etl_raw.[ProductCategory] R JOIN #CT_ProductCategory C ON R.[ProductCategoryID]=C.[ProductCategoryID] WHERE C.SYS_CHANGE_OPERATION<>'D';
+END;

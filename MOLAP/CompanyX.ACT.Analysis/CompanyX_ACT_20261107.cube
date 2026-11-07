@@ -1,0 +1,1288 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Cube xmlns="http://schemas.microsoft.com/analysisservices/2003/engine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <ID>CompanyX_ACT_20261107</ID>
+          <Name>CompanyX ACT</Name>
+          <Description>Actual sales, purchasing, inventory and production analytics; separate technical input contract for DSS.</Description>
+          <Annotations>
+            <Annotation>
+              <Name>InventoryReportingDateRule</Name>
+              <Value>G03_MAX_ACTIVITY_DATE_ASSUMED; see source audit</Value>
+            </Annotation>
+          </Annotations>
+          <Dimensions>
+            <Dimension><ID>Location</ID><Name>Location</Name><DimensionID>Location</DimensionID><Attributes><Attribute><AttributeID>Location</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes></Dimension><Dimension><ID>Vendor</ID><Name>Vendor</Name><DimensionID>Vendor</DimensionID><Attributes><Attribute><AttributeID>Vendor</AttributeID></Attribute><Attribute><AttributeID>Credit Rating</AttributeID></Attribute><Attribute><AttributeID>Vendor ID</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes></Dimension><Dimension>
+              <ID>Channel</ID>
+              <Name>Channel</Name>
+              <DimensionID>Channel</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Channel</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>Sales Document Status</ID>
+              <Name>Sales Document Status</Name>
+              <DimensionID>Sales Document Status</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Status</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>Purchase Document Status</ID>
+              <Name>Purchase Document Status</Name>
+              <DimensionID>Purchase Document Status</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Status</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension><ID>Due Date</ID><Name>Due Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Order Date</ID><Name>Order Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Recorded Ship Date</ID><Name>Recorded Ship Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Expected Ship Date</ID><Name>Expected Ship Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Expected Receipt Date</ID><Name>Expected Receipt Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Inventory Snapshot Date</ID><Name>Inventory Snapshot Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Planned Start Date</ID><Name>Planned Start Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Recorded End Date</ID><Name>Recorded End Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Actual Start Date</ID><Name>Actual Start Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Actual End Date</ID><Name>Actual End Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Scheduled Start Date</ID><Name>Scheduled Start Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Scheduled End Date</ID><Name>Scheduled End Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Sales Line</ID><Name>Sales Line</Name><DimensionID>Sales Line</DimensionID><Attributes><Attribute><AttributeID>Sales Line</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes></Dimension><Dimension><ID>Product</ID><Name>Product</Name><DimensionID>Product</DimensionID><Attributes><Attribute><AttributeID>Product</AttributeID></Attribute><Attribute><AttributeID>Category</AttributeID></Attribute><Attribute><AttributeID>Subcategory</AttributeID></Attribute><Attribute><AttributeID>Supply Type</AttributeID></Attribute><Attribute><AttributeID>Product Role</AttributeID></Attribute><Attribute><AttributeID>Manufactured</AttributeID></Attribute><Attribute><AttributeID>ProductID</AttributeID></Attribute><Attribute><AttributeID>ProductNumber</AttributeID></Attribute><Attribute><AttributeID>ProductName</AttributeID></Attribute><Attribute><AttributeID>ProductModelID</AttributeID></Attribute><Attribute><AttributeID>FinishedGoodsFlag</AttributeID></Attribute><Attribute><AttributeID>IsBOMAssembly</AttributeID></Attribute><Attribute><AttributeID>IsBOMComponent</AttributeID></Attribute><Attribute><AttributeID>Color</AttributeID></Attribute><Attribute><AttributeID>Size</AttributeID></Attribute><Attribute><AttributeID>SizeUnitName</AttributeID></Attribute><Attribute><AttributeID>Weight</AttributeID></Attribute><Attribute><AttributeID>WeightUnitName</AttributeID></Attribute><Attribute><AttributeID>ProductLine</AttributeID></Attribute><Attribute><AttributeID>ProductLineName</AttributeID></Attribute><Attribute><AttributeID>Class</AttributeID></Attribute><Attribute><AttributeID>ClassName</AttributeID></Attribute><Attribute><AttributeID>Style</AttributeID></Attribute><Attribute><AttributeID>StyleName</AttributeID></Attribute><Attribute><AttributeID>DaysToManufacture</AttributeID></Attribute><Attribute><AttributeID>SafetyStockLevel</AttributeID></Attribute><Attribute><AttributeID>ReorderPoint</AttributeID></Attribute><Attribute><AttributeID>StandardCost</AttributeID></Attribute><Attribute><AttributeID>ListPrice</AttributeID></Attribute><Attribute><AttributeID>SellStartDate</AttributeID></Attribute><Attribute><AttributeID>SellEndDate</AttributeID></Attribute><Attribute><AttributeID>DiscontinuedDate</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Products</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>BOM Line</ID><Name>BOM Line</Name><DimensionID>BOM Line</DimensionID><Attributes><Attribute><AttributeID>BOM Line</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes></Dimension><Dimension><ID>Assembly Product</ID><Name>Assembly Product</Name><DimensionID>Product</DimensionID><Attributes><Attribute><AttributeID>Product</AttributeID></Attribute><Attribute><AttributeID>Category</AttributeID></Attribute><Attribute><AttributeID>Subcategory</AttributeID></Attribute><Attribute><AttributeID>Supply Type</AttributeID></Attribute><Attribute><AttributeID>Product Role</AttributeID></Attribute><Attribute><AttributeID>Manufactured</AttributeID></Attribute><Attribute><AttributeID>ProductID</AttributeID></Attribute><Attribute><AttributeID>ProductNumber</AttributeID></Attribute><Attribute><AttributeID>ProductName</AttributeID></Attribute><Attribute><AttributeID>ProductModelID</AttributeID></Attribute><Attribute><AttributeID>FinishedGoodsFlag</AttributeID></Attribute><Attribute><AttributeID>IsBOMAssembly</AttributeID></Attribute><Attribute><AttributeID>IsBOMComponent</AttributeID></Attribute><Attribute><AttributeID>Color</AttributeID></Attribute><Attribute><AttributeID>Size</AttributeID></Attribute><Attribute><AttributeID>SizeUnitName</AttributeID></Attribute><Attribute><AttributeID>Weight</AttributeID></Attribute><Attribute><AttributeID>WeightUnitName</AttributeID></Attribute><Attribute><AttributeID>ProductLine</AttributeID></Attribute><Attribute><AttributeID>ProductLineName</AttributeID></Attribute><Attribute><AttributeID>Class</AttributeID></Attribute><Attribute><AttributeID>ClassName</AttributeID></Attribute><Attribute><AttributeID>Style</AttributeID></Attribute><Attribute><AttributeID>StyleName</AttributeID></Attribute><Attribute><AttributeID>DaysToManufacture</AttributeID></Attribute><Attribute><AttributeID>SafetyStockLevel</AttributeID></Attribute><Attribute><AttributeID>ReorderPoint</AttributeID></Attribute><Attribute><AttributeID>StandardCost</AttributeID></Attribute><Attribute><AttributeID>ListPrice</AttributeID></Attribute><Attribute><AttributeID>SellStartDate</AttributeID></Attribute><Attribute><AttributeID>SellEndDate</AttributeID></Attribute><Attribute><AttributeID>DiscontinuedDate</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Products</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Component Product</ID><Name>Component Product</Name><DimensionID>Product</DimensionID><Attributes><Attribute><AttributeID>Product</AttributeID></Attribute><Attribute><AttributeID>Category</AttributeID></Attribute><Attribute><AttributeID>Subcategory</AttributeID></Attribute><Attribute><AttributeID>Supply Type</AttributeID></Attribute><Attribute><AttributeID>Product Role</AttributeID></Attribute><Attribute><AttributeID>Manufactured</AttributeID></Attribute><Attribute><AttributeID>ProductID</AttributeID></Attribute><Attribute><AttributeID>ProductNumber</AttributeID></Attribute><Attribute><AttributeID>ProductName</AttributeID></Attribute><Attribute><AttributeID>ProductModelID</AttributeID></Attribute><Attribute><AttributeID>FinishedGoodsFlag</AttributeID></Attribute><Attribute><AttributeID>IsBOMAssembly</AttributeID></Attribute><Attribute><AttributeID>IsBOMComponent</AttributeID></Attribute><Attribute><AttributeID>Color</AttributeID></Attribute><Attribute><AttributeID>Size</AttributeID></Attribute><Attribute><AttributeID>SizeUnitName</AttributeID></Attribute><Attribute><AttributeID>Weight</AttributeID></Attribute><Attribute><AttributeID>WeightUnitName</AttributeID></Attribute><Attribute><AttributeID>ProductLine</AttributeID></Attribute><Attribute><AttributeID>ProductLineName</AttributeID></Attribute><Attribute><AttributeID>Class</AttributeID></Attribute><Attribute><AttributeID>ClassName</AttributeID></Attribute><Attribute><AttributeID>Style</AttributeID></Attribute><Attribute><AttributeID>StyleName</AttributeID></Attribute><Attribute><AttributeID>DaysToManufacture</AttributeID></Attribute><Attribute><AttributeID>SafetyStockLevel</AttributeID></Attribute><Attribute><AttributeID>ReorderPoint</AttributeID></Attribute><Attribute><AttributeID>StandardCost</AttributeID></Attribute><Attribute><AttributeID>ListPrice</AttributeID></Attribute><Attribute><AttributeID>SellStartDate</AttributeID></Attribute><Attribute><AttributeID>SellEndDate</AttributeID></Attribute><Attribute><AttributeID>DiscontinuedDate</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Products</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Cost Period</ID><Name>Cost Period</Name><DimensionID>Cost Period</DimensionID><Attributes><Attribute><AttributeID>Cost Period</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes></Dimension><Dimension><ID>Demand Rule</ID><Name>Demand Rule</Name><DimensionID>Demand Rule</DimensionID><Attributes><Attribute><AttributeID>Demand Rule</AttributeID></Attribute></Attributes></Dimension><Dimension><ID>Demand Date</ID><Name>Demand Date</Name><DimensionID>Date</DimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><ID>Unit</ID><Name>Unit</Name><DimensionID>Unit</DimensionID><Attributes><Attribute><AttributeID>Unit</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes></Dimension></Dimensions>
+          <DefaultMeasure>[Measures].[Actual Sales Line Count]</DefaultMeasure>
+          <MeasureGroups>
+            <MeasureGroup>
+              <ID>ActualSales</ID>
+              <Name>ActualSales</Name>
+              <Measures>
+                <Measure>
+                  <ID>Actual Sales Line Count</ID>
+                  <Name>Actual Sales Line Count</Name>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactSales</TableID>
+                      <ColumnID>LineCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Sales</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Sales Eligible Line Count</ID>
+                  <Name>Actual Sales Eligible Line Count</Name>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactSales</TableID>
+                      <ColumnID>EligibleLineCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Sales</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Sales Line Amount</ID>
+                  <Name>Actual Sales Line Amount</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactSales</TableID>
+                      <ColumnID>LineTotal</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Sales</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Sales Eligible Line Amount</ID>
+                  <Name>Actual Sales Eligible Line Amount</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactSales</TableID>
+                      <ColumnID>EligibleLineAmount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Sales</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Sales Ship Date Observed Lines</ID>
+                  <Name>Actual Sales Ship Date Observed Lines</Name>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactSales</TableID>
+                      <ColumnID>ShipDateObservedLineCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Sales</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Sales Recorded Ship By Due Lines</ID>
+                  <Name>Actual Sales Recorded Ship By Due Lines</Name>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactSales</TableID>
+                      <ColumnID>RecordedShipByDueLineCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Sales</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Sales Recorded Ship Lag Days Sum</ID>
+                  <Name>Actual Sales Recorded Ship Lag Days Sum</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactSales</TableID>
+                      <ColumnID>RecordedShipLagDaysSum</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Sales</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Sales Order Count</ID>
+                  <Name>Actual Sales Order Count</Name>
+                  <AggregateFunction>DistinctCount</AggregateFunction>
+                  <Source>
+                    <DataType>Integer</DataType>
+                    <NullProcessing>Error</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactSales</TableID>
+                      <ColumnID>SalesOrderID</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Sales</DisplayFolder>
+                  <FormatString>#,##0</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Raw Actual Sales Ordered Source Qty</ID>
+                  <Name>Raw Actual Sales Ordered Source Qty</Name>
+                  <Source>
+                    <DataType>Integer</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactSales</TableID>
+                      <ColumnID>OrderQty</ColumnID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                  <DisplayFolder>Operations\Sales</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Raw Actual Sales Eligible Source Qty</ID>
+                  <Name>Raw Actual Sales Eligible Source Qty</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactSales</TableID>
+                      <ColumnID>EligibleOrderQty</ColumnID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                  <DisplayFolder>Operations\Sales</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                </Measures>
+              <StorageMode>Molap</StorageMode>
+              <IgnoreUnrelatedDimensions>false</IgnoreUnrelatedDimensions>
+              <ErrorConfiguration>
+                <KeyNotFound>ReportAndStop</KeyNotFound>
+                <NullKeyConvertedToUnknown>ReportAndStop</NullKeyConvertedToUnknown>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Sales Document Status</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Status</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactSales</TableID>
+                            <ColumnID>SalesStatusKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Product</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Product</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactSales</TableID>
+                            <ColumnID>ProductKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Due Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactSales</TableID>
+                            <ColumnID>DueDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Order Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactSales</TableID>
+                            <ColumnID>OrderDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Channel</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Channel</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactSales</TableID>
+                            <ColumnID>ChannelKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Recorded Ship Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactSales</TableID>
+                            <ColumnID>ShipDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension"><CubeDimensionID>Sales Line</CubeDimensionID><Attributes><Attribute><AttributeID>Sales Line</AttributeID><KeyColumns><KeyColumn><DataType>BigInt</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>OpsFactSales</TableID><ColumnID>SalesOrderLineKey</ColumnID></Source></KeyColumn></KeyColumns><Type>Granularity</Type></Attribute></Attributes></Dimension></Dimensions>
+              </MeasureGroup>
+            <MeasureGroup>
+              <ID>ActualPurchases</ID>
+              <Name>ActualPurchases</Name>
+              <Measures>
+                <Measure>
+                  <ID>Actual Purchase Line Count</ID>
+                  <Name>Actual Purchase Line Count</Name>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactPurchases</TableID>
+                      <ColumnID>LineCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Purchases</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Purchase Declared Vendor Lines</ID>
+                  <Name>Actual Purchase Declared Vendor Lines</Name>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactPurchases</TableID>
+                      <ColumnID>DeclaredVendorProductLineCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Purchases</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Purchase Line Amount</ID>
+                  <Name>Actual Purchase Line Amount</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactPurchases</TableID>
+                      <ColumnID>LineTotal</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Purchases</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Purchase Order Count</ID>
+                  <Name>Actual Purchase Order Count</Name>
+                  <AggregateFunction>DistinctCount</AggregateFunction>
+                  <Source>
+                    <DataType>Integer</DataType>
+                    <NullProcessing>Error</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactPurchases</TableID>
+                      <ColumnID>PurchaseOrderID</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Purchases</DisplayFolder>
+                  <FormatString>#,##0</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Raw Actual Purchase Ordered Source Qty</ID>
+                  <Name>Raw Actual Purchase Ordered Source Qty</Name>
+                  <Source>
+                    <DataType>Integer</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactPurchases</TableID>
+                      <ColumnID>OrderQty</ColumnID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                  <DisplayFolder>Operations\Purchases</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Raw Actual Purchase Received Source Qty</ID>
+                  <Name>Raw Actual Purchase Received Source Qty</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactPurchases</TableID>
+                      <ColumnID>ReceivedQty</ColumnID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                  <DisplayFolder>Operations\Purchases</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Raw Actual Purchase Rejected Source Qty</ID>
+                  <Name>Raw Actual Purchase Rejected Source Qty</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactPurchases</TableID>
+                      <ColumnID>RejectedQty</ColumnID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                  <DisplayFolder>Operations\Purchases</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Raw Actual Purchase Stocked Source Qty</ID>
+                  <Name>Raw Actual Purchase Stocked Source Qty</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactPurchases</TableID>
+                      <ColumnID>StockedQty</ColumnID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                  <DisplayFolder>Operations\Purchases</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                </Measures>
+              <StorageMode>Molap</StorageMode>
+              <IgnoreUnrelatedDimensions>false</IgnoreUnrelatedDimensions>
+              <ErrorConfiguration>
+                <KeyNotFound>ReportAndStop</KeyNotFound>
+                <NullKeyConvertedToUnknown>ReportAndStop</NullKeyConvertedToUnknown>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Expected Receipt Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactPurchases</TableID>
+                            <ColumnID>ExpectedReceiptDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Expected Ship Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactPurchases</TableID>
+                            <ColumnID>ExpectedShipDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Purchase Document Status</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Status</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactPurchases</TableID>
+                            <ColumnID>PurchaseStatusKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Order Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactPurchases</TableID>
+                            <ColumnID>OrderDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Product</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Product</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactPurchases</TableID>
+                            <ColumnID>ProductKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Vendor</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Vendor</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactPurchases</TableID>
+                            <ColumnID>VendorKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+              </MeasureGroup>
+            <MeasureGroup>
+              <ID>ActualInventory</ID>
+              <Name>ActualInventory</Name>
+              <Measures>
+                <Measure>
+                  <ID>Actual Inventory Value</ID>
+                  <Name>Actual Inventory Value</Name>
+                  <AggregateFunction>LastNonEmpty</AggregateFunction>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactInventory</TableID>
+                      <ColumnID>InventoryValue</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Inventory</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Inventory Position Count</ID>
+                  <Name>Actual Inventory Position Count</Name>
+                  <AggregateFunction>LastNonEmpty</AggregateFunction>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactInventory</TableID>
+                      <ColumnID>PositionCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Inventory</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Inventory Negative Positions</ID>
+                  <Name>Actual Inventory Negative Positions</Name>
+                  <AggregateFunction>LastNonEmpty</AggregateFunction>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactInventory</TableID>
+                      <ColumnID>NegativePositionCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Inventory</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Inventory Zero Cost Positions</ID>
+                  <Name>Actual Inventory Zero Cost Positions</Name>
+                  <AggregateFunction>LastNonEmpty</AggregateFunction>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactInventory</TableID>
+                      <ColumnID>ZeroCostPositionCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Inventory</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Inventory Positive Cost Positions</ID>
+                  <Name>Actual Inventory Positive Cost Positions</Name>
+                  <AggregateFunction>LastNonEmpty</AggregateFunction>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactInventory</TableID>
+                      <ColumnID>PositiveCostPositionCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Inventory</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Raw Actual Inventory Source Qty</ID>
+                  <Name>Raw Actual Inventory Source Qty</Name>
+                  <AggregateFunction>LastNonEmpty</AggregateFunction>
+                  <Source>
+                    <DataType>Integer</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactInventory</TableID>
+                      <ColumnID>QuantityOnHand</ColumnID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                  <DisplayFolder>Operations\Inventory</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                </Measures>
+              <StorageMode>Molap</StorageMode>
+              <IgnoreUnrelatedDimensions>false</IgnoreUnrelatedDimensions>
+              <ErrorConfiguration>
+                <KeyNotFound>ReportAndStop</KeyNotFound>
+                <NullKeyConvertedToUnknown>ReportAndStop</NullKeyConvertedToUnknown>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Product</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Product</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactInventory</TableID>
+                            <ColumnID>ProductKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Location</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Location</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactInventory</TableID>
+                            <ColumnID>LocationKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Inventory Snapshot Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactInventory</TableID>
+                            <ColumnID>SnapshotDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                </Dimensions>
+              </MeasureGroup>
+            <MeasureGroup>
+              <ID>ActualWorkOrders</ID>
+              <Name>ActualWorkOrders</Name>
+              <Measures>
+                <Measure>
+                  <ID>Actual WorkOrder Count</ID>
+                  <Name>Actual WorkOrder Count</Name>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactWorkOrders</TableID>
+                      <ColumnID>WorkOrderCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\WorkOrders</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual WorkOrder Complete Count</ID>
+                  <Name>Actual WorkOrder Complete Count</Name>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactWorkOrders</TableID>
+                      <ColumnID>CompleteCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\WorkOrders</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual WorkOrder Lead Observed Count</ID>
+                  <Name>Actual WorkOrder Lead Observed Count</Name>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactWorkOrders</TableID>
+                      <ColumnID>ActualLeadObservedCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\WorkOrders</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual WorkOrder Lead Days Sum</ID>
+                  <Name>Actual WorkOrder Lead Days Sum</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactWorkOrders</TableID>
+                      <ColumnID>ActualLeadDaysSum</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\WorkOrders</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual WorkOrder Late Complete Count</ID>
+                  <Name>Actual WorkOrder Late Complete Count</Name>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactWorkOrders</TableID>
+                      <ColumnID>LateCompleteCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\WorkOrders</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual WorkOrder Late Days Sum</ID>
+                  <Name>Actual WorkOrder Late Days Sum</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactWorkOrders</TableID>
+                      <ColumnID>LateDaysSum</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\WorkOrders</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual WorkOrder Planned Cost</ID>
+                  <Name>Actual WorkOrder Planned Cost</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactWorkOrders</TableID>
+                      <ColumnID>TotalPlannedCost</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\WorkOrders</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual WorkOrder Recorded Cost</ID>
+                  <Name>Actual WorkOrder Recorded Cost</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactWorkOrders</TableID>
+                      <ColumnID>TotalActualCost</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\WorkOrders</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual WorkOrder Resource Hours</ID>
+                  <Name>Actual WorkOrder Resource Hours</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactWorkOrders</TableID>
+                      <ColumnID>TotalActualResourceHrs</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\WorkOrders</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Raw Actual WorkOrder Ordered Source Qty</ID>
+                  <Name>Raw Actual WorkOrder Ordered Source Qty</Name>
+                  <Source>
+                    <DataType>Integer</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactWorkOrders</TableID>
+                      <ColumnID>OrderQty</ColumnID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                  <DisplayFolder>Operations\WorkOrders</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Raw Actual WorkOrder Stocked Source Qty</ID>
+                  <Name>Raw Actual WorkOrder Stocked Source Qty</Name>
+                  <Source>
+                    <DataType>Integer</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactWorkOrders</TableID>
+                      <ColumnID>StockedQty</ColumnID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                  <DisplayFolder>Operations\WorkOrders</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Raw Actual WorkOrder Scrapped Source Qty</ID>
+                  <Name>Raw Actual WorkOrder Scrapped Source Qty</Name>
+                  <Source>
+                    <DataType>Integer</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactWorkOrders</TableID>
+                      <ColumnID>ScrappedQty</ColumnID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                  <DisplayFolder>Operations\WorkOrders</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                </Measures>
+              <StorageMode>Molap</StorageMode>
+              <IgnoreUnrelatedDimensions>false</IgnoreUnrelatedDimensions>
+              <ErrorConfiguration>
+                <KeyNotFound>ReportAndStop</KeyNotFound>
+                <NullKeyConvertedToUnknown>ReportAndStop</NullKeyConvertedToUnknown>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Planned Start Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactWorkOrders</TableID>
+                            <ColumnID>PlannedStartDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Recorded End Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactWorkOrders</TableID>
+                            <ColumnID>RecordedEndDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Due Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactWorkOrders</TableID>
+                            <ColumnID>DueDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Actual End Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactWorkOrders</TableID>
+                            <ColumnID>ActualEndDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Product</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Product</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactWorkOrders</TableID>
+                            <ColumnID>ProductKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Actual Start Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactWorkOrders</TableID>
+                            <ColumnID>ActualStartDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+              </MeasureGroup>
+            <MeasureGroup>
+              <ID>ActualOperations</ID>
+              <Name>ActualOperations</Name>
+              <Measures>
+                <Measure>
+                  <ID>Actual Operation Count</ID>
+                  <Name>Actual Operation Count</Name>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactOperations</TableID>
+                      <ColumnID>OperationCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Operations</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Operation Duration Observed Count</ID>
+                  <Name>Actual Operation Duration Observed Count</Name>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactOperations</TableID>
+                      <ColumnID>DurationObservedCount</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Operations</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Operation Duration Days Sum</ID>
+                  <Name>Actual Operation Duration Days Sum</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactOperations</TableID>
+                      <ColumnID>ActualDurationDaysSum</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Operations</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Operation Resource Hours</ID>
+                  <Name>Actual Operation Resource Hours</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactOperations</TableID>
+                      <ColumnID>ActualResourceHrs</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Operations</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Operation Planned Cost</ID>
+                  <Name>Actual Operation Planned Cost</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactOperations</TableID>
+                      <ColumnID>PlannedCost</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Operations</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Operation Recorded Cost</ID>
+                  <Name>Actual Operation Recorded Cost</Name>
+                  <Source>
+                    <DataType>Double</DataType>
+                    <NullProcessing>Preserve</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactOperations</TableID>
+                      <ColumnID>ActualCost</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Operations</DisplayFolder>
+                  <FormatString>#,##0.00</FormatString>
+                </Measure>
+                <Measure>
+                  <ID>Actual Operations Distinct WorkOrder Count</ID>
+                  <Name>Actual Operations Distinct WorkOrder Count</Name>
+                  <AggregateFunction>DistinctCount</AggregateFunction>
+                  <Source>
+                    <DataType>Integer</DataType>
+                    <NullProcessing>Error</NullProcessing>
+                    <Source xsi:type="ColumnBinding">
+                      <TableID>OpsFactOperations</TableID>
+                      <ColumnID>WorkOrderID</ColumnID>
+                    </Source>
+                  </Source>
+                  <DisplayFolder>Operations\Operations</DisplayFolder>
+                  <FormatString>#,##0</FormatString>
+                </Measure>
+              </Measures>
+              <StorageMode>Molap</StorageMode>
+              <IgnoreUnrelatedDimensions>false</IgnoreUnrelatedDimensions>
+              <ErrorConfiguration>
+                <KeyNotFound>ReportAndStop</KeyNotFound>
+                <NullKeyConvertedToUnknown>ReportAndStop</NullKeyConvertedToUnknown>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Actual End Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactOperations</TableID>
+                            <ColumnID>ActualEndDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Scheduled Start Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactOperations</TableID>
+                            <ColumnID>ScheduledStartDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Location</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Location</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactOperations</TableID>
+                            <ColumnID>LocationKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Product</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Product</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactOperations</TableID>
+                            <ColumnID>ProductKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Scheduled End Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactOperations</TableID>
+                            <ColumnID>ScheduledEndDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension xsi:type="RegularMeasureGroupDimension">
+                  <CubeDimensionID>Actual Start Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>OpsFactOperations</TableID>
+                            <ColumnID>ActualStartDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+              </MeasureGroup>
+          <MeasureGroup><ID>ActualBOM</ID><Name>ActualBOM</Name><Measures><Measure><ID>Actual BOM Relationship Count</ID><Name>Actual BOM Relationship Count</Name><Source><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_BillOfMaterials</TableID><ColumnID>RelationshipCount</ColumnID></Source></Source><DisplayFolder>Operations\Planning master data</DisplayFolder></Measure></Measures><StorageMode>Molap</StorageMode><IgnoreUnrelatedDimensions>false</IgnoreUnrelatedDimensions><Dimensions><Dimension xsi:type="DegenerateMeasureGroupDimension"><CubeDimensionID>BOM Line</CubeDimensionID><Attributes><Attribute><AttributeID>BOM Line</AttributeID><KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_BillOfMaterials</TableID><ColumnID>BOMKey</ColumnID></Source></KeyColumn></KeyColumns><Type>Granularity</Type></Attribute></Attributes></Dimension><Dimension xsi:type="RegularMeasureGroupDimension"><CubeDimensionID>Assembly Product</CubeDimensionID><Attributes><Attribute><AttributeID>Product</AttributeID><KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_BillOfMaterials</TableID><ColumnID>AssemblyProductKey</ColumnID></Source></KeyColumn></KeyColumns><Type>Granularity</Type></Attribute></Attributes></Dimension><Dimension xsi:type="RegularMeasureGroupDimension"><CubeDimensionID>Component Product</CubeDimensionID><Attributes><Attribute><AttributeID>Product</AttributeID><KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_BillOfMaterials</TableID><ColumnID>ComponentProductKey</ColumnID></Source></KeyColumn></KeyColumns><Type>Granularity</Type></Attribute></Attributes></Dimension><Dimension xsi:type="RegularMeasureGroupDimension"><CubeDimensionID>Unit</CubeDimensionID><Attributes><Attribute><AttributeID>Unit</AttributeID><KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_BillOfMaterials</TableID><ColumnID>UnitMeasureKey</ColumnID></Source></KeyColumn></KeyColumns><Type>Granularity</Type></Attribute></Attributes></Dimension></Dimensions></MeasureGroup><MeasureGroup><ID>ActualProductCostHistory</ID><Name>ActualProductCostHistory</Name><Measures><Measure><ID>Actual Cost Period Count</ID><Name>Actual Cost Period Count</Name><Source><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_ProductCostHistory</TableID><ColumnID>PeriodCount</ColumnID></Source></Source><DisplayFolder>Operations\Planning master data</DisplayFolder></Measure></Measures><StorageMode>Molap</StorageMode><IgnoreUnrelatedDimensions>false</IgnoreUnrelatedDimensions><Dimensions><Dimension xsi:type="DegenerateMeasureGroupDimension"><CubeDimensionID>Cost Period</CubeDimensionID><Attributes><Attribute><AttributeID>Cost Period</AttributeID><KeyColumns><KeyColumn><DataType>WChar</DataType><DataSize>70</DataSize><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_ProductCostHistory</TableID><ColumnID>CostPeriodKey</ColumnID></Source></KeyColumn></KeyColumns><Type>Granularity</Type></Attribute></Attributes></Dimension><Dimension xsi:type="RegularMeasureGroupDimension"><CubeDimensionID>Product</CubeDimensionID><Attributes><Attribute><AttributeID>Product</AttributeID><KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_ProductCostHistory</TableID><ColumnID>ProductKey</ColumnID></Source></KeyColumn></KeyColumns><Type>Granularity</Type></Attribute></Attributes></Dimension></Dimensions></MeasureGroup><MeasureGroup><ID>ActualDemandDaily</ID><Name>ActualDemandDaily</Name><Measures><Measure><ID>Raw Actual Demand Product Day Count</ID><Name>Raw Actual Demand Product Day Count</Name><Source><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_DemandDaily</TableID><ColumnID>ProductDayCount</ColumnID></Source></Source><DisplayFolder>Operations\Demand Daily</DisplayFolder><Visible>false</Visible></Measure><Measure><ID>Raw Actual Independent Demand Qty</ID><Name>Raw Actual Independent Demand Qty</Name><Source><DataType>Double</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_DemandDaily</TableID><ColumnID>IndependentQty</ColumnID></Source></Source><DisplayFolder>Operations\Demand Daily</DisplayFolder><Visible>false</Visible></Measure><Measure><ID>Raw Actual Dependent Demand Qty</ID><Name>Raw Actual Dependent Demand Qty</Name><Source><DataType>Double</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_DemandDaily</TableID><ColumnID>DependentQty</ColumnID></Source></Source><DisplayFolder>Operations\Demand Daily</DisplayFolder><Visible>false</Visible></Measure><Measure><ID>Raw Actual Total Demand Qty</ID><Name>Raw Actual Total Demand Qty</Name><Source><DataType>Double</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_DemandDaily</TableID><ColumnID>TotalDemandQty</ColumnID></Source></Source><DisplayFolder>Operations\Demand Daily</DisplayFolder><Visible>false</Visible></Measure><Measure><ID>Raw Actual Demand Eligible Sales Line Count</ID><Name>Raw Actual Demand Eligible Sales Line Count</Name><Source><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_DemandDaily</TableID><ColumnID>EligibleSalesLineCount</ColumnID></Source></Source><DisplayFolder>Operations\Demand Daily</DisplayFolder><Visible>false</Visible></Measure><Measure><ID>Raw Actual Demand Excluded Sales Line Count</ID><Name>Raw Actual Demand Excluded Sales Line Count</Name><Source><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_DemandDaily</TableID><ColumnID>ExcludedSalesLineCount</ColumnID></Source></Source><DisplayFolder>Operations\Demand Daily</DisplayFolder><Visible>false</Visible></Measure><Measure><ID>Raw Actual Demand Parent Work Order Count</ID><Name>Raw Actual Demand Parent Work Order Count</Name><Source><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_DemandDaily</TableID><ColumnID>ParentWorkOrderCount</ColumnID></Source></Source><DisplayFolder>Operations\Demand Daily</DisplayFolder><Visible>false</Visible></Measure></Measures><StorageMode>Molap</StorageMode><IgnoreUnrelatedDimensions>false</IgnoreUnrelatedDimensions><Dimensions><Dimension xsi:type="RegularMeasureGroupDimension"><CubeDimensionID>Product</CubeDimensionID><Attributes><Attribute><AttributeID>Product</AttributeID><KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_DemandDaily</TableID><ColumnID>ProductKey</ColumnID></Source></KeyColumn></KeyColumns><Type>Granularity</Type></Attribute></Attributes></Dimension><Dimension xsi:type="RegularMeasureGroupDimension"><CubeDimensionID>Demand Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID><KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_DemandDaily</TableID><ColumnID>DateKey</ColumnID></Source></KeyColumn></KeyColumns><Type>Granularity</Type></Attribute></Attributes></Dimension><Dimension xsi:type="RegularMeasureGroupDimension"><CubeDimensionID>Demand Rule</CubeDimensionID><Attributes><Attribute><AttributeID>Demand Rule</AttributeID><KeyColumns><KeyColumn><DataType>WChar</DataType><DataSize>50</DataSize><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>ACT_DemandDaily</TableID><ColumnID>DemandRuleVersion</ColumnID></Source></KeyColumn></KeyColumns><Type>Granularity</Type></Attribute></Attributes></Dimension></Dimensions></MeasureGroup></MeasureGroups>
+          <Source>
+            <DataSourceViewID>CompanyXSourceView</DataSourceViewID>
+          </Source>
+          <MdxScripts>
+            <MdxScript>
+              <ID>Calculations</ID>
+              <Name>Calculations</Name>
+              <Commands><Command><Text>CALCULATE;
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Sales Ordered Source Qty] AS ([Measures].[Raw Actual Sales Ordered Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Sales', ASSOCIATED_MEASURE_GROUP='ActualSales';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Sales Eligible Source Qty] AS ([Measures].[Raw Actual Sales Eligible Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Sales', ASSOCIATED_MEASURE_GROUP='ActualSales';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Purchase Ordered Source Qty] AS ([Measures].[Raw Actual Purchase Ordered Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Purchases', ASSOCIATED_MEASURE_GROUP='ActualPurchases';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Purchase Received Source Qty] AS ([Measures].[Raw Actual Purchase Received Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Purchases', ASSOCIATED_MEASURE_GROUP='ActualPurchases';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Purchase Rejected Source Qty] AS ([Measures].[Raw Actual Purchase Rejected Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Purchases', ASSOCIATED_MEASURE_GROUP='ActualPurchases';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Purchase Stocked Source Qty] AS ([Measures].[Raw Actual Purchase Stocked Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Purchases', ASSOCIATED_MEASURE_GROUP='ActualPurchases';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Inventory Source Qty] AS ([Measures].[Raw Actual Inventory Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Inventory', ASSOCIATED_MEASURE_GROUP='ActualInventory';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual WorkOrder Ordered Source Qty] AS ([Measures].[Raw Actual WorkOrder Ordered Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\WorkOrders', ASSOCIATED_MEASURE_GROUP='ActualWorkOrders';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual WorkOrder Stocked Source Qty] AS ([Measures].[Raw Actual WorkOrder Stocked Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\WorkOrders', ASSOCIATED_MEASURE_GROUP='ActualWorkOrders';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual WorkOrder Scrapped Source Qty] AS ([Measures].[Raw Actual WorkOrder Scrapped Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\WorkOrders', ASSOCIATED_MEASURE_GROUP='ActualWorkOrders';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Sales Recorded Ship By Due Line Rate] AS (IIF([Measures].[Actual Sales Ship Date Observed Lines]&gt;0,[Measures].[Actual Sales Recorded Ship By Due Lines]/[Measures].[Actual Sales Ship Date Observed Lines],NULL)), FORMAT_STRING='0.00%', VISIBLE=1, DISPLAY_FOLDER='Operations\Sales', ASSOCIATED_MEASURE_GROUP='ActualSales';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual WorkOrder Mean Observed Lead Days] AS (IIF([Measures].[Actual WorkOrder Lead Observed Count]&gt;0,[Measures].[Actual WorkOrder Lead Days Sum]/[Measures].[Actual WorkOrder Lead Observed Count],NULL)), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\WorkOrders', ASSOCIATED_MEASURE_GROUP='ActualWorkOrders';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Operation Mean Observed Duration Days] AS (IIF([Measures].[Actual Operation Duration Observed Count]&gt;0,[Measures].[Actual Operation Duration Days Sum]/[Measures].[Actual Operation Duration Observed Count],NULL)), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Operations', ASSOCIATED_MEASURE_GROUP='ActualOperations';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Purchase Source Rejection Rate] AS (IIF([Measures].[Actual Purchase Received Source Qty]&gt;0,[Measures].[Actual Purchase Rejected Source Qty]/[Measures].[Actual Purchase Received Source Qty],NULL)), FORMAT_STRING='0.00%', VISIBLE=1, DISPLAY_FOLDER='Operations\Purchases', ASSOCIATED_MEASURE_GROUP='ActualPurchases';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual WorkOrder Source Scrap Rate] AS (IIF([Measures].[Actual WorkOrder Ordered Source Qty]&gt;0,[Measures].[Actual WorkOrder Scrapped Source Qty]/[Measures].[Actual WorkOrder Ordered Source Qty],NULL)), FORMAT_STRING='0.00%', VISIBLE=1, DISPLAY_FOLDER='Operations\WorkOrders', ASSOCIATED_MEASURE_GROUP='ActualWorkOrders';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Demand Product Day Count] AS IIF(COUNT(EXISTING [Demand Rule].[Demand Rule].[Demand Rule].MEMBERS)=1, [Measures].[Raw Actual Demand Product Day Count], NULL), FORMAT_STRING='#,##0', VISIBLE=1, DISPLAY_FOLDER='Operations\Demand Daily', ASSOCIATED_MEASURE_GROUP='ActualDemandDaily';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Independent Demand Qty] AS IIF(COUNT(EXISTING [Demand Rule].[Demand Rule].[Demand Rule].MEMBERS)=1, [Measures].[Raw Actual Independent Demand Qty], NULL), FORMAT_STRING='#,##0.####', VISIBLE=1, DISPLAY_FOLDER='Operations\Demand Daily', ASSOCIATED_MEASURE_GROUP='ActualDemandDaily';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Dependent Demand Qty] AS IIF(COUNT(EXISTING [Demand Rule].[Demand Rule].[Demand Rule].MEMBERS)=1, [Measures].[Raw Actual Dependent Demand Qty], NULL), FORMAT_STRING='#,##0.####', VISIBLE=1, DISPLAY_FOLDER='Operations\Demand Daily', ASSOCIATED_MEASURE_GROUP='ActualDemandDaily';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Total Demand Qty] AS IIF(COUNT(EXISTING [Demand Rule].[Demand Rule].[Demand Rule].MEMBERS)=1, [Measures].[Raw Actual Total Demand Qty], NULL), FORMAT_STRING='#,##0.####', VISIBLE=1, DISPLAY_FOLDER='Operations\Demand Daily', ASSOCIATED_MEASURE_GROUP='ActualDemandDaily';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Demand Eligible Sales Line Count] AS IIF(COUNT(EXISTING [Demand Rule].[Demand Rule].[Demand Rule].MEMBERS)=1, [Measures].[Raw Actual Demand Eligible Sales Line Count], NULL), FORMAT_STRING='#,##0', VISIBLE=1, DISPLAY_FOLDER='Operations\Demand Daily', ASSOCIATED_MEASURE_GROUP='ActualDemandDaily';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Demand Excluded Sales Line Count] AS IIF(COUNT(EXISTING [Demand Rule].[Demand Rule].[Demand Rule].MEMBERS)=1, [Measures].[Raw Actual Demand Excluded Sales Line Count], NULL), FORMAT_STRING='#,##0', VISIBLE=1, DISPLAY_FOLDER='Operations\Demand Daily', ASSOCIATED_MEASURE_GROUP='ActualDemandDaily';
+CREATE MEMBER CURRENTCUBE.[Measures].[Actual Demand Parent Work Order Count] AS IIF(COUNT(EXISTING [Demand Rule].[Demand Rule].[Demand Rule].MEMBERS)=1, [Measures].[Raw Actual Demand Parent Work Order Count], NULL), FORMAT_STRING='#,##0', VISIBLE=1, DISPLAY_FOLDER='Operations\Demand Daily', ASSOCIATED_MEASURE_GROUP='ActualDemandDaily';</Text></Command></Commands></MdxScript>
+          </MdxScripts>
+        <Perspectives><Perspective><ID>ACT Operations</ID><Name>ACT Operations</Name><Dimensions><Dimension><CubeDimensionID>Location</CubeDimensionID><Attributes><Attribute><AttributeID>Location</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies /></Dimension><Dimension><CubeDimensionID>Vendor</CubeDimensionID><Attributes><Attribute><AttributeID>Vendor</AttributeID></Attribute><Attribute><AttributeID>Credit Rating</AttributeID></Attribute><Attribute><AttributeID>Vendor ID</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies /></Dimension><Dimension><CubeDimensionID>Channel</CubeDimensionID><Attributes><Attribute><AttributeID>Channel</AttributeID></Attribute></Attributes><Hierarchies /></Dimension><Dimension><CubeDimensionID>Sales Document Status</CubeDimensionID><Attributes><Attribute><AttributeID>Status</AttributeID></Attribute></Attributes><Hierarchies /></Dimension><Dimension><CubeDimensionID>Purchase Document Status</CubeDimensionID><Attributes><Attribute><AttributeID>Status</AttributeID></Attribute></Attributes><Hierarchies /></Dimension><Dimension><CubeDimensionID>Due Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Order Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Recorded Ship Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Expected Ship Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Expected Receipt Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Inventory Snapshot Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Planned Start Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Recorded End Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Actual Start Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Actual End Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Scheduled Start Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Scheduled End Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Sales Line</CubeDimensionID><Attributes><Attribute><AttributeID>Sales Line</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies /></Dimension><Dimension><CubeDimensionID>Product</CubeDimensionID><Attributes><Attribute><AttributeID>Product</AttributeID></Attribute><Attribute><AttributeID>Category</AttributeID></Attribute><Attribute><AttributeID>Subcategory</AttributeID></Attribute><Attribute><AttributeID>Supply Type</AttributeID></Attribute><Attribute><AttributeID>Product Role</AttributeID></Attribute><Attribute><AttributeID>Manufactured</AttributeID></Attribute><Attribute><AttributeID>ProductID</AttributeID></Attribute><Attribute><AttributeID>ProductNumber</AttributeID></Attribute><Attribute><AttributeID>ProductName</AttributeID></Attribute><Attribute><AttributeID>ProductModelID</AttributeID></Attribute><Attribute><AttributeID>FinishedGoodsFlag</AttributeID></Attribute><Attribute><AttributeID>IsBOMAssembly</AttributeID></Attribute><Attribute><AttributeID>IsBOMComponent</AttributeID></Attribute><Attribute><AttributeID>Color</AttributeID></Attribute><Attribute><AttributeID>Size</AttributeID></Attribute><Attribute><AttributeID>SizeUnitName</AttributeID></Attribute><Attribute><AttributeID>Weight</AttributeID></Attribute><Attribute><AttributeID>WeightUnitName</AttributeID></Attribute><Attribute><AttributeID>ProductLine</AttributeID></Attribute><Attribute><AttributeID>ProductLineName</AttributeID></Attribute><Attribute><AttributeID>Class</AttributeID></Attribute><Attribute><AttributeID>ClassName</AttributeID></Attribute><Attribute><AttributeID>Style</AttributeID></Attribute><Attribute><AttributeID>StyleName</AttributeID></Attribute><Attribute><AttributeID>DaysToManufacture</AttributeID></Attribute><Attribute><AttributeID>SafetyStockLevel</AttributeID></Attribute><Attribute><AttributeID>ReorderPoint</AttributeID></Attribute><Attribute><AttributeID>StandardCost</AttributeID></Attribute><Attribute><AttributeID>ListPrice</AttributeID></Attribute><Attribute><AttributeID>SellStartDate</AttributeID></Attribute><Attribute><AttributeID>SellEndDate</AttributeID></Attribute><Attribute><AttributeID>DiscontinuedDate</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Products</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>BOM Line</CubeDimensionID><Attributes><Attribute><AttributeID>BOM Line</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies /></Dimension><Dimension><CubeDimensionID>Assembly Product</CubeDimensionID><Attributes><Attribute><AttributeID>Product</AttributeID></Attribute><Attribute><AttributeID>Category</AttributeID></Attribute><Attribute><AttributeID>Subcategory</AttributeID></Attribute><Attribute><AttributeID>Supply Type</AttributeID></Attribute><Attribute><AttributeID>Product Role</AttributeID></Attribute><Attribute><AttributeID>Manufactured</AttributeID></Attribute><Attribute><AttributeID>ProductID</AttributeID></Attribute><Attribute><AttributeID>ProductNumber</AttributeID></Attribute><Attribute><AttributeID>ProductName</AttributeID></Attribute><Attribute><AttributeID>ProductModelID</AttributeID></Attribute><Attribute><AttributeID>FinishedGoodsFlag</AttributeID></Attribute><Attribute><AttributeID>IsBOMAssembly</AttributeID></Attribute><Attribute><AttributeID>IsBOMComponent</AttributeID></Attribute><Attribute><AttributeID>Color</AttributeID></Attribute><Attribute><AttributeID>Size</AttributeID></Attribute><Attribute><AttributeID>SizeUnitName</AttributeID></Attribute><Attribute><AttributeID>Weight</AttributeID></Attribute><Attribute><AttributeID>WeightUnitName</AttributeID></Attribute><Attribute><AttributeID>ProductLine</AttributeID></Attribute><Attribute><AttributeID>ProductLineName</AttributeID></Attribute><Attribute><AttributeID>Class</AttributeID></Attribute><Attribute><AttributeID>ClassName</AttributeID></Attribute><Attribute><AttributeID>Style</AttributeID></Attribute><Attribute><AttributeID>StyleName</AttributeID></Attribute><Attribute><AttributeID>DaysToManufacture</AttributeID></Attribute><Attribute><AttributeID>SafetyStockLevel</AttributeID></Attribute><Attribute><AttributeID>ReorderPoint</AttributeID></Attribute><Attribute><AttributeID>StandardCost</AttributeID></Attribute><Attribute><AttributeID>ListPrice</AttributeID></Attribute><Attribute><AttributeID>SellStartDate</AttributeID></Attribute><Attribute><AttributeID>SellEndDate</AttributeID></Attribute><Attribute><AttributeID>DiscontinuedDate</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Products</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Component Product</CubeDimensionID><Attributes><Attribute><AttributeID>Product</AttributeID></Attribute><Attribute><AttributeID>Category</AttributeID></Attribute><Attribute><AttributeID>Subcategory</AttributeID></Attribute><Attribute><AttributeID>Supply Type</AttributeID></Attribute><Attribute><AttributeID>Product Role</AttributeID></Attribute><Attribute><AttributeID>Manufactured</AttributeID></Attribute><Attribute><AttributeID>ProductID</AttributeID></Attribute><Attribute><AttributeID>ProductNumber</AttributeID></Attribute><Attribute><AttributeID>ProductName</AttributeID></Attribute><Attribute><AttributeID>ProductModelID</AttributeID></Attribute><Attribute><AttributeID>FinishedGoodsFlag</AttributeID></Attribute><Attribute><AttributeID>IsBOMAssembly</AttributeID></Attribute><Attribute><AttributeID>IsBOMComponent</AttributeID></Attribute><Attribute><AttributeID>Color</AttributeID></Attribute><Attribute><AttributeID>Size</AttributeID></Attribute><Attribute><AttributeID>SizeUnitName</AttributeID></Attribute><Attribute><AttributeID>Weight</AttributeID></Attribute><Attribute><AttributeID>WeightUnitName</AttributeID></Attribute><Attribute><AttributeID>ProductLine</AttributeID></Attribute><Attribute><AttributeID>ProductLineName</AttributeID></Attribute><Attribute><AttributeID>Class</AttributeID></Attribute><Attribute><AttributeID>ClassName</AttributeID></Attribute><Attribute><AttributeID>Style</AttributeID></Attribute><Attribute><AttributeID>StyleName</AttributeID></Attribute><Attribute><AttributeID>DaysToManufacture</AttributeID></Attribute><Attribute><AttributeID>SafetyStockLevel</AttributeID></Attribute><Attribute><AttributeID>ReorderPoint</AttributeID></Attribute><Attribute><AttributeID>StandardCost</AttributeID></Attribute><Attribute><AttributeID>ListPrice</AttributeID></Attribute><Attribute><AttributeID>SellStartDate</AttributeID></Attribute><Attribute><AttributeID>SellEndDate</AttributeID></Attribute><Attribute><AttributeID>DiscontinuedDate</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Products</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Cost Period</CubeDimensionID><Attributes><Attribute><AttributeID>Cost Period</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies /></Dimension><Dimension><CubeDimensionID>Demand Rule</CubeDimensionID><Attributes><Attribute><AttributeID>Demand Rule</AttributeID></Attribute></Attributes><Hierarchies /></Dimension><Dimension><CubeDimensionID>Demand Date</CubeDimensionID><Attributes><Attribute><AttributeID>Date</AttributeID></Attribute><Attribute><AttributeID>Year</AttributeID></Attribute><Attribute><AttributeID>Quarter</AttributeID></Attribute><Attribute><AttributeID>Month</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies><Hierarchy><HierarchyID>Calendar</HierarchyID></Hierarchy></Hierarchies></Dimension><Dimension><CubeDimensionID>Unit</CubeDimensionID><Attributes><Attribute><AttributeID>Unit</AttributeID></Attribute><Attribute><AttributeID>Source Row</AttributeID></Attribute></Attributes><Hierarchies /></Dimension></Dimensions><MeasureGroups><MeasureGroup><MeasureGroupID>ActualSales</MeasureGroupID><Measures><Measure><MeasureID>Actual Sales Line Count</MeasureID></Measure><Measure><MeasureID>Actual Sales Eligible Line Count</MeasureID></Measure><Measure><MeasureID>Actual Sales Line Amount</MeasureID></Measure><Measure><MeasureID>Actual Sales Eligible Line Amount</MeasureID></Measure><Measure><MeasureID>Actual Sales Ship Date Observed Lines</MeasureID></Measure><Measure><MeasureID>Actual Sales Recorded Ship By Due Lines</MeasureID></Measure><Measure><MeasureID>Actual Sales Recorded Ship Lag Days Sum</MeasureID></Measure><Measure><MeasureID>Actual Sales Order Count</MeasureID></Measure><Measure><MeasureID>Raw Actual Sales Ordered Source Qty</MeasureID></Measure><Measure><MeasureID>Raw Actual Sales Eligible Source Qty</MeasureID></Measure></Measures></MeasureGroup><MeasureGroup><MeasureGroupID>ActualPurchases</MeasureGroupID><Measures><Measure><MeasureID>Actual Purchase Line Count</MeasureID></Measure><Measure><MeasureID>Actual Purchase Declared Vendor Lines</MeasureID></Measure><Measure><MeasureID>Actual Purchase Line Amount</MeasureID></Measure><Measure><MeasureID>Actual Purchase Order Count</MeasureID></Measure><Measure><MeasureID>Raw Actual Purchase Ordered Source Qty</MeasureID></Measure><Measure><MeasureID>Raw Actual Purchase Received Source Qty</MeasureID></Measure><Measure><MeasureID>Raw Actual Purchase Rejected Source Qty</MeasureID></Measure><Measure><MeasureID>Raw Actual Purchase Stocked Source Qty</MeasureID></Measure></Measures></MeasureGroup><MeasureGroup><MeasureGroupID>ActualInventory</MeasureGroupID><Measures><Measure><MeasureID>Actual Inventory Value</MeasureID></Measure><Measure><MeasureID>Actual Inventory Position Count</MeasureID></Measure><Measure><MeasureID>Actual Inventory Negative Positions</MeasureID></Measure><Measure><MeasureID>Actual Inventory Zero Cost Positions</MeasureID></Measure><Measure><MeasureID>Actual Inventory Positive Cost Positions</MeasureID></Measure><Measure><MeasureID>Raw Actual Inventory Source Qty</MeasureID></Measure></Measures></MeasureGroup><MeasureGroup><MeasureGroupID>ActualWorkOrders</MeasureGroupID><Measures><Measure><MeasureID>Actual WorkOrder Count</MeasureID></Measure><Measure><MeasureID>Actual WorkOrder Complete Count</MeasureID></Measure><Measure><MeasureID>Actual WorkOrder Lead Observed Count</MeasureID></Measure><Measure><MeasureID>Actual WorkOrder Lead Days Sum</MeasureID></Measure><Measure><MeasureID>Actual WorkOrder Late Complete Count</MeasureID></Measure><Measure><MeasureID>Actual WorkOrder Late Days Sum</MeasureID></Measure><Measure><MeasureID>Actual WorkOrder Planned Cost</MeasureID></Measure><Measure><MeasureID>Actual WorkOrder Recorded Cost</MeasureID></Measure><Measure><MeasureID>Actual WorkOrder Resource Hours</MeasureID></Measure><Measure><MeasureID>Raw Actual WorkOrder Ordered Source Qty</MeasureID></Measure><Measure><MeasureID>Raw Actual WorkOrder Stocked Source Qty</MeasureID></Measure><Measure><MeasureID>Raw Actual WorkOrder Scrapped Source Qty</MeasureID></Measure></Measures></MeasureGroup><MeasureGroup><MeasureGroupID>ActualOperations</MeasureGroupID><Measures><Measure><MeasureID>Actual Operation Count</MeasureID></Measure><Measure><MeasureID>Actual Operation Duration Observed Count</MeasureID></Measure><Measure><MeasureID>Actual Operation Duration Days Sum</MeasureID></Measure><Measure><MeasureID>Actual Operation Resource Hours</MeasureID></Measure><Measure><MeasureID>Actual Operation Planned Cost</MeasureID></Measure><Measure><MeasureID>Actual Operation Recorded Cost</MeasureID></Measure><Measure><MeasureID>Actual Operations Distinct WorkOrder Count</MeasureID></Measure></Measures></MeasureGroup><MeasureGroup><MeasureGroupID>ActualBOM</MeasureGroupID><Measures><Measure><MeasureID>Actual BOM Relationship Count</MeasureID></Measure></Measures></MeasureGroup><MeasureGroup><MeasureGroupID>ActualProductCostHistory</MeasureGroupID><Measures><Measure><MeasureID>Actual Cost Period Count</MeasureID></Measure></Measures></MeasureGroup><MeasureGroup><MeasureGroupID>ActualDemandDaily</MeasureGroupID><Measures><Measure><MeasureID>Raw Actual Demand Product Day Count</MeasureID></Measure><Measure><MeasureID>Raw Actual Independent Demand Qty</MeasureID></Measure><Measure><MeasureID>Raw Actual Dependent Demand Qty</MeasureID></Measure><Measure><MeasureID>Raw Actual Total Demand Qty</MeasureID></Measure><Measure><MeasureID>Raw Actual Demand Eligible Sales Line Count</MeasureID></Measure><Measure><MeasureID>Raw Actual Demand Excluded Sales Line Count</MeasureID></Measure><Measure><MeasureID>Raw Actual Demand Parent Work Order Count</MeasureID></Measure></Measures></MeasureGroup></MeasureGroups><Calculations><Calculation><Name>[Measures].[Actual Sales Ordered Source Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual Sales Eligible Source Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual Purchase Ordered Source Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual Purchase Received Source Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual Purchase Rejected Source Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual Purchase Stocked Source Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual Inventory Source Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual WorkOrder Ordered Source Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual WorkOrder Stocked Source Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual WorkOrder Scrapped Source Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual Sales Recorded Ship By Due Line Rate]</Name></Calculation><Calculation><Name>[Measures].[Actual WorkOrder Mean Observed Lead Days]</Name></Calculation><Calculation><Name>[Measures].[Actual Operation Mean Observed Duration Days]</Name></Calculation><Calculation><Name>[Measures].[Actual Purchase Source Rejection Rate]</Name></Calculation><Calculation><Name>[Measures].[Actual WorkOrder Source Scrap Rate]</Name></Calculation><Calculation><Name>[Measures].[Actual Demand Product Day Count]</Name></Calculation><Calculation><Name>[Measures].[Actual Independent Demand Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual Dependent Demand Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual Total Demand Qty]</Name></Calculation><Calculation><Name>[Measures].[Actual Demand Eligible Sales Line Count]</Name></Calculation><Calculation><Name>[Measures].[Actual Demand Excluded Sales Line Count]</Name></Calculation><Calculation><Name>[Measures].[Actual Demand Parent Work Order Count]</Name></Calculation></Calculations><DefaultMeasure>[Measures].[Actual Sales Line Count]</DefaultMeasure></Perspective></Perspectives></Cube>
+      

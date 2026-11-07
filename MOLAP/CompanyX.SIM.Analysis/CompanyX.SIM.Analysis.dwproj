@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Project>
+  <ProductVersion>17.3.0.0</ProductVersion>
+  <SchemaVersion>9.0.2.10</SchemaVersion>
+  <Database>
+    <Name>CompanyX.SIM.Analysis.database</Name>
+    <FullPath>CompanyX.SIM.Analysis.database</FullPath>
+  </Database>
+  <Cubes><ProjectItem><Name>CompanyX_SIM_20261107.cube</Name><FullPath>CompanyX_SIM_20261107.cube</FullPath><Dependencies><ProjectItem><Name>CompanyX_SIM_20261107.partitions</Name><FullPath>CompanyX_SIM_20261107.partitions</FullPath></ProjectItem></Dependencies></ProjectItem></Cubes><Dimensions><ProjectItem><Name>SIM_Run.dim</Name><FullPath>SIM_Run.dim</FullPath></ProjectItem><ProjectItem><Name>Date.dim</Name><FullPath>Date.dim</FullPath></ProjectItem><ProjectItem><Name>ACT_Product.dim</Name><FullPath>ACT_Product.dim</FullPath></ProjectItem><ProjectItem><Name>ACT_Location.dim</Name><FullPath>ACT_Location.dim</FullPath></ProjectItem><ProjectItem><Name>ACT_Unit.dim</Name><FullPath>ACT_Unit.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Evaluation Cohort.dim</Name><FullPath>SIM_Evaluation Cohort.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Order Status.dim</Name><FullPath>SIM_Order Status.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Activity.dim</Name><FullPath>SIM_Activity.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Sales Order.dim</Name><FullPath>SIM_Sales Order.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Sales Order Line.dim</Name><FullPath>SIM_Sales Order Line.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Production Job.dim</Name><FullPath>SIM_Production Job.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Production Execution.dim</Name><FullPath>SIM_Production Execution.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Plan Version.dim</Name><FullPath>SIM_Plan Version.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Plan Action.dim</Name><FullPath>SIM_Plan Action.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Daily Order Status.dim</Name><FullPath>SIM_Daily Order Status.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Allocation Supply.dim</Name><FullPath>SIM_Allocation Supply.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Allocation Consumer.dim</Name><FullPath>SIM_Allocation Consumer.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Plan Period.dim</Name><FullPath>SIM_Plan Period.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Material Level.dim</Name><FullPath>SIM_Material Level.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Inquiry.dim</Name><FullPath>SIM_Inquiry.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Candidate.dim</Name><FullPath>SIM_Candidate.dim</FullPath></ProjectItem><ProjectItem><Name>SIM_Tranche.dim</Name><FullPath>SIM_Tranche.dim</FullPath></ProjectItem></Dimensions><DataSources><ProjectItem><Name>CompanyXSource.ds</Name><FullPath>CompanyXSource.ds</FullPath></ProjectItem></DataSources><DataSourceViews><ProjectItem><Name>CompanyXSourceView.dsv</Name><FullPath>CompanyXSourceView.dsv</FullPath></ProjectItem></DataSourceViews><Roles /><Miscellaneous /><Configurations>
+    <Configuration>
+      <Name>Development</Name>
+      <Platform>Default</Platform>
+      <Options>
+        <OutputPath>E:\Study-BKU\GPT\output\companyx-split-20261107\native-build\SIM</OutputPath>
+        <ConnectionMappings />
+        <ConnectionProviderMappings />
+        <ConnectionSecurityMappings />
+        <DatabaseStorageLocations />
+        <ReportActionServers />
+        <ReportActionPaths />
+        <CubeStorageLocations />
+        <MeasureGroupStorageLocations />
+        <PartitionStorageLocations />
+        <CubeKeyErrorLogFiles />
+        <MeasureGroupKeyErrorLogFiles />
+        <PartitionKeyErrorLogFiles />
+        <DimensionKeyErrorLogFiles />
+        <PartitionRemoteServers />
+        <DeploymentServerVersion>16.0</DeploymentServerVersion>
+      <DeploymentServerName>localhost\COMPANYXOLAP</DeploymentServerName><DeploymentDatabaseName>CompanyX_SIM_20261107</DeploymentDatabaseName></Options>
+    </Configuration>
+  </Configurations>
+  <References />
+</Project>

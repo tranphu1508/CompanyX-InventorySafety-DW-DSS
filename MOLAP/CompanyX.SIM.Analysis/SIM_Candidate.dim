@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Dimension xmlns="http://schemas.microsoft.com/analysisservices/2003/engine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <ID>Candidate</ID>
+          <Name>Candidate</Name>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>CompanyXSourceView</DataSourceViewID>
+          </Source>
+          <ErrorConfiguration>
+            <KeyNotFound>ReportAndStop</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyConvertedToUnknown>ReportAndStop</NullKeyConvertedToUnknown>
+          </ErrorConfiguration>
+          <Attributes>
+            <Attribute>
+              <ID>Candidate</ID>
+              <Name>Candidate</Name>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>DimCandidate</TableID>
+                    <ColumnID>CandidateKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>180</DataSize>
+                <NullProcessing>Preserve</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>DimCandidate</TableID>
+                  <ColumnID>CandidateName</ColumnID>
+                </Source>
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>Kind</AttributeID>
+                  <Name>Kind</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Candidate ID</AttributeID>
+                  <Name>Candidate ID</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+            </Attribute>
+            <Attribute>
+              <ID>Kind</ID>
+              <Name>Kind</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>20</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>DimCandidate</TableID>
+                    <ColumnID>CandidateKind</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>20</DataSize>
+                <NullProcessing>Preserve</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>DimCandidate</TableID>
+                  <ColumnID>CandidateKind</ColumnID>
+                </Source>
+              </NameColumn>
+            </Attribute>
+            <Attribute>
+              <ID>Candidate ID</ID>
+              <Name>Candidate ID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>100</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>DimCandidate</TableID>
+                    <ColumnID>CandidateID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>100</DataSize>
+                <NullProcessing>Preserve</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>DimCandidate</TableID>
+                  <ColumnID>CandidateID</ColumnID>
+                </Source>
+              </NameColumn>
+            </Attribute>
+          </Attributes>
+          <AttributeAllMemberName>All Candidate</AttributeAllMemberName>
+        </Dimension>
+        

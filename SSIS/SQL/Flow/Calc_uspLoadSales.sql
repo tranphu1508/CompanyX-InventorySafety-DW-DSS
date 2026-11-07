@@ -1,0 +1,1 @@
+DECLARE @B bigint=(SELECT BatchId FROM ssis_flow.Context); EXEC etl_v2.Calc_uspLoadSales @B;

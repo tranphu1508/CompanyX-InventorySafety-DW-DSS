@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CompanyX scoped simulation request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["start_date", "end_date", "product_ids", "scenario_index", "product_scope", "initialization"],
+  "properties": {
+    "schema": {"const": "companyx.control.request.v1"},
+    "request_id": {"type": "string", "minLength": 1, "maxLength": 100},
+    "start_date": {"type": "string", "format": "date"},
+    "end_date": {"type": "string", "format": "date"},
+    "product_ids": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 1}},
+    "scenario_index": {"type": "integer", "minimum": 1},
+    "policy": {"enum": ["ROP", "QUETSCHLICH_ADAPT"], "default": "ROP"},
+    "solver_name": {"enum": ["GUROBI", "CPLEX"], "default": "GUROBI"},
+    "product_scope": {"enum": ["SELECTED_LINES", "WHOLE_ORDERS"]},
+    "initialization": {"const": "NEW_EXPERIMENT"},
+    "production_lead_time_mode": {"enum": ["LEGACY_REQUEST_DATE", "ACTUAL_START_DATE"], "default": "LEGACY_REQUEST_DATE"},
+    "replication": {"type": "integer", "minimum": 0, "maximum": 2147483647, "default": 0},
+    "solver_seconds": {"type": "number", "exclusiveMinimum": 0, "maximum": 86400},
+    "threads": {"type": "integer", "minimum": 1},
+    "penalties": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "lost_unit_penalty": {"type": "number", "exclusiveMinimum": 0},
+        "late_unit_day_penalty": {"type": "number", "exclusiveMinimum": 0},
+        "terminal_unserved_unit_penalty": {"type": "number", "exclusiveMinimum": 0}
+      }
+    }
+  }
+}

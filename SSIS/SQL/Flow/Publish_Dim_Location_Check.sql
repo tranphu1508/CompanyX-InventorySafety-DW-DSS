@@ -1,0 +1,4 @@
+DECLARE @B bigint=(SELECT BatchId FROM ssis_flow.Context);
+
+
+IF EXISTS(SELECT [LocationID],[LocationName],[CostRate],[Availability],[LocationType],[HasProductionConflict] FROM etl_calc.[Dim_Location] EXCEPT SELECT [LocationID],[LocationName],[CostRate],[Availability],[LocationType],[HasProductionConflict] FROM dw.Dim_Location) OR EXISTS(SELECT [LocationID],[LocationName],[CostRate],[Availability],[LocationType],[HasProductionConflict] FROM dw.Dim_Location EXCEPT SELECT [LocationID],[LocationName],[CostRate],[Availability],[LocationType],[HasProductionConflict] FROM etl_calc.[Dim_Location]) THROW 51940,N'Projected target mismatch: dw.Dim_Location',1;

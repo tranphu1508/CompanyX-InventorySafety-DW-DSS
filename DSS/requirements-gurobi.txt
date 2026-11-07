@@ -1,0 +1,4 @@
+-r requirements-base.txt
+gurobipy==13.0.3
+# Configure your own valid license separately. Pip includes only a restricted license.
+# See ../README.txt and ../Tools/Check-SolverLicense.py.

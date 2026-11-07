@@ -1,0 +1,3 @@
+DECLARE @B bigint=(SELECT BatchId FROM ssis_flow.Context);
+
+IF EXISTS(SELECT [ChannelKey],[OnlineOrderFlag],[ChannelName] FROM etl_calc.[Dim_Channel] EXCEPT SELECT [ChannelKey],[OnlineOrderFlag],[ChannelName] FROM dw.Dim_Channel) OR EXISTS(SELECT [ChannelKey],[OnlineOrderFlag],[ChannelName] FROM dw.Dim_Channel EXCEPT SELECT [ChannelKey],[OnlineOrderFlag],[ChannelName] FROM etl_calc.[Dim_Channel]) THROW 51940,N'Projected target mismatch: dw.Dim_Channel',1;

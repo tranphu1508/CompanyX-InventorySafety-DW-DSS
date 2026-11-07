@@ -1,0 +1,4 @@
+DECLARE @B bigint=(SELECT BatchId FROM ssis_flow.Context);
+
+
+IF EXISTS(SELECT [VendorID],[AccountNumber],[VendorName],[CreditRating],[CreditRatingName],[PreferredVendorStatus],[ActiveFlag] FROM etl_calc.[Dim_Vendor] EXCEPT SELECT [VendorID],[AccountNumber],[VendorName],[CreditRating],[CreditRatingName],[PreferredVendorStatus],[ActiveFlag] FROM dw.Dim_Vendor) OR EXISTS(SELECT [VendorID],[AccountNumber],[VendorName],[CreditRating],[CreditRatingName],[PreferredVendorStatus],[ActiveFlag] FROM dw.Dim_Vendor EXCEPT SELECT [VendorID],[AccountNumber],[VendorName],[CreditRating],[CreditRatingName],[PreferredVendorStatus],[ActiveFlag] FROM etl_calc.[Dim_Vendor]) THROW 51940,N'Projected target mismatch: dw.Dim_Vendor',1;

@@ -1,0 +1,3839 @@
+{
+  "schema": "companyx.source-origin-prefix-classification.v1",
+  "audit_date": "2026-11-06",
+  "read_only": true,
+  "basis": "Entity source provenance, not usage or schema name. Actual operational masters remain ACT when reused by simulation. Date is an explicit unprefixed generated-calendar exception.",
+  "requested_mutation_scope": "Display DSV table labels and dimension project filenames only; preserve all internal IDs/Names, SQL object names, bindings and deployed database. This manifest does not perform edits.",
+  "native_project": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis",
+  "counts": {
+    "database_dimensions": 32,
+    "cube_roles": 56,
+    "measure_groups": 29,
+    "dsv_tables": 61,
+    "dimensions_by_origin": {
+      "simulation": 22,
+      "actual": 9,
+      "calendar": 1
+    },
+    "roles_by_origin": {
+      "simulation": 22,
+      "actual": 11,
+      "calendar": 23
+    },
+    "groups_by_origin": {
+      "simulation": 24,
+      "actual": 5
+    },
+    "tables_by_origin": {
+      "simulation": 46,
+      "calendar": 1,
+      "actual": 14
+    }
+  },
+  "prefix_maps": {
+    "database_dimension_ids": {
+      "Activity": "SIM",
+      "Allocation Consumer": "SIM",
+      "Allocation Supply": "SIM",
+      "Candidate": "SIM",
+      "Channel": "ACT",
+      "Customer": "ACT",
+      "Daily Order Status": "SIM",
+      "Data Quality": "ACT",
+      "Date": "",
+      "Evaluation Cohort": "SIM",
+      "Inquiry": "SIM",
+      "Location": "ACT",
+      "Material Level": "SIM",
+      "Order Status": "SIM",
+      "Plan Action": "SIM",
+      "Plan Period": "SIM",
+      "Plan Version": "SIM",
+      "Product": "ACT",
+      "Production Execution": "SIM",
+      "Production Job": "SIM",
+      "Purchase Document Status": "ACT",
+      "RequestedWindow": "SIM",
+      "Run": "SIM",
+      "Sales Document Status": "ACT",
+      "Sales Order Line": "SIM",
+      "Sales Order": "SIM",
+      "Solve": "SIM",
+      "Solver Status": "SIM",
+      "Trace Method": "SIM",
+      "Tranche": "SIM",
+      "Unit": "ACT",
+      "Vendor": "ACT"
+    },
+    "cube_role_ids": {
+      "Run": "SIM",
+      "Product": "ACT",
+      "Location": "ACT",
+      "Unit": "ACT",
+      "Evaluation Cohort": "SIM",
+      "Order Status": "SIM",
+      "Solver Status": "SIM",
+      "Solve": "SIM",
+      "Inquiry": "SIM",
+      "Candidate": "SIM",
+      "Tranche": "SIM",
+      "Activity": "SIM",
+      "RequestedWindow": "SIM",
+      "Customer": "ACT",
+      "Vendor": "ACT",
+      "Channel": "ACT",
+      "Sales Document Status": "ACT",
+      "Purchase Document Status": "ACT",
+      "Data Quality": "ACT",
+      "Simulation Date": "",
+      "Due Date": "",
+      "Completion Date": "",
+      "Decision Date": "",
+      "Known Date": "",
+      "Window Start Date": "",
+      "Window End Date": "",
+      "Order Date": "",
+      "Recorded Ship Date": "",
+      "Expected Ship Date": "",
+      "Expected Receipt Date": "",
+      "Inventory Snapshot Date": "",
+      "Planned Start Date": "",
+      "Recorded End Date": "",
+      "Actual Start Date": "",
+      "Actual End Date": "",
+      "Scheduled Start Date": "",
+      "Scheduled End Date": "",
+      "Sales Order": "SIM",
+      "Sales Order Line": "SIM",
+      "Production Job": "SIM",
+      "Production Execution": "SIM",
+      "Plan Version": "SIM",
+      "Plan Action": "SIM",
+      "Trace Method": "SIM",
+      "Daily Order Status": "SIM",
+      "Allocation Supply": "SIM",
+      "Allocation Consumer": "SIM",
+      "Plan Period": "SIM",
+      "Material Level": "SIM",
+      "Planned Date": "",
+      "Supply Available Date": "",
+      "Job Created Date": "",
+      "Execution Start Date": "",
+      "Execution Completion Date": "",
+      "Parent Product": "ACT",
+      "Root Product": "ACT"
+    },
+    "measure_group_ids": {
+      "SimulationDaily": "SIM",
+      "OrderLineService": "SIM",
+      "OrderService": "SIM",
+      "SolveAudit": "SIM",
+      "RunDay": "SIM",
+      "RunSummary": "SIM",
+      "InquiryLineDelivery": "SIM",
+      "InquiryTranche": "SIM",
+      "ProductionActivity": "SIM",
+      "BaselineActivity": "SIM",
+      "InquiryWindow": "SIM",
+      "RequestedWindowSummary": "SIM",
+      "RequestedWindowLine": "SIM",
+      "RequestedWindowTranche": "SIM",
+      "ActualSales": "ACT",
+      "ActualPurchases": "ACT",
+      "ActualInventory": "ACT",
+      "ActualWorkOrders": "ACT",
+      "ActualOperations": "ACT",
+      "OrderDaily": "SIM",
+      "OrderLineDaily": "SIM",
+      "JobDaily": "SIM",
+      "ProductionExecution": "SIM",
+      "MaterialTrace": "SIM",
+      "RollingPlan": "SIM",
+      "RollingOrderPlan": "SIM",
+      "PlannedAllocation": "SIM",
+      "PlanSupplyBalance": "SIM",
+      "PlanOrderMaterial": "SIM"
+    },
+    "dsv_table_ids": {
+      "DimRun": "SIM",
+      "DimDate": "",
+      "DimProduct": "ACT",
+      "DimLocation": "ACT",
+      "DimUnit": "ACT",
+      "DimEvaluationCohort": "SIM",
+      "DimOrderStatus": "SIM",
+      "DimSolveStatus": "SIM",
+      "DimSolveKey": "SIM",
+      "FactSimulationDaily": "SIM",
+      "FactOrderLineService": "SIM",
+      "FactOrderService": "SIM",
+      "FactSolveAudit": "SIM",
+      "FactRunDay": "SIM",
+      "FactRunSummary": "SIM",
+      "DimInquiry": "SIM",
+      "DimCandidate": "SIM",
+      "DimTranche": "SIM",
+      "DimActivity": "SIM",
+      "DimRequestedWindow": "SIM",
+      "FactInquiryLineDelivery": "SIM",
+      "FactInquiryTranche": "SIM",
+      "FactProductionActivity": "SIM",
+      "FactBaselineActivity": "SIM",
+      "FactInquiryWindowSummary": "SIM",
+      "FactRequestedWindowSummary": "SIM",
+      "FactRequestedWindowLine": "SIM",
+      "FactRequestedWindowTranche": "SIM",
+      "OpsDimCustomer": "ACT",
+      "OpsDimVendor": "ACT",
+      "OpsDimChannel": "ACT",
+      "OpsDimSalesStatus": "ACT",
+      "OpsDimPurchaseStatus": "ACT",
+      "OpsDimDataQuality": "ACT",
+      "OpsFactSales": "ACT",
+      "OpsFactPurchases": "ACT",
+      "OpsFactInventory": "ACT",
+      "OpsFactWorkOrders": "ACT",
+      "OpsFactOperations": "ACT",
+      "DimAllocationConsumer": "SIM",
+      "DimAllocationSupply": "SIM",
+      "DimMaterialLevel": "SIM",
+      "DimOrderLineStatus": "SIM",
+      "DimPlanAction": "SIM",
+      "DimPlanPeriod": "SIM",
+      "DimPlanVersion": "SIM",
+      "DimProductionExecution": "SIM",
+      "DimProductionJob": "SIM",
+      "DimSalesOrder": "SIM",
+      "DimSalesOrderLine": "SIM",
+      "DimTraceMethod": "SIM",
+      "FactJobDaily": "SIM",
+      "FactMaterialTrace": "SIM",
+      "FactOrderDaily": "SIM",
+      "FactOrderLineDaily": "SIM",
+      "FactPlanOrderMaterial": "SIM",
+      "FactPlanSupplyBalance": "SIM",
+      "FactPlannedAllocation": "SIM",
+      "FactProductionExecution": "SIM",
+      "FactRollingOrderPlan": "SIM",
+      "FactRollingPlan": "SIM"
+    }
+  },
+  "database_dimensions": [
+    {
+      "id": "Activity",
+      "name": "Activity",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimActivity"
+      ],
+      "sql_views": [
+        "cxactive.DimActivity"
+      ],
+      "underlying_physical_tables": [
+        "dss.Dim_EventType"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Activity.dim",
+      "proposed_project_filename": "SIM_Activity.dim",
+      "cube_role_ids": [
+        "Activity"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\InquirySchema.sql",
+          "line": 100,
+          "text": "CREATE OR ALTER VIEW cxcontrol.DimActivity AS"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "Allocation Consumer",
+      "name": "Allocation Consumer",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimAllocationConsumer"
+      ],
+      "sql_views": [
+        "cxdetail.DimAllocationConsumer"
+      ],
+      "underlying_physical_tables": [],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Allocation Consumer.dim",
+      "proposed_project_filename": "SIM_Allocation Consumer.dim",
+      "cube_role_ids": [
+        "Allocation Consumer"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+          "line": 92,
+          "text": "v['DimAllocationConsumer']=\"SELECT CONVERT(nvarchar(120),v.Code) ConsumerCode,CONVERT(nvarchar(120),v.Code) ConsumerName FROM (VALUES (N'SALES_ORDER_LINE'),(N'PLANNED_BOM'),(N'FORECAST')) v(Code)\""
+        }
+      ],
+      "note": "View VALUES: SALES_ORDER_LINE / PLANNED_BOM / FORECAST; business consumer classification, not a log."
+    },
+    {
+      "id": "Allocation Supply",
+      "name": "Allocation Supply",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimAllocationSupply"
+      ],
+      "sql_views": [
+        "cxdetail.DimAllocationSupply"
+      ],
+      "underlying_physical_tables": [
+        "cxdetail.PlanSupplyBalance"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Allocation Supply.dim",
+      "proposed_project_filename": "SIM_Allocation Supply.dim",
+      "cube_role_ids": [
+        "Allocation Supply"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+          "line": 91,
+          "text": "v['DimAllocationSupply']=f\"SELECT {supplykey('f')} SupplyKey,CONVERT(nvarchar(500),CONCAT(f.SupplyCode,N' | ',CONVERT(char(10),f.DecisionAt,120),N' | Run ',f.PlanningRunKey)) SupplyName,f.SupplyCode,f.SupplyKind,{datekey('f','AvailableAt')} AvailableDateKey FROM cxdetail.SourcePlanSupplyBalance f\""
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "Candidate",
+      "name": "Candidate",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimCandidate"
+      ],
+      "sql_views": [
+        "cxactive.DimCandidate"
+      ],
+      "underlying_physical_tables": [
+        "cxcontrol.Candidate",
+        "cxcontrol.Inquiry"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Candidate.dim",
+      "proposed_project_filename": "SIM_Candidate.dim",
+      "cube_role_ids": [
+        "Candidate"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\InquirySchema.sql",
+          "line": 40,
+          "text": "CREATE OR ALTER VIEW cxcontrol.DimCandidate AS"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "Channel",
+      "name": "Channel",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "actual_only",
+      "dsv_tables": [
+        "OpsDimChannel"
+      ],
+      "sql_views": [
+        "cxoperations.DimChannel"
+      ],
+      "underlying_physical_tables": [
+        "dw.Dim_Channel"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Channel.dim",
+      "proposed_project_filename": "ACT_Channel.dim",
+      "cube_role_ids": [
+        "Channel"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-operations-20261105\\01_CreateViews.sql",
+          "line": 28,
+          "text": "CREATE OR ALTER VIEW cxoperations.DimChannel AS"
+        },
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\Database\\02_Schema.sql",
+          "line": 4002,
+          "text": "INSERT dw.Dim_Channel ([ChannelKey],[OnlineOrderFlag],[ChannelName])"
+        }
+      ],
+      "note": "Warehouse-seeded operational channel classification for actual sales."
+    },
+    {
+      "id": "Customer",
+      "name": "Customer",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "actual_only",
+      "dsv_tables": [
+        "OpsDimCustomer"
+      ],
+      "sql_views": [
+        "cxoperations.DimCustomer"
+      ],
+      "underlying_physical_tables": [
+        "dw.Dim_Customer"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Customer.dim",
+      "proposed_project_filename": "ACT_Customer.dim",
+      "cube_role_ids": [
+        "Customer"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-operations-20261105\\01_CreateViews.sql",
+          "line": 19,
+          "text": "CREATE OR ALTER VIEW cxoperations.DimCustomer AS"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "Daily Order Status",
+      "name": "Daily Order Status",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimOrderLineStatus"
+      ],
+      "sql_views": [
+        "cxdetail.DimOrderLineStatus"
+      ],
+      "underlying_physical_tables": [
+        "cxdetail.OrderLineDay",
+        "cxdetail.OrderDay"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Daily Order Status.dim",
+      "proposed_project_filename": "SIM_Daily Order Status.dim",
+      "cube_role_ids": [
+        "Daily Order Status"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+          "line": 90,
+          "text": "v['DimOrderLineStatus']=\"SELECT DISTINCT OrderStatus StatusCode,OrderStatus StatusName FROM cxdetail.SourceOrderLineDay UNION SELECT DISTINCT OrderStatus,OrderStatus FROM cxdetail.SourceOrderDay\""
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "Data Quality",
+      "name": "Data Quality",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "actual_only",
+      "dsv_tables": [
+        "OpsDimDataQuality"
+      ],
+      "sql_views": [
+        "cxoperations.DimDataQuality"
+      ],
+      "underlying_physical_tables": [
+        "dw.Fact_SalesOrderLine",
+        "dw.Fact_PurchaseOrderLine",
+        "dw.Fact_InventoryOnHand",
+        "dw.Fact_WorkOrder",
+        "dw.Fact_WorkOrderOperation"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Data Quality.dim",
+      "proposed_project_filename": "ACT_Data Quality.dim",
+      "cube_role_ids": [
+        "Data Quality"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-operations-20261105\\01_CreateViews.sql",
+          "line": 37,
+          "text": "CREATE OR ALTER VIEW cxoperations.DimDataQuality AS"
+        }
+      ],
+      "note": "Quality categories derived from actual operational facts; ACT derivation, not a simulation log."
+    },
+    {
+      "id": "Date",
+      "name": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "shared",
+      "dsv_tables": [
+        "DimDate"
+      ],
+      "sql_views": [
+        "cxactive.DimDate"
+      ],
+      "underlying_physical_tables": [
+        "dw.Dim_Date"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Date.dim",
+      "proposed_project_filename": "Date.dim",
+      "cube_role_ids": [
+        "Simulation Date",
+        "Due Date",
+        "Completion Date",
+        "Decision Date",
+        "Known Date",
+        "Window Start Date",
+        "Window End Date",
+        "Order Date",
+        "Recorded Ship Date",
+        "Expected Ship Date",
+        "Expected Receipt Date",
+        "Inventory Snapshot Date",
+        "Planned Start Date",
+        "Recorded End Date",
+        "Actual Start Date",
+        "Actual End Date",
+        "Scheduled Start Date",
+        "Scheduled End Date",
+        "Planned Date",
+        "Supply Available Date",
+        "Job Created Date",
+        "Execution Start Date",
+        "Execution Completion Date"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-molap-20261105\\model\\01_CreateSourceViews.sql",
+          "line": 33,
+          "text": "CREATE OR ALTER VIEW cxolap.DimDate AS"
+        },
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\Database\\02_Schema.sql",
+          "line": 4140,
+          "text": "INSERT dw.Dim_Date(DateKey,CalendarDate,CalendarYear,CalendarQuarter,CalendarMonth,DayOfMonth,DayOfWeek,IsWeekend,ISOWeek,ISOYear,WeekStartDate,MonthStartDate)"
+        }
+      ],
+      "note": "Generated warehouse calendar; user explicitly requested no ACT/SIM prefix for this dimension and all of its roles."
+    },
+    {
+      "id": "Evaluation Cohort",
+      "name": "Evaluation Cohort",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimEvaluationCohort"
+      ],
+      "sql_views": [
+        "cxactive.DimEvaluationCohort"
+      ],
+      "underlying_physical_tables": [],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Evaluation Cohort.dim",
+      "proposed_project_filename": "SIM_Evaluation Cohort.dim",
+      "cube_role_ids": [
+        "Evaluation Cohort"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-molap-20261105\\model\\01_CreateSourceViews.sql",
+          "line": 63,
+          "text": "CREATE OR ALTER VIEW cxolap.DimEvaluationCohort AS"
+        }
+      ],
+      "note": "View VALUES: OPENING_OVERDUE / DUE_IN_RUN / FUTURE_DUE; evaluation cohort classification."
+    },
+    {
+      "id": "Inquiry",
+      "name": "Inquiry",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimInquiry"
+      ],
+      "sql_views": [
+        "cxactive.DimInquiry"
+      ],
+      "underlying_physical_tables": [
+        "cxcontrol.Inquiry"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Inquiry.dim",
+      "proposed_project_filename": "SIM_Inquiry.dim",
+      "cube_role_ids": [
+        "Inquiry"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\InquirySchema.sql",
+          "line": 33,
+          "text": "CREATE OR ALTER VIEW cxcontrol.DimInquiry AS"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "Location",
+      "name": "Location",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "shared",
+      "dsv_tables": [
+        "DimLocation"
+      ],
+      "sql_views": [
+        "cxactive.DimLocation"
+      ],
+      "underlying_physical_tables": [
+        "dw.Dim_Location"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Location.dim",
+      "proposed_project_filename": "ACT_Location.dim",
+      "cube_role_ids": [
+        "Location"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-molap-20261105\\model\\01_CreateSourceViews.sql",
+          "line": 54,
+          "text": "CREATE OR ALTER VIEW cxolap.DimLocation AS"
+        }
+      ],
+      "note": "CompanyX location master reused by simulation."
+    },
+    {
+      "id": "Material Level",
+      "name": "Material Level",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimMaterialLevel"
+      ],
+      "sql_views": [
+        "cxdetail.DimMaterialLevel"
+      ],
+      "underlying_physical_tables": [
+        "cxdetail.PlanOrderMaterial"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Material Level.dim",
+      "proposed_project_filename": "SIM_Material Level.dim",
+      "cube_role_ids": [
+        "Material Level"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+          "line": 93,
+          "text": "v['DimMaterialLevel']=\"SELECT DISTINCT CONVERT(nvarchar(40),CONCAT(MaterialDepth,':',CONVERT(int,IsLeafComponent))) MaterialLevelKey,CONVERT(nvarchar(80),CONCAT('Depth ',MaterialDepth,' | ',CASE WHEN IsLeafComponent=1 THEN 'leaf' ELSE 'intermediate' END)) MaterialLevelName,CONVERT(int,MaterialDepth) MaterialDepth,IsLeafComponent FROM cxdetail.SourcePlanOrderMaterial\""
+        }
+      ],
+      "note": "Depth plus BOM-leaf flag required for interpreting advisory quantities; not a runtime debug level."
+    },
+    {
+      "id": "Order Status",
+      "name": "Order Status",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimOrderStatus"
+      ],
+      "sql_views": [
+        "cxactive.DimOrderStatus"
+      ],
+      "underlying_physical_tables": [
+        "dss.Fact_SimulationOrder"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Order Status.dim",
+      "proposed_project_filename": "SIM_Order Status.dim",
+      "cube_role_ids": [
+        "Order Status"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-molap-20261105\\model\\01_CreateSourceViews.sql",
+          "line": 67,
+          "text": "CREATE OR ALTER VIEW cxolap.DimOrderStatus AS"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "Plan Action",
+      "name": "Plan Action",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimPlanAction"
+      ],
+      "sql_views": [
+        "cxdetail.DimPlanAction"
+      ],
+      "underlying_physical_tables": [
+        "cxdetail.PlanAction"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Plan Action.dim",
+      "proposed_project_filename": "SIM_Plan Action.dim",
+      "cube_role_ids": [
+        "Plan Action"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+          "line": 87,
+          "text": "v['DimPlanAction']=\"SELECT CONVERT(nvarchar(120),c.ActionCode) ActionCode,CONVERT(nvarchar(120),c.ActionCode) ActionName,CONVERT(nvarchar(120),COALESCE(o.ValueKind,c.ValueKind)) ValueKind FROM (VALUES \"+literals+\") c(ActionCode,ValueKind) LEFT JOIN (SELECT ActionCode,MIN(ValueKind) ValueKind FROM cxdetail.SourcePlanAction GROUP BY ActionCode) o ON o.ActionCode=c.ActionCode\""
+        }
+      ],
+      "note": "Static accepted-action catalog plus typed PlanAction values; quantity actions and whole-order binary flags remain separate."
+    },
+    {
+      "id": "Plan Period",
+      "name": "Plan Period",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimPlanPeriod"
+      ],
+      "sql_views": [
+        "cxdetail.DimPlanPeriod"
+      ],
+      "underlying_physical_tables": [
+        "cxdetail.PlanAction"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Plan Period.dim",
+      "proposed_project_filename": "SIM_Plan Period.dim",
+      "cube_role_ids": [
+        "Plan Period"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+          "line": 88,
+          "text": "v['DimPlanPeriod']=\"SELECT DISTINCT CONVERT(int,PeriodOffset) PeriodOffset,CONVERT(nvarchar(40),CONCAT(N't+',PeriodOffset)) PeriodName,IsFirstPeriod,IsTentativeFuture FROM cxdetail.SourcePlanAction\""
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "Plan Version",
+      "name": "Plan Version",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimPlanVersion"
+      ],
+      "sql_views": [
+        "cxdetail.DimPlanVersion"
+      ],
+      "underlying_physical_tables": [
+        "cxdetail.PlanVersion"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Plan Version.dim",
+      "proposed_project_filename": "SIM_Plan Version.dim",
+      "cube_role_ids": [
+        "Plan Version"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+          "line": 78,
+          "text": "v['DimPlanVersion']=f\"SELECT {pkey('f')} PlanVersionKey,CONVERT(nvarchar(240),CONCAT(CONVERT(char(10),f.DecisionAt,120),N' | Run ',f.PlanningRunKey,N' | Solve ',f.SolveSequence)) PlanVersionName,f.DecisionSHA256 DecisionHash,CONVERT(nvarchar(80),N'ACCEPTED_ADVISORY') PlanStatus,{datekey('f','DecisionAt')} DecisionDateKey,CONVERT(int,ROW_NUMBER() OVER(PARTITION BY f.PlanningRunKey ORDER BY f.DecisionAt,f.DecisionVersionID)) PlanVersionOrdinal,f.PlanningRunKey,f.DecisionVersionID FROM cxdetail.SourcePlanVersion f\""
+        }
+      ],
+      "note": "Business snapshot of an accepted MILP plan, not just a technical hash/log. Hash attribute is optional provenance; version selection is required."
+    },
+    {
+      "id": "Product",
+      "name": "Product",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "shared",
+      "dsv_tables": [
+        "DimProduct"
+      ],
+      "sql_views": [
+        "cxactive.DimProduct"
+      ],
+      "underlying_physical_tables": [
+        "dw.Dim_Product"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Product.dim",
+      "proposed_project_filename": "ACT_Product.dim",
+      "cube_role_ids": [
+        "Product",
+        "Parent Product",
+        "Root Product"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-molap-20261105\\model\\01_CreateSourceViews.sql",
+          "line": 44,
+          "text": "CREATE OR ALTER VIEW cxolap.DimProduct AS"
+        }
+      ],
+      "note": "CompanyX product master reused by simulation. Parent Product and Root Product retain ACT origin."
+    },
+    {
+      "id": "Production Execution",
+      "name": "Production Execution",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimProductionExecution"
+      ],
+      "sql_views": [
+        "cxdetail.DimProductionExecution"
+      ],
+      "underlying_physical_tables": [
+        "cxdetail.ProductionExecution"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Production Execution.dim",
+      "proposed_project_filename": "SIM_Production Execution.dim",
+      "cube_role_ids": [
+        "Production Execution"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+          "line": 77,
+          "text": "v['DimProductionExecution']=f\"SELECT {key('f','ExecutionCode')} ExecutionKey,CONVERT(nvarchar(240),CONCAT(f.ExecutionCode,N' | Run ',f.PlanningRunKey)) ExecutionName,f.ExecutionCode FROM cxdetail.SourceProductionExecution f UNION ALL SELECT N'0',N'Không áp dụng',N'Không áp dụng'\""
+        }
+      ],
+      "note": "DES observed execution, distinct from actual operational history."
+    },
+    {
+      "id": "Production Job",
+      "name": "Production Job",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimProductionJob"
+      ],
+      "sql_views": [
+        "cxdetail.DimProductionJob"
+      ],
+      "underlying_physical_tables": [
+        "cxdetail.ProductionJobDay"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Production Job.dim",
+      "proposed_project_filename": "SIM_Production Job.dim",
+      "cube_role_ids": [
+        "Production Job"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+          "line": 76,
+          "text": "v['DimProductionJob']=f\"SELECT {key('f','JobCode')} JobKey,CONVERT(nvarchar(240),CONCAT(f.JobCode,N' | Run ',f.PlanningRunKey)) JobName,f.JobCode FROM cxdetail.SourceProductionJobDay f GROUP BY f.PlanningRunKey,f.JobCode UNION ALL SELECT N'0',N'Không áp dụng',N'Không áp dụng'\""
+        }
+      ],
+      "note": "DES production job, distinct from historical OLTP WorkOrder."
+    },
+    {
+      "id": "Purchase Document Status",
+      "name": "Purchase Document Status",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "actual_only",
+      "dsv_tables": [
+        "OpsDimPurchaseStatus"
+      ],
+      "sql_views": [
+        "cxoperations.DimPurchaseStatus"
+      ],
+      "underlying_physical_tables": [
+        "dw.Dim_PurchaseStatus"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Purchase Document Status.dim",
+      "proposed_project_filename": "ACT_Purchase Document Status.dim",
+      "cube_role_ids": [
+        "Purchase Document Status"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-operations-20261105\\01_CreateViews.sql",
+          "line": 34,
+          "text": "CREATE OR ALTER VIEW cxoperations.DimPurchaseStatus AS"
+        },
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\Database\\02_Schema.sql",
+          "line": 4100,
+          "text": "INSERT dw.Dim_PurchaseStatus ([PurchaseStatusKey],[StatusCode],[StatusName],[IsDocumented])"
+        }
+      ],
+      "note": "Warehouse-seeded operational PurchaseOrder status catalog."
+    },
+    {
+      "id": "RequestedWindow",
+      "name": "RequestedWindow",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimRequestedWindow"
+      ],
+      "sql_views": [
+        "cxactive.DimRequestedWindow"
+      ],
+      "underlying_physical_tables": [
+        "cxcontrol.RequestedWindow",
+        "cxcontrol.WindowCandidate"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\RequestedWindow.dim",
+      "proposed_project_filename": "SIM_RequestedWindow.dim",
+      "cube_role_ids": [
+        "RequestedWindow"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\RequestedWindow.sql",
+          "line": 22,
+          "text": "CREATE OR ALTER VIEW cxcontrol.DimRequestedWindow AS"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "Run",
+      "name": "Run",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimRun"
+      ],
+      "sql_views": [
+        "cxoperations.DimRun"
+      ],
+      "underlying_physical_tables": [
+        "dss.Dim_PlanningRun",
+        "dss.ExperimentCase",
+        "dss.Dim_ExperimentVersion",
+        "dss.Dim_ScenarioVersion",
+        "dss.Dim_PolicyConfigVersion",
+        "dss.Dim_PolicyType",
+        "dss.Fact_RunSummary",
+        "cxcontrol.Baseline",
+        "cxcontrol.Candidate",
+        "cxcontrol.Inquiry",
+        "cxcontrol.InquiryPurpose"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Run.dim",
+      "proposed_project_filename": "SIM_Run.dim",
+      "cube_role_ids": [
+        "Run"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-molap-20261105\\model\\01_CreateSourceViews.sql",
+          "line": 8,
+          "text": "CREATE OR ALTER VIEW cxolap.DimRun AS"
+        },
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\active_cube_scope.py",
+          "line": 39,
+          "text": "views['DimRun']='SELECT r.* FROM cxcontrol.DimControlRun r JOIN cxactive.ActiveRunScope a ON a.PlanningRunKey=r.PlanningRunKey'"
+        }
+      ],
+      "note": "Simulation run metadata, despite published source schema cxoperations."
+    },
+    {
+      "id": "Sales Document Status",
+      "name": "Sales Document Status",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "actual_only",
+      "dsv_tables": [
+        "OpsDimSalesStatus"
+      ],
+      "sql_views": [
+        "cxoperations.DimSalesStatus"
+      ],
+      "underlying_physical_tables": [
+        "dw.Dim_SalesStatus"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Sales Document Status.dim",
+      "proposed_project_filename": "ACT_Sales Document Status.dim",
+      "cube_role_ids": [
+        "Sales Document Status"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-operations-20261105\\01_CreateViews.sql",
+          "line": 31,
+          "text": "CREATE OR ALTER VIEW cxoperations.DimSalesStatus AS"
+        },
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\Database\\02_Schema.sql",
+          "line": 4020,
+          "text": "INSERT dw.Dim_SalesStatus ([SalesStatusKey],[StatusCode],[StatusName],[IsDocumented],[IsDemandEligible])"
+        }
+      ],
+      "note": "Warehouse-seeded operational SalesOrder status catalog; distinct from simulated Order Status."
+    },
+    {
+      "id": "Sales Order Line",
+      "name": "Sales Order Line",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimSalesOrderLine"
+      ],
+      "sql_views": [
+        "cxdetail.DimSalesOrderLine"
+      ],
+      "underlying_physical_tables": [
+        "cxdetail.OrderLineDay"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Sales Order Line.dim",
+      "proposed_project_filename": "SIM_Sales Order Line.dim",
+      "cube_role_ids": [
+        "Sales Order Line"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+          "line": 75,
+          "text": "v['DimSalesOrderLine']=f\"SELECT {key('f','SalesOrderDetailID')} SalesOrderLineKey,CONVERT(nvarchar(240),CONCAT(N'SO ',f.SalesOrderID,N' / Line ',f.SalesOrderDetailID,N' | Run ',f.PlanningRunKey)) LineName,CONVERT(nvarchar(60),f.SalesOrderDetailID) SourceLineID FROM cxdetail.SourceOrderLineDay f GROUP BY f.PlanningRunKey,f.SalesOrderID,f.SalesOrderDetailID UNION ALL SELECT N'0',N'Không áp dụng',N'Không áp dụng'\""
+        }
+      ],
+      "note": "Run-specific simulated order-line identity. Historic source IDs do not make this an ACT dimension."
+    },
+    {
+      "id": "Sales Order",
+      "name": "Sales Order",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimSalesOrder"
+      ],
+      "sql_views": [
+        "cxdetail.DimSalesOrder"
+      ],
+      "underlying_physical_tables": [
+        "cxdetail.OrderDay"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Sales Order.dim",
+      "proposed_project_filename": "SIM_Sales Order.dim",
+      "cube_role_ids": [
+        "Sales Order"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+          "line": 74,
+          "text": "v['DimSalesOrder']=f\"SELECT {key('f','SalesOrderID')} SalesOrderKey,CONVERT(nvarchar(240),CONCAT(N'SO ',f.SalesOrderID,N' | Run ',f.PlanningRunKey)) SalesOrderName,CONVERT(nvarchar(60),f.SalesOrderID) SalesOrderID FROM cxdetail.SourceOrderDay f GROUP BY f.PlanningRunKey,f.SalesOrderID UNION ALL SELECT N'0',N'Không áp dụng',N'Không áp dụng'\""
+        }
+      ],
+      "note": "Run-specific order entity replayed in simulation or added as hypothetical inquiry. It is not the ActualSales order dimension."
+    },
+    {
+      "id": "Solve",
+      "name": "Solve",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimSolveKey"
+      ],
+      "sql_views": [
+        "cxactive.DimSolveKey"
+      ],
+      "underlying_physical_tables": [
+        "dss.Fact_OptimizationSolve"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Solve.dim",
+      "proposed_project_filename": "SIM_Solve.dim",
+      "cube_role_ids": [
+        "Solve"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-molap-20261105\\model\\01_CreateSourceViews.sql",
+          "line": 116,
+          "text": "CREATE OR ALTER VIEW cxolap.DimSolveKey AS"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "Solver Status",
+      "name": "Solver Status",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimSolveStatus"
+      ],
+      "sql_views": [
+        "cxactive.DimSolveStatus"
+      ],
+      "underlying_physical_tables": [
+        "dss.Fact_OptimizationSolve"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Solver Status.dim",
+      "proposed_project_filename": "SIM_Solver Status.dim",
+      "cube_role_ids": [
+        "Solver Status"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-molap-20261105\\model\\01_CreateSourceViews.sql",
+          "line": 71,
+          "text": "CREATE OR ALTER VIEW cxolap.DimSolveStatus AS"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "Trace Method",
+      "name": "Trace Method",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimTraceMethod"
+      ],
+      "sql_views": [
+        "cxdetail.DimTraceMethod"
+      ],
+      "underlying_physical_tables": [
+        "cxdetail.MaterialTrace",
+        "cxdetail.AdvisoryAllocation",
+        "cxdetail.PlanOrderMaterial"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Trace Method.dim",
+      "proposed_project_filename": "SIM_Trace Method.dim",
+      "cube_role_ids": [
+        "Trace Method"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+          "line": 89,
+          "text": "v['DimTraceMethod']=\"SELECT DISTINCT TraceMethod MethodCode,TraceMethod MethodName FROM cxdetail.SourceMaterialTrace UNION SELECT DISTINCT Method,Method FROM cxdetail.SourceAdvisoryAllocation UNION SELECT DISTINCT Method,Method FROM cxdetail.SourcePlanOrderMaterial\""
+        }
+      ],
+      "note": "DES observed material consumption or advisory plan lineage; no exclusive SalesOrder reservation."
+    },
+    {
+      "id": "Tranche",
+      "name": "Tranche",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimTranche"
+      ],
+      "sql_views": [
+        "cxactive.DimTranche"
+      ],
+      "underlying_physical_tables": [
+        "cxcontrol.Tranche",
+        "cxcontrol.Candidate"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Tranche.dim",
+      "proposed_project_filename": "SIM_Tranche.dim",
+      "cube_role_ids": [
+        "Tranche"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\InquirySchema.sql",
+          "line": 46,
+          "text": "CREATE OR ALTER VIEW cxcontrol.DimTranche AS"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "Unit",
+      "name": "Unit",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "simulation_only",
+      "dsv_tables": [
+        "DimUnit"
+      ],
+      "sql_views": [
+        "cxactive.DimUnit"
+      ],
+      "underlying_physical_tables": [
+        "dw.Dim_UnitMeasure"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Unit.dim",
+      "proposed_project_filename": "ACT_Unit.dim",
+      "cube_role_ids": [
+        "Unit"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-molap-20261105\\model\\01_CreateSourceViews.sql",
+          "line": 58,
+          "text": "CREATE OR ALTER VIEW cxolap.DimUnit AS"
+        },
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\Database\\02_Schema.sql",
+          "line": 3891,
+          "text": "SELECT * INTO #UnitMeasure FROM stg.UnitMeasure WHERE LoadBatchID=@B;"
+        },
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\Database\\02_Schema.sql",
+          "line": 4144,
+          "text": "MERGE dw.Dim_UnitMeasure WITH(HOLDLOCK) AS D USING (SELECT RTRIM(UnitMeasureCode) AS [UnitMeasureCode],"
+        },
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\Database\\02_Incremental.sql",
+          "line": 1375,
+          "text": "INSERT etl_v2.Validation VALUES(@B,N''''RawCount_UnitMeasure'''',(SELECT COUNT_BIG(*) FROM [__SOURCE_DB__].Production.UnitMeasure),(SELECT COUNT_BIG(*) FROM etl_raw.[UnitMeasure]));"
+        }
+      ],
+      "note": "CompanyX Production.UnitMeasure master via ETL. Simulation EA/unit assumptions do not change this dimension source origin. Only simulation groups currently relate to Unit."
+    },
+    {
+      "id": "Vendor",
+      "name": "Vendor",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "actual_only",
+      "dsv_tables": [
+        "OpsDimVendor"
+      ],
+      "sql_views": [
+        "cxoperations.DimVendor"
+      ],
+      "underlying_physical_tables": [
+        "dw.Dim_Vendor"
+      ],
+      "source_file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Vendor.dim",
+      "proposed_project_filename": "ACT_Vendor.dim",
+      "cube_role_ids": [
+        "Vendor"
+      ],
+      "evidence": [
+        {
+          "file": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-operations-20261105\\01_CreateViews.sql",
+          "line": 22,
+          "text": "CREATE OR ALTER VIEW cxoperations.DimVendor AS"
+        }
+      ],
+      "note": ""
+    }
+  ],
+  "cube_roles": [
+    {
+      "id": "Run",
+      "name": "Run",
+      "database_dimension_id": "Run",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "SimulationDaily",
+        "OrderLineService",
+        "OrderService",
+        "SolveAudit",
+        "RunDay",
+        "RunSummary",
+        "InquiryLineDelivery",
+        "InquiryTranche",
+        "ProductionActivity",
+        "BaselineActivity",
+        "InquiryWindow",
+        "RequestedWindowSummary",
+        "RequestedWindowLine",
+        "RequestedWindowTranche",
+        "OrderDaily",
+        "OrderLineDaily",
+        "JobDaily",
+        "ProductionExecution",
+        "MaterialTrace",
+        "RollingPlan",
+        "RollingOrderPlan",
+        "PlannedAllocation",
+        "PlanSupplyBalance",
+        "PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "Product",
+      "name": "Product",
+      "database_dimension_id": "Product",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "shared",
+      "actual_measure_groups": [
+        "ActualSales",
+        "ActualPurchases",
+        "ActualInventory",
+        "ActualWorkOrders",
+        "ActualOperations"
+      ],
+      "simulation_measure_groups": [
+        "SimulationDaily",
+        "OrderLineService",
+        "InquiryLineDelivery",
+        "ProductionActivity",
+        "BaselineActivity",
+        "RequestedWindowLine",
+        "OrderLineDaily",
+        "JobDaily",
+        "ProductionExecution",
+        "MaterialTrace",
+        "RollingPlan",
+        "PlannedAllocation",
+        "PlanSupplyBalance",
+        "PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "Location",
+      "name": "Location",
+      "database_dimension_id": "Location",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "shared",
+      "actual_measure_groups": [
+        "ActualInventory",
+        "ActualOperations"
+      ],
+      "simulation_measure_groups": [
+        "SimulationDaily"
+      ]
+    },
+    {
+      "id": "Unit",
+      "name": "Unit",
+      "database_dimension_id": "Unit",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "SimulationDaily",
+        "OrderLineService",
+        "InquiryLineDelivery",
+        "ProductionActivity",
+        "BaselineActivity",
+        "RequestedWindowLine",
+        "OrderLineDaily",
+        "JobDaily",
+        "ProductionExecution",
+        "MaterialTrace",
+        "RollingPlan",
+        "PlannedAllocation",
+        "PlanSupplyBalance",
+        "PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "Evaluation Cohort",
+      "name": "Evaluation Cohort",
+      "database_dimension_id": "Evaluation Cohort",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "OrderLineService",
+        "OrderService"
+      ]
+    },
+    {
+      "id": "Order Status",
+      "name": "Order Status",
+      "database_dimension_id": "Order Status",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "OrderService",
+        "InquiryTranche",
+        "RequestedWindowTranche"
+      ]
+    },
+    {
+      "id": "Solver Status",
+      "name": "Solver Status",
+      "database_dimension_id": "Solver Status",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "SolveAudit"
+      ]
+    },
+    {
+      "id": "Solve",
+      "name": "Solve",
+      "database_dimension_id": "Solve",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "SolveAudit"
+      ]
+    },
+    {
+      "id": "Inquiry",
+      "name": "Inquiry",
+      "database_dimension_id": "Inquiry",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "InquiryLineDelivery",
+        "InquiryTranche",
+        "ProductionActivity",
+        "InquiryWindow"
+      ]
+    },
+    {
+      "id": "Candidate",
+      "name": "Candidate",
+      "database_dimension_id": "Candidate",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "InquiryLineDelivery",
+        "InquiryTranche",
+        "ProductionActivity",
+        "InquiryWindow",
+        "RequestedWindowSummary",
+        "RequestedWindowLine",
+        "RequestedWindowTranche"
+      ]
+    },
+    {
+      "id": "Tranche",
+      "name": "Tranche",
+      "database_dimension_id": "Tranche",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "InquiryLineDelivery",
+        "InquiryTranche",
+        "RequestedWindowLine",
+        "RequestedWindowTranche"
+      ]
+    },
+    {
+      "id": "Activity",
+      "name": "Activity",
+      "database_dimension_id": "Activity",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "ProductionActivity",
+        "BaselineActivity"
+      ]
+    },
+    {
+      "id": "RequestedWindow",
+      "name": "RequestedWindow",
+      "database_dimension_id": "RequestedWindow",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "RequestedWindowSummary",
+        "RequestedWindowLine",
+        "RequestedWindowTranche"
+      ]
+    },
+    {
+      "id": "Customer",
+      "name": "Customer",
+      "database_dimension_id": "Customer",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualSales"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Vendor",
+      "name": "Vendor",
+      "database_dimension_id": "Vendor",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualPurchases"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Channel",
+      "name": "Channel",
+      "database_dimension_id": "Channel",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualSales"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Sales Document Status",
+      "name": "Sales Document Status",
+      "database_dimension_id": "Sales Document Status",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualSales"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Purchase Document Status",
+      "name": "Purchase Document Status",
+      "database_dimension_id": "Purchase Document Status",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualPurchases"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Data Quality",
+      "name": "Data Quality",
+      "database_dimension_id": "Data Quality",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualSales",
+        "ActualPurchases",
+        "ActualInventory",
+        "ActualWorkOrders",
+        "ActualOperations"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Simulation Date",
+      "name": "Simulation Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "SimulationDaily",
+        "RunDay",
+        "ProductionActivity",
+        "BaselineActivity",
+        "OrderDaily",
+        "OrderLineDaily",
+        "JobDaily",
+        "MaterialTrace"
+      ]
+    },
+    {
+      "id": "Due Date",
+      "name": "Due Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "shared",
+      "actual_measure_groups": [
+        "ActualSales",
+        "ActualWorkOrders"
+      ],
+      "simulation_measure_groups": [
+        "OrderLineService",
+        "OrderService",
+        "InquiryLineDelivery",
+        "InquiryTranche",
+        "RequestedWindowLine",
+        "RequestedWindowTranche",
+        "OrderDaily",
+        "OrderLineDaily"
+      ]
+    },
+    {
+      "id": "Completion Date",
+      "name": "Completion Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "OrderLineService",
+        "OrderService",
+        "InquiryLineDelivery",
+        "InquiryTranche",
+        "RequestedWindowLine",
+        "RequestedWindowTranche"
+      ]
+    },
+    {
+      "id": "Decision Date",
+      "name": "Decision Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "SolveAudit",
+        "RollingPlan",
+        "RollingOrderPlan",
+        "PlannedAllocation",
+        "PlanSupplyBalance",
+        "PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "Known Date",
+      "name": "Known Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "InquiryLineDelivery",
+        "InquiryTranche",
+        "RequestedWindowLine",
+        "RequestedWindowTranche",
+        "OrderDaily",
+        "OrderLineDaily"
+      ]
+    },
+    {
+      "id": "Window Start Date",
+      "name": "Window Start Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "RequestedWindowSummary"
+      ]
+    },
+    {
+      "id": "Window End Date",
+      "name": "Window End Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "RequestedWindowSummary"
+      ]
+    },
+    {
+      "id": "Order Date",
+      "name": "Order Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualSales",
+        "ActualPurchases"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Recorded Ship Date",
+      "name": "Recorded Ship Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualSales"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Expected Ship Date",
+      "name": "Expected Ship Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualPurchases"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Expected Receipt Date",
+      "name": "Expected Receipt Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualPurchases"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Inventory Snapshot Date",
+      "name": "Inventory Snapshot Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualInventory"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Planned Start Date",
+      "name": "Planned Start Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualWorkOrders"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Recorded End Date",
+      "name": "Recorded End Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualWorkOrders"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Actual Start Date",
+      "name": "Actual Start Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualWorkOrders",
+        "ActualOperations"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Actual End Date",
+      "name": "Actual End Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualWorkOrders",
+        "ActualOperations"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Scheduled Start Date",
+      "name": "Scheduled Start Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualOperations"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Scheduled End Date",
+      "name": "Scheduled End Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "actual_only",
+      "actual_measure_groups": [
+        "ActualOperations"
+      ],
+      "simulation_measure_groups": []
+    },
+    {
+      "id": "Sales Order",
+      "name": "Sales Order",
+      "database_dimension_id": "Sales Order",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "OrderDaily",
+        "OrderLineDaily",
+        "RollingPlan",
+        "RollingOrderPlan",
+        "PlannedAllocation",
+        "PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "Sales Order Line",
+      "name": "Sales Order Line",
+      "database_dimension_id": "Sales Order Line",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "OrderLineDaily",
+        "RollingPlan",
+        "PlannedAllocation",
+        "PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "Production Job",
+      "name": "Production Job",
+      "database_dimension_id": "Production Job",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "JobDaily",
+        "ProductionExecution",
+        "MaterialTrace"
+      ]
+    },
+    {
+      "id": "Production Execution",
+      "name": "Production Execution",
+      "database_dimension_id": "Production Execution",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "ProductionExecution",
+        "MaterialTrace"
+      ]
+    },
+    {
+      "id": "Plan Version",
+      "name": "Plan Version",
+      "database_dimension_id": "Plan Version",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "RollingPlan",
+        "RollingOrderPlan",
+        "PlannedAllocation",
+        "PlanSupplyBalance",
+        "PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "Plan Action",
+      "name": "Plan Action",
+      "database_dimension_id": "Plan Action",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "RollingPlan",
+        "RollingOrderPlan"
+      ]
+    },
+    {
+      "id": "Trace Method",
+      "name": "Trace Method",
+      "database_dimension_id": "Trace Method",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "MaterialTrace",
+        "PlannedAllocation",
+        "PlanSupplyBalance",
+        "PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "Daily Order Status",
+      "name": "Daily Order Status",
+      "database_dimension_id": "Daily Order Status",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "OrderDaily",
+        "OrderLineDaily"
+      ]
+    },
+    {
+      "id": "Allocation Supply",
+      "name": "Allocation Supply",
+      "database_dimension_id": "Allocation Supply",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "PlannedAllocation",
+        "PlanSupplyBalance"
+      ]
+    },
+    {
+      "id": "Allocation Consumer",
+      "name": "Allocation Consumer",
+      "database_dimension_id": "Allocation Consumer",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "PlannedAllocation"
+      ]
+    },
+    {
+      "id": "Plan Period",
+      "name": "Plan Period",
+      "database_dimension_id": "Plan Period",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "RollingPlan",
+        "RollingOrderPlan"
+      ]
+    },
+    {
+      "id": "Material Level",
+      "name": "Material Level",
+      "database_dimension_id": "Material Level",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "Planned Date",
+      "name": "Planned Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "RollingPlan",
+        "RollingOrderPlan",
+        "PlannedAllocation",
+        "PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "Supply Available Date",
+      "name": "Supply Available Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "PlannedAllocation",
+        "PlanSupplyBalance"
+      ]
+    },
+    {
+      "id": "Job Created Date",
+      "name": "Job Created Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "JobDaily"
+      ]
+    },
+    {
+      "id": "Execution Start Date",
+      "name": "Execution Start Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "ProductionExecution"
+      ]
+    },
+    {
+      "id": "Execution Completion Date",
+      "name": "Execution Completion Date",
+      "database_dimension_id": "Date",
+      "origin": "calendar",
+      "prefix": "",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "ProductionExecution"
+      ]
+    },
+    {
+      "id": "Parent Product",
+      "name": "Parent Product",
+      "database_dimension_id": "Product",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "MaterialTrace",
+        "RollingPlan",
+        "PlannedAllocation",
+        "PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "Root Product",
+      "name": "Root Product",
+      "database_dimension_id": "Product",
+      "origin": "actual",
+      "prefix": "ACT",
+      "usage_origin": "simulation_only",
+      "actual_measure_groups": [],
+      "simulation_measure_groups": [
+        "PlanOrderMaterial"
+      ]
+    }
+  ],
+  "measure_groups": [
+    {
+      "id": "SimulationDaily",
+      "name": "SimulationDaily",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactSimulationDaily"
+      ],
+      "sql_views": [
+        "cxactive.FactSimulationDaily"
+      ],
+      "cube_role_ids": [
+        "Product",
+        "Unit",
+        "Run",
+        "Location",
+        "Simulation Date"
+      ]
+    },
+    {
+      "id": "OrderLineService",
+      "name": "OrderLineService",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactOrderLineService"
+      ],
+      "sql_views": [
+        "cxactive.FactOrderLineService"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Unit",
+        "Due Date",
+        "Evaluation Cohort",
+        "Product",
+        "Completion Date"
+      ]
+    },
+    {
+      "id": "OrderService",
+      "name": "OrderService",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactOrderService"
+      ],
+      "sql_views": [
+        "cxactive.FactOrderService"
+      ],
+      "cube_role_ids": [
+        "Order Status",
+        "Evaluation Cohort",
+        "Run",
+        "Completion Date",
+        "Due Date"
+      ]
+    },
+    {
+      "id": "SolveAudit",
+      "name": "SolveAudit",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactSolveAudit"
+      ],
+      "sql_views": [
+        "cxactive.FactSolveAudit"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Solver Status",
+        "Solve",
+        "Decision Date"
+      ]
+    },
+    {
+      "id": "RunDay",
+      "name": "RunDay",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactRunDay"
+      ],
+      "sql_views": [
+        "cxactive.FactRunDay"
+      ],
+      "cube_role_ids": [
+        "Simulation Date",
+        "Run"
+      ]
+    },
+    {
+      "id": "RunSummary",
+      "name": "RunSummary",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactRunSummary"
+      ],
+      "sql_views": [
+        "cxactive.FactRunSummary"
+      ],
+      "cube_role_ids": [
+        "Run"
+      ]
+    },
+    {
+      "id": "InquiryLineDelivery",
+      "name": "InquiryLineDelivery",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactInquiryLineDelivery"
+      ],
+      "sql_views": [
+        "cxactive.FactInquiryLineDelivery"
+      ],
+      "cube_role_ids": [
+        "Inquiry",
+        "Due Date",
+        "Run",
+        "Product",
+        "Unit",
+        "Tranche",
+        "Known Date",
+        "Candidate",
+        "Completion Date"
+      ]
+    },
+    {
+      "id": "InquiryTranche",
+      "name": "InquiryTranche",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactInquiryTranche"
+      ],
+      "sql_views": [
+        "cxactive.FactInquiryTranche"
+      ],
+      "cube_role_ids": [
+        "Known Date",
+        "Completion Date",
+        "Tranche",
+        "Due Date",
+        "Order Status",
+        "Run",
+        "Inquiry",
+        "Candidate"
+      ]
+    },
+    {
+      "id": "ProductionActivity",
+      "name": "ProductionActivity",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactProductionActivity"
+      ],
+      "sql_views": [
+        "cxactive.FactProductionActivity"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Unit",
+        "Activity",
+        "Simulation Date",
+        "Inquiry",
+        "Product",
+        "Candidate"
+      ]
+    },
+    {
+      "id": "BaselineActivity",
+      "name": "BaselineActivity",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactBaselineActivity"
+      ],
+      "sql_views": [
+        "cxactive.FactBaselineActivity"
+      ],
+      "cube_role_ids": [
+        "Product",
+        "Unit",
+        "Run",
+        "Activity",
+        "Simulation Date"
+      ]
+    },
+    {
+      "id": "InquiryWindow",
+      "name": "InquiryWindow",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactInquiryWindowSummary"
+      ],
+      "sql_views": [
+        "cxactive.FactInquiryWindowSummary"
+      ],
+      "cube_role_ids": [
+        "Candidate",
+        "Inquiry",
+        "Run"
+      ]
+    },
+    {
+      "id": "RequestedWindowSummary",
+      "name": "RequestedWindowSummary",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactRequestedWindowSummary"
+      ],
+      "sql_views": [
+        "cxactive.FactRequestedWindowSummary"
+      ],
+      "cube_role_ids": [
+        "Window Start Date",
+        "Candidate",
+        "Run",
+        "RequestedWindow",
+        "Window End Date"
+      ]
+    },
+    {
+      "id": "RequestedWindowLine",
+      "name": "RequestedWindowLine",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactRequestedWindowLine"
+      ],
+      "sql_views": [
+        "cxactive.FactRequestedWindowLine"
+      ],
+      "cube_role_ids": [
+        "Known Date",
+        "Due Date",
+        "Run",
+        "Product",
+        "RequestedWindow",
+        "Tranche",
+        "Candidate",
+        "Completion Date",
+        "Unit"
+      ]
+    },
+    {
+      "id": "RequestedWindowTranche",
+      "name": "RequestedWindowTranche",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactRequestedWindowTranche"
+      ],
+      "sql_views": [
+        "cxactive.FactRequestedWindowTranche"
+      ],
+      "cube_role_ids": [
+        "Known Date",
+        "Completion Date",
+        "Tranche",
+        "Due Date",
+        "RequestedWindow",
+        "Run",
+        "Candidate",
+        "Order Status"
+      ]
+    },
+    {
+      "id": "ActualSales",
+      "name": "ActualSales",
+      "origin": "actual",
+      "prefix": "ACT",
+      "dsv_tables": [
+        "OpsFactSales"
+      ],
+      "sql_views": [
+        "cxoperations.FactSales"
+      ],
+      "cube_role_ids": [
+        "Sales Document Status",
+        "Customer",
+        "Product",
+        "Due Date",
+        "Order Date",
+        "Channel",
+        "Recorded Ship Date",
+        "Data Quality"
+      ]
+    },
+    {
+      "id": "ActualPurchases",
+      "name": "ActualPurchases",
+      "origin": "actual",
+      "prefix": "ACT",
+      "dsv_tables": [
+        "OpsFactPurchases"
+      ],
+      "sql_views": [
+        "cxoperations.FactPurchases"
+      ],
+      "cube_role_ids": [
+        "Expected Receipt Date",
+        "Expected Ship Date",
+        "Purchase Document Status",
+        "Order Date",
+        "Data Quality",
+        "Product",
+        "Vendor"
+      ]
+    },
+    {
+      "id": "ActualInventory",
+      "name": "ActualInventory",
+      "origin": "actual",
+      "prefix": "ACT",
+      "dsv_tables": [
+        "OpsFactInventory"
+      ],
+      "sql_views": [
+        "cxoperations.FactInventory"
+      ],
+      "cube_role_ids": [
+        "Product",
+        "Location",
+        "Inventory Snapshot Date",
+        "Data Quality"
+      ]
+    },
+    {
+      "id": "ActualWorkOrders",
+      "name": "ActualWorkOrders",
+      "origin": "actual",
+      "prefix": "ACT",
+      "dsv_tables": [
+        "OpsFactWorkOrders"
+      ],
+      "sql_views": [
+        "cxoperations.FactWorkOrders"
+      ],
+      "cube_role_ids": [
+        "Planned Start Date",
+        "Recorded End Date",
+        "Due Date",
+        "Actual End Date",
+        "Data Quality",
+        "Product",
+        "Actual Start Date"
+      ]
+    },
+    {
+      "id": "ActualOperations",
+      "name": "ActualOperations",
+      "origin": "actual",
+      "prefix": "ACT",
+      "dsv_tables": [
+        "OpsFactOperations"
+      ],
+      "sql_views": [
+        "cxoperations.FactOperations"
+      ],
+      "cube_role_ids": [
+        "Actual End Date",
+        "Scheduled Start Date",
+        "Location",
+        "Data Quality",
+        "Product",
+        "Scheduled End Date",
+        "Actual Start Date"
+      ]
+    },
+    {
+      "id": "OrderDaily",
+      "name": "OrderDaily",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactOrderDaily"
+      ],
+      "sql_views": [
+        "cxdetail.FactOrderDaily"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Simulation Date",
+        "Sales Order",
+        "Known Date",
+        "Due Date",
+        "Daily Order Status"
+      ]
+    },
+    {
+      "id": "OrderLineDaily",
+      "name": "OrderLineDaily",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactOrderLineDaily"
+      ],
+      "sql_views": [
+        "cxdetail.FactOrderLineDaily"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Simulation Date",
+        "Sales Order",
+        "Sales Order Line",
+        "Product",
+        "Unit",
+        "Known Date",
+        "Due Date",
+        "Daily Order Status"
+      ]
+    },
+    {
+      "id": "JobDaily",
+      "name": "JobDaily",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactJobDaily"
+      ],
+      "sql_views": [
+        "cxdetail.FactJobDaily"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Simulation Date",
+        "Production Job",
+        "Product",
+        "Unit",
+        "Job Created Date"
+      ]
+    },
+    {
+      "id": "ProductionExecution",
+      "name": "ProductionExecution",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactProductionExecution"
+      ],
+      "sql_views": [
+        "cxdetail.FactProductionExecution"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Production Job",
+        "Production Execution",
+        "Product",
+        "Unit",
+        "Execution Start Date",
+        "Execution Completion Date"
+      ]
+    },
+    {
+      "id": "MaterialTrace",
+      "name": "MaterialTrace",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactMaterialTrace"
+      ],
+      "sql_views": [
+        "cxdetail.FactMaterialTrace"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Simulation Date",
+        "Production Job",
+        "Production Execution",
+        "Product",
+        "Parent Product",
+        "Unit",
+        "Trace Method"
+      ]
+    },
+    {
+      "id": "RollingPlan",
+      "name": "RollingPlan",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactRollingPlan"
+      ],
+      "sql_views": [
+        "cxdetail.FactRollingPlan"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Plan Version",
+        "Decision Date",
+        "Planned Date",
+        "Plan Period",
+        "Plan Action",
+        "Product",
+        "Parent Product",
+        "Unit",
+        "Sales Order",
+        "Sales Order Line"
+      ]
+    },
+    {
+      "id": "RollingOrderPlan",
+      "name": "RollingOrderPlan",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactRollingOrderPlan"
+      ],
+      "sql_views": [
+        "cxdetail.FactRollingOrderPlan"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Plan Version",
+        "Decision Date",
+        "Planned Date",
+        "Plan Period",
+        "Plan Action",
+        "Sales Order"
+      ]
+    },
+    {
+      "id": "PlannedAllocation",
+      "name": "PlannedAllocation",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactPlannedAllocation"
+      ],
+      "sql_views": [
+        "cxdetail.FactPlannedAllocation"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Plan Version",
+        "Decision Date",
+        "Planned Date",
+        "Product",
+        "Parent Product",
+        "Unit",
+        "Sales Order",
+        "Sales Order Line",
+        "Allocation Supply",
+        "Allocation Consumer",
+        "Trace Method",
+        "Supply Available Date"
+      ]
+    },
+    {
+      "id": "PlanSupplyBalance",
+      "name": "PlanSupplyBalance",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactPlanSupplyBalance"
+      ],
+      "sql_views": [
+        "cxdetail.FactPlanSupplyBalance"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Plan Version",
+        "Decision Date",
+        "Product",
+        "Unit",
+        "Allocation Supply",
+        "Trace Method",
+        "Supply Available Date"
+      ]
+    },
+    {
+      "id": "PlanOrderMaterial",
+      "name": "PlanOrderMaterial",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "dsv_tables": [
+        "FactPlanOrderMaterial"
+      ],
+      "sql_views": [
+        "cxdetail.FactPlanOrderMaterial"
+      ],
+      "cube_role_ids": [
+        "Run",
+        "Plan Version",
+        "Decision Date",
+        "Planned Date",
+        "Product",
+        "Parent Product",
+        "Root Product",
+        "Unit",
+        "Sales Order",
+        "Sales Order Line",
+        "Material Level",
+        "Trace Method"
+      ]
+    }
+  ],
+  "dsv_tables": [
+    {
+      "id": "DimRun",
+      "sql_schema": "cxoperations",
+      "sql_name": "DimRun",
+      "sql_view": "cxoperations.DimRun",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimRun",
+      "database_dimension_ids": [
+        "Run"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxcontrol.Baseline",
+        "cxcontrol.Candidate",
+        "cxcontrol.Inquiry",
+        "cxcontrol.InquiryPurpose",
+        "dss.Dim_ExperimentVersion",
+        "dss.Dim_PlanningRun",
+        "dss.Dim_PolicyConfigVersion",
+        "dss.Dim_PolicyType",
+        "dss.Dim_ScenarioVersion",
+        "dss.ExperimentCase",
+        "dss.Fact_RunSummary"
+      ]
+    },
+    {
+      "id": "DimDate",
+      "sql_schema": "cxactive",
+      "sql_name": "DimDate",
+      "sql_view": "cxactive.DimDate",
+      "kind": "dimension",
+      "origin": "calendar",
+      "prefix": "",
+      "suggested_display_name": "DimDate",
+      "database_dimension_ids": [
+        "Date"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dw.Dim_Date"
+      ]
+    },
+    {
+      "id": "DimProduct",
+      "sql_schema": "cxactive",
+      "sql_name": "DimProduct",
+      "sql_view": "cxactive.DimProduct",
+      "kind": "dimension",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_DimProduct",
+      "database_dimension_ids": [
+        "Product"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dw.Dim_Product"
+      ]
+    },
+    {
+      "id": "DimLocation",
+      "sql_schema": "cxactive",
+      "sql_name": "DimLocation",
+      "sql_view": "cxactive.DimLocation",
+      "kind": "dimension",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_DimLocation",
+      "database_dimension_ids": [
+        "Location"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dw.Dim_Location"
+      ]
+    },
+    {
+      "id": "DimUnit",
+      "sql_schema": "cxactive",
+      "sql_name": "DimUnit",
+      "sql_view": "cxactive.DimUnit",
+      "kind": "dimension",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_DimUnit",
+      "database_dimension_ids": [
+        "Unit"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dw.Dim_UnitMeasure"
+      ]
+    },
+    {
+      "id": "DimEvaluationCohort",
+      "sql_schema": "cxactive",
+      "sql_name": "DimEvaluationCohort",
+      "sql_view": "cxactive.DimEvaluationCohort",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimEvaluationCohort",
+      "database_dimension_ids": [
+        "Evaluation Cohort"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "DimOrderStatus",
+      "sql_schema": "cxactive",
+      "sql_name": "DimOrderStatus",
+      "sql_view": "cxactive.DimOrderStatus",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimOrderStatus",
+      "database_dimension_ids": [
+        "Order Status"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dss.Fact_SimulationOrder"
+      ]
+    },
+    {
+      "id": "DimSolveStatus",
+      "sql_schema": "cxactive",
+      "sql_name": "DimSolveStatus",
+      "sql_view": "cxactive.DimSolveStatus",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimSolveStatus",
+      "database_dimension_ids": [
+        "Solver Status"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dss.Fact_OptimizationSolve"
+      ]
+    },
+    {
+      "id": "DimSolveKey",
+      "sql_schema": "cxactive",
+      "sql_name": "DimSolveKey",
+      "sql_view": "cxactive.DimSolveKey",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimSolveKey",
+      "database_dimension_ids": [
+        "Solve"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dss.Fact_OptimizationSolve"
+      ]
+    },
+    {
+      "id": "FactSimulationDaily",
+      "sql_schema": "cxactive",
+      "sql_name": "FactSimulationDaily",
+      "sql_view": "cxactive.FactSimulationDaily",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactSimulationDaily",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "SimulationDaily"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactOrderLineService",
+      "sql_schema": "cxactive",
+      "sql_name": "FactOrderLineService",
+      "sql_view": "cxactive.FactOrderLineService",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactOrderLineService",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "OrderLineService"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactOrderService",
+      "sql_schema": "cxactive",
+      "sql_name": "FactOrderService",
+      "sql_view": "cxactive.FactOrderService",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactOrderService",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "OrderService"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactSolveAudit",
+      "sql_schema": "cxactive",
+      "sql_name": "FactSolveAudit",
+      "sql_view": "cxactive.FactSolveAudit",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactSolveAudit",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "SolveAudit"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactRunDay",
+      "sql_schema": "cxactive",
+      "sql_name": "FactRunDay",
+      "sql_view": "cxactive.FactRunDay",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactRunDay",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "RunDay"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactRunSummary",
+      "sql_schema": "cxactive",
+      "sql_name": "FactRunSummary",
+      "sql_view": "cxactive.FactRunSummary",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactRunSummary",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "RunSummary"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "DimInquiry",
+      "sql_schema": "cxactive",
+      "sql_name": "DimInquiry",
+      "sql_view": "cxactive.DimInquiry",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimInquiry",
+      "database_dimension_ids": [
+        "Inquiry"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxcontrol.Inquiry"
+      ]
+    },
+    {
+      "id": "DimCandidate",
+      "sql_schema": "cxactive",
+      "sql_name": "DimCandidate",
+      "sql_view": "cxactive.DimCandidate",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimCandidate",
+      "database_dimension_ids": [
+        "Candidate"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxcontrol.Candidate",
+        "cxcontrol.Inquiry"
+      ]
+    },
+    {
+      "id": "DimTranche",
+      "sql_schema": "cxactive",
+      "sql_name": "DimTranche",
+      "sql_view": "cxactive.DimTranche",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimTranche",
+      "database_dimension_ids": [
+        "Tranche"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxcontrol.Candidate",
+        "cxcontrol.Tranche"
+      ]
+    },
+    {
+      "id": "DimActivity",
+      "sql_schema": "cxactive",
+      "sql_name": "DimActivity",
+      "sql_view": "cxactive.DimActivity",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimActivity",
+      "database_dimension_ids": [
+        "Activity"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dss.Dim_EventType"
+      ]
+    },
+    {
+      "id": "DimRequestedWindow",
+      "sql_schema": "cxactive",
+      "sql_name": "DimRequestedWindow",
+      "sql_view": "cxactive.DimRequestedWindow",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimRequestedWindow",
+      "database_dimension_ids": [
+        "RequestedWindow"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxcontrol.RequestedWindow",
+        "cxcontrol.WindowCandidate"
+      ]
+    },
+    {
+      "id": "FactInquiryLineDelivery",
+      "sql_schema": "cxactive",
+      "sql_name": "FactInquiryLineDelivery",
+      "sql_view": "cxactive.FactInquiryLineDelivery",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactInquiryLineDelivery",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "InquiryLineDelivery"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactInquiryTranche",
+      "sql_schema": "cxactive",
+      "sql_name": "FactInquiryTranche",
+      "sql_view": "cxactive.FactInquiryTranche",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactInquiryTranche",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "InquiryTranche"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactProductionActivity",
+      "sql_schema": "cxactive",
+      "sql_name": "FactProductionActivity",
+      "sql_view": "cxactive.FactProductionActivity",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactProductionActivity",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "ProductionActivity"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactBaselineActivity",
+      "sql_schema": "cxactive",
+      "sql_name": "FactBaselineActivity",
+      "sql_view": "cxactive.FactBaselineActivity",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactBaselineActivity",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "BaselineActivity"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactInquiryWindowSummary",
+      "sql_schema": "cxactive",
+      "sql_name": "FactInquiryWindowSummary",
+      "sql_view": "cxactive.FactInquiryWindowSummary",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactInquiryWindowSummary",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "InquiryWindow"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactRequestedWindowSummary",
+      "sql_schema": "cxactive",
+      "sql_name": "FactRequestedWindowSummary",
+      "sql_view": "cxactive.FactRequestedWindowSummary",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactRequestedWindowSummary",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "RequestedWindowSummary"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactRequestedWindowLine",
+      "sql_schema": "cxactive",
+      "sql_name": "FactRequestedWindowLine",
+      "sql_view": "cxactive.FactRequestedWindowLine",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactRequestedWindowLine",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "RequestedWindowLine"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactRequestedWindowTranche",
+      "sql_schema": "cxactive",
+      "sql_name": "FactRequestedWindowTranche",
+      "sql_view": "cxactive.FactRequestedWindowTranche",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactRequestedWindowTranche",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "RequestedWindowTranche"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "OpsDimCustomer",
+      "sql_schema": "cxoperations",
+      "sql_name": "DimCustomer",
+      "sql_view": "cxoperations.DimCustomer",
+      "kind": "dimension",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_OpsDimCustomer",
+      "database_dimension_ids": [
+        "Customer"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dw.Dim_Customer"
+      ]
+    },
+    {
+      "id": "OpsDimVendor",
+      "sql_schema": "cxoperations",
+      "sql_name": "DimVendor",
+      "sql_view": "cxoperations.DimVendor",
+      "kind": "dimension",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_OpsDimVendor",
+      "database_dimension_ids": [
+        "Vendor"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dw.Dim_Vendor"
+      ]
+    },
+    {
+      "id": "OpsDimChannel",
+      "sql_schema": "cxoperations",
+      "sql_name": "DimChannel",
+      "sql_view": "cxoperations.DimChannel",
+      "kind": "dimension",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_OpsDimChannel",
+      "database_dimension_ids": [
+        "Channel"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dw.Dim_Channel"
+      ]
+    },
+    {
+      "id": "OpsDimSalesStatus",
+      "sql_schema": "cxoperations",
+      "sql_name": "DimSalesStatus",
+      "sql_view": "cxoperations.DimSalesStatus",
+      "kind": "dimension",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_OpsDimSalesStatus",
+      "database_dimension_ids": [
+        "Sales Document Status"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dw.Dim_SalesStatus"
+      ]
+    },
+    {
+      "id": "OpsDimPurchaseStatus",
+      "sql_schema": "cxoperations",
+      "sql_name": "DimPurchaseStatus",
+      "sql_view": "cxoperations.DimPurchaseStatus",
+      "kind": "dimension",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_OpsDimPurchaseStatus",
+      "database_dimension_ids": [
+        "Purchase Document Status"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dw.Dim_PurchaseStatus"
+      ]
+    },
+    {
+      "id": "OpsDimDataQuality",
+      "sql_schema": "cxoperations",
+      "sql_name": "DimDataQuality",
+      "sql_view": "cxoperations.DimDataQuality",
+      "kind": "dimension",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_OpsDimDataQuality",
+      "database_dimension_ids": [
+        "Data Quality"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "dw.Fact_InventoryOnHand",
+        "dw.Fact_PurchaseOrderLine",
+        "dw.Fact_SalesOrderLine",
+        "dw.Fact_WorkOrder",
+        "dw.Fact_WorkOrderOperation"
+      ]
+    },
+    {
+      "id": "OpsFactSales",
+      "sql_schema": "cxoperations",
+      "sql_name": "FactSales",
+      "sql_view": "cxoperations.FactSales",
+      "kind": "fact",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_OpsFactSales",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "ActualSales"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "OpsFactPurchases",
+      "sql_schema": "cxoperations",
+      "sql_name": "FactPurchases",
+      "sql_view": "cxoperations.FactPurchases",
+      "kind": "fact",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_OpsFactPurchases",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "ActualPurchases"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "OpsFactInventory",
+      "sql_schema": "cxoperations",
+      "sql_name": "FactInventory",
+      "sql_view": "cxoperations.FactInventory",
+      "kind": "fact",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_OpsFactInventory",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "ActualInventory"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "OpsFactWorkOrders",
+      "sql_schema": "cxoperations",
+      "sql_name": "FactWorkOrders",
+      "sql_view": "cxoperations.FactWorkOrders",
+      "kind": "fact",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_OpsFactWorkOrders",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "ActualWorkOrders"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "OpsFactOperations",
+      "sql_schema": "cxoperations",
+      "sql_name": "FactOperations",
+      "sql_view": "cxoperations.FactOperations",
+      "kind": "fact",
+      "origin": "actual",
+      "prefix": "ACT",
+      "suggested_display_name": "ACT_OpsFactOperations",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "ActualOperations"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "DimAllocationConsumer",
+      "sql_schema": "cxdetail",
+      "sql_name": "DimAllocationConsumer",
+      "sql_view": "cxdetail.DimAllocationConsumer",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimAllocationConsumer",
+      "database_dimension_ids": [
+        "Allocation Consumer"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "DimAllocationSupply",
+      "sql_schema": "cxdetail",
+      "sql_name": "DimAllocationSupply",
+      "sql_view": "cxdetail.DimAllocationSupply",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimAllocationSupply",
+      "database_dimension_ids": [
+        "Allocation Supply"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxdetail.PlanSupplyBalance"
+      ]
+    },
+    {
+      "id": "DimMaterialLevel",
+      "sql_schema": "cxdetail",
+      "sql_name": "DimMaterialLevel",
+      "sql_view": "cxdetail.DimMaterialLevel",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimMaterialLevel",
+      "database_dimension_ids": [
+        "Material Level"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxdetail.PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "DimOrderLineStatus",
+      "sql_schema": "cxdetail",
+      "sql_name": "DimOrderLineStatus",
+      "sql_view": "cxdetail.DimOrderLineStatus",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimOrderLineStatus",
+      "database_dimension_ids": [
+        "Daily Order Status"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxdetail.OrderDay",
+        "cxdetail.OrderLineDay"
+      ]
+    },
+    {
+      "id": "DimPlanAction",
+      "sql_schema": "cxdetail",
+      "sql_name": "DimPlanAction",
+      "sql_view": "cxdetail.DimPlanAction",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimPlanAction",
+      "database_dimension_ids": [
+        "Plan Action"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxdetail.PlanAction"
+      ]
+    },
+    {
+      "id": "DimPlanPeriod",
+      "sql_schema": "cxdetail",
+      "sql_name": "DimPlanPeriod",
+      "sql_view": "cxdetail.DimPlanPeriod",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimPlanPeriod",
+      "database_dimension_ids": [
+        "Plan Period"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxdetail.PlanAction"
+      ]
+    },
+    {
+      "id": "DimPlanVersion",
+      "sql_schema": "cxdetail",
+      "sql_name": "DimPlanVersion",
+      "sql_view": "cxdetail.DimPlanVersion",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimPlanVersion",
+      "database_dimension_ids": [
+        "Plan Version"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxdetail.PlanVersion"
+      ]
+    },
+    {
+      "id": "DimProductionExecution",
+      "sql_schema": "cxdetail",
+      "sql_name": "DimProductionExecution",
+      "sql_view": "cxdetail.DimProductionExecution",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimProductionExecution",
+      "database_dimension_ids": [
+        "Production Execution"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxdetail.ProductionExecution"
+      ]
+    },
+    {
+      "id": "DimProductionJob",
+      "sql_schema": "cxdetail",
+      "sql_name": "DimProductionJob",
+      "sql_view": "cxdetail.DimProductionJob",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimProductionJob",
+      "database_dimension_ids": [
+        "Production Job"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxdetail.ProductionJobDay"
+      ]
+    },
+    {
+      "id": "DimSalesOrder",
+      "sql_schema": "cxdetail",
+      "sql_name": "DimSalesOrder",
+      "sql_view": "cxdetail.DimSalesOrder",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimSalesOrder",
+      "database_dimension_ids": [
+        "Sales Order"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxdetail.OrderDay"
+      ]
+    },
+    {
+      "id": "DimSalesOrderLine",
+      "sql_schema": "cxdetail",
+      "sql_name": "DimSalesOrderLine",
+      "sql_view": "cxdetail.DimSalesOrderLine",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimSalesOrderLine",
+      "database_dimension_ids": [
+        "Sales Order Line"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxdetail.OrderLineDay"
+      ]
+    },
+    {
+      "id": "DimTraceMethod",
+      "sql_schema": "cxdetail",
+      "sql_name": "DimTraceMethod",
+      "sql_view": "cxdetail.DimTraceMethod",
+      "kind": "dimension",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_DimTraceMethod",
+      "database_dimension_ids": [
+        "Trace Method"
+      ],
+      "measure_group_ids": [],
+      "underlying_physical_tables": [
+        "cxdetail.AdvisoryAllocation",
+        "cxdetail.MaterialTrace",
+        "cxdetail.PlanOrderMaterial"
+      ]
+    },
+    {
+      "id": "FactJobDaily",
+      "sql_schema": "cxdetail",
+      "sql_name": "FactJobDaily",
+      "sql_view": "cxdetail.FactJobDaily",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactJobDaily",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "JobDaily"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactMaterialTrace",
+      "sql_schema": "cxdetail",
+      "sql_name": "FactMaterialTrace",
+      "sql_view": "cxdetail.FactMaterialTrace",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactMaterialTrace",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "MaterialTrace"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactOrderDaily",
+      "sql_schema": "cxdetail",
+      "sql_name": "FactOrderDaily",
+      "sql_view": "cxdetail.FactOrderDaily",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactOrderDaily",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "OrderDaily"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactOrderLineDaily",
+      "sql_schema": "cxdetail",
+      "sql_name": "FactOrderLineDaily",
+      "sql_view": "cxdetail.FactOrderLineDaily",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactOrderLineDaily",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "OrderLineDaily"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactPlanOrderMaterial",
+      "sql_schema": "cxdetail",
+      "sql_name": "FactPlanOrderMaterial",
+      "sql_view": "cxdetail.FactPlanOrderMaterial",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactPlanOrderMaterial",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "PlanOrderMaterial"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactPlanSupplyBalance",
+      "sql_schema": "cxdetail",
+      "sql_name": "FactPlanSupplyBalance",
+      "sql_view": "cxdetail.FactPlanSupplyBalance",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactPlanSupplyBalance",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "PlanSupplyBalance"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactPlannedAllocation",
+      "sql_schema": "cxdetail",
+      "sql_name": "FactPlannedAllocation",
+      "sql_view": "cxdetail.FactPlannedAllocation",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactPlannedAllocation",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "PlannedAllocation"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactProductionExecution",
+      "sql_schema": "cxdetail",
+      "sql_name": "FactProductionExecution",
+      "sql_view": "cxdetail.FactProductionExecution",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactProductionExecution",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "ProductionExecution"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactRollingOrderPlan",
+      "sql_schema": "cxdetail",
+      "sql_name": "FactRollingOrderPlan",
+      "sql_view": "cxdetail.FactRollingOrderPlan",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactRollingOrderPlan",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "RollingOrderPlan"
+      ],
+      "underlying_physical_tables": []
+    },
+    {
+      "id": "FactRollingPlan",
+      "sql_schema": "cxdetail",
+      "sql_name": "FactRollingPlan",
+      "sql_view": "cxdetail.FactRollingPlan",
+      "kind": "fact",
+      "origin": "simulation",
+      "prefix": "SIM",
+      "suggested_display_name": "SIM_FactRollingPlan",
+      "database_dimension_ids": [],
+      "measure_group_ids": [
+        "RollingPlan"
+      ],
+      "underlying_physical_tables": []
+    }
+  ],
+  "source_files": [
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\Database\\02_Incremental.sql",
+      "sha256": "d511a7c90f830987fa748f10e942c3276718224a8f6279c26f6980e495728fec"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\Database\\02_Schema.sql",
+      "sha256": "67cf74ad2b02a09ce7fe4a55bfde9f46a4b07232ed3cacb60a6a3323cd5e1a80"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\Database\\Incremental\\Enable-ChangeTracking.sql",
+      "sha256": "f35c2d1a965f9703179f8803629d3fd7aa66209b732825b1807860ccd155a3da"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Activity.dim",
+      "sha256": "d8dd2ae47075b6930e5db3fe9e06a3ab891b06430013c71d51ac722aa5b17d28"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Allocation Consumer.dim",
+      "sha256": "a831dcb49439025bccb82a98b560639cdfcca85095c0cbefacb6aaa708937134"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Allocation Supply.dim",
+      "sha256": "675acb80f362e554ad07f8d52f988352a34b7ca5b8266e2c2ee2cc9d055328b8"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Candidate.dim",
+      "sha256": "55936dd9fc0713e89dfa9d37b1f5738200acd53a7ce7a1bc6645983e3a0355a3"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Channel.dim",
+      "sha256": "6ccdc2f9da4cb1aa1c28136f50cdd5b7729d3a67d080721ddc3fb02447d7667c"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\CompanyXSourceView.dsv",
+      "sha256": "ae81e1dc989c585397a0ff7759ed2a903aee4e947ceb7a4caca39f27de78089d"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\CompanyX_InquirySimulation.cube",
+      "sha256": "10a78105ad1adbbf087be754470a13cffeda1baaf49518c2ea1f05b91cc10b9b"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\CompanyX_InquirySimulation.partitions",
+      "sha256": "bbe4781ba2ed4a29fa52bb2ac624c3faa5fb67e8f019916d67e3a796cf18a61e"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Customer.dim",
+      "sha256": "b6cda9f40509a03704dbefe91d61a0090074e5534051d226677405779dab22c5"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Daily Order Status.dim",
+      "sha256": "c8757355c2a3f2c221be364d810516577ea22a16be47d52b5d745ca3cff83b5a"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Data Quality.dim",
+      "sha256": "b2ddd49cafd662efab975946cc29f5497ecdb00a515aba5bb5f84ab1786725f2"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Date.dim",
+      "sha256": "2b0cf12e9c6de9e7b2a8fd214cfd324a83675aacaa1bb74b889f9555ec079cdd"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Evaluation Cohort.dim",
+      "sha256": "ca224d87adbdd8c26ee3e7dd611dfd501599bed46cf841231c75014353421cdf"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Inquiry.dim",
+      "sha256": "111b18f0ecb30421f0bc7fdda0ee2a1dde7ceca24f670dcac6c9c2ba91ebfd8d"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Location.dim",
+      "sha256": "7d439332b5750889f446041b8ee6e01b1ac357ebdac43ca65d52b482f54ca60e"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Material Level.dim",
+      "sha256": "e920c50426b2734ebe6f43bccf7912af10842edca5bf804ceb9be1a0e629e244"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Order Status.dim",
+      "sha256": "531a48c9163e009d207f6b24bf2b5c9c3921468f5c9479c1103243dc6f914fbc"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Plan Action.dim",
+      "sha256": "78225b6ea8c4afafa1a8a7eaf0ba628700175bcdd7f3a4744bd69960a42990b5"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Plan Period.dim",
+      "sha256": "032124f02c8048a2f69007e47fb11ab9f5093c3f2b95301e0a7bff976dc0520e"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Plan Version.dim",
+      "sha256": "98f036667460c7fc4d484d367761874ee512028a2566b698283965121e14b44b"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Product.dim",
+      "sha256": "08aebe3dcb941ced7aa49f4d0785bf288048acf2d5b77cdc550f7be3759f688b"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Production Execution.dim",
+      "sha256": "a1cd1eea382144a8e3aee589c5327ed55b23fc97d7fbadb692a877f6c66f8f02"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Production Job.dim",
+      "sha256": "2b9707343a116f08169f7236572c695f60ac83adae40c0a7075ca0b1a8c6b414"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Purchase Document Status.dim",
+      "sha256": "46bcef57746403f5bf7b81193f7f2451b5e2a7effd0ecd926fc237fa3a0fa9bb"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\RequestedWindow.dim",
+      "sha256": "2a953fc7a86f63b43bfda99e88153a0e6ebe8071716a0d71b9e68e4e11bc0aeb"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Run.dim",
+      "sha256": "4463ba604b57081a3fb05ef0cc2bf844895add7e6ae5cb27a52dbd5fa3f528e5"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Sales Document Status.dim",
+      "sha256": "2e189718213abdf0c0698e7324bdc80dfc44d6d39501e121982a634522a252f7"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Sales Order Line.dim",
+      "sha256": "b7b5830cd4afd75661c7a6c283801831812389ded95baaae6a3f9099d16af1a3"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Sales Order.dim",
+      "sha256": "28f0fcbedbab2cecd64d428da03e6843e8d08ac4374e530a2f09db55766f87ad"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Solve.dim",
+      "sha256": "2467db0172545dacb0b2226cc583517647f4d22942d25e5b4ff514b36d06cf7d"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Solver Status.dim",
+      "sha256": "9ffeb4ec070c7c3ad0f30b4228486706146a2b6d160db4eabb1d001b33b6591c"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Trace Method.dim",
+      "sha256": "084f1088f6844e346106ecb1ca565433d834f6b59123dcdf6e7662cf0d4e0eb7"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Tranche.dim",
+      "sha256": "8a1a68d363fa47a7035b146fcc9dfb14c65ab1dbf9dd575377e95ef73155be8e"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Unit.dim",
+      "sha256": "7ddd82139f4c305e06b6d687f36d3e74007c3cd1170e0e8675d3ba2b110da6a1"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\DSS\\CompX_InventorySafetyDemoMOLAP_20261106\\MOLAP\\CompanyX.Unified.Analysis\\Vendor.dim",
+      "sha256": "a4c718bb857f19e40b30130d3e0e77d941078e3db397be0ec5521907308158f7"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\ControlRunView.sql",
+      "sha256": "9e09d129461c62f956e9089b9a0720bcc152a604f8cb56b5043b19862b4528f3"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\InquirySchema.sql",
+      "sha256": "b7fb86f6d1238c8025665c4f954a78d26e1c8550453bd36c52e61dff5fdc4aef"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\RequestedWindow.sql",
+      "sha256": "0c8a1e197d0aa488d354cb923937471b94c6294af2fec07cffd608299ce1700e"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\active_cube_scope.py",
+      "sha256": "3f852e14d44cca9c53bc795f53fc0990f9632f87ffbb49963fda18b864f45fab"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-control-20261105\\publish\\detail_schema.py",
+      "sha256": "b73813351f8bcbeec40a2989cf2d099cecb556a2a156f7c8477ec3c64651e08d"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-molap-20261105\\model\\01_CreateSourceViews.sql",
+      "sha256": "c35d5050a0fe191c863f8b874258f8bcbd3ec87df57661b3045e3c9b97c0906a"
+    },
+    {
+      "path": "D:\\Study\\Bách Khoa University\\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\\Project\\GPT\\src\\companyx-operations-20261105\\01_CreateViews.sql",
+      "sha256": "edc9bdd81f928d2897eedee8d3f640d9baaf18a03fbf9be307573f7eccc685ab"
+    }
+  ],
+  "warnings": [
+    "SIM includes simulated ROP baseline, DES observed execution, accepted MILP plans, hypothetical inquiries and advisory allocations. It never means actual operational data.",
+    "Usage shared does not produce an ACT_SIM prefix.",
+    "ACT Data Quality is derived from actual operational facts, and ACT status/channel catalogs are ETL-seeded business categories; ACT is not restricted to a verbatim OLTP row.",
+    "The DSV physical table origin of dimensions is source traced. Fact provenance is identified by authoritative Actual* vs simulation measure groups; listed SQL views stay unchanged."
+  ]
+}

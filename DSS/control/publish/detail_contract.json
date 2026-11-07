@@ -1,0 +1,22 @@
+{
+  "schema": "companyx.execution-detail.v1",
+  "common": {"RunCode":"str"},
+  "tables": {
+    "OrderLineDay": {"Date":"date","SalesOrderID":"int","SalesOrderDetailID":"int","ProductID":"int","KnownAt":"date","DueAt":"date","OriginalQty":"decimal","ShippedToDateQty":"decimal","LostToDateQty":"decimal","RemainingQty":"decimal","OpenLineFlag":"int","DueOpenFlag":"int","ClosedTodayFlag":"int","OrderStatus":"str"},
+    "OrderDay": {"Date":"date","SalesOrderID":"int","KnownAt":"date","DueAt":"date","OpenOrderFlag":"int","DueOpenOrderFlag":"int","CompletedTodayFlag":"int","LostTodayFlag":"int","OrderStatus":"str"},
+    "ProductionJobDay": {"Date":"date","JobCode":"str","ProductID":"int","CreatedAt":"date","RequestedQty":"decimal","StartedToDateQty":"decimal","GoodToDateQty":"decimal","QueuedQty":"decimal","WIPQty":"decimal","OpenJobFlag":"int","ClosedTodayFlag":"int"},
+    "ProductionExecution": {"ExecutionCode":"str","JobCode":"str","ProductID":"int","StartAt":"date","CompletedAt":"date?","StartedQty":"decimal","GoodQty":"decimal","SolveSequence":"int?"},
+    "MaterialTrace": {"EventSequence":"int","EventAt":"date","JobCode":"str","ExecutionCode":"str","ParentProductID":"int","ComponentProductID":"int","Quantity":"decimal","SolveSequence":"int?","TraceMethod":"str"},
+    "AdvisoryAllocation": {"DecisionVersionID":"str","AllocationNo":"int","DecisionAt":"date","PlanAt":"date","ProductID":"int","ParentProductID":"int?","SalesOrderID":"int?","SalesOrderDetailID":"int?","ConsumerType":"str","ConsumerActionRowNumber":"int","SupplyCode":"str","SupplyKind":"str","SupplyAvailableAt":"date","SupplyActionRowNumber":"int?","AllocatedQty":"decimal","IsAdvisory":"bool","Method":"str"},
+    "PlanSupplyBalance": {"DecisionVersionID":"str","DecisionAt":"date","HorizonEndAt":"date","SupplyCode":"str","SupplyKind":"str","AvailableAt":"date","ProductID":"int","SupplyActionRowNumber":"int?","SupplyQty":"decimal","AllocatedQty":"decimal","ResidualQty":"decimal","IsAdvisory":"bool","Method":"str"},
+    "PlanOrderMaterial": {"DecisionVersionID":"str","MaterialRowNo":"int","DecisionAt":"date","PlanAt":"date","SalesOrderID":"int","SalesOrderDetailID":"int","RootProductID":"int","ParentProductID":"int","ComponentProductID":"int","AttributedQty":"decimal","MaterialDepth":"int","IsLeafComponent":"bool","ProductionActionRowNumber":"int","ComponentConsumerActionRowNumber":"int","ComponentSupplyCode":"str","ComponentSupplyKind":"str","ComponentSupplyActionRowNumber":"int?","RootSupplyCode":"str","LineageBoundary":"str","Method":"str","IsAdvisory":"bool"}
+  },
+  "semantics": {
+    "daily": "Sparse EOD snapshots emitted while open and a zero-closing row at closure. No rows before order known date. LastNonEmpty must be resolved per order line/job, not across products or whole groups.",
+    "material_trace": "OBSERVED_JOB_EXECUTION only. Source events explicitly link component issue to JOB and EXEC. No physical SalesOrder reservation or lot identity is claimed.",
+    "allocation": "EXPLANATORY_PLAN_FIFO_NO_RESERVATION. Each accepted plan version is independent. Match supply available by PlanAt to known order-line shipments, BOM demand and modeled forecast shipments. Allocation does not modify MILP or DES.",
+    "balance": "Within one decision version and supply row, SupplyQty = AllocatedQty + ResidualQty. Unlimited external supply is materialized only for actual planned demand, not as infinite stock.",
+    "rop": "ROP has order/job/material details but no accepted MILP plan; advisory plan tables are empty, not missing data.",
+    "order_material": "EXPLANATORY_PLAN_PROPORTIONAL_LINEAGE_NO_RESERVATION. Attribute each BOM issue proportionally to the FIFO output supply used for known order-line shipment. Traverse only production within the accepted plan. Stop at opening stock/WIP or purchased/virtual supply; do not invent their prior genealogy. MaterialDepth separates levels; IsLeafComponent is based on the frozen input BOM. For each component-consumption edge, total attributed to customer orders cannot exceed its original allocated quantity."
+  }
+}

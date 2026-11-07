@@ -1,0 +1,275 @@
+﻿SET XACT_ABORT ON; SET NOCOUNT ON;
+IF DB_NAME()<>N'CompanyX_DW_SIM_20261107' OR NOT EXISTS(SELECT 1 FROM sys.extended_properties WHERE class=0 AND name=N'CompanyXSplitOwner' AND CONVERT(nvarchar(100),value)=N'companyx-split-20261107') THROW 51000,'Wrong isolated split database.',1;
+BEGIN TRANSACTION;
+IF SCHEMA_ID(N'act_input') IS NULL EXEC(N'CREATE SCHEMA act_input');
+DROP VIEW [cxoperations].[DimChannel];
+DROP VIEW [cxoperations].[DimCustomer];
+DROP VIEW [cxoperations].[DimDataQuality];
+DROP VIEW [cxoperations].[DimDate];
+DROP VIEW [cxoperations].[DimLocation];
+DROP VIEW [cxoperations].[DimProduct];
+DROP VIEW [cxoperations].[DimPurchaseStatus];
+DROP VIEW [cxoperations].[DimSalesStatus];
+DROP VIEW [cxoperations].[DimVendor];
+DROP VIEW [cxoperations].[FactInventory];
+DROP VIEW [cxoperations].[FactOperations];
+DROP VIEW [cxoperations].[FactPurchases];
+DROP VIEW [cxoperations].[FactSales];
+DROP VIEW [cxoperations].[FactWorkOrders];
+DROP FUNCTION [etl].[DateKey];
+DROP PROCEDURE [etl].[uspBeginBatch];
+DROP PROCEDURE [etl].[uspFailBatch];
+DROP PROCEDURE [etl].[uspLoadBridges];
+DROP PROCEDURE [etl].[uspLoadDemandDaily];
+DROP PROCEDURE [etl].[uspLoadDimensions];
+DROP PROCEDURE [etl].[uspLoadDWH];
+DROP PROCEDURE [etl].[uspLoadInventory];
+DROP PROCEDURE [etl].[uspLoadOperations];
+DROP PROCEDURE [etl].[uspLoadProduct];
+DROP PROCEDURE [etl].[uspLoadPurchases];
+DROP PROCEDURE [etl].[uspLoadSales];
+DROP PROCEDURE [etl].[uspLoadVendorTerms];
+DROP PROCEDURE [etl].[uspLoadWorkOrders];
+DROP PROCEDURE [etl].[uspSeedSystemMembers];
+DROP PROCEDURE [etl].[uspValidateAndFinish];
+DROP PROCEDURE [etl_v2].[Calc_uspLoadBridges];
+DROP PROCEDURE [etl_v2].[Calc_uspLoadDemandDaily];
+DROP PROCEDURE [etl_v2].[Calc_uspLoadDimensions];
+DROP PROCEDURE [etl_v2].[Calc_uspLoadInventory];
+DROP PROCEDURE [etl_v2].[Calc_uspLoadOperations];
+DROP PROCEDURE [etl_v2].[Calc_uspLoadProduct];
+DROP PROCEDURE [etl_v2].[Calc_uspLoadPurchases];
+DROP PROCEDURE [etl_v2].[Calc_uspLoadSales];
+DROP PROCEDURE [etl_v2].[Calc_uspLoadVendorTerms];
+DROP PROCEDURE [etl_v2].[Calc_uspLoadWorkOrders];
+DROP PROCEDURE [etl_v2].[Calc_uspSeedSystemMembers];
+DROP PROCEDURE [etl_v2].[Capture];
+DROP PROCEDURE [etl_v2].[CorrectSales];
+DROP PROCEDURE [etl_v2].[Project];
+DROP PROCEDURE [etl_v2].[Publish];
+DROP PROCEDURE [etl_v2].[Run];
+DROP PROCEDURE [etl_v2].[Validate];
+ALTER SCHEMA act_input TRANSFER [dw].[Bridge_BillOfMaterials];
+ALTER SCHEMA act_input TRANSFER [dw].[Bridge_ProductPromotion];
+ALTER SCHEMA act_input TRANSFER [dw].[Dim_Channel];
+ALTER SCHEMA act_input TRANSFER [dw].[Dim_Customer];
+ALTER SCHEMA act_input TRANSFER [dw].[Dim_Date];
+ALTER SCHEMA act_input TRANSFER [dw].[Dim_Location];
+ALTER SCHEMA act_input TRANSFER [dw].[Dim_Product];
+ALTER SCHEMA act_input TRANSFER [dw].[Dim_Promotion];
+ALTER SCHEMA act_input TRANSFER [dw].[Dim_PurchaseStatus];
+ALTER SCHEMA act_input TRANSFER [dw].[Dim_SalesStatus];
+ALTER SCHEMA act_input TRANSFER [dw].[Dim_ScrapReason];
+ALTER SCHEMA act_input TRANSFER [dw].[Dim_UnitMeasure];
+ALTER SCHEMA act_input TRANSFER [dw].[Dim_Vendor];
+ALTER SCHEMA act_input TRANSFER [dw].[Fact_InventoryOnHand];
+ALTER SCHEMA act_input TRANSFER [dw].[Fact_ProductVendorTerms];
+ALTER SCHEMA act_input TRANSFER [dw].[Fact_PurchaseOrderLine];
+ALTER SCHEMA act_input TRANSFER [dw].[Fact_SalesOrderLine];
+ALTER SCHEMA act_input TRANSFER [dw].[Fact_WorkOrder];
+ALTER SCHEMA act_input TRANSFER [dw].[Fact_WorkOrderOperation];
+ALTER SCHEMA act_input TRANSFER [dw].[Ref_ProductPriceHistory];
+ALTER SCHEMA act_input TRANSFER [etl_raw].[ProductVendor];
+EXEC sys.sp_rename N'act_input.ProductVendor',N'ProductVendorSource';
+ALTER SCHEMA act_input TRANSFER [etl_raw].[ProductCostHistory];
+EXEC sys.sp_rename N'act_input.ProductCostHistory',N'ProductCostHistorySource';
+ALTER SCHEMA act_input TRANSFER [dss].[Fact_DemandDaily];
+ALTER TABLE [dss].[PolicyProductConfig] DROP CONSTRAINT [FK_V6_156];
+ALTER TABLE [dss_legacy_20261025].[Dim_PlanningRun] DROP CONSTRAINT [FK_dss_Dim_PlanningRun_DataCutoffDateKey];
+ALTER TABLE [dss_legacy_20261025].[Dim_PlanningRun] DROP CONSTRAINT [FK_dss_Dim_PlanningRun_SimulationStartDateKey];
+ALTER TABLE [dss_legacy_20261025].[Dim_PlanningRun] DROP CONSTRAINT [FK_dss_Dim_PlanningRun_SimulationEndDateKey];
+ALTER TABLE [dss_legacy_20261025].[Fact_DemandForecast] DROP CONSTRAINT [FK_dss_Fact_DemandForecast_PlanningRunKey];
+ALTER TABLE [dss_legacy_20261025].[Fact_DemandForecast] DROP CONSTRAINT [FK_dss_Fact_DemandForecast_ProductKey];
+ALTER TABLE [dss_legacy_20261025].[Fact_DemandForecast] DROP CONSTRAINT [FK_dss_Fact_DemandForecast_TargetPeriodStartDateKey];
+ALTER TABLE [dss_legacy_20261025].[Fact_PolicySimulation] DROP CONSTRAINT [FK_dss_Fact_PolicySimulation_PlanningRunKey];
+ALTER TABLE [dss_legacy_20261025].[Fact_PolicySimulation] DROP CONSTRAINT [FK_dss_Fact_PolicySimulation_ProductKey];
+ALTER TABLE [dss_legacy_20261025].[Fact_PolicySimulation] DROP CONSTRAINT [FK_dss_Fact_PolicySimulation_ServiceLevelKey];
+ALTER TABLE [dss_legacy_20261025].[Fact_SafetyStockRecommendation] DROP CONSTRAINT [FK_dss_Fact_SafetyStockRecommendation_PlanningRunKey];
+ALTER TABLE [dss_legacy_20261025].[Fact_SafetyStockRecommendation] DROP CONSTRAINT [FK_dss_Fact_SafetyStockRecommendation_ProductKey];
+ALTER TABLE [dss_legacy_20261025].[Fact_SafetyStockRecommendation] DROP CONSTRAINT [FK_dss_Fact_SafetyStockRecommendation_ServiceLevelKey];
+ALTER TABLE [dss_legacy_20261025].[Fact_SafetyStockRecommendation] DROP CONSTRAINT [FK_dss_Fact_SafetyStockRecommendation_VendorKey];
+ALTER TABLE [etl].[Audit_DataCorrection] DROP CONSTRAINT [FK_etl_Audit_DataCorrection_LoadBatchID];
+ALTER TABLE [etl].[ETL_LoadBatch] DROP CONSTRAINT [FK_etl_ETL_LoadBatch_RetryOfLoadBatchID];
+ALTER TABLE [dss].[Dim_PlanningRun] DROP CONSTRAINT [FK_V6_047];
+ALTER TABLE [dss].[Fact_SimulationOrder] DROP CONSTRAINT [FK_V6_157];
+ALTER TABLE [dss].[Fact_SimulationEvent] DROP CONSTRAINT [FK_V6_113];
+ALTER TABLE [dss].[Dim_InputSnapshot] DROP CONSTRAINT [FK_V6_118];
+ALTER TABLE [dss].[Fact_DemandForecast] DROP CONSTRAINT [FK_V6_051];
+ALTER TABLE [dss].[Fact_OptimizationSolve] DROP CONSTRAINT [FK_V6_158];
+ALTER TABLE [dss].[Fact_PolicySimulation] DROP CONSTRAINT [FK_V6_060];
+ALTER TABLE [dss].[Fact_SafetyStockRecommendation] DROP CONSTRAINT [FK_V6_056];
+ALTER TABLE [dss].[Fact_SimulationDaily] DROP CONSTRAINT [FK_V6_105];
+DROP TABLE [cxolapqa].[DimDate];
+DROP TABLE [cxolapqa].[DimEvaluationCohort];
+DROP TABLE [cxolapqa].[DimLocation];
+DROP TABLE [cxolapqa].[DimOrderStatus];
+DROP TABLE [cxolapqa].[DimProduct];
+DROP TABLE [cxolapqa].[DimRun];
+DROP TABLE [cxolapqa].[DimSolveKey];
+DROP TABLE [cxolapqa].[DimSolveStatus];
+DROP TABLE [cxolapqa].[DimUnit];
+DROP TABLE [cxolapqa].[FactOrderLineService];
+DROP TABLE [cxolapqa].[FactOrderService];
+DROP TABLE [cxolapqa].[FactRunDay];
+DROP TABLE [cxolapqa].[FactRunSummary];
+DROP TABLE [cxolapqa].[FactSimulationDaily];
+DROP TABLE [cxolapqa].[FactSolveAudit];
+DROP TABLE [dss_legacy_20261025].[Dim_PlanningRun];
+DROP TABLE [dss_legacy_20261025].[Fact_DemandForecast];
+DROP TABLE [dss_legacy_20261025].[Fact_PolicySimulation];
+DROP TABLE [dss_legacy_20261025].[Fact_SafetyStockRecommendation];
+DROP TABLE [etl].[Audit_DataCorrection];
+IF SCHEMA_ID(N'sim_etl') IS NULL EXEC(N'CREATE SCHEMA sim_etl');
+ALTER SCHEMA sim_etl TRANSFER etl.ETL_LoadBatch;
+EXEC sys.sp_rename N'sim_etl.ETL_LoadBatch',N'LoadBatch',N'OBJECT';
+DROP TABLE [etl].[SchemaMigrationHistory];
+DROP TABLE [etl_calc].[Bridge_BillOfMaterials];
+DROP TABLE [etl_calc].[Bridge_ProductPromotion];
+DROP TABLE [etl_calc].[Dim_Channel];
+DROP TABLE [etl_calc].[Dim_Customer];
+DROP TABLE [etl_calc].[Dim_Date];
+DROP TABLE [etl_calc].[Dim_Location];
+DROP TABLE [etl_calc].[Dim_Product];
+DROP TABLE [etl_calc].[Dim_Promotion];
+DROP TABLE [etl_calc].[Dim_PurchaseStatus];
+DROP TABLE [etl_calc].[Dim_SalesStatus];
+DROP TABLE [etl_calc].[Dim_ScrapReason];
+DROP TABLE [etl_calc].[Dim_UnitMeasure];
+DROP TABLE [etl_calc].[Dim_Vendor];
+DROP TABLE [etl_calc].[Fact_DemandDaily];
+DROP TABLE [etl_calc].[Fact_InventoryOnHand];
+DROP TABLE [etl_calc].[Fact_ProductVendorTerms];
+DROP TABLE [etl_calc].[Fact_PurchaseOrderLine];
+DROP TABLE [etl_calc].[Fact_SalesOrderLine];
+DROP TABLE [etl_calc].[Fact_WorkOrder];
+DROP TABLE [etl_calc].[Fact_WorkOrderOperation];
+DROP TABLE [etl_calc].[Ref_ProductPriceHistory];
+DROP TABLE [etl_effective].[SalesOrderDetail];
+DROP TABLE [etl_raw].[BillOfMaterials];
+DROP TABLE [etl_raw].[Customer];
+DROP TABLE [etl_raw].[Location];
+DROP TABLE [etl_raw].[Product];
+DROP TABLE [etl_raw].[ProductCategory];
+DROP TABLE [etl_raw].[ProductInventory];
+DROP TABLE [etl_raw].[ProductListPriceHistory];
+DROP TABLE [etl_raw].[ProductSubcategory];
+DROP TABLE [etl_raw].[PurchaseOrderDetail];
+DROP TABLE [etl_raw].[PurchaseOrderHeader];
+DROP TABLE [etl_raw].[SalesOrderDetail];
+DROP TABLE [etl_raw].[SalesOrderHeader];
+DROP TABLE [etl_raw].[ScrapReason];
+DROP TABLE [etl_raw].[SpecialOffer];
+DROP TABLE [etl_raw].[SpecialOfferProduct];
+DROP TABLE [etl_raw].[TransactionHistory];
+DROP TABLE [etl_raw].[TransactionHistoryArchive];
+DROP TABLE [etl_raw].[UnitMeasure];
+DROP TABLE [etl_raw].[Vendor];
+DROP TABLE [etl_raw].[WorkOrder];
+DROP TABLE [etl_raw].[WorkOrderRouting];
+DROP TABLE [etl_v2].[BatchState];
+DROP TABLE [etl_v2].[SalesEvidence];
+DROP TABLE [etl_v2].[SourceChange];
+DROP TABLE [etl_v2].[State];
+DROP TABLE [etl_v2].[TargetChange];
+DROP TABLE [etl_v2].[Validation];
+DROP TABLE [ssis_flow].[Context];
+DROP TABLE [ssis_flow].[Delta_BillOfMaterials];
+DROP TABLE [ssis_flow].[Delta_Customer];
+DROP TABLE [ssis_flow].[Delta_Location];
+DROP TABLE [ssis_flow].[Delta_Product];
+DROP TABLE [ssis_flow].[Delta_ProductCategory];
+DROP TABLE [ssis_flow].[Delta_ProductCostHistory];
+DROP TABLE [ssis_flow].[Delta_ProductInventory];
+DROP TABLE [ssis_flow].[Delta_ProductListPriceHistory];
+DROP TABLE [ssis_flow].[Delta_ProductSubcategory];
+DROP TABLE [ssis_flow].[Delta_ProductVendor];
+DROP TABLE [ssis_flow].[Delta_PurchaseOrderDetail];
+DROP TABLE [ssis_flow].[Delta_PurchaseOrderHeader];
+DROP TABLE [ssis_flow].[Delta_SalesOrderDetail];
+DROP TABLE [ssis_flow].[Delta_SalesOrderHeader];
+DROP TABLE [ssis_flow].[Delta_ScrapReason];
+DROP TABLE [ssis_flow].[Delta_SpecialOffer];
+DROP TABLE [ssis_flow].[Delta_SpecialOfferProduct];
+DROP TABLE [ssis_flow].[Delta_TransactionHistory];
+DROP TABLE [ssis_flow].[Delta_TransactionHistoryArchive];
+DROP TABLE [ssis_flow].[Delta_UnitMeasure];
+DROP TABLE [ssis_flow].[Delta_Vendor];
+DROP TABLE [ssis_flow].[Delta_WorkOrder];
+DROP TABLE [ssis_flow].[Delta_WorkOrderRouting];
+DROP TABLE [ssis_flow].[ResultStage];
+DROP TABLE [ssis_flow].[V02Lookup];
+DROP TABLE [stg].[BillOfMaterials];
+DROP TABLE [stg].[Customer];
+DROP TABLE [stg].[Location];
+DROP TABLE [stg].[Product];
+DROP TABLE [stg].[ProductCategory];
+DROP TABLE [stg].[ProductCostHistory];
+DROP TABLE [stg].[ProductInventory];
+DROP TABLE [stg].[ProductListPriceHistory];
+DROP TABLE [stg].[ProductSubcategory];
+DROP TABLE [stg].[ProductVendor];
+DROP TABLE [stg].[PurchaseOrderDetail];
+DROP TABLE [stg].[PurchaseOrderHeader];
+DROP TABLE [stg].[SalesOrderDetail];
+DROP TABLE [stg].[SalesOrderHeader];
+DROP TABLE [stg].[ScrapReason];
+DROP TABLE [stg].[SpecialOffer];
+DROP TABLE [stg].[SpecialOfferProduct];
+DROP TABLE [stg].[TransactionHistory];
+DROP TABLE [stg].[TransactionHistoryArchive];
+DROP TABLE [stg].[UnitMeasure];
+DROP TABLE [stg].[Vendor];
+DROP TABLE [stg].[WorkOrder];
+DROP TABLE [stg].[WorkOrderRouting];
+COMMIT;
+GO
+CREATE OR ALTER VIEW [dw].[Bridge_BillOfMaterials] AS SELECT * FROM act_input.[Bridge_BillOfMaterials];
+GO
+CREATE OR ALTER VIEW [dw].[Bridge_ProductPromotion] AS SELECT * FROM act_input.[Bridge_ProductPromotion];
+GO
+CREATE OR ALTER VIEW [dw].[Dim_Channel] AS SELECT * FROM act_input.[Dim_Channel];
+GO
+CREATE OR ALTER VIEW [dw].[Dim_Customer] AS SELECT * FROM act_input.[Dim_Customer];
+GO
+CREATE OR ALTER VIEW [dw].[Dim_Date] AS SELECT * FROM act_input.[Dim_Date];
+GO
+CREATE OR ALTER VIEW [dw].[Dim_Location] AS SELECT * FROM act_input.[Dim_Location];
+GO
+CREATE OR ALTER VIEW [dw].[Dim_Product] AS SELECT * FROM act_input.[Dim_Product];
+GO
+CREATE OR ALTER VIEW [dw].[Dim_Promotion] AS SELECT * FROM act_input.[Dim_Promotion];
+GO
+CREATE OR ALTER VIEW [dw].[Dim_PurchaseStatus] AS SELECT * FROM act_input.[Dim_PurchaseStatus];
+GO
+CREATE OR ALTER VIEW [dw].[Dim_SalesStatus] AS SELECT * FROM act_input.[Dim_SalesStatus];
+GO
+CREATE OR ALTER VIEW [dw].[Dim_ScrapReason] AS SELECT * FROM act_input.[Dim_ScrapReason];
+GO
+CREATE OR ALTER VIEW [dw].[Dim_UnitMeasure] AS SELECT * FROM act_input.[Dim_UnitMeasure];
+GO
+CREATE OR ALTER VIEW [dw].[Dim_Vendor] AS SELECT * FROM act_input.[Dim_Vendor];
+GO
+CREATE OR ALTER VIEW [dw].[Fact_InventoryOnHand] AS SELECT * FROM act_input.[Fact_InventoryOnHand];
+GO
+CREATE OR ALTER VIEW [dw].[Fact_ProductVendorTerms] AS SELECT * FROM act_input.[Fact_ProductVendorTerms];
+GO
+CREATE OR ALTER VIEW [dw].[Fact_PurchaseOrderLine] AS SELECT * FROM act_input.[Fact_PurchaseOrderLine];
+GO
+CREATE OR ALTER VIEW [dw].[Fact_SalesOrderLine] AS SELECT * FROM act_input.[Fact_SalesOrderLine];
+GO
+CREATE OR ALTER VIEW [dw].[Fact_WorkOrder] AS SELECT * FROM act_input.[Fact_WorkOrder];
+GO
+CREATE OR ALTER VIEW [dw].[Fact_WorkOrderOperation] AS SELECT * FROM act_input.[Fact_WorkOrderOperation];
+GO
+CREATE OR ALTER VIEW [dw].[Ref_ProductPriceHistory] AS SELECT * FROM act_input.[Ref_ProductPriceHistory];
+GO
+CREATE OR ALTER VIEW [etl_raw].[ProductVendor] AS SELECT * FROM act_input.[ProductVendorSource];
+GO
+CREATE OR ALTER VIEW [etl_raw].[ProductCostHistory] AS SELECT * FROM act_input.[ProductCostHistorySource];
+GO
+CREATE OR ALTER VIEW [dss].[Fact_DemandDaily] AS SELECT * FROM act_input.[Fact_DemandDaily];
+GO
+IF SCHEMA_ID(N'cxsim') IS NULL EXEC(N'CREATE SCHEMA cxsim');
+GO
+ALTER SCHEMA cxsim TRANSFER cxoperations.DimRun;
+GO

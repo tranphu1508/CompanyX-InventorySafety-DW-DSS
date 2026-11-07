@@ -1,0 +1,6 @@
+-r requirements-base.txt
+cplex==22.2.0.1
+# Installation utility for upgrading from an entitled, matching full Studio runtime.
+# The DSS model uses the low-level cplex API, not docplex modeling.
+docplex==2.32.264
+# Pip CPLEX is Community Edition; see ../README.txt.

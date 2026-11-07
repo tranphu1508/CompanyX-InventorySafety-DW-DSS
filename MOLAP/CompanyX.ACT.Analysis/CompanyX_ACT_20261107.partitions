@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Cube xmlns="http://schemas.microsoft.com/analysisservices/2003/engine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><ID>CompanyX_ACT_20261107</ID><MeasureGroups><MeasureGroup><ID>ActualSales</ID><Partitions>
+                <Partition>
+                  <ID>ActualSales_AllPublished</ID>
+                  <Name>ActualSales_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxoperations.[SalesLineDetail]</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup><MeasureGroup><ID>ActualPurchases</ID><Partitions>
+                <Partition>
+                  <ID>ActualPurchases_AllPublished</ID>
+                  <Name>ActualPurchases_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxoperations.[FactPurchases]</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup><MeasureGroup><ID>ActualInventory</ID><Partitions>
+                <Partition>
+                  <ID>ActualInventory_AllPublished</ID>
+                  <Name>ActualInventory_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxoperations.[FactInventory]</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup><MeasureGroup><ID>ActualWorkOrders</ID><Partitions>
+                <Partition>
+                  <ID>ActualWorkOrders_AllPublished</ID>
+                  <Name>ActualWorkOrders_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxoperations.[FactWorkOrders]</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup><MeasureGroup><ID>ActualOperations</ID><Partitions>
+                <Partition>
+                  <ID>ActualOperations_AllPublished</ID>
+                  <Name>ActualOperations_AllPublished</Name>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>CompanyXSource</DataSourceID>
+                    <QueryDefinition>SELECT * FROM cxoperations.[FactOperations]</QueryDefinition>
+                  </Source>
+                  <StorageMode>Molap</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                </Partition>
+              </Partitions>
+            </MeasureGroup><MeasureGroup><ID>ActualBOM</ID><Partitions><Partition><ID>ActualBOM</ID><Name>ActualBOM</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxoperations.[BillOfMaterials]</QueryDefinition></Source><StorageMode>Molap</StorageMode></Partition></Partitions></MeasureGroup><MeasureGroup><ID>ActualProductCostHistory</ID><Partitions><Partition><ID>ActualProductCostHistory</ID><Name>ActualProductCostHistory</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxoperations.[ProductCostHistory]</QueryDefinition></Source><StorageMode>Molap</StorageMode></Partition></Partitions></MeasureGroup><MeasureGroup><ID>ActualDemandDaily</ID><Partitions><Partition><ID>ActualDemandDaily</ID><Name>ActualDemandDaily</Name><Source xsi:type="QueryBinding"><DataSourceID>CompanyXSource</DataSourceID><QueryDefinition>SELECT * FROM cxoperations.DemandDaily</QueryDefinition></Source><StorageMode>Molap</StorageMode></Partition></Partitions></MeasureGroup></MeasureGroups></Cube>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Dimension xmlns="http://schemas.microsoft.com/analysisservices/2003/engine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <ID>Vendor</ID>
+          <Name>Vendor</Name>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>CompanyXSourceView</DataSourceViewID>
+          </Source>
+          <ErrorConfiguration>
+            <KeyNotFound>ReportAndStop</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyConvertedToUnknown>ReportAndStop</NullKeyConvertedToUnknown>
+          </ErrorConfiguration>
+          <Attributes>
+            <Attribute>
+              <ID>Vendor</ID>
+              <Name>Vendor</Name>
+              <Usage>Key</Usage>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>Credit Rating</AttributeID>
+                  <Name>Credit Rating</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Vendor ID</AttributeID>
+                  <Name>Vendor ID</Name>
+                </AttributeRelationship>
+              <AttributeRelationship><AttributeID>Source Row</AttributeID></AttributeRelationship></AttributeRelationships>
+            <KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>OpsDimVendor</TableID><ColumnID>VendorKey</ColumnID></Source></KeyColumn></KeyColumns><NameColumn><DataType>WChar</DataType><DataSize>100</DataSize><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>OpsDimVendor</TableID><ColumnID>VendorName</ColumnID></Source></NameColumn></Attribute>
+            <Attribute>
+              <ID>Credit Rating</ID>
+              <Name>Credit Rating</Name>
+              <KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>OpsDimVendor</TableID><ColumnID>CreditRating</ColumnID></Source></KeyColumn></KeyColumns><NameColumn><DataType>WChar</DataType><DataSize>30</DataSize><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>OpsDimVendor</TableID><ColumnID>CreditRatingName</ColumnID></Source></NameColumn></Attribute>
+            <Attribute>
+              <ID>Vendor ID</ID>
+              <Name>Vendor ID</Name>
+              <KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>OpsDimVendor</TableID><ColumnID>VendorID</ColumnID></Source></KeyColumn></KeyColumns></Attribute>
+          <Attribute><ID>Source Row</ID><Name>Source Row</Name><KeyColumns><KeyColumn><DataType>Integer</DataType><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>OpsDimVendor</TableID><ColumnID>VendorKey</ColumnID></Source></KeyColumn></KeyColumns><NameColumn><DataType>WChar</DataType><DataSize>16384</DataSize><NullProcessing>Preserve</NullProcessing><Source xsi:type="ColumnBinding"><TableID>OpsDimVendor</TableID><ColumnID>SourceRow</ColumnID></Source></NameColumn><AttributeHierarchyVisible>false</AttributeHierarchyVisible></Attribute></Attributes>
+          <AttributeAllMemberName>All Vendor</AttributeAllMemberName>
+        </Dimension>
+        

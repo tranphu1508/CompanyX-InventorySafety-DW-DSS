@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<DataSource xmlns="http://schemas.microsoft.com/analysisservices/2003/engine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RelationalDataSource">
+          <ID>CompanyXSource</ID>
+          <Name>CompanyX SIM Warehouse</Name>
+          <ConnectionString>Provider=MSOLEDBSQL;Data Source=localhost;Initial Catalog=CompanyX_DW_SIM_20261107;Integrated Security=SSPI;Persist Security Info=False;</ConnectionString>
+          <ImpersonationInfo>
+            <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
+          </ImpersonationInfo>
+          <Timeout>PT10M</Timeout>
+        </DataSource>
