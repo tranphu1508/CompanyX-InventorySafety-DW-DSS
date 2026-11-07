@@ -37,14 +37,11 @@ TestResults/
 *.pfx
 *.key
 
-# SQL Server database, backup and logs
-*.bak
+# Local SQL Server databases and backups
 *.mdf
 *.ndf
 *.ldf
-*.trn
-*.dif
-
+*.bak
 # Temporary, system and editor files
 *.log
 *.tmp
