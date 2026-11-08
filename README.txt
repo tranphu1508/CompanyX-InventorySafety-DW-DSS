@@ -11,7 +11,7 @@ Database/, SSIS/, CompanyX.Split.Integration/: nguồn và ETL/điều phối.
 Warehouse/: cấu trúc hai warehouse ACT/SIM.
 MOLAP/: hai project cube ACT/SIM và XMLA.
 DSS/, Tools/cube_pipeline/: Python mô phỏng/tối ưu và bộ nối SQL/SSAS.
-Web/: giao diện ASP.NET Core MVC. PowerBI-XQ-0811.pbix: báo cáo nhóm.
+Web/: giao diện ASP.NET Core MVC. PowerBI_Nhom11.pbix: báo cáo nhóm.
 KetQua/Demo_01/: bốn đầu vào đóng băng cần tái chạy; không chứa log kiểm thử.
 RuntimeData/: cấu hình, dự báo và baseline-reference.zip cần tái chạy.
 _local/: trạng thái, request, kết quả và log phát sinh; không đưa lên Git.
