@@ -174,7 +174,10 @@ def audit_source(source,project_root=None,start=START,end=END):
 
 
 def source_path(project_root=None):
-    return project_path(project_root)/'GPT/output/companyx-split-20261107/baselines/full_history_inputs/source_extract.json'
+    from common import demo_folder
+    local = demo_folder(project_path(project_root))/'RuntimeData/reference/full_history_inputs/source_extract.json'
+    if local.is_file(): return local
+    return project_path(project_root)/'_local/output/companyx-split-20261107/baselines/full_history_inputs/source_extract.json'
 
 
 def _build_snapshot(source,project_root=None,start=START,end=END):
@@ -307,7 +310,7 @@ def main():
     args=p.parse_args()
     project,_,_,_,legacy,_,_=runtime()
     output=Path(args.output).resolve()
-    if not output.is_relative_to(project/'GPT'):raise RequestError('OUTPUT_OUTSIDE_GPT','Outputs must be under Project/GPT.')
+    if not output.is_relative_to(project/'_local'):raise RequestError('OUTPUT_OUTSIDE_GPT','Outputs must be under Project/GPT.')
     output.mkdir(parents=True,exist_ok=True)
     source=legacy.read(args.source_cache) if args.source_cache else extract_source()
     if not args.source_cache:legacy.save(output/'source_extract.json',source)

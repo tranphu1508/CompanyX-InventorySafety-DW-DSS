@@ -18,7 +18,7 @@ import pyodbc
 
 HERE = Path(__file__).resolve().parent
 DEMO = HERE.parents[2]
-GPT = DEMO.parent / 'GPT'
+GPT = DEMO / '_local'
 ISPAC = DEMO / 'SSIS/SourceTemplate/CompanyX.ispac.template.zip'
 DTEXEC = Path(os.environ["ProgramFiles"]) / "Microsoft SQL Server" / "160" / "DTS" / "Binn" / "DTExec.exe"
 PACKAGE = "20_ETL.dtsx"

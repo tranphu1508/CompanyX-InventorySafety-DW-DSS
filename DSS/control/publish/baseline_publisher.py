@@ -23,14 +23,14 @@ AVERAGE_BYTES={'Fact_SimulationDaily':285,'Fact_SimulationOrder':165,'Fact_Polic
 
 
 def _folder(artifact_folder,project_root=None):
-    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[4]
+    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[3]
     folder=Path(artifact_folder).resolve()
-    if not folder.is_relative_to(project/'GPT') or folder==project/'GPT':raise ValueError('Baseline publication requires a dedicated Project/GPT folder.')
+    if not folder.is_relative_to(project/'_local') or folder==project/'_local':raise ValueError('Baseline publication requires a dedicated Project/GPT folder.')
     return project,folder
 
 
 def _header(folder,project):
-    sys.path.insert(0,str(project/'New Inventory Safety/DSS/control'))
+    sys.path.insert(0,str(project/'DSS/control'))
     from simulation.adapter import runtime
     from simulation.baseline_inputs import build_scenario,verify_snapshot
     _,demo,config,inputs,legacy,run,valuation=runtime(project)

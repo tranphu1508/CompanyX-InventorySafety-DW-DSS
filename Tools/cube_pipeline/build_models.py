@@ -154,8 +154,8 @@ def export_native(db,role):
    e=opts.find(key)
    if e is None:e=ET.SubElement(opts,key)
    e.text=value
- ET.ElementTree(project).write(target/(name+'.dwproj'),encoding='utf-8',xml_declaration=True)
- return target/(name+'.dwproj')
+ ET.ElementTree(project).write(target/((CUBES[role] if role=='ACT' else name)+'.dwproj'),encoding='utf-8',xml_declaration=True)
+ return target/((CUBES[role] if role=='ACT' else name)+'.dwproj')
 
 def add_sim_lineage(db,cube):
  dsv=db.find('./{*}DataSourceViews/{*}DataSourceView')

@@ -7,10 +7,10 @@ from .derive_inquiry_v2_semantic import build_inquiry_v2_semantic
 
 
 def prepare_v2(artifact_folder,*,project_root=None):
-    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[4]
+    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[3]
     folder=Path(artifact_folder).resolve()
-    if not folder.is_relative_to(project/'GPT') or folder==project/'GPT':raise ValueError('Dedicated GPT artifact folder required.')
-    sys.path.insert(0,str(project/'New Inventory Safety/DSS/control'))
+    if not folder.is_relative_to(project/'_local') or folder==project/'_local':raise ValueError('Dedicated GPT artifact folder required.')
+    sys.path.insert(0,str(project/'DSS/control'))
     from .inquiry_storage import verify_stored_inquiry
     from simulation.adapter import runtime
     if (folder/'continuation_receipt.json').exists():

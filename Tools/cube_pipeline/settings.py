@@ -4,8 +4,8 @@ from contextlib import contextmanager
 import hashlib,json,os,pyodbc
 
 DEMO=Path(__file__).resolve().parents[2]
-PROJECT=DEMO.parent
-GPT=DEMO.parent/'GPT'
+PROJECT=DEMO
+GPT=DEMO/'_local'
 OUTPUT=GPT/'output/companyx-split-20261107'
 TMP=GPT/'tmp/companyx-split-20261107'
 OWNER='companyx-split-20261107'

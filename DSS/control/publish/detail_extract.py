@@ -423,8 +423,8 @@ def _order_material_lineage(version, actions, supplies, allocations, snapshot, e
 def export_detail(folder, prepared=None, project_root=None, *, destination=None):
     """Return verified detail manifest. No SQL/cube writes and no source edits."""
     folder = Path(folder).resolve()
-    project = Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[4]
-    if not folder.is_relative_to(project / 'GPT') or folder == project / 'GPT':
+    project = Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[3]
+    if not folder.is_relative_to(project / '_local') or folder == project / '_local':
         raise ValueError('Detail source must be a dedicated Project/GPT artifact folder')
     source_hash = sha(folder / 'table_manifest.json')
     input_hash = sha(folder / 'input.json')
@@ -433,7 +433,7 @@ def export_detail(folder, prepared=None, project_root=None, *, destination=None)
     plan_hash = sha(folder / 'rolling_plan_manifest.json') if (folder / 'rolling_plan_manifest.json').exists() else None
     identity = hashlib.sha256((source_hash + input_hash + spec_hash + str(plan_hash) + sha(__file__) + contract_hash).encode('ascii')).hexdigest()
     target = Path(destination).resolve() if destination else folder / 'execution_detail_v1' / identity[:24]
-    if not target.is_relative_to(project / 'GPT') or target == project / 'GPT':
+    if not target.is_relative_to(project / '_local') or target == project / '_local':
         raise ValueError('Detail output must stay in Project/GPT')
     manifest_path = target / 'detail_manifest.json'
     source_manifest = read(folder / 'table_manifest.json')

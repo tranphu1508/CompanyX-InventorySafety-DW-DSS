@@ -1,0 +1,28 @@
+{
+  "status": "VERIFIED",
+  "schema": "companyx.ssis.native.v1",
+  "database": "InventorySafety_Demo",
+  "source_database": "CompanyX_Demo",
+  "snapshot_file_sha256": "eb3a04dbc8e033cbad29ece7bf61d356688105364148b549814ea490ee0b80ca",
+  "etl_batch": 4,
+  "verified_at": "2026-11-04T16:29:29.152740Z",
+  "ssis_data_flows": {
+    "SalesOrders": {
+      "rows": 49786,
+      "sha256": "4577346659723f8ccdee5b3c3c27fdcb2248a1dbff3c95327b6a10262e5cae03"
+    },
+    "BOM": {
+      "rows": 2383,
+      "sha256": "b621c3b6c21c138d94c21dba42dde717d9f70612214d0cab44c78f67440125d5"
+    },
+    "ProductKeys": {
+      "rows": 364,
+      "sha256": "3549244d6b16df6dd7a5e134e42cec760d2f4a845e78e417f79191f8c613cf21"
+    },
+    "SupplyKeys": {
+      "rows": 177,
+      "sha256": "333cca523d9138f36cca2b97e1716b15af38d524b136362d0532064d01b57c36"
+    }
+  },
+  "frozen_parameters": "Retained approved parameters; sales and BOM verified through SSIS exports and live DW"
+}

@@ -199,7 +199,8 @@ def verify_dss_source(cn):
  from datetime import date,datetime
  source=ast.parse((DEMO/'DSS/control/simulation/baseline_inputs.py').read_text(encoding='utf-8-sig'))
  queries=ast.literal_eval(next(n.value for n in source.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='QUERIES' for t in n.targets)))
- reference=read(GPT/'output/companyx-split-20261107/baselines/full_history_inputs/source_extract.json')
+ local=DEMO/'RuntimeData/reference/full_history_inputs/source_extract.json'
+ reference=read(local if local.is_file() else GPT/'output/companyx-split-20261107/baselines/full_history_inputs/source_extract.json')
  def scalar(v):
   if isinstance(v,Decimal):return int(v) if v==int(v) else float(v)
   if isinstance(v,(date,datetime)):return v.isoformat()

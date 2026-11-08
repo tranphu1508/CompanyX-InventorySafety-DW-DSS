@@ -4,8 +4,8 @@ from datetime import datetime,timezone
 from contextlib import nullcontext
 import argparse,base64,gzip,hashlib,json,sys
 import pyodbc
-PROJECT=Path(__file__).resolve().parents[4]
-sys.path.insert(0,str(PROJECT/'New Inventory Safety/DSS/control'))
+PROJECT=Path(__file__).resolve().parents[3]
+sys.path.insert(0,str(PROJECT/'DSS/control'))
 from active_scope import read_active_scope
 from publish.publisher import CONNECTION,sha
 from publish.operation_gate import publish_operation_gate
@@ -65,9 +65,9 @@ def classify_specs(conn,policy):
 
 def refresh_active_cube_scope(output_file,*,project_root=None,gate_held=False):
     project=Path(project_root).resolve() if project_root else PROJECT
-    output_file=Path(output_file).resolve();output_file.relative_to(project/'GPT')
+    output_file=Path(output_file).resolve();output_file.relative_to(project/'_local')
     if output_file.exists():raise ValueError('Scope receipt must be new')
-    policy=read_active_scope(project);policy_path=project/'GPT/output/companyx-split-20261107/active-scope.json';policy_hash=sha(policy_path)
+    policy=read_active_scope(project);policy_path=project/'RuntimeData/active-scope.json';policy_hash=sha(policy_path)
     gate=nullcontext({'caller_holds_gate':True}) if gate_held else publish_operation_gate()
     with gate as gate_receipt:
         with pyodbc.connect(CONNECTION,autocommit=False,timeout=15) as conn:

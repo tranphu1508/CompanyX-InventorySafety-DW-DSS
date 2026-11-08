@@ -20,11 +20,11 @@ def file_sha(path):
 def build_identity(manifest,purpose,*,project_root=None,executor_hash=None):
     project=Path(project_root).resolve() if project_root else PROJECT
     if purpose not in ('ORDER_INQUIRY','PIPELINE_SMOKE'):raise ValueError('Unsupported cache purpose')
-    catalog=read(project/'GPT/output/companyx-split-20261107/baselines/catalog.json')
+    catalog=read(project/'RuntimeData/reference/catalog.json')
     matches=[b for b in catalog['baselines'] if b.get('status')=='READY' and b['PlanningRunKey']==manifest['base_run_key']]
     if len(matches)!=1:raise ValueError('Cache requires exactly one verified READY baseline reference')
-    b=matches[0];folder=Path(b['artifact_folder']).resolve()
-    if not folder.is_relative_to(project/'GPT'):raise ValueError('Baseline reference outside GPT')
+    b=matches[0];folder=(project/'RuntimeData/reference/runs'/Path(b['artifact_folder'].replace('\\','/')).name).resolve()
+    if not folder.is_relative_to(project/'RuntimeData/reference/runs'):raise ValueError('Baseline reference outside GPT')
     execution=read(folder/'baseline_execution_receipt.json');run=read(folder/'run.json')
     if executor_hash is None:
         from simulation.continuation import effective_executor_hash
@@ -47,7 +47,7 @@ def build_identity(manifest,purpose,*,project_root=None,executor_hash=None):
                   'baseline_spec_sha256':file_sha(folder/'execution_spec.json')},
         'implementation':{'core_sha256':run['code_sha256'],
                           'optimizer_release':release_identity(project),
-                          'inquiry_adapter_sha256':file_sha(project/'New Inventory Safety/DSS/control/simulation/inquiry_v2.py'),
+                          'inquiry_adapter_sha256':file_sha(project/'DSS/control/simulation/inquiry_v2.py'),
                           'effective_executor_sha256':executor_hash},
         'environment':{'python':sys.version,'packages':packages,
                        'native_path_worker_sha256':file_sha(demo_folder(project)/'DSS/native_path_worker.py')},

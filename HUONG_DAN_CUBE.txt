@@ -1,4 +1,6 @@
-﻿HƯỚNG DẪN CUBE ACT / SIM
+CẬP NHẬT CHUYỂN MÁY 08/11/2026: chạy Tools/configure_checkout.py; đầu vào tham chiếu trong RuntimeData, trạng thái/kết quả trong _local. Web đọc SQL SIM trực tiếp; mở http://localhost:5087. Các mốc kiểm chứng bên dưới là lịch sử.
+
+HƯỚNG DẪN CUBE ACT / SIM
 
 1. LUỒNG ĐÃ TÁCH
 CompanyX_Demo (OLTP)
@@ -123,7 +125,7 @@ Các bảng act_input.Business* là snapshot hiện hành. Năm dimension dùng 
 bằng giá trị đã qua cube, không đổi khóa cũ hoặc xóa các khóa còn được lượt mô phỏng lịch sử tham chiếu.
 Ngày 07/11/2026 đã lưu trữ rồi loại 18 bảng đầu vào cũ và 15 view chỉ phục vụ chúng khỏi SIM.
 act_input hiện còn 9 bảng Business*, 5 dimension dùng chung và SnapshotManifest (15 bảng).
-Bản COPY_ONLY có CHECKSUM, đã VERIFYONLY: E:\Study-BKU\GPT\tmp\companyx-remove-sim-inputs-20261107\CompanyX_DW_SIM_before_cleanup.bak.
+Bản COPY_ONLY có CHECKSUM, đã VERIFYONLY: E:\Study-BKU\New Inventory Safety\_local\tmp\companyx-remove-sim-inputs-20261107\CompanyX_DW_SIM_before_cleanup.bak.
 Kết quả các lượt mô phỏng, kế hoạch và phân bổ không thay đổi. Lượt dọn này không chạy ETL/DSS/process cube.
 View dw.Fact_SalesOrderLine, dw.Bridge_BillOfMaterials và nguồn etl_raw tương thích đọc snapshot nghiệp vụ mới.
 Các tham số/baseline DSS hiện vẫn được đóng băng; dữ liệu nguồn khác bản đã duyệt sẽ bị chặn trước commit,
@@ -146,13 +148,13 @@ Không dùng snapshot mới để diễn giải sai nguồn gốc các lượt c
 80_DSS_to_SIM_Cube: chạy request trên snapshot đã kiểm chứng rồi process SIM.
 90_Process_SIM_Cube: cập nhật cache phạm vi và process SIM sau khi kết quả đã xuất bản.
 
-Đặt User::RequestPath tới JSON trong E:\Study-BKU\GPT trước khi chạy 00 hoặc 80.
+Đặt User::RequestPath tới JSON trong E:\Study-BKU\New Inventory Safety\_local trước khi chạy 00 hoặc 80.
 RequestID mới cho một thí nghiệm mới; Purpose=ORDER_INQUIRY cho nghiệp vụ,
 PIPELINE_SMOKE chỉ cho kiểm thử. Ca kiểm thử được loại khỏi nguồn cxactive cấp cho cube, không cần hiện Run Purpose trên báo cáo.
 Nếu tiếp tục một job đã hoàn thành mô phỏng, 80 chỉ dùng lại khi request và snapshot khớp;
 không sửa đè nội dung của RequestID đã dùng.
 00 làm mới snapshot ACT nên không dùng nó để tiếp tục một RequestID gắn snapshot cũ.
-Log và trạng thái từng bước: E:\Study-BKU\GPT\output\companyx-split-20261107\pipeline-attempts.
+Log và trạng thái từng bước: E:\Study-BKU\New Inventory Safety\_local\output\companyx-split-20261107\pipeline-attempts.
 Kết quả kiểm tra thực tế: acceptance.json, native-validation.json, input-roundtrip.json,
 process-ACT.json, process-SIM.json trong cùng thư mục output.
 

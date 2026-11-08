@@ -37,7 +37,7 @@ def project_path(project_root=None):
     if project_root is not None:
         result = Path(project_root).resolve()
     else:
-        result = Path(__file__).resolve().parents[4]
+        result = Path(__file__).resolve().parents[3]
     if not demo_folder(result).is_dir():
         raise RequestError('PROJECT_NOT_FOUND', 'The frozen CompanyX demo was not found.')
     return result
@@ -291,7 +291,7 @@ def execute_prepared(prepared: dict, output_folder, project_root=None):
     if config.resolve(built['spec']) != built['spec']:
         raise RequestError('PREPARED_SPEC_CHANGED', 'Prepared execution spec no longer resolves identically.')
     folder = Path(output_folder).resolve()
-    if not folder.is_relative_to(project / 'GPT') or folder == project / 'GPT':
+    if not folder.is_relative_to(project / '_local') or folder == project / '_local':
         raise RequestError('OUTPUT_OUTSIDE_GPT', 'Simulation output must be in a dedicated folder under Project/GPT.')
     if (folder / 'run.json').exists() or (folder / 'completion.json').exists():
         raise RequestError('RUN_ALREADY_EXISTS', 'Existing runs are immutable; use a new request/run folder.')
@@ -345,7 +345,7 @@ def main():
         result = build_request(request, args.project_root)
         output = Path(args.output).resolve()
         project = project_path(args.project_root)
-        if not output.is_relative_to(project / 'GPT'):
+        if not output.is_relative_to(project / '_local'):
             raise RequestError('OUTPUT_OUTSIDE_GPT', 'Preview output must be under Project/GPT.')
         if output.exists():
             raise RequestError('PREVIEW_EXISTS', 'Preview output already exists; choose a new filename.')

@@ -29,7 +29,7 @@ def effective_executor_hash(project_root=None):
                          'optimizer_release':release_identity(project_root)})
 
 def _owned(folder,project):
-    folder=Path(folder).resolve();allowed=project/'GPT'
+    folder=Path(folder).resolve();allowed=project/'_local'
     if folder==allowed or not folder.is_relative_to(allowed):raise RequestError('CHECKPOINT_PATH_INVALID','Checkpoint artifacts must remain in Project/GPT.')
     return folder
 

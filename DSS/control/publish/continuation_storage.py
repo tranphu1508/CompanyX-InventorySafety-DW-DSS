@@ -21,7 +21,7 @@ def _attestation(folder,verified):
 
 
 def prepare_continuation_storage(artifact_folder,*,project_root=None):
-    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[4]
+    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[3]
     folder=Path(artifact_folder).resolve()
     # Independent checkpoint, effective code and full inherited-prefix checks
     # precede any removal of raw table files by the frozen storage module.
@@ -46,7 +46,7 @@ def prepare_continuation_storage(artifact_folder,*,project_root=None):
 
 
 def verify_stored_continuation(artifact_folder,*,project_root=None):
-    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[4]
+    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[3]
     folder=Path(artifact_folder).resolve()
     from .inquiry_storage import verify_stored_inquiry
     base=verify_stored_inquiry(folder,project_root=project)

@@ -27,10 +27,14 @@ def sha(path):
     return value.hexdigest()
 
 
-def _scope(folder, project_root=None):
-    project = Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[4]
+def _scope(folder, project_root=None, *, read_only=False):
+    project = Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[3]
     path = Path(folder).resolve()
-    if not path.is_relative_to(project / 'GPT') or path == project / 'GPT':
+    from common import demo_folder
+    local=(demo_folder(project)/'RuntimeData/reference/runs').resolve()
+    if read_only and path.is_relative_to(local) and path!=local:
+        return project,path
+    if not path.is_relative_to(project / '_local') or path == project / '_local':
         raise ValueError('Baseline archive paths must be dedicated folders under Project/GPT.')
     return project, path
 
@@ -147,7 +151,7 @@ def archive_baseline(artifact_folder, *, project_root=None, progress=None):
 
 
 def verify_archive(artifact_folder, *, project_root=None):
-    _, folder = _scope(artifact_folder, project_root)
+    _, folder = _scope(artifact_folder, project_root, read_only=True)
     manifest = read(folder / 'archive_manifest.json')
     if manifest.get('schema') != 'companyx.baseline.archive.v1' or manifest['RunCode'] != read(folder / 'run.json')['RunCode']:
         raise ValueError('Archive identity mismatch.')
@@ -165,7 +169,7 @@ def verify_archive(artifact_folder, *, project_root=None):
 @contextmanager
 def open_artifact_text(artifact_folder, relative, *, project_root=None):
     """Read a raw or archived UTF-8 artifact without restoring gigabytes to disk."""
-    _, folder = _scope(artifact_folder, project_root)
+    _, folder = _scope(artifact_folder, project_root, read_only=True)
     path = _member(folder, relative)
     if path.exists():
         with path.open('r', encoding='utf-8-sig') as stream:

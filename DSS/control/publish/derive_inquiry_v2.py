@@ -111,6 +111,6 @@ CREATE TABLE #event_types''')
 
 
 if __name__=='__main__':
-    project=Path(__file__).resolve().parents[4]
+    project=Path(__file__).resolve().parents[3]
     Path(__file__).with_name('PublishInquiryV2.sql').write_text(build_inquiry_v2(project),encoding='utf-8',newline='\n')
     print('Built PublishInquiryV2.sql')

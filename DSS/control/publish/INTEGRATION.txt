@@ -1,7 +1,7 @@
 CompanyX control integration — new files only, 2026-11-05
 
 SSIS orchestration
-  CompanyX_Control_Run.dtsx is a standalone SQL Server 2022 package.
+  Historical note: CompanyX_Control_Run.dtsx was a standalone SQL Server 2022 package; it is removed from the current ACT/SIM project.
   Four success-dependent Execute Process Tasks: prepare, simulate, publish, process.
   Each runs Python -B -X utf8 <WorkerPath> --stage <stage>
     --request <RequestPath> --run-folder <RunFolder>.

@@ -67,7 +67,7 @@ def iter_accepted_plans(folder, prepared, project_root=None, *, allow_legacy_mod
     import numpy as np
     project, _, _, inputs, legacy, _, _ = runtime(project_root)
     folder = Path(folder).resolve()
-    if folder == project/'GPT' or not folder.is_relative_to(project/'GPT'):
+    if folder == project/'_local' or not folder.is_relative_to(project/'_local'):
         raise RequestError('OUTPUT_OUTSIDE_GPT', 'Rolling-plan artifacts must be under Project/GPT.')
     data = inputs.prepare(prepared['snapshot'], prepared['spec'])
     start = date.fromisoformat(prepared['snapshot']['start'])
@@ -205,7 +205,7 @@ def iter_accepted_plans(folder, prepared, project_root=None, *, allow_legacy_mod
 def export_rolling_plan(folder, prepared, project_root=None, *, allow_legacy_model=False):
     project, _, _, _, legacy, _, _ = runtime(project_root)
     folder = Path(folder).resolve()
-    if folder == project/'GPT' or not folder.is_relative_to(project/'GPT'):
+    if folder == project/'_local' or not folder.is_relative_to(project/'_local'):
         raise RequestError('OUTPUT_OUTSIDE_GPT', 'Rolling-plan outputs must remain under Project/GPT.')
     start = date.fromisoformat(prepared['snapshot']['start'])
     known = date.fromisoformat(prepared.get('scope', {}).get('known_at', prepared['snapshot']['start']))
@@ -244,7 +244,7 @@ def verify_rolling_plan(folder, receipt, project_root=None, *, allow_legacy_mode
     """Verify publication inputs without decoding trusted runtime pickles again."""
     project, _, _, _, legacy, _, _ = runtime(project_root)
     folder = Path(folder).resolve()
-    if folder == project/'GPT' or not folder.is_relative_to(project/'GPT'):
+    if folder == project/'_local' or not folder.is_relative_to(project/'_local'):
         raise RequestError('OUTPUT_OUTSIDE_GPT', 'Rolling-plan artifacts must remain under Project/GPT.')
     if receipt.get('schema') != SCHEMA or receipt.get('status') not in ('COMPLETE','NOT_APPLICABLE'):
         raise RequestError('ROLLING_PLAN_INCOMPLETE', 'A complete rolling-plan export is required.')

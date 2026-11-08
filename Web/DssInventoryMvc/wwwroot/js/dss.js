@@ -170,6 +170,57 @@
     };
   }
 
+  function renderDeliveryRing(id, totals) {
+    const values = [totals.onTime, Math.max(0, totals.orders - totals.onTime),
+      Math.max(0, totals.due - totals.orders)];
+    const sum = values.reduce((a,b) => a+b,0);
+    chart(id, {
+      type: 'doughnut',
+      data: {
+        labels: ['Đúng hạn', 'Trễ hạn', 'Mất đơn'],
+        datasets: [{data:values, backgroundColor:[colors.teal,colors.amber,colors.gray],
+          borderColor:'#fff',borderWidth:3,hoverOffset:5}]
+      },
+      options: {
+        responsive:true, maintainAspectRatio:false, cutout:'70%',
+        plugins: {legend:{display:false}, tooltip:{callbacks:{
+          label:item => item.label + ': ' + fmt(item.parsed) + ' đơn (' +
+            vi2.format(sum ? 100 * item.parsed / sum : 0) + '%)'
+        }}}
+      }
+    });
+  }
+
+  function groupOperationPeriods(rows) {
+    const quarterly = document.querySelector('.period-switch [data-period="quý"]')?.classList.contains('active');
+    if (!quarterly) return rows;
+    const groups = new Map();
+    for (const row of rows) {
+      const year = Math.floor(row.monthKey / 100);
+      const quarter = Math.ceil((row.monthKey % 100) / 3);
+      const key = row.runId + ':' + year + 'Q' + quarter;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(row);
+    }
+    return [...groups.values()].map(group => {
+      const total = aggregate(group);
+      const month = group[0].monthKey;
+      return {
+        runId: group[0].runId,
+        monthKey: Math.floor(month / 100) + 'Q' + Math.ceil((month % 100) / 3),
+        lostQty: total.lost, deliveredQty: total.delivered,
+        filledOrderCount: total.orders, dueOrderCount: total.due, onTimeOrderCount: total.onTime,
+        avgOnHandQty: total.stock, avgInventoryValue: total.value,
+        dayCount: group.reduce((sum, row) => sum + Number(row.dayCount), 0)
+      };
+    });
+  }
+
+  function operationPeriodLabel(key) {
+    const value = String(key);
+    return value.includes('Q') ? 'Quý ' + value.slice(5) + '/' + value.slice(0, 4) : monthLabel(key);
+  }
+
   function renderComparisonCards(base, candidate) {
     const fields = [
       ['overviewLostSales', candidate.lost, base.lost, false, 'đơn vị'],
@@ -179,13 +230,37 @@
       ['averageValue', candidate.value / 1000000, base.value / 1000000, false, 'triệu']
     ];
     for (const [id, value, baseline, higherGood, unit] of fields) {
-      const node = document.querySelector(`[data-metric="${id}"]`);
+      const node = document.querySelector('[data-metric="' + id + '"]');
       if (!node) continue;
-      node.textContent = unit === 'triệu' ? vi2.format(value) : fmt(value);
-      const delta = baseline ? (value - baseline) / baseline * 100 : 0;
-      const foot = node.parentElement.querySelector('small');
-      foot.textContent = `ROP ${unit === 'triệu' ? vi2.format(baseline) : fmt(baseline)} · ${delta >= 0 ? '+' : ''}${vi2.format(delta)}%`;
-      foot.className = (higherGood ? delta >= 0 : delta <= 0) ? 'delta-good' : 'delta-bad';
+      const card = node.closest('.compare-card');
+      const title = card.querySelector(':scope > span');
+      const equal = Math.abs(value - baseline) <= 1e-9 * Math.max(1, Math.abs(value), Math.abs(baseline));
+      const candidateBetter = higherGood ? value > baseline : value < baseline;
+      const rows = document.createElement('div');
+      rows.className = 'policy-scores';
+      for (const policy of [
+        {name:'ROP', amount:baseline, better:!candidateBetter},
+        {name:'Quetschlich Adapt', amount:value, better:candidateBetter, candidate:true}
+      ]) {
+        const row = document.createElement('div');
+        row.className = 'policy-score-row ' + (equal ? 'score-equal' : policy.better ? 'score-better' : 'score-worse');
+        row.title = equal ? 'Hai chính sách bằng nhau' : (policy.better ? 'Tốt hơn' : 'Kém hơn') +
+          ' · Chỉ số này càng ' + (higherGood ? 'cao' : 'thấp') + ' càng tốt';
+        const mark = document.createElement('b');
+        mark.className = 'score-mark';
+        mark.textContent = equal ? '=' : policy.better ? '+' : '−';
+        mark.setAttribute('aria-label', equal ? 'Bằng nhau' : policy.better ? 'Tốt hơn' : 'Kém hơn');
+        const label = document.createElement('span');
+        label.textContent = policy.name;
+        const amount = document.createElement('strong');
+        amount.textContent = unit === 'triệu' ? vi2.format(policy.amount) : fmt(policy.amount);
+        if (policy.candidate) amount.dataset.metric = id;
+        row.append(mark, label, amount);
+        rows.append(row);
+      }
+      const caption = document.createElement('small');
+      caption.textContent = 'Đơn vị: ' + unit;
+      card.replaceChildren(title, rows, caption);
     }
   }
 
@@ -198,7 +273,7 @@
     body.replaceChildren();
     periods.forEach(key => {
       const b = base[key] || {}, c = candidate[key] || {};
-      const values = [monthLabel(key), fmt(c.dueOrderCount || b.dueOrderCount), fmt(b.lostQty), fmt(c.lostQty),
+      const values = [operationPeriodLabel(key), fmt(c.dueOrderCount || b.dueOrderCount), fmt(b.lostQty), fmt(c.lostQty),
         fmt(b.filledOrderCount), fmt(c.filledOrderCount), fmt(b.deliveredQty), fmt(c.deliveredQty),
         fmt(b.avgOnHandQty), fmt(c.avgOnHandQty), money(b.avgInventoryValue), money(c.avgInventoryValue)];
       const tr = body.insertRow();
@@ -223,22 +298,20 @@
     if (!pair) return;
     const months = Number(el('period').value);
     const comparison = await getComparison(pair.candidateRunId, months);
-    const periods = [...new Set(comparison.monthly.map(row => row.monthKey))].sort();
-    const baseRows = comparison.monthly.filter(row => row.runId === pair.baselineRunId);
-    const candidateRows = comparison.monthly.filter(row => row.runId === pair.candidateRunId);
+    const grouped = groupOperationPeriods(comparison.monthly);
+    const periods = [...new Set(grouped.map(row => row.monthKey))].sort();
+    const baseRows = grouped.filter(row => row.runId === pair.baselineRunId);
+    const candidateRows = grouped.filter(row => row.runId === pair.candidateRunId);
     const base = Object.fromEntries(baseRows.map(row => [row.monthKey, row]));
     const candidate = Object.fromEntries(candidateRows.map(row => [row.monthKey, row]));
     const baseTotal = aggregate(baseRows), candidateTotal = aggregate(candidateRows);
     renderComparisonCards(baseTotal, candidateTotal);
-    donut('deliveryDonut', [
-      { label: 'Đúng hạn', value: candidateTotal.onTime },
-      { label: 'Giao trễ', value: Math.max(0, candidateTotal.orders - candidateTotal.onTime) },
-      { label: 'Mất đơn', value: Math.max(0, candidateTotal.due - candidateTotal.orders) }
-    ]);
+    renderDeliveryRing('deliveryRopDonut', baseTotal);
+    renderDeliveryRing('deliveryMilpDonut', candidateTotal);
     createCanvasIn(document.querySelector('.empty-chart-grid.tall'), 'lostChart');
     ensureMiniCharts();
     const values = (source, field, divisor = 1) => periods.map(key => Number(source[key]?.[field] || 0) / divisor);
-    const labels = periods.map(monthLabel);
+    const labels = periods.map(operationPeriodLabel);
     seriesChart('lostChart', labels, values(base, 'lostQty'), values(candidate, 'lostQty'), 'line');
     seriesChart('deliveredChart', labels, values(base, 'deliveredQty'), values(candidate, 'deliveredQty'), 'bar');
     seriesChart('stockChart', labels, values(base, 'avgOnHandQty'), values(candidate, 'avgOnHandQty'), 'line');
@@ -266,6 +339,7 @@
         item.setAttribute('aria-pressed', String(active));
       });
       document.querySelectorAll('[data-period-label]').forEach(item => { item.textContent = button.dataset.period; });
+      renderOperations().catch(error => showError(error.message));
     }));
     el('optimizeButton').addEventListener('click', () => renderOperations().catch(error => showError(error.message)));
     return renderOperations();
@@ -280,8 +354,10 @@
       catalog = bootstrap;
       if (!catalog.runs.length) throw new Error('Chưa có dữ liệu phân tích để hiển thị.');
       const saved = Number(sessionStorage.getItem('dssDemoBaseRun'));
+      const requestedDemoRun = Number(new URLSearchParams(window.location.search).get('demoRun'));
       const allowed = new Set(catalog.pairs.flatMap(pair => [pair.baselineRunId, pair.candidateRunId]));
-      runId = allowed.has(saved) ? saved : catalog.defaultRunId;
+      runId = allowed.has(requestedDemoRun) ? requestedDemoRun :
+        allowed.has(saved) ? saved : catalog.defaultRunId;
       if (!runId) throw new Error('Chưa có kịch bản nền ROP mất đơn tại hạn giao.');
       const runSelect = el('runSelect');
       catalog.runs.filter(run => allowed.has(run.id)).forEach(run => {

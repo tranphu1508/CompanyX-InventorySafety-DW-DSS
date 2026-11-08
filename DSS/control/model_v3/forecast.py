@@ -16,11 +16,11 @@ SCHEMA = 'companyx.resale.direct-forecast.v1'
 PARAM_SCHEMA = 'companyx.resale.direct-forecast.parameter.v1'
 CUTOFF = '2013-07-01'
 HISTORY_START = '2012-07-01'
-ARTIFACT_RELATIVE = 'GPT/output/companyx-split-20261107/model-fix-20261105/resale-forecast-artifact.json'
+ARTIFACT_RELATIVE = 'RuntimeData/resale-forecast-artifact.json'
 
 
 def _project(project_root=None):
-    return Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[4]
+    return Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[3]
 
 
 def _canonical(value):

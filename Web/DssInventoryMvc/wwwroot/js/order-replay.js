@@ -48,8 +48,25 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
     if (!active) return $('product').value ?
       'Chưa có đơn lớn đã mô phỏng cho mẫu xe và kịch bản này.' :
       'Chọn mẫu xe đạp để xem kết quả đã lưu.';
-    if (active.dayPlan) return 'Theo kế hoạch ngày ' + day(active.knownAt) + ', ' +
-      options.map(o => o.slot + ' dự kiến giao ' + num(o.plannedShip) + '/' + num(active.qty) + ' xe ngày ' + day(o.due)).join('; ') + '.';
+    if (active.dayPlan) {
+      const priority = options.filter(o => o.slot === 'A' && o.planStatus);
+      if (priority.length) {
+        const feasible = priority.filter(o => o.planStatus === 'OPTIMAL');
+        return feasible.length ? 'Đã có kế hoạch ưu tiên đơn mới tại hạn gốc. So sánh A1 và A2 để xem tác động lên các đơn cũ.' :
+          'A1 và A2 đều chưa thể giao đủ đơn mới đúng hạn theo ràng buộc vật tư và thời gian sản xuất. Xem phương án B để thương lượng hạn mới.';
+      }
+      const a = options.find(o => o.slot === 'A');
+      const b = options.find(o => o.slot === 'B' && o.plannedShip === active.qty);
+      if (a?.plannedShip === active.qty)
+        return 'MILP tự chọn giao đủ ' + num(active.qty) + ' xe ngay hạn gốc ' + day(a.due) +
+          '. Không cần dời hạn.';
+      if (b)
+        return 'Tại hạn gốc ' + day(active.originalDue) + ' MILP không chọn giao đủ. ' +
+          'Ngày đầu tiên MILP tự chọn giao đủ là ' + day(b.due) +
+          ' (+' + days(b.due, active.originalDue) + ' ngày). Đây là phương án đề xuất cho khách.';
+      return 'Trong khoảng ngày đã kiểm tra, MILP chưa tự chọn giao đủ đơn này. ' +
+        'Có thể mở rộng khoảng tìm kiếm hoặc xem lại cấu hình mô phỏng.';
+    }
     const a = options.find(o => o.slot === 'A' && available(o) && onTime(o));
     const b = options.find(o => o.slot === 'B' && available(o) && onTime(o));
     if (a && b) {
@@ -96,12 +113,49 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
           body.append(select);
         }
       }
+      if (o.dayPlan && o.planStatus) {
+        description.textContent = 'Dự kiến theo kế hoạch ngày ' + day(active.knownAt);
+        const variants = slot === 'A' ? options.filter(x => x.slot === 'A' && x.planStatus) : [o];
+        for (const variant of variants) {
+          const section = element('div', null, 'priority-summary');
+          section.append(element('strong', variant.variant === 'A1' ? 'A1 · Giữ hạn của các đơn cũ' :
+            variant.variant === 'A2' ? 'A2 · Thương lượng lùi đơn cũ' : 'C · Không nhận đơn mới'));
+          metric(section, 'Trạng thái', variant.planStatus === 'OPTIMAL' ? 'Có kế hoạch tối ưu' :
+            variant.planStatus === 'INFEASIBLE' ? 'Không có phương án khả thi' : 'Chưa giải xong');
+          if (variant.planStatus === 'OPTIMAL') {
+            if (slot === 'A') metric(section,'Đơn mới giao đúng hạn',num(variant.plannedShip) + ' xe');
+            const effect = variant.effect;
+            if (effect && variant.variant !== 'C') {
+              metric(section,'Đơn cũ mất thêm so với C',num(effect.additionalLostOrders) + ' đơn · ' + num(effect.additionalLostUnits) + ' đơn vị');
+              metric(section,'Đơn cũ cần lùi',num(effect.delayedOrders));
+              metric(section,'Tổng ngày trễ',num(effect.totalLateDays));
+              metric(section,'Trễ trung bình / lớn nhất',num(effect.meanLateDays) + ' / ' + num(effect.maxLateDays) + ' ngày');
+              metric(section,'Giá trị tồn bình quân tăng',num(effect.inventoryDelta));
+              const window = element('small','So với C trong ' + day(effect.evaluationStart) + '–' + day(effect.evaluationEnd));
+              section.append(window);
+            }
+          } else {
+            section.append(element('p',variant.explanation || 'Ép giao đúng hạn không tạo được phương án thỏa ràng buộc.'));
+          }
+          body.append(section);
+        }
+        if (variants.length > 1) {
+          const select = element('select',null,'form-select replay-deadline');
+          select.setAttribute('aria-label','Chọn kế hoạch A1 hoặc A2');
+          variants.forEach(v=>select.add(new Option('Xem kế hoạch '+v.variant,v.candidateId)));
+          select.value=o.candidateId;
+          select.addEventListener('change',e=>{selected=e.target.value;render();});
+          body.append(select);
+        }
+        continue;
+      }
       if (o.dayPlan) {
         description.textContent = 'Dự kiến tại ngày ' + day(active.knownAt);
         metric(body, 'Hạn giao', day(o.due));
-        metric(body, 'Dự kiến giao đủ', o.plannedShip === active.qty ? 'Có' : 'Không');
+        metric(body, 'MILP tự chọn giao đủ', o.plannedShip === active.qty ? 'Có' : 'Không');
         metric(body, 'Số xe dự kiến giao', num(o.plannedShip));
         metric(body, 'Số xe mất bán dự kiến', num(o.plannedLoss));
+        if (slot === 'B') metric(body, 'Dời so với hạn gốc', '+' + days(o.due, active.originalDue) + ' ngày');
         continue;
       }
       metric(body, 'Ngày giao', slot === 'C' ? 'Không giao' :
@@ -127,14 +181,14 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
       'Kế hoạch sản xuất');
     const table = $('productionRows').closest('table');
     table.tHead.rows[0].cells[2].textContent = o?.dayPlan ? 'Số lượng kế hoạch chung' : 'Số lượng cho đơn';
-    if (o?.dayPlan) set('planTitle','Phương án ' + o.slot + ' · Kế hoạch sản xuất xe và linh kiện cho tất cả đơn đã biết');
+    if (o?.dayPlan) set('planTitle','Phương án ' + o.slot + ' · Kế hoạch sản xuất theo BOM của ' + $('product').selectedOptions[0].textContent);
     const rows = $('productionRows'); rows.replaceChildren();
-    const jobs = detail?.plan || [];
+    const jobs = o?.planStatus === 'INFEASIBLE' ? [] : detail?.plan || [];
     if (!o || !jobs.length) {
       schedule.innerHTML = emptySchedule;
       const note = $('planNote');
       note.textContent = !o ? 'Chọn phương án có kết quả để xem kế hoạch.' :
-        o.slot === 'C' ? 'Giữ kế hoạch hiện tại; không phát sinh lệnh cho đơn bị từ chối.' :
+        o.planStatus === 'INFEASIBLE' ? (o.explanation || 'Phương án không khả thi khi ép giao đủ đúng hạn.') : o.slot === 'C' ? 'Giữ kế hoạch hiện tại; không phát sinh lệnh cho đơn bị từ chối.' :
         o.dayPlan ? 'Kế hoạch không có lệnh khởi công cho xe và các linh kiện liên quan.' : !detail ? 'Đang đọc kế hoạch đã lưu…' :
         'Chưa có công việc sản xuất được phân bổ cho đơn trong phiên bản kế hoạch ngày biết đơn.';
       const tr = rows.insertRow(), td = tr.insertCell();
@@ -147,24 +201,57 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
       .filter(Boolean).map(v => Date.parse(iso(v)));
     const lo = Math.min(...dates), hi = Math.max(...dates, lo + 86400000);
     const pct = v => (Date.parse(iso(v)) - lo) * 100 / (hi - lo);
+    const dayCount = Math.round((hi - lo) / 86400000);
+    gantt.style.setProperty('--replay-track-width', (dayCount * 48) + 'px');
+    gantt.style.setProperty('--replay-day-step', (100 / dayCount) + '%');
+    const legend = element('div', null, 'replay-legend');
+    legend.append(element('i', null, 'replay-due-swatch'),
+      element('span', 'Vạch vàng: hạn giao của phương án ' + o.slot + ' · ' + day(o.due)));
+    gantt.append(legend);
     const axis = element('div', null, 'replay-axis');
-    axis.append(element('span', day(new Date(lo).toISOString())));
-    axis.append(element('span', 'Hạn giao ' + day(o.due)));
+    for (let offset = 0; offset <= dayCount; offset++) {
+      const date = new Date(lo + offset * 86400000).toISOString().slice(0, 10);
+      const tick = element('span', day(date).slice(0, 5), 'replay-tick');
+      tick.style.left = (offset * 100 / dayCount) + '%';
+      tick.title = day(date);
+      if (iso(o.due) === date) tick.classList.add('replay-tick-due');
+      axis.append(tick);
+    }
     gantt.append(axis);
-    jobs.forEach((j, i) => {
-      const line = element('div', null, 'replay-work-row');
-      const track = element('div', null, 'replay-work-track');
-      const bar = element('i', null, Number($('product').value) === j.productId ?
-        'replay-finished' : 'replay-component');
-      bar.style.left = pct(j.startDate) + '%';
-      bar.style.width = Math.max(0.8, pct(j.finishDate || j.startDate) - pct(j.startDate)) + '%';
-      const due = element('b', null, 'replay-due'); due.style.left = pct(o.due) + '%';
-      track.append(bar, due); line.append(element('span', j.name), track); gantt.append(line);
-      const tr = rows.insertRow();
-      [i + 1, j.name, num(j.qty), day(j.releaseDate), day(j.startDate),
-        day(j.finishDate), j.finishDate ? days(j.finishDate, j.startDate) : '—',
-        j.productId].forEach((v, k) => { if (k !== 7) tr.insertCell().textContent = v; });
+    const products = new Map();
+    jobs.forEach(job => {
+      if (!products.has(job.productId)) products.set(job.productId, []);
+      products.get(job.productId).push(job);
     });
+    for (const group of products.values()) {
+      const item = group[0], level = item.bomLevel ?? 0;
+      const line = element('div', null, 'replay-work-row');
+      const label = element('span', null, 'replay-bom-label');
+      label.style.paddingLeft = (level * 14) + 'px';
+      label.title = 'Cấp BOM ' + level + ' · ' + item.name;
+      label.append(element('small', 'Cấp ' + level), element('span', item.name));
+      const track = element('div', null, 'replay-work-track');
+      const lanes = [];
+      const production = group.filter(job => job.startDate).sort((a,b) => a.startDate.localeCompare(b.startDate));
+      for (const job of production) {
+        const start = Date.parse(iso(job.startDate)), finish = Date.parse(iso(job.finishDate || job.startDate));
+        let lane = lanes.findIndex(end => end <= start);
+        if (lane < 0) lane = lanes.length;
+        lanes[lane] = Math.max(start + 86400000, finish);
+        const bar = element('i', null, level === 0 ? 'replay-finished' : 'replay-component');
+        bar.style.left = pct(job.startDate) + '%';
+        bar.style.width = Math.max(0.8, pct(job.finishDate || job.startDate) - pct(job.startDate)) + '%';
+        bar.style.top = (5 + lane * 18) + 'px';
+        bar.title = item.name + ' · ' + num(job.qty) + ' đơn vị · ' + day(job.startDate) + ' – ' + day(job.finishDate);
+        track.append(bar);
+      }
+      track.style.height = Math.max(24, lanes.length * 18 + 8) + 'px';
+      if (!production.length) track.append(element('span','Không có khởi công mới','replay-no-start'));
+      const due = element('b', null, 'replay-due');
+      due.style.left = pct(o.due) + '%';
+      due.title = 'Hạn giao phương án ' + o.slot + ': ' + day(o.due);
+      track.append(due); line.append(label,track); gantt.append(line);
+    }
     schedule.append(gantt); status();
   }
   function render() { cards(); plan(); }
@@ -189,8 +276,11 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
         const stock = await request('opening', {date:known, qty:quantity});
         if (token !== version) return;
         active = {qty:quantity, knownAt:known, originalDue:due, dayPlan:true};
-        options = planned.map(o => ({...o, candidateId:o.slot, dayPlan:true}));
-        options.forEach(o => details.set(o.slot, {plan:JSON.parse(o.jobs || '[]')}));
+        options = planned.map(o => ({...o, candidateId:o.variant || o.slot, dayPlan:true,
+          effect:o.impactJson ? JSON.parse(o.impactJson) : null}));
+        options.forEach(o => details.set(o.candidateId, {plan:JSON.parse(o.jobs || '[]')}));
+        selected = options.find(o => o.slot === 'B' && o.plannedShip === quantity)?.candidateId ||
+          options.find(o => o.slot === 'A')?.candidateId || null;
         opening(stock); render(); return;
       }
       const saved = await request('cases', {});
@@ -218,16 +308,63 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
   }
   for (const p of catalog.products || [])
     $('product').add(new Option(p.name + ' · ' + p.number, String(p.productId)));
-  $('receivedDate').value = '2013-07-01';
+  // The presentation scenario can be opened directly using the URL printed by the batch.
+  const demo = new URLSearchParams(window.location.search);
+  const demoProduct = demo.get('demoProduct');
+  if (demoProduct && Array.from($('product').options).some(x => x.value === demoProduct))
+    $('product').value = demoProduct;
+  if (demo.has('demoQty')) $('quantity').value = demo.get('demoQty');
+  $('receivedDate').value = demo.get('demoKnown') || '2013-07-01';
+  if (demo.has('demoDue')) $('dueDate').value = demo.get('demoDue');
   let timer;
   function changed() {
     ++version; reset(); clearTimeout(timer);
-    timer = setTimeout(refresh, 200);
+    // Do not fetch until the user clicks "Tìm phương án".
   }
   for (const id of ['product','quantity','receivedDate','dueDate'])
     $(id).addEventListener('input', changed);
   document.querySelectorAll('.scenario-card input').forEach(radio =>
     radio.addEventListener('change', () => { selected = candidate(radio.value)?.candidateId || null; render(); }));
-  $('orderForm').addEventListener('submit', e => { e.preventDefault(); clearTimeout(timer); refresh(); });
+  let reading = false;
+  const showSearchMessage = message => {
+    const node = $('simulationMessage');
+    if (node) { node.hidden = false; node.textContent = message; }
+  };
+  $('orderForm').addEventListener('submit', async e => {
+    e.preventDefault(); clearTimeout(timer);
+    if (reading) return;
+    const product = Number($('product').value);
+    const qty = $('quantity').valueAsNumber;
+    const known = $('receivedDate').value, due = $('dueDate').value;
+    if (!Number.isSafeInteger(product) || product <= 0 ||
+        !Number.isSafeInteger(qty) || qty <= 0 || !known || !due || due < known) {
+      showSearchMessage('Hãy nhập sản phẩm, số lượng và hai ngày hợp lệ.');
+      return;
+    }
+    reading = true;
+    const btn = $('searchDeadlineButton');
+    if (btn) btn.disabled = true;
+    showSearchMessage('Đang đọc phương án đã mô phỏng từ SIM warehouse…');
+    try {
+      // GET /api/dss/replay/day-plans, then existing saved cases as fallback.
+      // This button never calls Python, Gurobi or POST search-day.
+      await refresh();
+      const a = options.find(o => o.slot === 'A' && available(o));
+      const b = options.find(o => o.slot === 'B' && available(o));
+      if (b?.dayPlan && b.plannedShip === qty && b.plannedLoss === 0)
+        showSearchMessage('Đã tải phương án B từ SIM warehouse: ' + day(b.due) + '.');
+      else if (a?.dayPlan && a.plannedShip === qty && a.plannedLoss === 0)
+        showSearchMessage('Đã tải phương án A: giao đủ ngay hạn gốc ' + day(a.due) + '.');
+      else if (options.some(available))
+        showSearchMessage('Đã tải các phương án có sẵn trong SIM warehouse.');
+      else
+        showSearchMessage(`SIM warehouse chưa có kết quả cho đúng run, mã xe, ${qty} xe và hai ngày này. Chạy batch chuẩn bị demo trước.`);
+    } catch (error) {
+      showSearchMessage('Không đọc được SIM warehouse: ' + (error.message || String(error)));
+    } finally {
+      reading = false;
+      if (btn) btn.disabled = false;
+    }
+  });
   refresh();
 };

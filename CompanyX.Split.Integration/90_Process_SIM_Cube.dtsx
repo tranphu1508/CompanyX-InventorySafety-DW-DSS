@@ -3,10 +3,10 @@
   <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
     <DTS:Variable DTS:CreationName="" DTS:DTSID="{B9042010-604C-4D31-89F2-90611C2F91C1}" DTS:Namespace="User" DTS:ObjectName="RequestPath">
-      <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\GPT\requests\UNSET.json</DTS:VariableValue>
+      <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\New Inventory Safety\_local\requests\UNSET.json</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable DTS:CreationName="" DTS:DTSID="{A5BC70E2-6725-4488-8BD7-D83CBF1236ED}" DTS:Namespace="User" DTS:ObjectName="RunFolder">
-      <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\GPT\output\companyx-split-20261107\runs</DTS:VariableValue>
+      <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\New Inventory Safety\_local\output\companyx-split-20261107\runs</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable DTS:CreationName="" DTS:DTSID="{C9775244-D9E1-47A8-890B-0C244A081253}" DTS:Namespace="User" DTS:ObjectName="WorkerPath">
       <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py</DTS:VariableValue>
@@ -15,7 +15,7 @@
       <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable DTS:CreationName="" DTS:DTSID="{DA1292A4-A8E3-4F3F-9C67-963D3E45C0AC}" DTS:Namespace="User" DTS:ObjectName="WorkingDirectory">
-      <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\GPT\tmp\companyx-split-20261107</DTS:VariableValue>
+      <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\New Inventory Safety\_local\tmp\companyx-split-20261107</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable DTS:CreationName="" DTS:DTSID="{9B35551E-9164-42D5-8B7C-15C924D17598}" DTS:Namespace="User" DTS:ObjectName="ProcessOutput">
       <DTS:VariableValue DTS:DataType="8" />
@@ -30,6 +30,6 @@
       <DTS:PropertyExpression DTS:Name="Executable">@[User::PythonExecutable]</DTS:PropertyExpression>
       <DTS:PropertyExpression DTS:Name="WorkingDirectory">@[User::WorkingDirectory]</DTS:PropertyExpression>
       <DTS:ObjectData>
-        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage process-sim --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\GPT\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\GPT\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
+        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage process-sim --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\New Inventory Safety\_local\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\New Inventory Safety\_local\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
       </DTS:ObjectData>
     </DTS:Executable></DTS:Executables><DTS:PrecedenceConstraints /></DTS:Executable>

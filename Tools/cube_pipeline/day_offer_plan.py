@@ -106,3 +106,5 @@ if __name__=='__main__':
     request=read(args.request)
     results=solve(args.source,request,args.folder,validate_input())
     publish(request,results)
+    from priority_offer_plan import run as prepare_priority
+    prepare_priority(args.source,request,args.folder/'priority')

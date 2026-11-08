@@ -38,7 +38,9 @@ def _dependencies():
 
 def _select_entry(request,project_root=None):
     project=project_path(project_root)
-    catalog_path=project/'GPT/output/companyx-split-20261107/baselines/catalog.json'
+    from common import demo_folder
+    local = demo_folder(project)/'RuntimeData/reference'
+    catalog_path=local/'catalog.json' if (local/'catalog.json').is_file() else project/'_local/output/companyx-split-20261107/baselines/catalog.json'
     if not catalog_path.is_file():raise RequestError('BASELINE_NOT_READY','No published baseline catalog is ready.')
     catalog=json.loads(catalog_path.read_text(encoding='utf-8-sig'))
     if catalog.get('schema')!='companyx.baseline.catalog.v1' or not isinstance(catalog.get('baselines'),list):
@@ -58,7 +60,9 @@ def _select_entry(request,project_root=None):
         if request.get('initial_stock_rule') not in PRESETS:raise RequestError('INVALID_INITIAL_STOCK','Unsupported fixed stock preset.')
         matches=available
     if len(matches)!=1:raise RequestError('BASELINE_NOT_READY','Choose one READY baseline matching the selected physical scenario.')
-    entry=matches[0]
+    entry=dict(matches[0])
+    if catalog_path.parent == local:
+        entry['artifact_folder']=str(local/'runs'/Path(entry['artifact_folder'].replace('\\','/')).name)
     if (entry.get('PlanningRunKey')!=run_key or entry.get('source_matrix_index')!=scenario+16
         or entry.get('initial_stock_rule')!='SAFETY_STOCK_LEVEL'
         or entry.get('start')!=baseline_inputs.START or entry.get('end')!=baseline_inputs.END):
@@ -72,8 +76,10 @@ def _select_entry(request,project_root=None):
 def _load_reference(entry,project_root=None):
     project,_,_,_,legacy,run,valuation=runtime(project_root)
     folder=Path(entry['artifact_folder']).resolve()
-    allowed=project/'GPT/output/companyx-split-20261107/baselines/runs'
-    if not folder.is_relative_to(allowed) or folder==allowed:
+    allowed=project/'_local/output/companyx-split-20261107/baselines/runs'
+    from common import demo_folder
+    local_allowed=(demo_folder(project)/'RuntimeData/reference/runs').resolve()
+    if not ((folder.is_relative_to(allowed) and folder!=allowed) or (folder.is_relative_to(local_allowed) and folder!=local_allowed)):
         raise RequestError('BASELINE_PATH_INVALID','A baseline must be an owned run under Project/GPT baselines/runs.')
     snapshot=legacy.read(folder/'input.json');spec=legacy.read(folder/'execution_spec.json')
     manifest=legacy.read(folder/'run.json');completion=legacy.read(folder/'completion.json')
@@ -289,7 +295,7 @@ def execute_prepared(prepared,output_folder,project_root=None):
     if prepared.get('prepared_schema')!='companyx.inquiry.prepared.v2':raise RequestError('INVALID_PREPARED_SCHEMA','Unsupported V2 prepared schema.')
     if prepared!=build_request(prepared['request'],prepared['candidate_id'],project):raise RequestError('PREPARED_IDENTITY_CHANGED','Prepared V2 inquiry identity changed.')
     folder=Path(output_folder).resolve()
-    if not folder.is_relative_to(project/'GPT') or folder==project/'GPT':raise RequestError('OUTPUT_OUTSIDE_GPT','Inquiry output must be in a dedicated Project/GPT folder.')
+    if not folder.is_relative_to(project/'_local') or folder==project/'_local':raise RequestError('OUTPUT_OUTSIDE_GPT','Inquiry output must be in a dedicated Project/GPT folder.')
     if (folder/'run.json').exists() or (folder/'completion.json').exists():raise RequestError('RUN_ALREADY_EXISTS','Existing runs are immutable; choose a fresh output folder.')
     folder.mkdir(parents=True,exist_ok=True)
     for name,obj in [('request',prepared['request']),('scope',prepared['scope']),('input_source',prepared['snapshot'])]:legacy.save(folder/f'{name}.json',obj)
@@ -329,7 +335,7 @@ def execute_prepared(prepared,output_folder,project_root=None):
 
 def verify_inquiry_artifact(folder,project_root=None):
     project,_,_,_,legacy,_,_=runtime(project_root);folder=Path(folder).resolve()
-    if not folder.is_relative_to(project/'GPT'):raise RequestError('OUTPUT_OUTSIDE_GPT','Inquiry artifacts must be under Project/GPT.')
+    if not folder.is_relative_to(project/'_local'):raise RequestError('OUTPUT_OUTSIDE_GPT','Inquiry artifacts must be under Project/GPT.')
     scope=legacy.read(folder/'scope.json')
     if 'optimizer_release' not in scope:
         from . import inquiry_v2_legacy_20261105 as historical

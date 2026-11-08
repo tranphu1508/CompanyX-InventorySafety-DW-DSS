@@ -4,7 +4,7 @@ from common import PROJECT,read
 
 def read_active_scope(project_root=None):
     project=Path(project_root).resolve() if project_root else PROJECT
-    policy=read(project/'GPT/output/companyx-split-20261107/active-scope.json')
+    policy=read(project/'RuntimeData/active-scope.json')
     for field in ('active_scenario_indices','active_baseline_matrix_indices'):
         values=policy.get(field)
         if type(values) is not list or any(type(value) is not int for value in values):

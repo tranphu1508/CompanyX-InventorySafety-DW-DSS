@@ -165,7 +165,7 @@ def build_inquiry(project):
 
 
 if __name__ == '__main__':
-    project = Path(__file__).resolve().parents[4]
+    project = Path(__file__).resolve().parents[3]
     output = Path(__file__).with_name('PublishScoped.sql')
     output.write_text(build(project), encoding='utf-8', newline='\n')
     output.with_name('PublishInquiry.sql').write_text(build_inquiry(project), encoding='utf-8', newline='\n')

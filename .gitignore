@@ -44,6 +44,7 @@ TestResults/
 *.bak
 # Temporary, system and editor files
 *.log
+/logweb/
 *.tmp
 *.temp
 *.cache
@@ -53,9 +54,28 @@ Thumbs.db
 .vscode/settings.json
 
 # Generated experiment results (keep source code and notebooks)
-/KetQua/
+/KetQua/*
+!/KetQua/Demo_01/
+/KetQua/Demo_01/*
+!/KetQua/Demo_01/input.json
+!/KetQua/Demo_01/input_source.json
+!/KetQua/Demo_01/dw_source_proof.json
+!/KetQua/Demo_01/valuation_basis.json
 
 # Note: DSS/, Warehouse/, Database/, MOLAP/, SSIS/, Web/, Tools/,
 # CompanyX.Split.Integration/, *.sln, *.sql, *.dtsx, *.dtproj,
 # and documentation are NOT excluded by this file.
 # Review large data files and sensitive data before publishing.
+# Extracted immutable baseline bundle and optional database transfer files
+/RuntimeData/reference/
+/TransferData/
+/GPT/
+
+/checkout.local.json
+
+/_local/
+/Warehouse/SchemaSnapshots/
+
+# Solver license is supplied locally by the user
+/.secrets/
+*.lic

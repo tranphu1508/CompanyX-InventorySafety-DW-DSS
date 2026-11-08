@@ -28,7 +28,7 @@ def main(argv=None):
     from .forecast import get_resale_forecast
     project, demo, config, inputs, legacy, run, _ = runtime(args.project_root)
     folder = Path(args.output).resolve()
-    if folder == project / 'GPT' or not folder.is_relative_to(project / 'GPT'):
+    if folder == project / '_local' or not folder.is_relative_to(project / '_local'):
         raise ValueError('Corrected execution output must be a dedicated Project/GPT directory')
     snapshot = legacy.read(args.input)
     spec = config.resolve(legacy.read(args.spec))

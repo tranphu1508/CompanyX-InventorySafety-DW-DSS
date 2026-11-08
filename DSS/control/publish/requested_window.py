@@ -22,7 +22,7 @@ def publish_window(folder,assignments,*,project_root=None):
 
 def _publish_window(folder,assignments,*,project_root=None):
     folder=Path(folder).resolve();project=Path(project_root).resolve() if project_root else PROJECT
-    if not folder.is_relative_to(project/'GPT'):raise ValueError('Window folder must be under GPT')
+    if not folder.is_relative_to(project/'_local'):raise ValueError('Window folder must be under GPT')
     request=read(folder/'request.json');identity=verify_identity(read(folder/'cache_identity.json'))
     metadata=read(folder/'metadata.json');plan=read(folder/'cache_plan.json')
     if folder.name!=request['request_id']:raise ValueError('Window request path mismatch')

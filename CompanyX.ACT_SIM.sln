@@ -1,10 +1,11 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.44.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "CompanyX.Split.Integration", "CompanyX.Split.Integration\CompanyX.Split.Integration.dtproj", "{1106549E-92E9-467E-9DE2-64FC5649C3FF}"
 EndProject
-Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "CompanyX.ACT.Analysis", "MOLAP\CompanyX.ACT.Analysis\CompanyX.ACT.Analysis.dwproj", "{3A0A7FB2-5EB8-4070-9231-D8BB07A29241}"
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "CompanyX_ACT_20261107", "MOLAP\CompanyX.ACT.Analysis\CompanyX_ACT_20261107.dwproj", "{3A0A7FB2-5EB8-4070-9231-D8BB07A29241}"
 EndProject
 Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "CompanyX.SIM.Analysis", "MOLAP\CompanyX.SIM.Analysis\CompanyX.SIM.Analysis.dwproj", "{A1ED0F64-B334-4987-9854-B99ECCC312B3}"
 EndProject
@@ -16,5 +17,11 @@ Global
 		{1106549E-92E9-467E-9DE2-64FC5649C3FF}.Development|Default.ActiveCfg = Development
 		{3A0A7FB2-5EB8-4070-9231-D8BB07A29241}.Development|Default.ActiveCfg = Development
 		{A1ED0F64-B334-4987-9854-B99ECCC312B3}.Development|Default.ActiveCfg = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CDC0FA3F-E190-4AB6-B30B-DF6C944A01C2}
 	EndGlobalSection
 EndGlobal

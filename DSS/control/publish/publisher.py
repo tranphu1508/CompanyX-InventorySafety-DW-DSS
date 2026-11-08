@@ -46,12 +46,12 @@ def prepare_publication(artifact_folder, *, project_root=None):
     if read(Path(artifact_folder)/'scope.json').get('schema')=='companyx.inquiry.scope.v2':
         from publish.inquiry_v2_publisher import prepare_v2
         return prepare_v2(artifact_folder,project_root=project_root)
-    project = Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[4]
-    demo = project / 'New Inventory Safety'
+    project = Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[3]
+    demo = project
     folder = Path(artifact_folder).resolve()
-    if not folder.is_relative_to(project / 'GPT') or folder == project / 'GPT':
+    if not folder.is_relative_to(project / '_local') or folder == project / '_local':
         raise ValueError('Only dedicated new artifacts under Project/GPT may be published.')
-    sys.path.insert(0, str(project / 'New Inventory Safety/DSS/control'))
+    sys.path.insert(0, str(project / 'DSS/control'))
     from simulation.adapter import build_request, runtime
     runtime(project)
     from companyx_unified_v2.dwh import validate_artifact

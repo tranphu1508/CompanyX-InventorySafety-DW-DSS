@@ -4,12 +4,16 @@ import json, os, re, tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-PROJECT = Path(__file__).resolve().parents[3]
+PROJECT = Path(__file__).resolve().parents[2]
 CODE = Path(__file__).resolve().parent
-OUTPUT = PROJECT / 'GPT/output/companyx-split-20261107'
+OUTPUT = PROJECT / '_local/output/companyx-split-20261107'
 JOBS = OUTPUT / 'runs'
 def demo_folder(project=PROJECT):
-    return Path(project) / 'New Inventory Safety'
+    candidate = Path(project).resolve()
+    if (candidate/'DSS/runtime/src').is_dir(): return candidate
+    own = Path(__file__).resolve().parents[2]
+    if candidate == own.parent: return own
+    return candidate / 'New Inventory Safety'
 
 DEMO = demo_folder()
 PYTHON = DEMO / '.venv/Scripts/python.exe'

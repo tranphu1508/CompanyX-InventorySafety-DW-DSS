@@ -17,14 +17,14 @@ def _sha(path):
 
 
 def build_publication_purpose(artifact_folder,*,project_root=None):
-    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[4]
+    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[3]
     folder=Path(artifact_folder).resolve()
     request=_read(folder/'request.json');scope=_read(folder/'scope.json')
     request_id=request.get('request_id');candidate_id=scope.get('candidate_id')
     if any(not isinstance(value,str) or not re.fullmatch(r'[A-Za-z0-9_-]{1,80}',value)
            for value in (request_id,candidate_id)):
         raise ValueError('Invalid owned job/candidate identity for purpose binding.')
-    job=(project/'GPT/output/companyx-split-20261107/runs'/request_id).resolve()
+    job=(project/'_local/output/companyx-split-20261107/runs'/request_id).resolve()
     expected=job/'candidates'/candidate_id/'artifacts'
     if folder!=expected.resolve() or not folder.is_relative_to(job):
         raise ValueError('Purpose metadata requires the exact owned job/candidate artifact path.')

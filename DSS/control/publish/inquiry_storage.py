@@ -47,9 +47,9 @@ def immutable_json(path,value):
 
 
 def _scope(folder,project_root=None):
-    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[4]
+    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[3]
     folder=Path(folder).resolve()
-    if not folder.is_relative_to(project/'GPT') or folder==project/'GPT':raise ValueError('Inquiry storage requires a dedicated Project/GPT folder.')
+    if not folder.is_relative_to(project/'_local') or folder==project/'_local':raise ValueError('Inquiry storage requires a dedicated Project/GPT folder.')
     return project,folder
 
 
@@ -270,7 +270,7 @@ def _static_files(folder):
 
 def prepare_candidate_storage(folder,project_root=None):
     project,folder=_scope(folder,project_root)
-    sys.path.insert(0,str(project/'New Inventory Safety/DSS/control'))
+    sys.path.insert(0,str(project/'DSS/control'))
     from simulation.inquiry_v2 import verify_inquiry_artifact
     if (folder/'inquiry_storage_receipt.json').exists():return verify_stored_inquiry(folder,project)['storage_receipt']
     if any((folder/p).exists() for p in ('RUNNING.lock','DW_PUBLISH.lock')):raise ValueError('Candidate execution/publication is still active.')
@@ -327,7 +327,7 @@ def _check_attestation(folder):
 
 def verify_stored_inquiry(folder,project_root=None):
     project,folder=_scope(folder,project_root)
-    sys.path.insert(0,str(project/'New Inventory Safety/DSS/control'))
+    sys.path.insert(0,str(project/'DSS/control'))
     from simulation import inquiry_v2 as v2
     _,_,_,inputs,legacy,run,valuation=v2.runtime(project)
     scope=read(folder/'scope.json');request=read(folder/'request.json')

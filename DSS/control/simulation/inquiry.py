@@ -389,7 +389,7 @@ def execute_prepared(prepared, output_folder, project_root=None):
     if prepared != build_inquiry_candidate(prepared['request'],prepared['candidate_id'],project):
         raise RequestError('PREPARED_IDENTITY_CHANGED', 'Prepared inquiry identity changed; regenerate explicitly.')
     folder = Path(output_folder).resolve()
-    if not folder.is_relative_to(project/'GPT') or folder == project/'GPT':
+    if not folder.is_relative_to(project/'_local') or folder == project/'_local':
         raise RequestError('OUTPUT_OUTSIDE_GPT', 'Inquiry artifacts must be under Project/GPT.')
     if (folder/'run.json').exists() or (folder/'completion.json').exists():
         raise RequestError('RUN_ALREADY_EXISTS', 'Existing runs are immutable; choose a fresh output directory.')
@@ -538,7 +538,7 @@ def verify_inquiry_artifact(folder, project_root=None):
     """Read-only verification for the publication stage; no SQL writes."""
     project,_,_,_,legacy,run,_=runtime(project_root)
     folder=Path(folder).resolve()
-    if not folder.is_relative_to(project/'GPT'):
+    if not folder.is_relative_to(project/'_local'):
         raise RequestError('OUTPUT_OUTSIDE_GPT','Inquiry artifacts must be under Project/GPT.')
     scope=legacy.read(folder/'scope.json')
     prepared=build_inquiry_candidate(legacy.read(folder/'request.json'),scope['candidate_id'],project)

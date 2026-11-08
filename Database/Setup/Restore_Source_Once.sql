@@ -21,7 +21,8 @@ USE [master];
 SET NOCOUNT ON;
 SET XACT_ABORT ON;
 
-DECLARE @BackupFile nvarchar(4000) = N'D:\Study\Bách Khoa University\Kho Dữ Liệu và Hệ Hỗ trợ Quyết Định\Project\DSS\CompX_InventorySafetyDemo_20261104\CompanyX.bak';
+DECLARE @BackupFile nvarchar(4000) = N''; -- Full path to the verified CompanyX source backup on THIS SQL host.
+IF @BackupFile=N'' THROW 51850, 'Set @BackupFile to the source backup supplied with this demo.', 1;
 DECLARE @SourceDatabase sysname = N'CompanyX_Demo';
 DECLARE @ValidateOnly bit = 0; -- 1: verify backup, paths and capacity; do not restore.
 DECLARE @ExpectedBackupHash varchar(64) = '07f1161f90b4fb7aab26f08f6046420855fc32b94f37f4b13a7fd00ecbbe2fb8';

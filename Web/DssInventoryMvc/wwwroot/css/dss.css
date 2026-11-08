@@ -86,3 +86,79 @@
 
 body[data-page="orders"] .compact-metric small { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .schedule-placeholder:has(.replay-schedule) { min-height: 0; }
+
+/* Daily date scale, aligned with each production row. */
+body[data-page="orders"] .replay-schedule {
+  --replay-label-width: 220px;
+  width: calc(var(--replay-label-width) + 16px + var(--replay-track-width) + 40px);
+  min-width: 100%;
+  padding: 12px 20px;
+}
+body[data-page="orders"] .replay-axis {
+  position: relative;
+  display: block;
+  height: 30px;
+  width: var(--replay-track-width);
+  margin-left: calc(var(--replay-label-width) + 16px);
+  border-bottom: 1px solid #d9e3ef;
+}
+body[data-page="orders"] .replay-axis .replay-tick {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 10px;
+  color: #61738f;
+  height: 30px;
+}
+body[data-page="orders"] .replay-tick::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  height: 8px;
+  border-left: 1px solid #c6d2e2;
+}
+body[data-page="orders"] .replay-axis .replay-tick-due { color: #9a6800; font-weight: 700; }
+body[data-page="orders"] .replay-work-row {
+  grid-template-columns: var(--replay-label-width) var(--replay-track-width);
+  gap: 16px;
+}
+body[data-page="orders"] .replay-work-track {
+  background: repeating-linear-gradient(to right,#dfe7f1 0,#dfe7f1 1px,transparent 1px,transparent var(--replay-day-step));
+  border-right: 1px solid #dfe7f1;
+}
+body[data-page="orders"] .replay-due { background: #e5a000; z-index: 2; }
+body[data-page="orders"] .replay-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #65758d;
+  font-size: 11px;
+  margin-bottom: 14px;
+}
+body[data-page="orders"] .replay-due-swatch { height: 16px; width: 3px; background: #e5a000; }
+
+body[data-page="orders"] .replay-work-row > .replay-bom-label { display:flex; align-items:center; gap:6px; white-space:normal; min-height:32px; }
+body[data-page="orders"] .replay-bom-label small { color:#72839b; font-size:9px; flex-shrink:0; }
+body[data-page="orders"] .replay-bom-label > span { font-size:10px; }
+body[data-page="orders"] .replay-no-start { position:relative; font-size:10px; color:#72839b; background:white; }
+
+body[data-page="orders"] .priority-summary { padding:8px 0; border-bottom:1px solid #edf1f6; }
+body[data-page="orders"] .priority-summary > strong { font-size:11px; display:block; margin-bottom:5px; }
+body[data-page="orders"] .priority-summary p,body[data-page="orders"] .priority-summary > small { font-size:10px; color:#6d7f99; margin:4px 0; }
+
+body[data-page="operations"] .operations-donut.delivery-comparison { width:100%;height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:10px 0 24px; }
+body[data-page="operations"] .delivery-comparison figure { margin:0;min-width:0; }
+body[data-page="operations"] .delivery-comparison figcaption { text-align:center;font-size:12px;font-weight:700;color:#405779;margin-bottom:10px; }
+body[data-page="operations"] .delivery-ring { height:180px;position:relative; }
+@media(max-width:575px) { body[data-page="operations"] .delivery-ring { height:145px; } }
+
+body[data-page="operations"] .comparison-metrics .compare-card { height:auto;min-height:145px; }
+body[data-page="operations"] .policy-scores { display:grid;gap:7px;margin:12px 0 7px; }
+body[data-page="operations"] .policy-score-row { display:grid;grid-template-columns:16px minmax(0,1fr) auto;align-items:center;gap:5px;border-radius:6px;padding:6px; }
+body[data-page="operations"] .policy-score-row > span { font-size:10px;font-weight:600;color:inherit;line-height:1.25; }
+body[data-page="operations"] .policy-score-row > strong { height:auto;margin:0;font-size:18px;color:inherit;line-height:1.1;font-variant-numeric:tabular-nums; }
+body[data-page="operations"] .score-mark { font-size:16px;text-align:center; }
+body[data-page="operations"] .score-better { color:#15803d;background:#effaf2; }
+body[data-page="operations"] .score-worse { color:#a16207;background:#fff8db; }
+body[data-page="operations"] .score-equal { color:#64748b;background:#f1f5f9; }

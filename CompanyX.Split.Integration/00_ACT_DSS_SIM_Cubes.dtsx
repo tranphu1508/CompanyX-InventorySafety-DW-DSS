@@ -3,10 +3,10 @@
   <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
     <DTS:Variable DTS:CreationName="" DTS:DTSID="{B9042010-604C-4D31-89F2-90611C2F91C1}" DTS:Namespace="User" DTS:ObjectName="RequestPath">
-      <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\GPT\requests\UNSET.json</DTS:VariableValue>
+      <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\New Inventory Safety\_local\requests\UNSET.json</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable DTS:CreationName="" DTS:DTSID="{A5BC70E2-6725-4488-8BD7-D83CBF1236ED}" DTS:Namespace="User" DTS:ObjectName="RunFolder">
-      <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\GPT\output\companyx-split-20261107\runs</DTS:VariableValue>
+      <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\New Inventory Safety\_local\output\companyx-split-20261107\runs</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable DTS:CreationName="" DTS:DTSID="{C9775244-D9E1-47A8-890B-0C244A081253}" DTS:Namespace="User" DTS:ObjectName="WorkerPath">
       <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py</DTS:VariableValue>
@@ -15,7 +15,7 @@
       <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable DTS:CreationName="" DTS:DTSID="{DA1292A4-A8E3-4F3F-9C67-963D3E45C0AC}" DTS:Namespace="User" DTS:ObjectName="WorkingDirectory">
-      <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\GPT\tmp\companyx-split-20261107</DTS:VariableValue>
+      <DTS:VariableValue DTS:DataType="8">E:\Study-BKU\New Inventory Safety\_local\tmp\companyx-split-20261107</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable DTS:CreationName="" DTS:DTSID="{9B35551E-9164-42D5-8B7C-15C924D17598}" DTS:Namespace="User" DTS:ObjectName="ProcessOutput">
       <DTS:VariableValue DTS:DataType="8" />
@@ -30,7 +30,7 @@
       <DTS:PropertyExpression DTS:Name="Executable">@[User::PythonExecutable]</DTS:PropertyExpression>
       <DTS:PropertyExpression DTS:Name="WorkingDirectory">@[User::WorkingDirectory]</DTS:PropertyExpression>
       <DTS:ObjectData>
-        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage validate-request --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\GPT\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\GPT\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
+        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage validate-request --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\New Inventory Safety\_local\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\New Inventory Safety\_local\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
       </DTS:ObjectData>
     </DTS:Executable><DTS:Executable DTS:refId="Package\02 OLTP to ACT warehouse" DTS:CreationName="Microsoft.ExecuteProcess" DTS:ExecutableType="Microsoft.ExecuteProcess" DTS:DTSID="{74D4F7C0-440E-414F-8646-FE36A8274920}" DTS:ObjectName="02 OLTP to ACT warehouse" DTS:DelayValidation="True" DTS:FailPackageOnFailure="True" DTS:FailParentOnFailure="True" DTS:LocaleID="-1" DTS:Description="Gói SSIS 20_ETL nạp thay đổi và đối chiếu nguồn cho DSS.">
       <DTS:Variables />
@@ -38,7 +38,7 @@
       <DTS:PropertyExpression DTS:Name="Executable">@[User::PythonExecutable]</DTS:PropertyExpression>
       <DTS:PropertyExpression DTS:Name="WorkingDirectory">@[User::WorkingDirectory]</DTS:PropertyExpression>
       <DTS:ObjectData>
-        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage etl-act --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\GPT\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\GPT\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
+        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage etl-act --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\New Inventory Safety\_local\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\New Inventory Safety\_local\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
       </DTS:ObjectData>
     </DTS:Executable><DTS:Executable DTS:refId="Package\03 Process ACT cube" DTS:CreationName="Microsoft.ExecuteProcess" DTS:ExecutableType="Microsoft.ExecuteProcess" DTS:DTSID="{9771D530-5D5B-4E65-BC8F-D7E812986B2D}" DTS:ObjectName="03 Process ACT cube" DTS:DelayValidation="True" DTS:FailPackageOnFailure="True" DTS:FailParentOnFailure="True" DTS:LocaleID="-1" DTS:Description="Gói SSIS 20_ETL nạp thay đổi và đối chiếu nguồn cho DSS.">
       <DTS:Variables />
@@ -46,7 +46,7 @@
       <DTS:PropertyExpression DTS:Name="Executable">@[User::PythonExecutable]</DTS:PropertyExpression>
       <DTS:PropertyExpression DTS:Name="WorkingDirectory">@[User::WorkingDirectory]</DTS:PropertyExpression>
       <DTS:ObjectData>
-        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage prepare-act --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\GPT\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\GPT\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
+        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage prepare-act --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\New Inventory Safety\_local\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\New Inventory Safety\_local\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
       </DTS:ObjectData>
     </DTS:Executable><DTS:Executable DTS:refId="Package\04 ACT MDX to SIM input" DTS:CreationName="Microsoft.ExecuteProcess" DTS:ExecutableType="Microsoft.ExecuteProcess" DTS:DTSID="{300FDE37-9414-4DA7-B6FA-6CA856BB98F2}" DTS:ObjectName="04 ACT MDX to SIM input" DTS:DelayValidation="True" DTS:FailPackageOnFailure="True" DTS:FailParentOnFailure="True" DTS:LocaleID="-1" DTS:Description="Gói SSIS 20_ETL nạp thay đổi và đối chiếu nguồn cho DSS.">
       <DTS:Variables />
@@ -54,7 +54,7 @@
       <DTS:PropertyExpression DTS:Name="Executable">@[User::PythonExecutable]</DTS:PropertyExpression>
       <DTS:PropertyExpression DTS:Name="WorkingDirectory">@[User::WorkingDirectory]</DTS:PropertyExpression>
       <DTS:ObjectData>
-        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage export-act --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\GPT\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\GPT\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
+        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage export-act --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\New Inventory Safety\_local\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\New Inventory Safety\_local\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
       </DTS:ObjectData>
     </DTS:Executable><DTS:Executable DTS:refId="Package\05 DSS to SIM results" DTS:CreationName="Microsoft.ExecuteProcess" DTS:ExecutableType="Microsoft.ExecuteProcess" DTS:DTSID="{79212D7B-918E-4F88-8939-6F0F3742627D}" DTS:ObjectName="05 DSS to SIM results" DTS:DelayValidation="True" DTS:FailPackageOnFailure="True" DTS:FailParentOnFailure="True" DTS:LocaleID="-1" DTS:Description="Gói SSIS 20_ETL nạp thay đổi và đối chiếu nguồn cho DSS.">
       <DTS:Variables />
@@ -62,7 +62,7 @@
       <DTS:PropertyExpression DTS:Name="Executable">@[User::PythonExecutable]</DTS:PropertyExpression>
       <DTS:PropertyExpression DTS:Name="WorkingDirectory">@[User::WorkingDirectory]</DTS:PropertyExpression>
       <DTS:ObjectData>
-        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage dss --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\GPT\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\GPT\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
+        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage dss --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\New Inventory Safety\_local\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\New Inventory Safety\_local\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
       </DTS:ObjectData>
     </DTS:Executable><DTS:Executable DTS:refId="Package\06 Process SIM cube" DTS:CreationName="Microsoft.ExecuteProcess" DTS:ExecutableType="Microsoft.ExecuteProcess" DTS:DTSID="{53066562-AF9C-4554-A67D-DB3B8937EB4A}" DTS:ObjectName="06 Process SIM cube" DTS:DelayValidation="True" DTS:FailPackageOnFailure="True" DTS:FailParentOnFailure="True" DTS:LocaleID="-1" DTS:Description="Gói SSIS 20_ETL nạp thay đổi và đối chiếu nguồn cho DSS.">
       <DTS:Variables />
@@ -70,6 +70,6 @@
       <DTS:PropertyExpression DTS:Name="Executable">@[User::PythonExecutable]</DTS:PropertyExpression>
       <DTS:PropertyExpression DTS:Name="WorkingDirectory">@[User::WorkingDirectory]</DTS:PropertyExpression>
       <DTS:ObjectData>
-        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage process-sim --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\GPT\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\GPT\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
+        <ExecuteProcessData Executable="E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe" Arguments="-B -X utf8 &quot;E:\Study-BKU\New Inventory Safety\Tools\cube_pipeline\pipeline.py&quot; --stage process-sim --purpose ORDER_INQUIRY --request &quot;E:\Study-BKU\New Inventory Safety\_local\requests\UNSET.json&quot;" WorkingDirectory="E:\Study-BKU\New Inventory Safety\_local\tmp\companyx-split-20261107" FailTaskIfReturnCodeIsNotSuccessValue="True" SuccessValue="0" TerminateAfterTimeout="False" StandardOutputVariable="User::ProcessOutput" StandardErrorVariable="User::ProcessError" WindowStyle="Hidden" />
       </DTS:ObjectData>
     </DTS:Executable></DTS:Executables><DTS:PrecedenceConstraints><DTS:PrecedenceConstraint DTS:refId="Package.PrecedenceConstraints[Constraint1]" DTS:CreationName="" DTS:DTSID="{8ED77CA1-6B1D-4E16-B949-432AFE9B8FD5}" DTS:From="Package\01 Validate request" DTS:To="Package\02 OLTP to ACT warehouse" DTS:LogicalAnd="True" DTS:ObjectName="Constraint1" DTS:Value="0" /><DTS:PrecedenceConstraint DTS:refId="Package.PrecedenceConstraints[Constraint2]" DTS:CreationName="" DTS:DTSID="{9FEFA375-280E-4C1F-A631-9962E881C1A2}" DTS:From="Package\02 OLTP to ACT warehouse" DTS:To="Package\03 Process ACT cube" DTS:LogicalAnd="True" DTS:ObjectName="Constraint2" DTS:Value="0" /><DTS:PrecedenceConstraint DTS:refId="Package.PrecedenceConstraints[Constraint3]" DTS:CreationName="" DTS:DTSID="{CF1C6778-F93F-4C3E-A267-31280AF1D2D8}" DTS:From="Package\03 Process ACT cube" DTS:To="Package\04 ACT MDX to SIM input" DTS:LogicalAnd="True" DTS:ObjectName="Constraint3" DTS:Value="0" /><DTS:PrecedenceConstraint DTS:refId="Package.PrecedenceConstraints[Constraint4]" DTS:CreationName="" DTS:DTSID="{594877F6-D751-4D16-8118-D7A6CE66E200}" DTS:From="Package\04 ACT MDX to SIM input" DTS:To="Package\05 DSS to SIM results" DTS:LogicalAnd="True" DTS:ObjectName="Constraint4" DTS:Value="0" /><DTS:PrecedenceConstraint DTS:refId="Package.PrecedenceConstraints[Constraint5]" DTS:CreationName="" DTS:DTSID="{A470F5CE-72AE-416C-AE2C-A7704D547B78}" DTS:From="Package\05 DSS to SIM results" DTS:To="Package\06 Process SIM cube" DTS:LogicalAnd="True" DTS:ObjectName="Constraint5" DTS:Value="0" /></DTS:PrecedenceConstraints></DTS:Executable>

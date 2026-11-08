@@ -1,0 +1,13 @@
+{
+  "schema": "companyx.active-simulation-scope.v1",
+  "policy_id": "instant-procurement-production-duration-preserved-20261105",
+  "active_scenario_indices": [1, 2],
+  "active_baseline_matrix_indices": [17, 18],
+  "required_supply_mode": "INSTANT_UNLIMITED",
+  "production_duration_policy": "PRESERVE_EXISTING",
+  "retired_scenario_indices": [3, 4, 5, 6, 7, 8],
+  "historical_artifact_policy": "PRESERVE_FOR_AUDIT_EXCLUDE_FROM_ACTIVE_DEMO",
+  "user_scope_request": "bỏ mấy cái có leadtime đi, nhóm không làm có leadtime nữa",
+  "user_clarification": "Chỉ bỏ lead time mua linh kiện; giữ thời gian sản xuất.",
+  "note_vi": "Phạm vi hoạt động gồm ROP/MILP với cung ứng linh kiện tức thời; giữ các quy tắc và thời gian sản xuất hiện có. Không sửa mô hình vật lý, dữ liệu hay kết quả lịch sử."
+}

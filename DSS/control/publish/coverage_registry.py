@@ -11,7 +11,7 @@ def register_cache_execution(artifact_folder,identity,*,project_root=None):
     from cache_identity import verify_identity,build_identity
     from .continuation_storage import verify_stored_continuation
     from .inquiry_purpose import build_publication_purpose
-    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[4]
+    project=Path(project_root).resolve() if project_root else Path(__file__).resolve().parents[3]
     folder=Path(artifact_folder).resolve();verify_identity(identity)
     verified=verify_stored_continuation(folder,project_root=project)
     receipt=verified['continuation']['receipt'];scope=verified['prepared']['scope'];request=verified['prepared']['request']
