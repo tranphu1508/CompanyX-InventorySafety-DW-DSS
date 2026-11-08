@@ -79,3 +79,6 @@ Thumbs.db
 # Solver license is supplied locally by the user
 /.secrets/
 *.lic
+
+# Local assistant instructions
+/AGENTS.md
