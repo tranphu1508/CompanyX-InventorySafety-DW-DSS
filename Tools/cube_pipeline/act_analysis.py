@@ -2,6 +2,7 @@
 import xml.etree.ElementTree as ET
 from copy import deepcopy
 from pathlib import Path
+from act_metric_pruning import prune_act_diagram
 E='http://schemas.microsoft.com/analysisservices/2003/engine'
 XS='http://www.w3.org/2001/XMLSchema'
 MSDATA='urn:schemas-microsoft-com:xml-msdata'
@@ -49,3 +50,4 @@ def apply_act_diagram(cube):
  for a in root:ann.append(deepcopy(a))
  # The designer payload is unqualified XML inside the Analysis Services Value.
  for dds in ann.findall('./{*}Annotation/{*}Value/dds'):dds.set('xmlns','')
+ prune_act_diagram(cube)

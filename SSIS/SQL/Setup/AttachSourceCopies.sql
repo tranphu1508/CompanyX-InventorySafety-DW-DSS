@@ -1,6 +1,6 @@
 -- Native Execute SQL task after the two SSIS File System COPY tasks.
 -- Inputs: @SourceDatabase, @RuntimeMdf, @RuntimeLdf, @AttachToken (NVARCHAR).
--- SHA256 pins are from Database/Source/source_manifest.json. Never attach distribution files.
+-- SHA256 pins below identify the verified distribution MDF/LDF. Never attach distribution files.
 -- On any error, copied files / a partially attached database remain for inspection.
 SET NOCOUNT ON;
 IF DB_NAME()<>N'master' OR @@TRANCOUNT<>0

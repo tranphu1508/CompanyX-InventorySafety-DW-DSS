@@ -7,9 +7,6 @@ import re
 
 ACT_GROUPS={'ActualSales','ActualPurchases','ActualInventory','ActualWorkOrders','ActualOperations'}
 QUANTITIES=(
- 'Actual Sales Ordered Source Qty','Actual Sales Eligible Source Qty',
- 'Actual Purchase Ordered Source Qty','Actual Purchase Received Source Qty',
- 'Actual Purchase Rejected Source Qty','Actual Purchase Stocked Source Qty',
  'Actual Inventory Source Qty','Actual WorkOrder Ordered Source Qty',
  'Actual WorkOrder Stocked Source Qty','Actual WorkOrder Scrapped Source Qty')
 

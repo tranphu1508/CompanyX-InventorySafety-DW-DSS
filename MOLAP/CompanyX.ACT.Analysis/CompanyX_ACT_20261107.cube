@@ -112,17 +112,6 @@
             </layoutobject>
             <shape groupshapeid="0" groupnode="0" />
           </ddscontrol>
-          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="OpsFactOperations" left="20" top="7401" logicalid="9" controlid="9" masterid="0" hint1="0" hint2="0" width="4286" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobjectstreaminitwrapper binary="000e0000be10000088130000" />
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="OpsFactOperations" vartype="8" />
-              </ddsxmlobj>
-            </layoutobject>
-            <shape groupshapeid="0" groupnode="0" />
-          </ddscontrol>
           <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="DimProduct" left="12889" top="28040" logicalid="10" controlid="10" masterid="0" hint1="0" hint2="0" width="4736" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
               <ddsxmlobjectstreaminitwrapper binary="000e00008012000088130000" />
@@ -196,17 +185,6 @@
             <layoutobject>
               <ddsxmlobj>
                 <property name="LogicalObject" value="OpsFactInventory" vartype="8" />
-              </ddsxmlobj>
-            </layoutobject>
-            <shape groupshapeid="0" groupnode="0" />
-          </ddscontrol>
-          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="OpsFactPurchases" left="27029" top="22201" logicalid="17" controlid="17" masterid="0" hint1="0" hint2="0" width="5503" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobjectstreaminitwrapper binary="000e00007f15000088130000" />
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="OpsFactPurchases" vartype="8" />
               </ddsxmlobj>
             </layoutobject>
             <shape groupshapeid="0" groupnode="0" />
@@ -305,42 +283,6 @@
             <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="16" sourceattachpoint="23" destattachpoint="22" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
               <point x="10701" y="9901" />
               <point x="13101" y="9901" />
-            </connector>
-          </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="4006" top="9502" logicalid="23" controlid="23" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-              </ddsxmlobj>
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[ActualOperations_Location]" vartype="8" />
-                <property name="Virtual" value="0" vartype="11" />
-                <property name="VisibleAP" value="0" vartype="3" />
-              </ddsxmlobj>
-            </layoutobject>
-            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="9" sourceattachpoint="22" destattachpoint="23" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-              <point x="6706" y="9901" />
-              <point x="4306" y="9901" />
-            </connector>
-          </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="29381" top="26901" logicalid="24" controlid="24" masterid="0" hint1="0" hint2="0" width="799" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-              </ddsxmlobj>
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[ActualPurchases_Vendor]" vartype="8" />
-                <property name="Virtual" value="0" vartype="11" />
-                <property name="VisibleAP" value="0" vartype="3" />
-              </ddsxmlobj>
-            </layoutobject>
-            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="4" destid="17" sourceattachpoint="6" destattachpoint="9" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-              <point x="29780" y="29601" />
-              <point x="29780" y="27201" />
             </connector>
           </ddscontrol>
           <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="45843" top="39102" logicalid="25" controlid="25" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
@@ -579,126 +521,6 @@
               <point x="41926" y="37001" />
             </connector>
           </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="763" top="4501" logicalid="37" controlid="37" masterid="0" hint1="0" hint2="0" width="24406" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-              </ddsxmlobj>
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[ActualOperations_Actual_End_Date]" vartype="8" />
-                <property name="Virtual" value="0" vartype="11" />
-                <property name="VisibleAP" value="0" vartype="3" />
-              </ddsxmlobj>
-            </layoutobject>
-            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="14" destid="9" sourceattachpoint="1" destattachpoint="2" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-              <point x="24769" y="5000" />
-              <point x="24769" y="6200" />
-              <point x="1063" y="6200" />
-              <point x="1063" y="7401" />
-            </connector>
-          </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="1863" top="4501" logicalid="38" controlid="38" masterid="0" hint1="0" hint2="0" width="24406" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-              </ddsxmlobj>
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[ActualOperations_Scheduled_Start_Date]" vartype="8" />
-                <property name="Virtual" value="0" vartype="11" />
-                <property name="VisibleAP" value="0" vartype="3" />
-              </ddsxmlobj>
-            </layoutobject>
-            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="14" destid="9" sourceattachpoint="5" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-              <point x="25869" y="5000" />
-              <point x="25869" y="6200" />
-              <point x="2163" y="6200" />
-              <point x="2163" y="7401" />
-            </connector>
-          </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="1863" top="12101" logicalid="39" controlid="39" masterid="0" hint1="0" hint2="0" width="12144" height="16439" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-              </ddsxmlobj>
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[ActualOperations_Product]" vartype="8" />
-                <property name="Virtual" value="0" vartype="11" />
-                <property name="VisibleAP" value="0" vartype="3" />
-              </ddsxmlobj>
-            </layoutobject>
-            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="10" destid="9" sourceattachpoint="2" destattachpoint="7" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-              <point x="13607" y="28040" />
-              <point x="13607" y="20221" />
-              <point x="2163" y="20221" />
-              <point x="2163" y="12401" />
-            </connector>
-          </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="2413" top="4501" logicalid="40" controlid="40" masterid="0" hint1="0" hint2="0" width="24406" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-              </ddsxmlobj>
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[ActualOperations_Scheduled_End_Date]" vartype="8" />
-                <property name="Virtual" value="0" vartype="11" />
-                <property name="VisibleAP" value="0" vartype="3" />
-              </ddsxmlobj>
-            </layoutobject>
-            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="14" destid="9" sourceattachpoint="7" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-              <point x="26419" y="5000" />
-              <point x="26419" y="6200" />
-              <point x="2713" y="6200" />
-              <point x="2713" y="7401" />
-            </connector>
-          </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="1313" top="4501" logicalid="41" controlid="41" masterid="0" hint1="0" hint2="0" width="24406" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-              </ddsxmlobj>
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[ActualOperations_Actual_Start_Date]" vartype="8" />
-                <property name="Virtual" value="0" vartype="11" />
-                <property name="VisibleAP" value="0" vartype="3" />
-              </ddsxmlobj>
-            </layoutobject>
-            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="14" destid="9" sourceattachpoint="3" destattachpoint="4" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-              <point x="25319" y="5000" />
-              <point x="25319" y="6200" />
-              <point x="1613" y="6200" />
-              <point x="1613" y="7401" />
-            </connector>
-          </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="17325" top="24401" logicalid="42" controlid="42" masterid="0" hint1="0" hint2="0" width="10004" height="6539" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-              </ddsxmlobj>
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[ActualPurchases_Product]" vartype="8" />
-                <property name="Virtual" value="0" vartype="11" />
-                <property name="VisibleAP" value="0" vartype="3" />
-              </ddsxmlobj>
-            </layoutobject>
-            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="10" destid="17" sourceattachpoint="27" destattachpoint="26" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-              <point x="17625" y="30540" />
-              <point x="22327" y="30540" />
-              <point x="22327" y="24701" />
-              <point x="27029" y="24701" />
-            </connector>
-          </ddscontrol>
           <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="14858" top="12101" logicalid="43" controlid="43" masterid="0" hint1="0" hint2="0" width="799" height="16439" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
               <ddsxmlobj>
@@ -777,86 +599,6 @@
               <point x="26969" y="6200" />
               <point x="28325" y="6200" />
               <point x="28325" y="7401" />
-            </connector>
-          </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="32232" top="24301" logicalid="47" controlid="47" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-              </ddsxmlobj>
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[ActualPurchases_Purchase_Document_Status]" vartype="8" />
-                <property name="Virtual" value="0" vartype="11" />
-                <property name="VisibleAP" value="0" vartype="3" />
-              </ddsxmlobj>
-            </layoutobject>
-            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="13" destid="17" sourceattachpoint="16" destattachpoint="27" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-              <point x="34932" y="24700" />
-              <point x="33732" y="24700" />
-              <point x="33732" y="24701" />
-              <point x="32532" y="24701" />
-            </connector>
-          </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="26570" top="4501" logicalid="48" controlid="48" masterid="0" hint1="0" hint2="0" width="1860" height="18000" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-              </ddsxmlobj>
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[ActualPurchases_Expected_Receipt_Date]" vartype="8" />
-                <property name="Virtual" value="0" vartype="11" />
-                <property name="VisibleAP" value="0" vartype="3" />
-              </ddsxmlobj>
-            </layoutobject>
-            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="14" destid="17" sourceattachpoint="9" destattachpoint="2" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-              <point x="26969" y="5000" />
-              <point x="26969" y="13600" />
-              <point x="28130" y="13600" />
-              <point x="28130" y="22201" />
-            </connector>
-          </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="26570" top="4501" logicalid="49" controlid="49" masterid="0" hint1="0" hint2="0" width="3510" height="18000" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-              </ddsxmlobj>
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[ActualPurchases_Expected_Ship_Date]" vartype="8" />
-                <property name="Virtual" value="0" vartype="11" />
-                <property name="VisibleAP" value="0" vartype="3" />
-              </ddsxmlobj>
-            </layoutobject>
-            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="14" destid="17" sourceattachpoint="9" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-              <point x="26969" y="5000" />
-              <point x="26969" y="13600" />
-              <point x="29780" y="13600" />
-              <point x="29780" y="22201" />
-            </connector>
-          </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="26570" top="4501" logicalid="50" controlid="50" masterid="0" hint1="0" hint2="0" width="5160" height="18000" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-            <control>
-              <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-              </ddsxmlobj>
-            </control>
-            <layoutobject>
-              <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[ActualPurchases_Order_Date]" vartype="8" />
-                <property name="Virtual" value="0" vartype="11" />
-                <property name="VisibleAP" value="0" vartype="3" />
-              </ddsxmlobj>
-            </layoutobject>
-            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="14" destid="17" sourceattachpoint="9" destattachpoint="14" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-              <point x="26969" y="5000" />
-              <point x="26969" y="13600" />
-              <point x="31430" y="13600" />
-              <point x="31430" y="22201" />
             </connector>
           </ddscontrol>
           <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="15036" top="4501" logicalid="51" controlid="51" masterid="0" hint1="0" hint2="0" width="12333" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
@@ -2498,63 +2240,7 @@
             <Measure dwd:design-time-name="7cfa4bd8-970b-45ca-9bc9-98e7641e7e20">
               <MeasureID>Actual Sales Line Count</MeasureID>
             </Measure>
-            <Measure dwd:design-time-name="2daeed90-6d79-400c-8368-f38395eae730">
-              <MeasureID>Actual Sales Eligible Line Count</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="743055f1-2612-40be-a178-3c81fe1a9a14">
-              <MeasureID>Actual Sales Line Amount</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="df0c5929-788d-4b65-a774-44073e174fe4">
-              <MeasureID>Actual Sales Eligible Line Amount</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="2ffe6562-6241-4ca8-a061-d63fb76a3154">
-              <MeasureID>Actual Sales Ship Date Observed Lines</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="49c766bc-328d-46c9-bb93-2d6cd8c9940a">
-              <MeasureID>Actual Sales Recorded Ship By Due Lines</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="a8a943e3-02a2-4fb4-998f-201664e78e9a">
-              <MeasureID>Actual Sales Recorded Ship Lag Days Sum</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="12ae0f78-c559-48ca-bf78-53d8a0922409">
-              <MeasureID>Actual Sales Order Count</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="db29be75-d3a8-4ca0-af69-1a42f331ac21">
-              <MeasureID>Raw Actual Sales Ordered Source Qty</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="c9a930ef-5ccf-41ee-884f-7fde5ec6a259">
-              <MeasureID>Raw Actual Sales Eligible Source Qty</MeasureID>
-            </Measure>
-          </Measures>
-        </MeasureGroup>
-        <MeasureGroup dwd:design-time-name="7f6f8cf1-c7cb-45f3-98b0-c0516c402e6c">
-          <MeasureGroupID>ActualPurchases</MeasureGroupID>
-          <Measures>
-            <Measure dwd:design-time-name="eb2dd065-70a6-4e7c-8068-162f9f47c865">
-              <MeasureID>Actual Purchase Line Count</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="8bbf43c4-3a7e-4956-a565-570d41281874">
-              <MeasureID>Actual Purchase Declared Vendor Lines</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="7b8e493d-e9fb-4cda-a5c6-0dce1ec3b930">
-              <MeasureID>Actual Purchase Line Amount</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="52c2faf2-6713-4a16-b872-ed623ce4e7e5">
-              <MeasureID>Actual Purchase Order Count</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="922a60d5-3ef6-40e8-ae0d-1dc11e2e10fe">
-              <MeasureID>Raw Actual Purchase Ordered Source Qty</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="63456018-f49f-44c5-a98f-f615624c7453">
-              <MeasureID>Raw Actual Purchase Received Source Qty</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="5d1438b9-9a53-4a3c-9727-22e035ffb9a3">
-              <MeasureID>Raw Actual Purchase Rejected Source Qty</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="671c812d-7331-438b-93f3-41a5b48c07d1">
-              <MeasureID>Raw Actual Purchase Stocked Source Qty</MeasureID>
-            </Measure>
-          </Measures>
+            </Measures>
         </MeasureGroup>
         <MeasureGroup dwd:design-time-name="12164f2e-8dfe-43f2-bfbb-2d6b2aebff76">
           <MeasureGroupID>ActualInventory</MeasureGroupID>
@@ -2570,9 +2256,6 @@
             </Measure>
             <Measure dwd:design-time-name="b251e979-0310-4c28-bf4c-72908a0bcebd">
               <MeasureID>Actual Inventory Zero Cost Positions</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="b004bfe1-2856-4d02-9616-0ea0047cf3f9">
-              <MeasureID>Actual Inventory Positive Cost Positions</MeasureID>
             </Measure>
             <Measure dwd:design-time-name="85efe334-8e5b-4192-9276-d40e3dfff807">
               <MeasureID>Raw Actual Inventory Source Qty</MeasureID>
@@ -2597,18 +2280,6 @@
             <Measure dwd:design-time-name="5eb6e4f5-013f-494d-9223-38d84cfe2c81">
               <MeasureID>Actual WorkOrder Late Complete Count</MeasureID>
             </Measure>
-            <Measure dwd:design-time-name="31de4b0c-a15e-43d5-9067-c5e9e2e448d7">
-              <MeasureID>Actual WorkOrder Late Days Sum</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="d29d325b-3f84-4e35-a841-fec17bf635de">
-              <MeasureID>Actual WorkOrder Planned Cost</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="6ad52394-30c0-4740-9e81-d9f7b489f15a">
-              <MeasureID>Actual WorkOrder Recorded Cost</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="82ff5195-c671-4357-8665-3f4f9fd654fd">
-              <MeasureID>Actual WorkOrder Resource Hours</MeasureID>
-            </Measure>
             <Measure dwd:design-time-name="7ca9d515-d47e-475c-b12f-8a2ba8ec23a2">
               <MeasureID>Raw Actual WorkOrder Ordered Source Qty</MeasureID>
             </Measure>
@@ -2617,32 +2288,6 @@
             </Measure>
             <Measure dwd:design-time-name="96bbd02d-bc10-4769-8d75-2b0c9d71f90e">
               <MeasureID>Raw Actual WorkOrder Scrapped Source Qty</MeasureID>
-            </Measure>
-          </Measures>
-        </MeasureGroup>
-        <MeasureGroup dwd:design-time-name="39ef5922-3266-4763-9f47-8e13e6c721b3">
-          <MeasureGroupID>ActualOperations</MeasureGroupID>
-          <Measures>
-            <Measure dwd:design-time-name="b105976b-242e-41ae-866a-b110e7ead2a5">
-              <MeasureID>Actual Operation Count</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="8bbd1ff0-5201-4ed1-a6d0-684c473f320d">
-              <MeasureID>Actual Operation Duration Observed Count</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="17e9418d-dae0-4a51-b632-0e15dd9a1e95">
-              <MeasureID>Actual Operation Duration Days Sum</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="afa9de1c-902d-4702-95ab-c080d0a97191">
-              <MeasureID>Actual Operation Resource Hours</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="8f0e4e8f-fb92-45dc-946b-4d4d41dcb9c6">
-              <MeasureID>Actual Operation Planned Cost</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="1bfea332-23bc-4f69-87f6-bbbddcbea264">
-              <MeasureID>Actual Operation Recorded Cost</MeasureID>
-            </Measure>
-            <Measure dwd:design-time-name="05ac8a04-4594-45c1-85b3-197ca2840c3f">
-              <MeasureID>Actual Operations Distinct WorkOrder Count</MeasureID>
             </Measure>
           </Measures>
         </MeasureGroup>
@@ -2690,30 +2335,6 @@
         </MeasureGroup>
       </MeasureGroups>
       <Calculations>
-        <Calculation dwd:design-time-name="9c6a084c-a6fb-47a4-abc6-95b20df97311">
-          <Name>[Measures].[Actual Sales Ordered Source Qty]</Name>
-          <Type>Member</Type>
-        </Calculation>
-        <Calculation dwd:design-time-name="c85956a9-7f60-44b8-9b18-781c5e647f3d">
-          <Name>[Measures].[Actual Sales Eligible Source Qty]</Name>
-          <Type>Member</Type>
-        </Calculation>
-        <Calculation dwd:design-time-name="b1b16d65-b6cf-4cc1-9988-b17c7e2ed382">
-          <Name>[Measures].[Actual Purchase Ordered Source Qty]</Name>
-          <Type>Member</Type>
-        </Calculation>
-        <Calculation dwd:design-time-name="961285ce-4347-4fad-8787-bf1298f76e61">
-          <Name>[Measures].[Actual Purchase Received Source Qty]</Name>
-          <Type>Member</Type>
-        </Calculation>
-        <Calculation dwd:design-time-name="28d327c7-633a-4eba-9c5a-f004f88d2e86">
-          <Name>[Measures].[Actual Purchase Rejected Source Qty]</Name>
-          <Type>Member</Type>
-        </Calculation>
-        <Calculation dwd:design-time-name="b09ad4e5-c0f0-4914-a89c-c8a83f9c4319">
-          <Name>[Measures].[Actual Purchase Stocked Source Qty]</Name>
-          <Type>Member</Type>
-        </Calculation>
         <Calculation dwd:design-time-name="1f2ef16b-cc35-4b38-a918-1152ce06f1a5">
           <Name>[Measures].[Actual Inventory Source Qty]</Name>
           <Type>Member</Type>
@@ -2728,26 +2349,6 @@
         </Calculation>
         <Calculation dwd:design-time-name="cf3ce88e-6e82-493a-80bc-59cfd3efaf0c">
           <Name>[Measures].[Actual WorkOrder Scrapped Source Qty]</Name>
-          <Type>Member</Type>
-        </Calculation>
-        <Calculation dwd:design-time-name="06ab5176-04d7-413d-ba45-0852977e9037">
-          <Name>[Measures].[Actual Sales Recorded Ship By Due Line Rate]</Name>
-          <Type>Member</Type>
-        </Calculation>
-        <Calculation dwd:design-time-name="371d1275-1e41-4398-851d-4059c0f36b1d">
-          <Name>[Measures].[Actual WorkOrder Mean Observed Lead Days]</Name>
-          <Type>Member</Type>
-        </Calculation>
-        <Calculation dwd:design-time-name="570d7561-8997-4d3d-a5de-1c2594390bdc">
-          <Name>[Measures].[Actual Operation Mean Observed Duration Days]</Name>
-          <Type>Member</Type>
-        </Calculation>
-        <Calculation dwd:design-time-name="47987c03-c73b-4829-8668-efe22e1bae79">
-          <Name>[Measures].[Actual Purchase Source Rejection Rate]</Name>
-          <Type>Member</Type>
-        </Calculation>
-        <Calculation dwd:design-time-name="dba43814-f41b-4126-9a82-42a477c2ecd8">
-          <Name>[Measures].[Actual WorkOrder Source Scrap Rate]</Name>
           <Type>Member</Type>
         </Calculation>
         <Calculation dwd:design-time-name="8a1ad72a-ea1c-48aa-80d4-e9b3b8f00dbd">
@@ -2806,136 +2407,7 @@
           <DisplayFolder>Operations\Sales</DisplayFolder>
           <FormatString>#,##0.00</FormatString>
         </Measure>
-        <Measure dwd:design-time-name="5ddcc31d-d445-4bb3-9759-6dea75337278">
-          <ID>Actual Sales Eligible Line Count</ID>
-          <Name>Actual Sales Eligible Line Count</Name>
-          <Source dwd:design-time-name="f42b6f64-cda5-4a08-af02-5820592420ef">
-            <DataType>BigInt</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="9b39f967-e85a-4abb-bbc9-4451418af371">
-              <TableID>OpsFactSales</TableID>
-              <ColumnID>EligibleLineCount</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Sales</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="0b9f836b-f10e-4301-99b6-b7bf108a5951">
-          <ID>Actual Sales Line Amount</ID>
-          <Name>Actual Sales Line Amount</Name>
-          <Source dwd:design-time-name="3feed353-79e4-4d36-b197-4bc4c937f625">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="a21412a5-58b1-4f98-b935-1f5df99d8c0a">
-              <TableID>OpsFactSales</TableID>
-              <ColumnID>LineTotal</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Sales</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="1b00f8e3-4e17-4a8f-8962-9d59ed04baa8">
-          <ID>Actual Sales Eligible Line Amount</ID>
-          <Name>Actual Sales Eligible Line Amount</Name>
-          <Source dwd:design-time-name="819cd490-f7ee-4ee6-a7d2-f29730f164cf">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="153c3faf-ee52-41e3-b446-a5638ac63deb">
-              <TableID>OpsFactSales</TableID>
-              <ColumnID>EligibleLineAmount</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Sales</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="4d507bf8-2db0-424c-9cd8-720e216c44b2">
-          <ID>Actual Sales Ship Date Observed Lines</ID>
-          <Name>Actual Sales Ship Date Observed Lines</Name>
-          <Source dwd:design-time-name="0e0b5964-e3bf-46ae-b289-c8f33239c20b">
-            <DataType>BigInt</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="eb8c51b1-7808-431f-9af5-06a287f05c59">
-              <TableID>OpsFactSales</TableID>
-              <ColumnID>ShipDateObservedLineCount</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Sales</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="7b5b403e-e60b-40cd-a609-08f0c1a1053e">
-          <ID>Actual Sales Recorded Ship By Due Lines</ID>
-          <Name>Actual Sales Recorded Ship By Due Lines</Name>
-          <Source dwd:design-time-name="bc37dea4-df5b-42d3-b5dc-31971177e17f">
-            <DataType>BigInt</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="e304bf8c-a242-4416-8fc3-8a340e748f1d">
-              <TableID>OpsFactSales</TableID>
-              <ColumnID>RecordedShipByDueLineCount</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Sales</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="ed897d47-f147-405b-994e-19f05368926b">
-          <ID>Actual Sales Recorded Ship Lag Days Sum</ID>
-          <Name>Actual Sales Recorded Ship Lag Days Sum</Name>
-          <Source dwd:design-time-name="cb6bc3b9-253a-42db-a6e5-dda77e1af47a">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="f910e191-3083-45f8-863d-f33d596aa42e">
-              <TableID>OpsFactSales</TableID>
-              <ColumnID>RecordedShipLagDaysSum</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Sales</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="861b3467-cbab-44e7-92e5-ec3369ea0442">
-          <ID>Actual Sales Order Count</ID>
-          <Name>Actual Sales Order Count</Name>
-          <AggregateFunction>DistinctCount</AggregateFunction>
-          <Source dwd:design-time-name="53d87617-32aa-429c-b68b-ef8cce85f924">
-            <DataType>Integer</DataType>
-            <NullProcessing>Error</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="59cb3a49-8a9a-442a-9c8b-415165188a32">
-              <TableID>OpsFactSales</TableID>
-              <ColumnID>SalesOrderID</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Sales</DisplayFolder>
-          <FormatString>#,##0</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="18563245-d153-47e0-9f36-422acbeec02a">
-          <ID>Raw Actual Sales Ordered Source Qty</ID>
-          <Name>Raw Actual Sales Ordered Source Qty</Name>
-          <Source dwd:design-time-name="2bbbb8f7-ffc4-430b-98d4-27dcaa5c1510">
-            <DataType>Integer</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="c981a3c0-1373-463d-9579-c0dffbb75170">
-              <TableID>OpsFactSales</TableID>
-              <ColumnID>OrderQty</ColumnID>
-            </Source>
-          </Source>
-          <Visible>false</Visible>
-          <DisplayFolder>Operations\Sales</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="bbc6a013-6451-4a26-8b4c-b70c13362d2d">
-          <ID>Raw Actual Sales Eligible Source Qty</ID>
-          <Name>Raw Actual Sales Eligible Source Qty</Name>
-          <Source dwd:design-time-name="01db1a5b-9a62-4f3f-9901-610eb64d32e7">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="4bf3ec84-581c-4486-8f6a-d265f179cf8c">
-              <TableID>OpsFactSales</TableID>
-              <ColumnID>EligibleOrderQty</ColumnID>
-            </Source>
-          </Source>
-          <Visible>false</Visible>
-          <DisplayFolder>Operations\Sales</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-      </Measures>
+        </Measures>
       <StorageMode>Molap</StorageMode>
       <IgnoreUnrelatedDimensions>false</IgnoreUnrelatedDimensions>
       <ErrorConfiguration dwd:design-time-name="4725119a-86b7-42aa-82c7-837e53d11b9d">
@@ -3080,257 +2552,6 @@
       </Dimensions>
       <Partitions />
     </MeasureGroup>
-    <MeasureGroup dwd:design-time-name="95ae1618-3b95-4853-b026-776430330213">
-      <ID>ActualPurchases</ID>
-      <Name>ActualPurchases</Name>
-      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-      <State>Unprocessed</State>
-      <Measures>
-        <Measure dwd:design-time-name="77aa58ac-30bb-4e8f-9917-9616da9d52f4">
-          <ID>Actual Purchase Line Count</ID>
-          <Name>Actual Purchase Line Count</Name>
-          <Source dwd:design-time-name="550d97f4-cc01-4a74-b538-74560884dbc6">
-            <DataType>BigInt</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="9543c11a-107e-4ab5-aa21-f60c85ae5ec4">
-              <TableID>OpsFactPurchases</TableID>
-              <ColumnID>LineCount</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Purchases</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="03e82541-a1ef-4bfa-ba27-d3b3121b677c">
-          <ID>Actual Purchase Declared Vendor Lines</ID>
-          <Name>Actual Purchase Declared Vendor Lines</Name>
-          <Source dwd:design-time-name="f0982837-742c-4244-a173-0cfc7269a2f3">
-            <DataType>BigInt</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="4328515f-4168-4575-bfe5-2ce32def380a">
-              <TableID>OpsFactPurchases</TableID>
-              <ColumnID>DeclaredVendorProductLineCount</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Purchases</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="4a33b61f-0ad5-4945-9149-945ee28b3cdd">
-          <ID>Actual Purchase Line Amount</ID>
-          <Name>Actual Purchase Line Amount</Name>
-          <Source dwd:design-time-name="31d27d77-4216-4be3-ba87-f5b5fb016617">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="eb386352-a8ee-44cf-8e5f-1dd09056697e">
-              <TableID>OpsFactPurchases</TableID>
-              <ColumnID>LineTotal</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Purchases</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="320f6b30-23e7-49ae-a88f-892dca7c9957">
-          <ID>Actual Purchase Order Count</ID>
-          <Name>Actual Purchase Order Count</Name>
-          <AggregateFunction>DistinctCount</AggregateFunction>
-          <Source dwd:design-time-name="4c68cb09-ad6c-4ed2-b5bb-415f66827f1e">
-            <DataType>Integer</DataType>
-            <NullProcessing>Error</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="61865f12-3c2f-41ee-aef9-49f42a9d2741">
-              <TableID>OpsFactPurchases</TableID>
-              <ColumnID>PurchaseOrderID</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Purchases</DisplayFolder>
-          <FormatString>#,##0</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="201450e4-19f9-459c-9260-31e00a3d9514">
-          <ID>Raw Actual Purchase Ordered Source Qty</ID>
-          <Name>Raw Actual Purchase Ordered Source Qty</Name>
-          <Source dwd:design-time-name="ec621fb4-4b6d-4679-9610-a9617873e2c0">
-            <DataType>Integer</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="bedc8851-0e7a-42d8-aca4-c8585acf03bf">
-              <TableID>OpsFactPurchases</TableID>
-              <ColumnID>OrderQty</ColumnID>
-            </Source>
-          </Source>
-          <Visible>false</Visible>
-          <DisplayFolder>Operations\Purchases</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="cdcea914-8935-483f-9a36-2feda2b2b0b9">
-          <ID>Raw Actual Purchase Received Source Qty</ID>
-          <Name>Raw Actual Purchase Received Source Qty</Name>
-          <Source dwd:design-time-name="c037bcfc-f756-49bf-82dc-16d82336c463">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="88b80f7f-2ded-4acd-83fa-b92428800b1a">
-              <TableID>OpsFactPurchases</TableID>
-              <ColumnID>ReceivedQty</ColumnID>
-            </Source>
-          </Source>
-          <Visible>false</Visible>
-          <DisplayFolder>Operations\Purchases</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="575f18a0-d9f0-4f79-ba27-af4277d1a1f9">
-          <ID>Raw Actual Purchase Rejected Source Qty</ID>
-          <Name>Raw Actual Purchase Rejected Source Qty</Name>
-          <Source dwd:design-time-name="3736b619-1f99-45ff-92c7-ca8b03887e14">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="f320e6bb-a57a-4c0c-9f2d-eb203da85aba">
-              <TableID>OpsFactPurchases</TableID>
-              <ColumnID>RejectedQty</ColumnID>
-            </Source>
-          </Source>
-          <Visible>false</Visible>
-          <DisplayFolder>Operations\Purchases</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="47e2834b-21d6-4059-8837-8e5717e235f0">
-          <ID>Raw Actual Purchase Stocked Source Qty</ID>
-          <Name>Raw Actual Purchase Stocked Source Qty</Name>
-          <Source dwd:design-time-name="973af781-be99-41d6-a6b3-ec386953e9a7">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="178c5ac2-280f-47df-8442-b935a7f041d5">
-              <TableID>OpsFactPurchases</TableID>
-              <ColumnID>StockedQty</ColumnID>
-            </Source>
-          </Source>
-          <Visible>false</Visible>
-          <DisplayFolder>Operations\Purchases</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-      </Measures>
-      <StorageMode>Molap</StorageMode>
-      <IgnoreUnrelatedDimensions>false</IgnoreUnrelatedDimensions>
-      <ErrorConfiguration dwd:design-time-name="62c3850e-7557-4a38-bed6-c41a0aee8544">
-        <KeyNotFound>ReportAndStop</KeyNotFound>
-        <NullKeyConvertedToUnknown>ReportAndStop</NullKeyConvertedToUnknown>
-      </ErrorConfiguration>
-      <ProcessingMode>Regular</ProcessingMode>
-      <Dimensions>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="ce56d3b7-b586-4456-9ff4-558af4a48682">
-          <CubeDimensionID>Expected Receipt Date</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="bb018fff-1b0e-4382-bffb-85749e2b80e6">
-              <AttributeID>Date</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="38ffb114-8b99-4553-9d07-b178abb7621e">
-                  <DataType>Integer</DataType>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="83e56615-0b85-435a-890c-ebffa72c49fc">
-                    <TableID>OpsFactPurchases</TableID>
-                    <ColumnID>ExpectedReceiptDateKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="7494c7c7-68e3-4131-8483-91af7921be40">
-          <CubeDimensionID>Expected Ship Date</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="79cd0c09-22cc-440d-a81d-4c7fddd131f5">
-              <AttributeID>Date</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="d1eaf39a-a826-4a17-8dff-0ba8ca027f2b">
-                  <DataType>Integer</DataType>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="97d83871-8710-4a7c-beec-14483aa4f06b">
-                    <TableID>OpsFactPurchases</TableID>
-                    <ColumnID>ExpectedShipDateKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="3eb92015-102b-43c5-874d-2d240780413c">
-          <CubeDimensionID>Purchase Document Status</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="69f27ae5-ec42-4ea6-8b7f-566e081e07bd">
-              <AttributeID>Status</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="2f7f3b3a-3d3f-4a09-b5fb-8bf1ecae4acc">
-                  <DataType>Integer</DataType>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="ba2b607b-c22b-4dc7-b2ce-9fb2afb9127b">
-                    <TableID>OpsFactPurchases</TableID>
-                    <ColumnID>PurchaseStatusKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="c02f0a62-2050-40b6-ac64-442d22084c4b">
-          <CubeDimensionID>Order Date</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="f61352c8-6e5c-4cc1-b918-d0b5490ca10e">
-              <AttributeID>Date</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="7bbcbef6-e7d5-4aed-b294-0227ae3fee8c">
-                  <DataType>Integer</DataType>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="e0dba4f7-83a2-429c-b1f3-251d8e89116b">
-                    <TableID>OpsFactPurchases</TableID>
-                    <ColumnID>OrderDateKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="f8aace95-e3df-45f4-af50-1ef36db2b49d">
-          <CubeDimensionID>Product</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="1f96dbad-fc99-4bee-8109-4f4664337d1a">
-              <AttributeID>Product</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="2dc153da-0776-4684-8268-29f7f3d58118">
-                  <DataType>Integer</DataType>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="9dbb4ad8-e5e7-4b6b-b90a-a17ff8fe5801">
-                    <TableID>OpsFactPurchases</TableID>
-                    <ColumnID>ProductKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="25ecb95b-e8fb-4e7b-b28b-630d98c01027">
-          <CubeDimensionID>Vendor</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="f2c0cc60-584f-4e43-bf96-733a684e29c0">
-              <AttributeID>Vendor</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="42988bb5-6f2e-4ff0-838d-7bfce74785c1">
-                  <DataType>Integer</DataType>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="6a8bb58a-a6d8-4ffd-8a71-09d9ab3032a7">
-                    <TableID>OpsFactPurchases</TableID>
-                    <ColumnID>VendorKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-      </Dimensions>
-      <Partitions />
-    </MeasureGroup>
     <MeasureGroup dwd:design-time-name="aaae407a-1421-455b-a0b8-e3c5a22acfbf">
       <ID>ActualInventory</ID>
       <Name>ActualInventory</Name>
@@ -3394,21 +2615,6 @@
             <Source xsi:type="ColumnBinding" dwd:design-time-name="174a0637-e9f7-404c-a16e-21a824e672e4">
               <TableID>OpsFactInventory</TableID>
               <ColumnID>ZeroCostPositionCount</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Inventory</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="65881844-4332-4352-a109-29a3f4b96785">
-          <ID>Actual Inventory Positive Cost Positions</ID>
-          <Name>Actual Inventory Positive Cost Positions</Name>
-          <AggregateFunction>LastNonEmpty</AggregateFunction>
-          <Source dwd:design-time-name="5e267e19-79dd-4990-a1ce-57699e5bd9c7">
-            <DataType>BigInt</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="ddb33346-14dd-4328-9cf1-06c7367da857">
-              <TableID>OpsFactInventory</TableID>
-              <ColumnID>PositiveCostPositionCount</ColumnID>
             </Source>
           </Source>
           <DisplayFolder>Operations\Inventory</DisplayFolder>
@@ -3577,62 +2783,6 @@
           <DisplayFolder>Operations\WorkOrders</DisplayFolder>
           <FormatString>#,##0.00</FormatString>
         </Measure>
-        <Measure dwd:design-time-name="abe359a8-8673-49bc-8ab2-caae667bb9d8">
-          <ID>Actual WorkOrder Late Days Sum</ID>
-          <Name>Actual WorkOrder Late Days Sum</Name>
-          <Source dwd:design-time-name="5379ba02-2e54-4ac4-98fd-0990867d6dfd">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="3e76b09d-52e2-45a3-aa93-5b93b44737af">
-              <TableID>OpsFactWorkOrders</TableID>
-              <ColumnID>LateDaysSum</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\WorkOrders</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="08bd4413-ed24-47b2-9f15-9f2e8cb357e0">
-          <ID>Actual WorkOrder Planned Cost</ID>
-          <Name>Actual WorkOrder Planned Cost</Name>
-          <Source dwd:design-time-name="9c289bf7-a995-4209-8749-48f6a20c71a9">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="edd1413a-6d9a-46c8-afdb-84198b61e2c8">
-              <TableID>OpsFactWorkOrders</TableID>
-              <ColumnID>TotalPlannedCost</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\WorkOrders</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="9abcf1fe-30a2-4e17-8fe6-4dae3bbbe0c9">
-          <ID>Actual WorkOrder Recorded Cost</ID>
-          <Name>Actual WorkOrder Recorded Cost</Name>
-          <Source dwd:design-time-name="12cdf3fe-dff4-4fbb-aeaa-8561c72f10c4">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="3dd106d5-529d-41bb-98cd-63794fc8b8f2">
-              <TableID>OpsFactWorkOrders</TableID>
-              <ColumnID>TotalActualCost</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\WorkOrders</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="fa32b1d7-9d30-4e21-a9b6-caf220245145">
-          <ID>Actual WorkOrder Resource Hours</ID>
-          <Name>Actual WorkOrder Resource Hours</Name>
-          <Source dwd:design-time-name="3ee1eb1d-0a9c-4ff7-b695-b9b9e92a095c">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="0423fe85-f961-4b25-b8f1-d26758b68e0b">
-              <TableID>OpsFactWorkOrders</TableID>
-              <ColumnID>TotalActualResourceHrs</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\WorkOrders</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
         <Measure dwd:design-time-name="1d818cca-08ee-4486-93f0-d334f589508d">
           <ID>Raw Actual WorkOrder Ordered Source Qty</ID>
           <Name>Raw Actual WorkOrder Ordered Source Qty</Name>
@@ -3793,239 +2943,6 @@
                   <NullProcessing>Preserve</NullProcessing>
                   <Source xsi:type="ColumnBinding" dwd:design-time-name="9a4dd46d-f3ed-446e-9e64-685ed94f2bc7">
                     <TableID>OpsFactWorkOrders</TableID>
-                    <ColumnID>ActualStartDateKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-      </Dimensions>
-      <Partitions />
-    </MeasureGroup>
-    <MeasureGroup dwd:design-time-name="773f3a86-8a05-4eb7-ab21-5f63dc1a0b57">
-      <ID>ActualOperations</ID>
-      <Name>ActualOperations</Name>
-      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-      <State>Unprocessed</State>
-      <Measures>
-        <Measure dwd:design-time-name="4d6adf95-7623-4a00-97e7-4d79c609e04e">
-          <ID>Actual Operation Count</ID>
-          <Name>Actual Operation Count</Name>
-          <Source dwd:design-time-name="775c257c-9877-4312-a9e6-8264f3fa45c1">
-            <DataType>BigInt</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="eae8f783-e246-4a19-813b-b7683ae4ed07">
-              <TableID>OpsFactOperations</TableID>
-              <ColumnID>OperationCount</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Operations</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="73c75963-45e5-4268-accd-f90e6f8b6b9f">
-          <ID>Actual Operation Duration Observed Count</ID>
-          <Name>Actual Operation Duration Observed Count</Name>
-          <Source dwd:design-time-name="2c8848d9-a5f1-49f8-837f-b4e7efc7183b">
-            <DataType>BigInt</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="ca7fa837-f751-46c4-832a-adf336c7a713">
-              <TableID>OpsFactOperations</TableID>
-              <ColumnID>DurationObservedCount</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Operations</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="d360e7c9-dd38-4b1d-a193-bd814820fe7c">
-          <ID>Actual Operation Duration Days Sum</ID>
-          <Name>Actual Operation Duration Days Sum</Name>
-          <Source dwd:design-time-name="da292d91-6aca-401f-93bc-3bf4b8718f14">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="32b7f6ee-06d0-498e-bf29-cfbf871e2290">
-              <TableID>OpsFactOperations</TableID>
-              <ColumnID>ActualDurationDaysSum</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Operations</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="958426bb-b82b-4c45-ba6b-b10e0efa43f6">
-          <ID>Actual Operation Resource Hours</ID>
-          <Name>Actual Operation Resource Hours</Name>
-          <Source dwd:design-time-name="76a9f422-03c3-43bd-b8d7-6499b6223c40">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="7cad66a5-d3c0-42c5-82c0-60ea8a017774">
-              <TableID>OpsFactOperations</TableID>
-              <ColumnID>ActualResourceHrs</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Operations</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="07e752bd-929f-411d-88da-6995db5e150c">
-          <ID>Actual Operation Planned Cost</ID>
-          <Name>Actual Operation Planned Cost</Name>
-          <Source dwd:design-time-name="380cc72b-5b55-4225-af37-c5c668195452">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="16e3ac60-bd51-44c6-9a12-45e9c5341582">
-              <TableID>OpsFactOperations</TableID>
-              <ColumnID>PlannedCost</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Operations</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="33f8bff1-f6a4-455a-ab9f-0be0dd1e46ea">
-          <ID>Actual Operation Recorded Cost</ID>
-          <Name>Actual Operation Recorded Cost</Name>
-          <Source dwd:design-time-name="923222da-b5fe-4552-889a-f885d2a9426d">
-            <DataType>Double</DataType>
-            <NullProcessing>Preserve</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="3dcc9a86-7fad-4aae-aae0-ab20c3fe9678">
-              <TableID>OpsFactOperations</TableID>
-              <ColumnID>ActualCost</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Operations</DisplayFolder>
-          <FormatString>#,##0.00</FormatString>
-        </Measure>
-        <Measure dwd:design-time-name="522f54fb-11bd-4a30-91e1-a1ba6537b250">
-          <ID>Actual Operations Distinct WorkOrder Count</ID>
-          <Name>Actual Operations Distinct WorkOrder Count</Name>
-          <AggregateFunction>DistinctCount</AggregateFunction>
-          <Source dwd:design-time-name="72c92fd2-75ce-4b6f-a125-3a68e107dd2f">
-            <DataType>Integer</DataType>
-            <NullProcessing>Error</NullProcessing>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="3d189d68-fea2-4e38-a1d7-4de508b679a3">
-              <TableID>OpsFactOperations</TableID>
-              <ColumnID>WorkOrderID</ColumnID>
-            </Source>
-          </Source>
-          <DisplayFolder>Operations\Operations</DisplayFolder>
-          <FormatString>#,##0</FormatString>
-        </Measure>
-      </Measures>
-      <StorageMode>Molap</StorageMode>
-      <IgnoreUnrelatedDimensions>false</IgnoreUnrelatedDimensions>
-      <ErrorConfiguration dwd:design-time-name="881f239d-06f5-4f79-b7e4-f603b8622f88">
-        <KeyNotFound>ReportAndStop</KeyNotFound>
-        <NullKeyConvertedToUnknown>ReportAndStop</NullKeyConvertedToUnknown>
-      </ErrorConfiguration>
-      <ProcessingMode>Regular</ProcessingMode>
-      <Dimensions>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="0e0ebebf-bf23-4993-966a-e2922095683d">
-          <CubeDimensionID>Actual End Date</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="280dcf3d-9fe8-4d51-a073-b1933166fa5f">
-              <AttributeID>Date</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="db05e290-42a1-4c74-8f1d-04bc6af42963">
-                  <DataType>Integer</DataType>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="7c4e9307-e072-4d69-b0c9-2e844dbcc7ed">
-                    <TableID>OpsFactOperations</TableID>
-                    <ColumnID>ActualEndDateKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="9b9e2156-8a42-40e8-9f55-60d05fbad065">
-          <CubeDimensionID>Scheduled Start Date</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="f0d9a381-2276-4f35-b194-57995c5b1c77">
-              <AttributeID>Date</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="d6bc01c4-7959-4578-8073-cb9cdb1073d9">
-                  <DataType>Integer</DataType>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="ae57a838-8b10-42ac-bb6a-57f8097ec927">
-                    <TableID>OpsFactOperations</TableID>
-                    <ColumnID>ScheduledStartDateKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="69b4fbf7-a2e8-46ca-ad10-b849399480c2">
-          <CubeDimensionID>Location</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="6e1992aa-b928-4902-b18c-9cef9bb37a0e">
-              <AttributeID>Location</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="745e661a-ecb7-485e-9947-c32c8f320d2b">
-                  <DataType>Integer</DataType>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="e0ffcb5f-46a2-4d25-9e28-90abbe8d7640">
-                    <TableID>OpsFactOperations</TableID>
-                    <ColumnID>LocationKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="1a378958-fa2e-4ab8-becd-5296a7fb31bf">
-          <CubeDimensionID>Product</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="d6fe51d8-394a-4014-a5ab-fdbf34c7391f">
-              <AttributeID>Product</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="d80efc9e-21a9-448f-ac2d-d3a6b0066600">
-                  <DataType>Integer</DataType>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="32c3ceb7-6d2c-430f-9440-371f4ff4c4cd">
-                    <TableID>OpsFactOperations</TableID>
-                    <ColumnID>ProductKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="c5750da1-555b-4f51-8fa4-e8322001289d">
-          <CubeDimensionID>Scheduled End Date</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="9eea31df-ff63-404f-9d5e-10d90b5bcee1">
-              <AttributeID>Date</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="3dedc947-5c5a-4354-be70-2ae0a9e4546b">
-                  <DataType>Integer</DataType>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="22ce1d0d-8a71-4048-87d1-e0eae1af92d0">
-                    <TableID>OpsFactOperations</TableID>
-                    <ColumnID>ScheduledEndDateKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <Type>Granularity</Type>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="55699816-eed1-4a40-ab50-d21a161bac35">
-          <CubeDimensionID>Actual Start Date</CubeDimensionID>
-          <Attributes>
-            <Attribute dwd:design-time-name="4c27fdbf-b989-40f1-83e9-c504b5339cda">
-              <AttributeID>Date</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="95964a3d-ac00-4d13-8f16-eba67647f308">
-                  <DataType>Integer</DataType>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="30d63b21-50aa-465e-a499-ce717de9a6bb">
-                    <TableID>OpsFactOperations</TableID>
                     <ColumnID>ActualStartDateKey</ColumnID>
                   </Source>
                 </KeyColumn>
@@ -4395,21 +3312,10 @@
       <Commands>
         <Command>
           <Text>CALCULATE;
-CREATE MEMBER CURRENTCUBE.[Measures].[Actual Sales Ordered Source Qty] AS ([Measures].[Raw Actual Sales Ordered Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Sales', ASSOCIATED_MEASURE_GROUP='ActualSales';
-CREATE MEMBER CURRENTCUBE.[Measures].[Actual Sales Eligible Source Qty] AS ([Measures].[Raw Actual Sales Eligible Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Sales', ASSOCIATED_MEASURE_GROUP='ActualSales';
-CREATE MEMBER CURRENTCUBE.[Measures].[Actual Purchase Ordered Source Qty] AS ([Measures].[Raw Actual Purchase Ordered Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Purchases', ASSOCIATED_MEASURE_GROUP='ActualPurchases';
-CREATE MEMBER CURRENTCUBE.[Measures].[Actual Purchase Received Source Qty] AS ([Measures].[Raw Actual Purchase Received Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Purchases', ASSOCIATED_MEASURE_GROUP='ActualPurchases';
-CREATE MEMBER CURRENTCUBE.[Measures].[Actual Purchase Rejected Source Qty] AS ([Measures].[Raw Actual Purchase Rejected Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Purchases', ASSOCIATED_MEASURE_GROUP='ActualPurchases';
-CREATE MEMBER CURRENTCUBE.[Measures].[Actual Purchase Stocked Source Qty] AS ([Measures].[Raw Actual Purchase Stocked Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Purchases', ASSOCIATED_MEASURE_GROUP='ActualPurchases';
 CREATE MEMBER CURRENTCUBE.[Measures].[Actual Inventory Source Qty] AS ([Measures].[Raw Actual Inventory Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Inventory', ASSOCIATED_MEASURE_GROUP='ActualInventory';
 CREATE MEMBER CURRENTCUBE.[Measures].[Actual WorkOrder Ordered Source Qty] AS ([Measures].[Raw Actual WorkOrder Ordered Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\WorkOrders', ASSOCIATED_MEASURE_GROUP='ActualWorkOrders';
 CREATE MEMBER CURRENTCUBE.[Measures].[Actual WorkOrder Stocked Source Qty] AS ([Measures].[Raw Actual WorkOrder Stocked Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\WorkOrders', ASSOCIATED_MEASURE_GROUP='ActualWorkOrders';
 CREATE MEMBER CURRENTCUBE.[Measures].[Actual WorkOrder Scrapped Source Qty] AS ([Measures].[Raw Actual WorkOrder Scrapped Source Qty]), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\WorkOrders', ASSOCIATED_MEASURE_GROUP='ActualWorkOrders';
-CREATE MEMBER CURRENTCUBE.[Measures].[Actual Sales Recorded Ship By Due Line Rate] AS (IIF([Measures].[Actual Sales Ship Date Observed Lines]&gt;0,[Measures].[Actual Sales Recorded Ship By Due Lines]/[Measures].[Actual Sales Ship Date Observed Lines],NULL)), FORMAT_STRING='0.00%', VISIBLE=1, DISPLAY_FOLDER='Operations\Sales', ASSOCIATED_MEASURE_GROUP='ActualSales';
-CREATE MEMBER CURRENTCUBE.[Measures].[Actual WorkOrder Mean Observed Lead Days] AS (IIF([Measures].[Actual WorkOrder Lead Observed Count]&gt;0,[Measures].[Actual WorkOrder Lead Days Sum]/[Measures].[Actual WorkOrder Lead Observed Count],NULL)), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\WorkOrders', ASSOCIATED_MEASURE_GROUP='ActualWorkOrders';
-CREATE MEMBER CURRENTCUBE.[Measures].[Actual Operation Mean Observed Duration Days] AS (IIF([Measures].[Actual Operation Duration Observed Count]&gt;0,[Measures].[Actual Operation Duration Days Sum]/[Measures].[Actual Operation Duration Observed Count],NULL)), FORMAT_STRING='#,##0.00', VISIBLE=1, DISPLAY_FOLDER='Operations\Operations', ASSOCIATED_MEASURE_GROUP='ActualOperations';
-CREATE MEMBER CURRENTCUBE.[Measures].[Actual Purchase Source Rejection Rate] AS (IIF([Measures].[Actual Purchase Received Source Qty]&gt;0,[Measures].[Actual Purchase Rejected Source Qty]/[Measures].[Actual Purchase Received Source Qty],NULL)), FORMAT_STRING='0.00%', VISIBLE=1, DISPLAY_FOLDER='Operations\Purchases', ASSOCIATED_MEASURE_GROUP='ActualPurchases';
-CREATE MEMBER CURRENTCUBE.[Measures].[Actual WorkOrder Source Scrap Rate] AS (IIF([Measures].[Actual WorkOrder Ordered Source Qty]&gt;0,[Measures].[Actual WorkOrder Scrapped Source Qty]/[Measures].[Actual WorkOrder Ordered Source Qty],NULL)), FORMAT_STRING='0.00%', VISIBLE=1, DISPLAY_FOLDER='Operations\WorkOrders', ASSOCIATED_MEASURE_GROUP='ActualWorkOrders';
 CREATE MEMBER CURRENTCUBE.[Measures].[Actual Demand Product Day Count] AS IIF(COUNT(EXISTING [Demand Rule].[Demand Rule].[Demand Rule].MEMBERS)=1, [Measures].[Raw Actual Demand Product Day Count], NULL), FORMAT_STRING='#,##0', VISIBLE=1, DISPLAY_FOLDER='Operations\Demand Daily', ASSOCIATED_MEASURE_GROUP='ActualDemandDaily';
 CREATE MEMBER CURRENTCUBE.[Measures].[Actual Independent Demand Qty] AS IIF(COUNT(EXISTING [Demand Rule].[Demand Rule].[Demand Rule].MEMBERS)=1, [Measures].[Raw Actual Independent Demand Qty], NULL), FORMAT_STRING='#,##0.####', VISIBLE=1, DISPLAY_FOLDER='Operations\Demand Daily', ASSOCIATED_MEASURE_GROUP='ActualDemandDaily';
 CREATE MEMBER CURRENTCUBE.[Measures].[Actual Dependent Demand Qty] AS IIF(COUNT(EXISTING [Demand Rule].[Demand Rule].[Demand Rule].MEMBERS)=1, [Measures].[Raw Actual Dependent Demand Qty], NULL), FORMAT_STRING='#,##0.####', VISIBLE=1, DISPLAY_FOLDER='Operations\Demand Daily', ASSOCIATED_MEASURE_GROUP='ActualDemandDaily';

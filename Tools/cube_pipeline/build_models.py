@@ -4,6 +4,7 @@ from pathlib import Path
 import re,json,uuid,xml.etree.ElementTree as ET
 from settings import *
 from act_quantities import simplify_act_quantities
+from act_metric_pruning import prune_unused_act_metrics
 from act_analysis import simplify_act_analysis,apply_act_diagram
 from detail_cube import E,XS,XSI,MSDATA,MSPROP,add,one,set_text,named,data_item,add_dsv_table,cube_dimension
 
@@ -55,7 +56,11 @@ def prune(base,role):
    if match[1] in gids:texts.append(statement+';')
  commands=script.find('{*}Commands');commands.clear();add(add(commands,'Command'),'Text','\n'.join(texts))
  if role=='ACT':
+  prune_unused_act_metrics(cube)
   simplify_act_quantities(cube)
+  # The historical template has Min/Max guards; simplifying removes the last
+  # helpers in Purchases. Drop the now-empty group as well.
+  prune_unused_act_metrics(cube)
   texts=[c.findtext('{*}Text','') for c in script.findall('./{*}Commands/{*}Command')]
  calculated=set(re.findall(r'CREATE MEMBER CURRENTCUBE\.\[Measures\]\.\[([^\]]+)\]', '\n'.join(texts),re.I))
  physical={m.findtext('{*}ID') for g in groups for m in g.findall('./{*}Measures/{*}Measure')}

@@ -11,18 +11,6 @@
                   <ProcessingMode>Regular</ProcessingMode>
                 </Partition>
               </Partitions>
-            </MeasureGroup><MeasureGroup><ID>ActualPurchases</ID><Partitions>
-                <Partition>
-                  <ID>ActualPurchases_AllPublished</ID>
-                  <Name>ActualPurchases_AllPublished</Name>
-                  <Source xsi:type="QueryBinding">
-                    <DataSourceID>CompanyXSource</DataSourceID>
-                    <QueryDefinition>SELECT * FROM cxoperations.[FactPurchases]</QueryDefinition>
-                  </Source>
-                  <StorageMode>Molap</StorageMode>
-                  <ProcessingMode>Regular</ProcessingMode>
-                </Partition>
-              </Partitions>
             </MeasureGroup><MeasureGroup><ID>ActualInventory</ID><Partitions>
                 <Partition>
                   <ID>ActualInventory_AllPublished</ID>
@@ -42,18 +30,6 @@
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>CompanyXSource</DataSourceID>
                     <QueryDefinition>SELECT * FROM cxoperations.[FactWorkOrders]</QueryDefinition>
-                  </Source>
-                  <StorageMode>Molap</StorageMode>
-                  <ProcessingMode>Regular</ProcessingMode>
-                </Partition>
-              </Partitions>
-            </MeasureGroup><MeasureGroup><ID>ActualOperations</ID><Partitions>
-                <Partition>
-                  <ID>ActualOperations_AllPublished</ID>
-                  <Name>ActualOperations_AllPublished</Name>
-                  <Source xsi:type="QueryBinding">
-                    <DataSourceID>CompanyXSource</DataSourceID>
-                    <QueryDefinition>SELECT * FROM cxoperations.[FactOperations]</QueryDefinition>
                   </Source>
                   <StorageMode>Molap</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
