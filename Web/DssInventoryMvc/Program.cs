@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Direct local builds also need the static asset manifest outside Development.
+builder.WebHost.UseStaticWebAssets();
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<DssSqlRepository>();
 

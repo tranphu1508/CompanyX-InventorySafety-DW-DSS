@@ -119,14 +119,22 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
         for (const variant of variants) {
           const section = element('div', null, 'priority-summary');
           section.append(element('strong', variant.variant === 'A1' ? 'A1 · Giữ hạn của các đơn cũ' :
-            variant.variant === 'A2' ? 'A2 · Thương lượng lùi đơn cũ' : 'C · Không nhận đơn mới'));
+            variant.variant === 'A2' ? 'A2 · Thương lượng lùi đơn cũ' :
+            variant.variant === 'B' ? 'B · Giữ đúng hạn toàn bộ đơn cũ' : 'C · Không nhận đơn mới'));
           metric(section, 'Trạng thái', variant.planStatus === 'OPTIMAL' ? 'Có kế hoạch tối ưu' :
             variant.planStatus === 'INFEASIBLE' ? 'Không có phương án khả thi' : 'Chưa giải xong');
           if (variant.planStatus === 'OPTIMAL') {
             if (slot === 'A') metric(section,'Đơn mới giao đúng hạn',num(variant.plannedShip) + ' xe');
+            if (slot === 'B') {
+              metric(section,'Hạn giao mới',day(variant.due));
+              metric(section,'Dời so với hạn gốc','+' + days(variant.due,active.originalDue) + ' ngày');
+              metric(section,'Số xe giao đủ',num(variant.plannedShip) + ' xe');
+              metric(section,'Cam kết đơn cũ','Giữ đúng hạn toàn bộ');
+            }
             const effect = variant.effect;
             if (effect && variant.variant !== 'C') {
               metric(section,'Đơn cũ mất thêm so với C',num(effect.additionalLostOrders) + ' đơn · ' + num(effect.additionalLostUnits) + ' đơn vị');
+              if (variant.variant === 'A1') metric(section,'Giá trị hàng mất thêm',num(variant.additionalLostValue));
               metric(section,'Đơn cũ cần lùi',num(effect.delayedOrders));
               metric(section,'Tổng ngày trễ',num(effect.totalLateDays));
               metric(section,'Trễ trung bình / lớn nhất',num(effect.meanLateDays) + ' / ' + num(effect.maxLateDays) + ' ngày');

@@ -99,7 +99,7 @@
             <Value xsi:type="xsd:int">0</Value>
           </ConfigurationSetting>
         </ConnectionSecurityMappings>
-        <OutputPath>E:\Study-BKU\New Inventory Safety\_local\output\companyx-split-20261107\native-build\ACT</OutputPath>
+        <OutputPath>E:\Study-BKU\CompanyX-InventorySafety-DW_DSS-Final\_local\output\companyx-split-20261107\native-build\ACT</OutputPath>
         <DeploymentServerVersion>16.0</DeploymentServerVersion>
         <DeploymentServerName>localhost\COMPANYXOLAP</DeploymentServerName>
         <DeploymentDatabaseName>CompanyX_ACT_20261107</DeploymentDatabaseName>

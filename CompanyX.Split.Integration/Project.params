@@ -44,7 +44,7 @@
       <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
       <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
       <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-      <SSIS:Property SSIS:Name="Value">E:\Study-BKU\New Inventory Safety\SSIS\ACT</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">E:\Study-BKU\CompanyX-InventorySafety-DW_DSS-Final\SSIS\ACT</SSIS:Property>
       <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
   </SSIS:Parameter>
@@ -56,7 +56,7 @@
       <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
       <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
       <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-      <SSIS:Property SSIS:Name="Value">E:\Study-BKU\New Inventory Safety\.venv\Scripts\python.exe</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">E:\Study-BKU\CompanyX-InventorySafety-DW_DSS-Final\.venv\Scripts\python.exe</SSIS:Property>
       <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
   </SSIS:Parameter>
@@ -128,7 +128,7 @@
       <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
       <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
       <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-      <SSIS:Property SSIS:Name="Value">E:\Study-BKU\New Inventory Safety\_local\output\companyx-split-20261107\runs\UNSET</SSIS:Property>
+      <SSIS:Property SSIS:Name="Value">E:\Study-BKU\CompanyX-InventorySafety-DW_DSS-Final\_local\output\companyx-split-20261107\runs\UNSET</SSIS:Property>
       <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
     </SSIS:Properties>
   </SSIS:Parameter>

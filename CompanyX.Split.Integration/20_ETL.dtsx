@@ -60,7 +60,7 @@
 
         <DTS:ConnectionManager
 
-          DTS:ConnectionString="E:\Study-BKU\New Inventory Safety\SSIS\ACT\SSIS\SQL\00_Acquire_Source.sql" />
+          DTS:ConnectionString="E:\Study-BKU\CompanyX-InventorySafety-DW_DSS-Final\SSIS\ACT\SSIS\SQL\00_Acquire_Source.sql" />
 
       </DTS:ObjectData>
 
@@ -86,7 +86,7 @@
 
         <DTS:ConnectionManager
 
-          DTS:ConnectionString="E:\Study-BKU\New Inventory Safety\SSIS\ACT\SSIS\SQL\04_Guard_Warehouse.sql" />
+          DTS:ConnectionString="E:\Study-BKU\CompanyX-InventorySafety-DW_DSS-Final\SSIS\ACT\SSIS\SQL\04_Guard_Warehouse.sql" />
 
       </DTS:ObjectData>
 
@@ -112,7 +112,7 @@
 
         <DTS:ConnectionManager
 
-          DTS:ConnectionString="E:\Study-BKU\New Inventory Safety\SSIS\ACT\Database\03_ETL.sql" />
+          DTS:ConnectionString="E:\Study-BKU\CompanyX-InventorySafety-DW_DSS-Final\SSIS\ACT\Database\03_ETL.sql" />
 
       </DTS:ObjectData>
 
@@ -138,7 +138,7 @@
 
         <DTS:ConnectionManager
 
-          DTS:ConnectionString="E:\Study-BKU\New Inventory Safety\SSIS\ACT\SSIS\SQL\05_Verify_ETL.sql" />
+          DTS:ConnectionString="E:\Study-BKU\CompanyX-InventorySafety-DW_DSS-Final\SSIS\ACT\SSIS\SQL\05_Verify_ETL.sql" />
 
       </DTS:ObjectData>
 

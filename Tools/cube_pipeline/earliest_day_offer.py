@@ -1,6 +1,6 @@
-"""Find the first deadline on which the unchanged MILP chooses to ship the FULL inquiry order.
+"""Find the first deadline that ships the full inquiry while preserving all known old deadlines.
 
-No forcing of order_ship or change to the optimizer objective. Every candidate is
+The new order is not forced in the final objective solve; old due dates are protected. Every candidate is
 solved independently from the same verified, frozen ROP decision state.
 A1/A2/C priority plans are prepared after the deadline search and saved in the same SIM offer group.
 """
@@ -109,14 +109,14 @@ def publish(run: int, product: int, qty: int, known: str,
 
     details = {
         'schema': 'companyx.earliest-day-search.v1',
-        'policy': 'UNMODIFIED_MILP_FIRST_FULL_DELIVERY',
+        'policy': 'PRESERVE_ALL_OLD_DUE_DATES_FIRST_FULL_DELIVERY',
         'status': status,
         'openingSource': str(source),
         'openingStateHash': results[0]['baseStateHash'],
         'attempts': attempts,
         'selectedDue': results[1]['due'] if len(results) == 2 else (
-            original_due if results[0]['plannedShip'] == qty else None),
-        'note': 'Searches the first date the unchanged optimal MILP voluntarily ships the full order.',
+            original_due if status == 'ORIGINAL_DUE_ACCEPTED_WITH_OLD_COMMITMENTS' else None),
+        'note': 'Searches the first date MILP voluntarily ships the full new order while every known old order is constrained on time.',
     }
     rows = [dict(result, search=details) for result in results]
     where = '''BaseRunKey=? AND ProductID=? AND Quantity=? AND KnownAt=? AND OriginalDue=?'''
@@ -176,45 +176,36 @@ def run_search(run: int, product: int, qty: int, known: str,
         date.fromisoformat(original['analysis_end']), last_day
     ).isoformat()
 
-    # Same day index, source and binding for every candidate (no chaining).
+    # A1/A2 and B share the verified opening state; B protects all old deadlines.
+    from priority_offer_plan import run as priority_run
+    from protected_old_offer import run as protected_run, NoProtectedOffer
+    request = request_for_day(original, product, qty, original_due, 'A')
+    progress(folder, state='running', tested=0, currentDue=due,
+             message='Dang toi uu A1/A2/C va tim B giu dung han toan bo don cu.')
     day_index = (known_date - date.fromisoformat(scope['start'])).days
-    attempts: list[dict] = []
-    results: list[dict] = []
-    progress(folder, state='running', totalDays=(last_day-original_due).days + 1,
-             tested=0, currentDue=due, message='Da khoa mot trang thai ROP chung. Bat dau thu han goc.')
-
-    for n in range((last_day - original_due).days + 1):
-        candidate_due = original_due + timedelta(days=n)
-        slot = 'A' if n == 0 else 'B'
-        test_dir = folder / 'trials' / candidate_due.isoformat()
-        progress(folder, state='testing', tested=n, currentDue=str(candidate_due),
-                 totalDays=(last_day-original_due).days+1,
-                 message=f'Dang toi uu han {candidate_due.isoformat()} ({n+1} ngay da xet).')
-        result = one_day(source, original, binding, test_dir,
-                         product, qty, candidate_due, slot, day_index)
-        entry = {'due': str(candidate_due), 'solverStatus': 'OPTIMAL',
-                 'plannedShip': result['plannedShip'], 'plannedLoss': result['plannedLoss'],
-                 'baseStateHash': result['baseStateHash']}
-        if attempts and attempts[0]['baseStateHash'] != entry['baseStateHash']:
-            raise ValueError('The state changed between deadline attempts.')
-        attempts.append(entry)
-        if n == 0:
-            results.append(result)
-        if result['plannedShip'] == qty and result['plannedLoss'] == 0:
-            if n > 0:
-                results.append(result)
-            status = 'ORIGINAL_DUE_ACCEPTED' if n == 0 else 'FIRST_FULL_DELIVERY_FOUND'
-            publish(run, product, qty, known, due, results, attempts, source, folder, status)
-            prepare_priority(source, original, product, qty, due, folder)
-            progress(folder, state='done', tested=len(attempts), totalDays=len(attempts),
-                     currentDue=str(candidate_due), foundDue=str(candidate_due),
-                     message=f'MILP tu chon giao du lan dau vao {candidate_due.isoformat()}.')
-            return
-    publish(run, product, qty, known, due, results, attempts, source, folder, 'NOT_FOUND_WITHIN_WINDOW')
-    prepare_priority(source, original, product, qty, due, folder)
+    a = one_day(source, original, binding, folder/'original-due',
+                product, qty, original_due, 'A', day_index)
+    priority = priority_run(source, request, folder/'priority', publish=False)
+    a['priority'] = priority
+    control = next(v for v in priority['variants'] if v['variant']=='C')
+    results = [a]
+    try:
+        b = protected_run(source, request, control, folder/'protected-B',
+                          max_days=(last_day-original_due).days)
+        attempts = b['search']['attempts']
+        selected_due = b['due']
+        if selected_due != due:
+            b['slot'] = 'B'
+            results.append(b)
+        status = 'FIRST_FULL_DELIVERY_WITH_OLD_COMMITMENTS' if selected_due != due else 'ORIGINAL_DUE_ACCEPTED_WITH_OLD_COMMITMENTS'
+    except NoProtectedOffer:
+        attempts = read(folder/'protected-B/progress.json')['attempts']
+        selected_due = None
+        status = 'NO_B_WITH_OLD_COMMITMENTS_WITHIN_WINDOW'
+    publish(run, product, qty, known, due, results, attempts, source, folder, status)
     progress(folder, state='done', tested=len(attempts), totalDays=len(attempts),
-             currentDue=str(last_day), foundDue=None,
-             message=f'Chua tim duoc ngay MILP tu giao du trong khoang den {last_day}.')
+             currentDue=selected_due or str(last_day), foundDue=selected_due,
+             message='Da luu A1/A2/C; B chi duoc nhan khi giu dung han toan bo don cu.')
 
 
 def main() -> int:

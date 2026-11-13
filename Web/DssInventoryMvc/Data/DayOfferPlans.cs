@@ -37,6 +37,10 @@ public sealed partial class DssSqlRepository
           TRY_CONVERT(int,JSON_VALUE(h.PlanJSON,'$.plannedShip')) plannedShip,
           TRY_CONVERT(int,JSON_VALUE(h.PlanJSON,'$.plannedLoss')) plannedLoss,
           JSON_VALUE(h.PlanJSON,'$.search.status') searchStatus,
+          CASE WHEN h.Variant='A1'
+            AND COALESCE(lv.RepresentedQty,0)=TRY_CONVERT(decimal(28,8),JSON_VALUE(h.PlanJSON,'$.impact.additionalLostUnits'))
+            AND COALESCE(lv.MissingPriceCount,0)=0
+            THEN COALESCE(lv.LostValue,0) END additionalLostValue,
           (SELECT p.ProductName name,p.ProductID productId,f.bomLevel,f.bomPath,
                   a.PlanAt startDate,a.PlannedCompletionAt finishDate,SUM(a.Quantity) qty
            FROM nodes f JOIN act_input.BusinessProduct p ON p.ProductKey=f.ProductKey
@@ -48,6 +52,16 @@ public sealed partial class DssSqlRepository
            GROUP BY p.ProductName,p.ProductID,f.bomLevel,f.bomPath,a.PlanAt,a.PlannedCompletionAt
            ORDER BY f.bomPath,a.PlanAt FOR JSON PATH) jobs
         FROM offers h
+        OUTER APPLY (
+          SELECT SUM(CONVERT(decimal(28,8),s.OrderQty)) RepresentedQty,
+                 SUM(CONVERT(decimal(28,8),s.OrderQty)*p.ListPrice) LostValue,
+                 SUM(CASE WHEN p.ProductKey IS NULL OR p.ListPrice IS NULL THEN 1 ELSE 0 END) MissingPriceCount
+          FROM act_input.BusinessSalesLine s
+          LEFT JOIN act_input.BusinessProduct p ON p.ProductKey=s.ProductKey
+          WHERE s.IsDemandEligible=1 AND EXISTS (
+            SELECT 1 FROM OPENJSON(h.PlanJSON,'$.impact.additionalLostOrderIds') lost
+            WHERE TRY_CONVERT(bigint,lost.value)=s.SalesOrderID)
+        ) lv
         ORDER BY CASE h.Slot WHEN 'A' THEN 0 WHEN 'B' THEN 1 ELSE 2 END,h.Variant,h.DueAt
         """,ct,("@run",run),("@product",product),("@qty",qty),
             ("@known",known.ToDateTime(TimeOnly.MinValue)),
