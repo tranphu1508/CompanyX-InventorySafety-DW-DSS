@@ -1,5 +1,6 @@
 'use strict';
 window.startOrderReplay = async function ({catalog, runId, api}) {
+  runId = catalog.pairs.find(p => p.baselineRunId === runId || p.candidateRunId === runId)?.baselineRunId || runId;
   const $ = id => document.getElementById(id);
   const num = n => n == null ? '—' : Number(n).toLocaleString('vi-VN', {maximumFractionDigits: 2});
   const iso = v => v ? String(v).slice(0, 10) : '';
@@ -310,8 +311,9 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
         return;
       }
       set('orderAdvice', 'Chưa có kết quả đã lưu khớp với sản phẩm, số lượng, ngày biết đơn và ngày cần giao.');
-    } catch {
+    } catch (error) {
       if (token === version) set('orderAdvice', 'Không đọc được dữ liệu đã lưu. Vui lòng thử lại.');
+      throw error;
     }
   }
   for (const p of catalog.products || [])
@@ -344,19 +346,49 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
     const product = Number($('product').value);
     const qty = $('quantity').valueAsNumber;
     const known = $('receivedDate').value, due = $('dueDate').value;
-    if (!Number.isSafeInteger(product) || product <= 0 ||
-        !Number.isSafeInteger(qty) || qty <= 0 || !known || !due || due < known) {
-      showSearchMessage('Hãy nhập sản phẩm, số lượng và hai ngày hợp lệ.');
-      return;
+    if (!Number.isSafeInteger(qty) || qty <= 0) {
+      showSearchMessage('Số lượng cần phải là số nguyên dương.'); return;
+    }
+    if (qty > 2147483647) { showSearchMessage('Số lượng vượt quá giới hạn hỗ trợ.'); return; }
+    const validDate = value => /^\d{4}-\d{2}-\d{2}$/.test(value) &&
+      Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0,10) === value;
+    const run = catalog.runs.find(r => r.id === runId);
+    if (!validDate(known) || !validDate(due) || due < known) {
+      showSearchMessage('Hãy nhập ngày hợp lệ. Ngày cần giao phải từ ngày biết đơn trở đi.'); return;
+    }
+    if (known < '2013-07-01' || (run && (Number(known.replaceAll('-', '')) < run.startKey || Number(due.replaceAll('-', '')) > run.endKey))) {
+      showSearchMessage('Hãy nhập ngày hợp lệ trong khoảng mô phỏng từ 01/07/2013 đến hết kịch bản nền.'); return;
+    }
+    if (!Number.isSafeInteger(product) || !catalog.products.some(p => p.productId === product)) {
+      showSearchMessage('Hãy chọn sản phẩm hợp lệ.'); return;
     }
     reading = true;
     const btn = $('searchDeadlineButton');
+    const controls = ['product','quantity','receivedDate','dueDate','runSelect'].map($).filter(Boolean);
+    controls.forEach(control => control.disabled = true);
     if (btn) btn.disabled = true;
     showSearchMessage('Đang đọc phương án đã mô phỏng từ SIM warehouse…');
     try {
-      // GET /api/dss/replay/day-plans, then existing saved cases as fallback.
-      // This button never calls Python, Gurobi or POST search-day.
       await refresh();
+      if (!options.some(available)) {
+        const response = await fetch('/api/dss/replay/search-day', {
+          method: 'POST', headers: {'Content-Type':'application/json',
+            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value},
+          body: JSON.stringify({run:runId, product, qty, known, due})
+        });
+        let job = await response.json();
+        if (!response.ok) throw new Error(job.message || 'Không thể yêu cầu chạy bộ giải.');
+        while (job.state === 'queued' || job.state === 'running') {
+          showSearchMessage(job.message);
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          job = await api('/api/dss/replay/search-day/' + encodeURIComponent(job.id));
+        }
+        if (job.state !== 'done') throw new Error(job.message || 'Bộ giải chưa hoàn tất.');
+        showSearchMessage(job.message);
+        // The status response contains no plan. Read the published warehouse again.
+        await refresh();
+        if (!options.some(available)) throw new Error('Chưa đọc được kết quả đã công bố trong SIM warehouse.');
+      }
       const a = options.find(o => o.slot === 'A' && available(o));
       const b = options.find(o => o.slot === 'B' && available(o));
       if (b?.dayPlan && b.plannedShip === qty && b.plannedLoss === 0)
@@ -366,13 +398,14 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
       else if (options.some(available))
         showSearchMessage('Đã tải các phương án có sẵn trong SIM warehouse.');
       else
-        showSearchMessage(`SIM warehouse chưa có kết quả cho đúng run, mã xe, ${qty} xe và hai ngày này. Chạy batch chuẩn bị demo trước.`);
+        showSearchMessage(`SIM warehouse chưa có kết quả cho đơn này.`);
     } catch (error) {
-      showSearchMessage('Không đọc được SIM warehouse: ' + (error.message || String(error)));
+      showSearchMessage('Chưa thể hoàn tất tìm phương án: ' + (error.message || String(error)));
     } finally {
       reading = false;
+      controls.forEach(control => control.disabled = false);
       if (btn) btn.disabled = false;
     }
   });
-  refresh();
+  refresh().catch(() => {});
 };

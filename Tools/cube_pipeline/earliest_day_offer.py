@@ -55,6 +55,27 @@ def find_opening_source(run: int, known: str, binding: dict) -> Path:
     return matches[-1]
 
 
+def prepare_opening_source(run: int, known: str, folder: Path) -> Path:
+    """Create the verified no-inquiry state through the existing SIM publication pipeline."""
+    from uuid import uuid4
+    from dss_bridge import run_request
+    catalog = read(DEMO / 'RuntimeData/reference/catalog.json')
+    entry = next(b for b in catalog['baselines']
+                 if b['PlanningRunKey'] == run and b['status'] == 'READY')
+    rid = 'web-opening-' + uuid4().hex
+    request = dict(schema='companyx.inquiry.request.v2', request_id=rid, inquiry_id=rid,
+                   base_run_key=run, known_at=known, analysis_end=known,
+                   solver_name='GUROBI', solver_seconds=900, threads=8, penalties={},
+                   scenario_index=entry['scenario_index'], baseline_id=entry['baseline_id'],
+                   initialization_mode='BASELINE_AT_START', initial_stock_rule=entry['initial_stock_rule'],
+                   candidates=[dict(candidate_id='BASELINE', kind='BASELINE', tranches=[])])
+    path = folder / 'opening-request.json'
+    save(path, request)
+    progress(folder, state='running', message='Dang chuan bi trang thai nen va luu vao SIM.')
+    run_request(path)
+    return find_opening_source(run, known, validate_input())
+
+
 def request_for_day(original: dict, product: int, qty: int, due: date, slot: str) -> dict:
     request = deepcopy(original)
     baselines = [c for c in request['candidates'] if c['kind'] == 'BASELINE']
@@ -177,29 +198,25 @@ def run_search(run: int, product: int, qty: int, known: str,
     ).isoformat()
 
     # A1/A2 and B share the verified opening state; B protects all old deadlines.
-    from priority_offer_plan import run as priority_run
-    from protected_old_offer import run as protected_run, NoProtectedOffer
+    from parallel_offers import run as parallel_run
     request = request_for_day(original, product, qty, original_due, 'A')
     progress(folder, state='running', tested=0, currentDue=due,
              message='Dang toi uu A1/A2/C va tim B giu dung han toan bo don cu.')
     day_index = (known_date - date.fromisoformat(scope['start'])).days
     a = one_day(source, original, binding, folder/'original-due',
                 product, qty, original_due, 'A', day_index)
-    priority = priority_run(source, request, folder/'priority', publish=False)
+    priority, b = parallel_run(source, request, folder/'parallel',
+                               max_days=(last_day-original_due).days)
     a['priority'] = priority
-    control = next(v for v in priority['variants'] if v['variant']=='C')
     results = [a]
-    try:
-        b = protected_run(source, request, control, folder/'protected-B',
-                          max_days=(last_day-original_due).days)
-        attempts = b['search']['attempts']
+    attempts = b['search']['attempts']
+    if b['status'] != 'NO_B':
         selected_due = b['due']
         if selected_due != due:
             b['slot'] = 'B'
             results.append(b)
         status = 'FIRST_FULL_DELIVERY_WITH_OLD_COMMITMENTS' if selected_due != due else 'ORIGINAL_DUE_ACCEPTED_WITH_OLD_COMMITMENTS'
-    except NoProtectedOffer:
-        attempts = read(folder/'protected-B/progress.json')['attempts']
+    else:
         selected_due = None
         status = 'NO_B_WITH_OLD_COMMITMENTS_WITHIN_WINDOW'
     publish(run, product, qty, known, due, results, attempts, source, folder, status)
@@ -217,6 +234,7 @@ def main() -> int:
     parser.add_argument('--due', required=True)
     parser.add_argument('--max-days', type=int, default=45)
     parser.add_argument('--folder', type=Path, required=True)
+    parser.add_argument('--prepare-opening', action='store_true', help='Prepare a missing opening state through the SIM pipeline')
     parser.add_argument('--source', type=Path, help='Optional verified no-inquiry BASELINE artifact folder')
     args = parser.parse_args()
     folder = args.folder.resolve()
@@ -228,6 +246,12 @@ def main() -> int:
     if license_file.exists():
         os.environ.setdefault('GRB_LICENSE_FILE', str(license_file))
     try:
+        if args.prepare_opening and args.source is None:
+            binding = validate_input()
+            try:
+                args.source = find_opening_source(args.run, args.known, binding)
+            except ValueError:
+                args.source = prepare_opening_source(args.run, args.known, folder)
         run_search(args.run, args.product, args.qty, args.known, args.due,
                    args.max_days, folder, args.source)
         return 0

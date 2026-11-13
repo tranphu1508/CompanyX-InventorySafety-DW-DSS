@@ -8,6 +8,7 @@ builder.WebHost.UseStaticWebAssets();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<DssSqlRepository>();
+builder.Services.AddSingleton<OrderSolver>();
 
 // Read-only DSS reports use DssSqlRepository; the optional context supports SQL connectivity.
 var connectionString = builder.Configuration.GetConnectionString("DssSqlServer");

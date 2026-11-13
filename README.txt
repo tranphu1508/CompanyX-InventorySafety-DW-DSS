@@ -4,7 +4,7 @@ MỞ PROJECT
 Visual Studio 2022: CompanyX.ACT_SIM.sln (extension SSIS và Analysis Services Projects).
 Web local: http://localhost:5087
 Chạy web từ thư mục project: dotnet run --project Web/DssInventoryMvc --launch-profile http
-Web đọc kết quả đã lưu trong SQL SIM; không gọi mô phỏng mới khi bấm xem phương án.
+Web đọc phương án đã lưu trong SQL SIM. Khi bấm Tìm phương án mà chưa có kết quả, web xếp hàng chạy bộ giải Python; bộ giải công bố vào SIM rồi web đọc lại SQL SIM. Trạng thái và log tác vụ nằm trong _local/web-jobs/. Sau khi chuẩn bị trạng thái nền, A1/A2/C/B chạy trong tối đa 4 tiến trình độc lập; mỗi tiến trình dùng min(threads cấu hình, số CPU logic chia 4), tối thiểu 1 luồng. Các lần thử ngày của B và tìm độ trễ của A2 vẫn tuần tự. Nếu A2 mở rộng kỳ đánh giá, các nhánh liên quan được tính lại trước khi công bố đồng bộ vào SIM. Web vẫn xử lý lần lượt từng đơn.
 
 CẤU TRÚC
 Database/, SSIS/, CompanyX.Split.Integration/: nguồn và ETL/điều phối.

@@ -2,6 +2,7 @@
 <div class="page-intro reveal"><div><span class="section-kicker">PHÂN TÍCH ĐƠN HÀNG</span><h1>Quyết định cho đơn hàng lớn</h1><p>Đánh giá khả năng đáp ứng đơn hàng và tham khảo các phương án giao hàng.</p></div><span class="page-badge">Kịch bản đơn hàng</span></div>
 <div class="row g-3 g-xl-4 align-items-start">
   <div class="col-xl-4"><section class="surface panel form-panel reveal"><div class="panel-heading"><div><span class="section-kicker">THÔNG TIN ĐẦU VÀO</span><h3>Chọn đơn lớn</h3></div><span class="step-badge">01</span></div><form id="orderForm" novalidate>
+@Html.AntiForgeryToken()
   <div class="mb-3"><label for="product" class="form-label">Sản phẩm</label><select id="product" name="product" class="form-select"><option value="">Chọn mẫu xe đạp</option></select></div>
   <div class="mb-3"><label for="quantity" class="form-label">Số lượng đơn</label><input id="quantity" name="quantity" type="number" class="form-control" min="1" step="1" required></div>
   <div class="row g-3 mb-3"><div class="col-sm-6"><label for="receivedDate" class="form-label">Ngày biết đơn</label><input id="receivedDate" name="receivedDate" type="date" class="form-control"></div><div class="col-sm-6"><label for="dueDate" class="form-label">Ngày cần giao</label><input id="dueDate" name="dueDate" type="date" class="form-control" required></div></div>

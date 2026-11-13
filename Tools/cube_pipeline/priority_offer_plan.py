@@ -101,7 +101,7 @@ def solve(model, meta, ctx, folder, mode, feasibility=False):
         native,x,_,_=build_native(model,env)
         with native:
             settings=ctx['spec']['solver']
-            native.Params.Threads=settings['threads']
+            native.Params.Threads=ctx.get('solver_threads',settings['threads'])
             native.Params.TimeLimit=settings['time_limit_seconds']
             native.Params.MIPGap=0
             native.Params.MIPGapAbs=0
@@ -126,10 +126,12 @@ def solve(model, meta, ctx, folder, mode, feasibility=False):
                         holding[j]=cost
                 native.setObjectiveN(late@x,0,priority=2,abstol=0,reltol=0,name='old_order_days_late')
                 native.setObjectiveN(holding@x,1,priority=1,abstol=0,reltol=0,name='inventory_value_days')
+            solve_started=time.time()
             native.optimize()
             result=dict(modelHash=request_hash,status=int(native.Status),hasSolution=bool(native.SolCount),
                         optimal=native.Status==gp.GRB.OPTIMAL,infeasible=native.Status==gp.GRB.INFEASIBLE,
-                        seconds=native.Runtime)
+                        seconds=native.Runtime,threads=int(native.Params.Threads),
+                        solveStarted=solve_started,solveFinished=time.time())
             values=None
             if native.SolCount:
                 values=np.asarray(x.X)
@@ -188,11 +190,18 @@ def impact(result,control,ctx):
                 inventoryDelta=result['inventoryMean']-control['inventoryMean'],
                 evaluationStart=result['evaluationStart'],evaluationEnd=result['evaluationEnd'])
 
-def run(source,request,folder,publish=True):
+def solve_variant(ctx, folder, mode, horizon=None):
+    """One independent variant; A2 retains its sequential delay search."""
     folder.mkdir(parents=True,exist_ok=True)
-    ctx=context(source,request)
-    a1,meta,orders=model_for(ctx,'A1')
+    a1,meta,orders=model_for(ctx,'A1',horizon)
     horizon=meta['H']
+    if mode=='C':
+        control,cm,co=model_for(ctx,'C',horizon)
+        answer,z=solve(control,cm,ctx,folder/'C','C')
+        if not answer['optimal']:raise RuntimeError('Control optimality pending')
+        result=summarize(control,cm,z,ctx,co,horizon)
+        result.update(variant='C',status='OPTIMAL')
+        return result
     root=ctx['new'][0]['lines'][0]
     product=root['p']
     due=(ctx['new'][0]['due']-ctx['known']).days
@@ -204,16 +213,15 @@ def run(source,request,folder,publish=True):
         own=next((a1.keys[j] for j,c in row.items() if c==1 and a1.keys[j][0]=='I'),None)
         if own and own[1]==product and own[2]<=due:
             capacity+=sum(-c*a1.ub[j] for j,c in row.items() if c<0 and a1.keys[j][0]=='a')
-    results={}
     if capacity+1e-6<root['remaining']:
         certificate=dict(reason='NEW_ORDER_PHYSICAL_DEADLINE',productId=product,quantity=root['remaining'],
                          maximumAvailableUpperBound=capacity,due=str(ctx['new'][0]['due']))
         save(folder/'physical_certificate.json',certificate)
-        for mode in ('A1','A2'):
-            results[mode]=dict(variant=mode,status='INFEASIBLE',reason=certificate['reason'],
-                explanation='Tồn kho và khả năng hoàn thành trước hạn không đủ, kể cả khi nhường nguồn hàng của đơn cũ.',
-                actions=[],impact=None,orderChanges=[],certificate=certificate)
-    else:
+        return dict(variant=mode,status='INFEASIBLE',reason=certificate['reason'],
+                    explanation='Tồn kho và khả năng hoàn thành trước hạn không đủ, kể cả khi nhường nguồn hàng của đơn cũ.',
+                    actions=[],impact=None,orderChanges=[],certificate=certificate)
+    results={}
+    if mode=='A1':
         answer,values=solve(a1,meta,ctx,folder/'A1','A1')
         if not answer['optimal'] and not answer['infeasible']:
             raise RuntimeError('A1 has not reached an optimal solution or infeasibility certificate')
@@ -222,59 +230,53 @@ def run(source,request,folder,publish=True):
             results['A1'].update(variant='A1',status='OPTIMAL')
         else:
             results['A1']=dict(variant='A1',status='INFEASIBLE',actions=[],impact=None,orderChanges=[])
-        # Feasibility is monotone in the allowed delay. Bracket, then locate the
-        # smallest maximum delay before optimizing total order-days and holding.
-        def check_delay(delay):
-            h=max(horizon,max((o['due']-ctx['known']).days+delay for o in ctx['old']) if ctx['old'] else horizon)
-            candidate,cm,co=model_for(ctx,'A2',h,delay)
-            check,z=solve(candidate,cm,ctx,folder/f'A2-search-{delay:04d}','A2',feasibility=True)
-            save(folder/'progress.json',dict(stage='A2_SEARCH',delay=delay,status=check))
-            if not check['hasSolution'] and not check['infeasible']:
-                raise RuntimeError('A2 feasibility unresolved by solver')
-            return check['hasSolution'],candidate,cm,co,h
+        return results['A1']
+    if mode!='A2':raise ValueError('Unknown priority variant')
+    # Feasibility is monotone in the allowed delay. Bracket, then locate the
+    # smallest maximum delay before optimizing total order-days and holding.
+    def check_delay(delay):
+        h=max(horizon,max((o['due']-ctx['known']).days+delay for o in ctx['old']) if ctx['old'] else horizon)
+        candidate,cm,co=model_for(ctx,'A2',h,delay)
+        check,z=solve(candidate,cm,ctx,folder/f'A2-search-{delay:04d}','A2',feasibility=True)
+        save(folder/'progress.json',dict(stage='A2_SEARCH',delay=delay,status=check))
+        if not check['hasSolution'] and not check['infeasible']:
+            raise RuntimeError('A2 feasibility unresolved by solver')
+        return check['hasSolution'],candidate,cm,co,h
 
-        feasible,candidate,cm,co,h=check_delay(0)
-        lower,upper=0,0
-        if not feasible:
-            # Test whether postponing old orders can help the new hard deadline at all.
-            relaxed=dict(ctx,old=[],oldbook=defaultdict(list),book=defaultdict(list))
-            for line in ctx['new'][0]['lines']:
-                if line['manufactured']:relaxed['book'][line['p']].append(line)
-            rm,rmeta,_=model_for(relaxed,'A1',horizon)
-            proof,_=solve(rm,rmeta,relaxed,folder/'new-order-alone','A1',feasibility=True)
-            if proof['infeasible']:
-                results['A2']=dict(variant='A2',status='INFEASIBLE',reason='NEW_ORDER_ALONE_INFEASIBLE',
-                    explanation='Đơn mới vẫn bất khả thi khi bỏ nghĩa vụ giao của tất cả đơn cũ.',
-                    actions=[],impact=None,orderChanges=[])
-            elif not proof['hasSolution']:
-                raise RuntimeError('New-order physical feasibility unresolved')
-            else:
-                upper=1
-                while not check_delay(upper)[0]:
-                    lower,upper=upper,upper*2
-                while upper-lower>1:
-                    middle=(lower+upper)//2
-                    if check_delay(middle)[0]:upper=middle
-                    else:lower=middle
-                feasible,candidate,cm,co,h=check_delay(upper)
-        if feasible or 'A2' not in results:
-            answer,z=solve(candidate,cm,ctx,folder/'A2','A2')
-            if not answer['optimal']:raise RuntimeError('A2 optimality pending; completed results are not published')
-            results['A2']=summarize(candidate,cm,z,ctx,co,h)
-            results['A2'].update(variant='A2',status='OPTIMAL',minimumMaxDelayDays=upper)
-            horizon=h
-    # Recompute the control and A1 on one common horizon for comparable inventory means.
-    control,cm,co=model_for(ctx,'C',horizon)
-    answer,z=solve(control,cm,ctx,folder/'C','C')
-    if not answer['optimal']:raise RuntimeError('Control optimality pending')
-    results['C']=summarize(control,cm,z,ctx,co,horizon)
-    results['C'].update(variant='C',status='OPTIMAL')
-    if results['A1']['status']=='OPTIMAL' and results['A1']['evaluationEnd']!=results['C']['evaluationEnd']:
-        m,mm,oo=model_for(ctx,'A1',horizon)
-        answer,z=solve(m,mm,ctx,folder/'A1-common','A1')
-        if not answer['optimal']:raise RuntimeError('Common-horizon A1 optimality pending')
-        results['A1']=summarize(m,mm,z,ctx,oo,horizon)
-        results['A1'].update(variant='A1',status='OPTIMAL')
+    feasible,candidate,cm,co,h=check_delay(0)
+    lower,upper=0,0
+    if not feasible:
+        # Test whether postponing old orders can help the new hard deadline at all.
+        relaxed=dict(ctx,old=[],oldbook=defaultdict(list),book=defaultdict(list))
+        for line in ctx['new'][0]['lines']:
+            if line['manufactured']:relaxed['book'][line['p']].append(line)
+        rm,rmeta,_=model_for(relaxed,'A1',horizon)
+        proof,_=solve(rm,rmeta,relaxed,folder/'new-order-alone','A1',feasibility=True)
+        if proof['infeasible']:
+            results['A2']=dict(variant='A2',status='INFEASIBLE',reason='NEW_ORDER_ALONE_INFEASIBLE',
+                explanation='Đơn mới vẫn bất khả thi khi bỏ nghĩa vụ giao của tất cả đơn cũ.',
+                actions=[],impact=None,orderChanges=[])
+        elif not proof['hasSolution']:
+            raise RuntimeError('New-order physical feasibility unresolved')
+        else:
+            upper=1
+            while not check_delay(upper)[0]:
+                lower,upper=upper,upper*2
+            while upper-lower>1:
+                middle=(lower+upper)//2
+                if check_delay(middle)[0]:upper=middle
+                else:lower=middle
+            feasible,candidate,cm,co,h=check_delay(upper)
+    if feasible or 'A2' not in results:
+        answer,z=solve(candidate,cm,ctx,folder/'A2','A2')
+        if not answer['optimal']:raise RuntimeError('A2 optimality pending; completed results are not published')
+        results['A2']=summarize(candidate,cm,z,ctx,co,h)
+        results['A2'].update(variant='A2',status='OPTIMAL',minimumMaxDelayDays=upper)
+    return results['A2']
+
+
+def bundle_results(ctx, request, results, folder):
+    root=ctx['new'][0]['lines'][0]
     for mode,result in results.items():
         result['due']=str(ctx['new'][0]['due'])
         result['baseStateHash']=ctx['stateHash']
@@ -288,6 +290,23 @@ def run(source,request,folder,publish=True):
                 sourceSnapshotId=ctx['binding']['snapshot_id'],variants=list(results.values()),
                 interpretation='Single-date plans. A2 minimizes maximum delay, then total old-order days late, then inventory value-days.')
     save(folder/'priority.json',bundle)
+    return bundle
+
+
+def run(source,request,folder,publish=True):
+    folder.mkdir(parents=True,exist_ok=True)
+    ctx=context(source,request)
+    root=ctx['new'][0]['lines'][0]
+    product=root['p']
+    _,meta,_=model_for(ctx,'A1')
+    horizon=meta['H']
+    results={mode:solve_variant(ctx,folder,mode,horizon) for mode in ('A1','A2')}
+    if results['A2']['status']=='OPTIMAL':
+        horizon=(date.fromisoformat(results['A2']['evaluationEnd'])-ctx['known']).days
+    results['C']=solve_variant(ctx,folder,'C',horizon)
+    if results['A1']['status']=='OPTIMAL' and results['A1']['evaluationEnd']!=results['C']['evaluationEnd']:
+        results['A1']=solve_variant(ctx,folder/'common','A1',horizon)
+    bundle=bundle_results(ctx,request,results,folder)
     if not publish:
         print('Verified without SQL publication', {m:r['status'] for m,r in results.items()},flush=True)
         return bundle

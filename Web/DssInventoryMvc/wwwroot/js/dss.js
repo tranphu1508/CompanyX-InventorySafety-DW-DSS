@@ -368,6 +368,7 @@
       runSelect.addEventListener('change', () => {
         runId = Number(runSelect.value);
         sessionStorage.setItem('dssDemoBaseRun', String(runId));
+          if (page === 'orders') { const url = new URL(window.location.href); url.searchParams.set('demoRun', runId); window.location.assign(url); return; }
         if (page === 'dashboard') renderDashboard().catch(error => showError(error.message));
         if (page === 'operations') {
           el('compareRule').value = String(currentPair()?.candidateRunId || '');
