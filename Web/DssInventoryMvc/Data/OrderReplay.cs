@@ -51,20 +51,20 @@ public sealed partial class DssSqlRepository
     public Task<List<Dictionary<string, object?>>> Opening(int run,int product,DateOnly day,int? qty,CancellationToken ct) =>
         ReplayRows("""
             WITH opening AS (
-              SELECT p.ProductKey,p.ProductName,SUM(f.OnHandQty) AS stock,SUM(f.ProductionWIPQty) AS wip
+              SELECT p.ProductKey,p.ProductName,p.ListPrice AS unitPrice,SUM(f.OnHandQty) AS stock,SUM(f.ProductionWIPQty) AS wip
               FROM act_input.BusinessProduct p JOIN dss.Fact_SimulationDaily f ON f.ProductKey=p.ProductKey
               WHERE p.ProductID=@product AND p.CategoryName=N'Bikes' AND f.PlanningRunKey=@run
                 AND f.DateKey=CONVERT(int,CONVERT(char(8),DATEADD(day,-1,@day),112))
                 AND EXISTS(SELECT 1 FROM bi.CompletedRuns cr WHERE cr.PlanningRunKey=@run AND CONVERT(int,CONVERT(char(8),@day,112)) BETWEEN cr.SimulationStartDateKey AND cr.SimulationEndDateKey)
-              GROUP BY p.ProductKey,p.ProductName
+              GROUP BY p.ProductKey,p.ProductName,p.ListPrice
             ), bom AS (
-              SELECT b.ComponentProductKey k, p.ProductName name,SUM(b.PerAssemblyQty) AS factor
+              SELECT b.ComponentProductKey k, p.ProductID productId, p.ProductName name,SUM(b.PerAssemblyQty) AS factor
               FROM opening o JOIN act_input.BusinessBOM b ON b.AssemblyProductKey=o.ProductKey
               JOIN act_input.BusinessProduct p ON p.ProductKey=b.ComponentProductKey AND p.MakeFlag=1
               WHERE b.IsStructureValid=1 AND b.StartDate<=@day AND (b.EndDate IS NULL OR b.EndDate>=@day)
-              GROUP BY b.ComponentProductKey,p.ProductName
+              GROUP BY b.ComponentProductKey,p.ProductID,p.ProductName
             )
-            SELECT o.ProductName AS productName,o.stock,o.wip,b.name AS componentName,
+            SELECT o.ProductName AS productName,o.unitPrice,o.stock,o.wip,b.name AS componentName,b.productId AS componentProductId,
                    CASE WHEN @qty IS NULL OR b.k IS NULL THEN NULL WHEN @qty<=o.stock THEN 0
                         WHEN a.hand IS NULL THEN NULL WHEN (@qty-o.stock)*b.factor>a.hand THEN (@qty-o.stock)*b.factor-a.hand ELSE 0 END AS missing
             FROM opening o LEFT JOIN bom b ON 1=1 OUTER APPLY (

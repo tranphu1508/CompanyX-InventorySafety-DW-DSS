@@ -11,6 +11,36 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
     new URLSearchParams({run: runId, product: $('product').value, ...args}));
   const schedule = document.querySelector('.schedule-placeholder');
   const emptySchedule = schedule.innerHTML;
+  // Place the schedule below both columns so long BOM plans use the full page width.
+  const planPanel = $('productionPlan');
+  const planColumn = document.createElement('div');
+  planColumn.className = 'col-12 production-plan-column';
+  planPanel.parentElement.parentElement.append(planColumn);
+  planColumn.append(planPanel);
+  const planScroll = document.createElement('div');
+  planScroll.className = 'plan-top-scroll';
+  planScroll.tabIndex = 0;
+  planScroll.setAttribute('role', 'region');
+  planScroll.setAttribute('aria-label', 'Cuộn ngang kế hoạch sản xuất');
+  const scrollWidth = document.createElement('div');
+  planScroll.append(scrollWidth);
+  schedule.before(planScroll);
+  const syncPlanScroll = () => {
+    const hasPlan = Boolean(schedule.querySelector('.replay-schedule'));
+    scrollWidth.style.width = schedule.scrollWidth + 'px';
+    planScroll.hidden = !hasPlan || schedule.scrollWidth <= schedule.clientWidth + 1;
+    planScroll.scrollLeft = schedule.scrollLeft;
+  };
+  planScroll.addEventListener('scroll', () => {
+    if (schedule.scrollLeft !== planScroll.scrollLeft) schedule.scrollLeft = planScroll.scrollLeft;
+  });
+  schedule.addEventListener('scroll', () => {
+    if (planScroll.scrollLeft !== schedule.scrollLeft) planScroll.scrollLeft = schedule.scrollLeft;
+  });
+  new ResizeObserver(syncPlanScroll).observe(schedule);
+  new MutationObserver(syncPlanScroll).observe(schedule, {childList: true});
+  planScroll.hidden = true;
+
   const labels = {A: 'Giao đúng hạn', B: 'Hạn giao mới', C: 'Từ chối đơn'};
   let version = 0, active = null, options = [], details = new Map(), selected = null;
   const available = o => o?.dayPlan || (o?.branchRun != null && (o.slot === 'C' || o.orderStatus != null));
@@ -29,8 +59,100 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
       options.some(available) ? 'Xong' : 'Chờ', selected && details.has(selected) ? 'Xong' : 'Chờ'];
     outputs.forEach((o, i) => { o.textContent = values[i]; });
   }
+  const componentCard = $('components').closest('.compact-metric');
+  componentCard.classList.add('component-card');
+  componentCard.tabIndex = 0;
+  componentCard.setAttribute('aria-label', 'Xem danh sách linh kiện còn thiếu');
+  componentCard.setAttribute('aria-controls', 'componentPopup');
+  componentCard.setAttribute('aria-expanded', 'false');
+  const componentPopup = element('div', null, 'component-popup');
+  componentPopup.id = 'componentPopup';
+  componentPopup.setAttribute('role', 'region');
+  componentPopup.setAttribute('aria-label', 'Linh kiện còn thiếu');
+  componentPopup.hidden = true;
+  document.body.append(componentPopup);
+  let popupTimer;
+  function placeComponentPopup() {
+    const box = componentCard.getBoundingClientRect(), gap = 10, pad = 12;
+    const width = Math.min(480, window.innerWidth - pad * 2);
+    componentPopup.style.width = width + 'px';
+    componentPopup.style.maxHeight = Math.min(420, window.innerHeight - pad * 2) + 'px';
+    const right = box.right + gap;
+    const fitsRight = right + width <= window.innerWidth - pad;
+    const left = fitsRight ? right : Math.min(box.left, window.innerWidth - width - pad);
+    componentPopup.style.left = Math.max(pad, Math.min(left, window.innerWidth - width - pad)) + 'px';
+    const top = fitsRight ? box.top : box.bottom + gap;
+    componentPopup.style.top = Math.max(pad, Math.min(top, window.innerHeight - componentPopup.offsetHeight - pad)) + 'px';
+  }
+  function showComponents() {
+    clearTimeout(popupTimer);
+    componentPopup.hidden = false;
+    componentCard.setAttribute('aria-expanded', 'true');
+    placeComponentPopup();
+  }
+  function hideComponents() {
+    componentPopup.hidden = true;
+    componentCard.setAttribute('aria-expanded', 'false');
+  }
+  const leaveComponents = () => {
+    clearTimeout(popupTimer);
+    popupTimer = setTimeout(() => {
+      if (!componentCard.matches(':hover, :focus-within') && !componentPopup.matches(':hover, :focus-within')) hideComponents();
+    }, 180);
+  };
+  componentCard.addEventListener('pointerenter', showComponents);
+  componentCard.addEventListener('pointermove', () => { if (componentPopup.hidden) showComponents(); });
+  componentCard.addEventListener('mouseleave', leaveComponents);
+  componentCard.addEventListener('focusin', showComponents);
+  componentCard.addEventListener('focusout', leaveComponents);
+  componentCard.addEventListener('click', showComponents);
+  componentPopup.addEventListener('mouseenter', () => clearTimeout(popupTimer));
+  componentPopup.addEventListener('mouseleave', leaveComponents);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hideComponents(); });
+  document.addEventListener('pointerdown', e => {
+    if (!componentCard.contains(e.target) && !componentPopup.contains(e.target)) hideComponents();
+  });
+  window.addEventListener('resize', () => { if (!componentPopup.hidden) placeComponentPopup(); });
+  window.addEventListener('scroll', () => { if (!componentPopup.hidden) placeComponentPopup(); }, true);
+  function componentIcon(name) {
+    // Small inline illustrations represent the component family, not product photos.
+    const paths = /wheel|hub/i.test(name) ? '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M12 3v7m0 4v7M3 12h7m4 0h7M6 6l5 5m2 2 5 5M6 18l5-5m2-2 5-5"/>' :
+      /frame/i.test(name) ? '<path d="m3 18 6-12 7 12H3l5-9h10l3 9M8 6h4m4-3h4l-2 6"/>' :
+      /seat|saddle/i.test(name) ? '<path d="M3 7c5-3 8 1 17 0l1 3-9 3-9-2V7Zm9 6v8m-4 0h8"/>' :
+      /handlebar/i.test(name) ? '<path d="M12 21V9M3 4v5h18V4M1 4h4m14 0h4"/>' :
+      '<circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4M5 5l3 3m8 8 3 3M5 19l3-3m8-8 3-3"/>';
+    const icon = element('span', null, 'component-part-icon');
+    icon.setAttribute('aria-hidden', 'true');
+    icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + paths + '</svg>';
+    return icon;
+  }
+  function renderComponentPopup(missing, complete) {
+    componentPopup.replaceChildren(element('strong', 'Linh kiện còn thiếu', 'component-popup-title'));
+    componentPopup.append(element('p', 'Linh kiện tự sản xuất trực tiếp · đối chiếu tồn cuối ngày trước.', 'component-popup-note'));
+    if (!complete || !missing.length) {
+      componentPopup.append(element('p', complete ? 'Không thiếu linh kiện trực tiếp theo tồn kho đang đối chiếu.' : 'Chưa đủ dữ liệu để xác định linh kiện còn thiếu.', 'component-popup-empty'));
+    } else {
+      const table = element('table', null, 'component-popup-table');
+      const head = table.createTHead().insertRow();
+      ['Linh kiện', 'ProductID', 'Số lượng thiếu'].forEach(label => {
+        const th = element('th', label); th.scope = 'col'; head.append(th);
+      });
+      const body = table.createTBody();
+      missing.forEach(row => {
+        const tr = body.insertRow(), name = tr.insertCell();
+        const label = element('div', null, 'component-table-name');
+        label.append(componentIcon(row.componentName), element('span', row.componentName));
+        name.append(label);
+        tr.insertCell().textContent = row.componentProductId ?? '—';
+        tr.insertCell().textContent = num(row.missing);
+      });
+      componentPopup.append(table);
+    }
+    if (!componentPopup.hidden) placeComponentPopup();
+  }
   function opening(rows) {
     const first = rows[0], qty = active?.qty;
+    if (active) active.declinedValue = first?.unitPrice != null ? qty * first.unitPrice : null;
     set('stock', num(first?.stock)); set('demand', num(qty));
     set('shortage', num(first && qty != null ? Math.max(qty - first.stock, 0) : null));
     set('stockLabel', first?.productName || 'Đơn vị hiện có');
@@ -42,7 +164,8 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
     set('componentList', complete && missing.length ?
       missingNames.slice(0, 2).join(', ') + (missing.length > 2 ? '…' : '') :
       'Mã linh kiện tự sản xuất còn thiếu');
-    $('componentList').title = missingNames.join(', ');
+    $('componentList').removeAttribute('title');
+    renderComponentPopup(missing, complete);
     status();
   }
   function advice() {
@@ -114,6 +237,10 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
           body.append(select);
         }
       }
+      if (slot === 'C') {
+        metric(body, 'Lost sales do từ chối đơn lớn', '1 đơn · ' + num(active.qty) + ' xe');
+        metric(body, 'Giá trị mất bán (theo giá niêm yết)', num(active.declinedValue));
+      }
       if (o.dayPlan && o.planStatus) {
         description.textContent = 'Dự kiến theo kế hoạch ngày ' + day(active.knownAt);
         const variants = slot === 'A' ? options.filter(x => x.slot === 'A' && x.planStatus) : [o];
@@ -178,8 +305,8 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
           (impact.qtyPct == null ? '' : ' (' + num(impact.qtyPct) + '%)') : '—');
       metric(body, 'Giá trị tồn + WIP bình quân', num(impact?.valueDelta));
       if (slot === 'B') metric(body, 'Cần khách đồng ý', 'Có');
-      metric(body, 'Mất bán của đơn lớn', slot === 'C' || o.cancelledAt ?
-        num(slot === 'C' ? o.declinedQty : active.qty) + ' đơn vị, 1 đơn' : '0');
+      if (slot !== 'C') metric(body, 'Mất bán của đơn lớn', o.cancelledAt ?
+        num(active.qty) + ' đơn vị, 1 đơn' : '0');
       if (impact?.unfilledByEnd > 0)
         metric(body, 'Đơn cũ chưa giao đủ cuối kỳ', num(impact.unfilledByEnd) + ' đơn');
     }

@@ -351,13 +351,13 @@
       el('connectionLabel').textContent = status.connected ? 'Dữ liệu đã cập nhật' : 'Chưa thể cập nhật dữ liệu';
       el('connectionDot').classList.toggle('connected', Boolean(status.connected));
       if (!status.connected) throw new Error('Kết nối dữ liệu tạm thời gián đoạn. Vui lòng thử lại sau.');
-      catalog = bootstrap;
+      catalog = {...bootstrap, pairs: bootstrap.pairs.filter(pair => pair.deliveryRule === 'Mất đơn tại hạn giao')};
       if (!catalog.runs.length) throw new Error('Chưa có dữ liệu phân tích để hiển thị.');
       const saved = Number(sessionStorage.getItem('dssDemoBaseRun'));
       const requestedDemoRun = Number(new URLSearchParams(window.location.search).get('demoRun'));
       const allowed = new Set(catalog.pairs.flatMap(pair => [pair.baselineRunId, pair.candidateRunId]));
       runId = allowed.has(requestedDemoRun) ? requestedDemoRun :
-        allowed.has(saved) ? saved : catalog.defaultRunId;
+        allowed.has(saved) ? saved : allowed.has(catalog.defaultRunId) ? catalog.defaultRunId : catalog.pairs[0]?.baselineRunId;
       if (!runId) throw new Error('Chưa có kịch bản nền ROP mất đơn tại hạn giao.');
       const runSelect = el('runSelect');
       catalog.runs.filter(run => allowed.has(run.id)).forEach(run => {

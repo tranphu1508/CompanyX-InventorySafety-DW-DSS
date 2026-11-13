@@ -162,3 +162,34 @@ body[data-page="operations"] .score-mark { font-size:16px;text-align:center; }
 body[data-page="operations"] .score-better { color:#15803d;background:#effaf2; }
 body[data-page="operations"] .score-worse { color:#a16207;background:#fff8db; }
 body[data-page="operations"] .score-equal { color:#64748b;background:#f1f5f9; }
+
+/* Reach the horizontal timeline without scrolling to the bottom of a long BOM. */
+.production-plan-column { min-width: 0; }
+.plan-top-scroll { overflow-x: scroll; overflow-y: hidden; height: 20px; margin-bottom: 10px; scrollbar-color: #8da8d5 #edf2fa; }
+.plan-top-scroll > div { height: 1px; }
+.plan-top-scroll:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.component-card { cursor: help; }
+.component-card:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.component-popup { position: fixed; z-index: 1080; padding: 18px; overflow-y: auto; border: 1px solid #dce5f3; border-radius: 14px; background: white; box-shadow: 0 12px 40px #192b5526; color: var(--ink); }
+.component-popup-title { font-size: 14px; }
+.component-popup-note { font-size: 11px; color: #6d7f99; margin: 6px 0 12px; }
+.component-popup-empty { font-size: 12px; margin: 0; }
+.component-popup-list { list-style: none; padding: 0; margin: 0; }
+.component-popup-list li { display: flex; gap: 10px; align-items: center; padding: 12px 0; border-top: 1px solid #edf1f6; }
+.component-part-icon { display: grid; place-items: center; width: 34px; height: 34px; flex: none; color: #5079bd; background: #eef3fc; border-radius: 9px; }
+.component-part-icon svg { width: 23px; height: 23px; }
+.component-part-text { flex: 1; min-width: 0; }
+.component-part-text strong { display: block; font-size: 12px; overflow-wrap: anywhere; }
+.component-part-text small, .component-part-quantity small { display: block; font-size: 10px; color: #6d7f99; }
+.component-part-quantity { flex: none; text-align: right; }
+.component-part-quantity strong { font-size: 14px; color: #a66516; }
+
+.component-popup[hidden] { display: none !important; }
+.component-popup-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.component-popup-table th { text-align: left; font-size: 10px; color: #6d7f99; padding: 8px 5px; background: #f5f8fd; }
+.component-popup-table td { padding: 10px 5px; border-bottom: 1px solid #edf1f6; }
+.component-popup-table td:last-child, .component-popup-table th:last-child { text-align: right; }
+.component-popup-table td:last-child { font-weight: 700; color: #a66516; }
+.component-table-name { display: flex; align-items: center; gap: 8px; }
+.component-table-name > span:last-child { overflow-wrap: anywhere; }
