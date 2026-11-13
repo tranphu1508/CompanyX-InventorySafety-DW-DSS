@@ -22,20 +22,31 @@ import numpy as np
 
 def context(source, request):
     binding = validate_input()
-    scope = read(source/'scope.json')
-    state = read(source/'solves'/f"{(date.fromisoformat(request['known_at'])-date.fromisoformat(scope['start'])).days:04d}"/'state.json')
-    day = state['day']
-    accepted = read(source/'decisions'/f'{day:04d}.json')
-    _, _, _, inputs, legacy, _, _ = inquiry_v2.runtime(PROJECT)
-    if (scope['known_at'] != request['known_at'] or scope['base_run_key'] != request['base_run_key']
-        or scope['synthetic_orders'] or read(source/'prefix_proof.json')['status'] != 'PASSED'
-        or legacy.digest(state) != accepted['state_hash']
-        or read(source.parents[2]/'input_binding.json') != binding or state['public_purchases']):
-        raise ValueError('Opening state/input identity mismatch')
+    source=Path(source)
     candidate = next(c for c in request['candidates'] if c['kind']=='FULL')
     prepared = inquiry_v2.build_request(request, candidate['candidate_id'], PROJECT)
-    if prepared['spec'] != state['spec'] or prepared['scope']['base_run_code'] != scope['base_run_code']:
-        raise ValueError('Source state configuration changed')
+    _, _, _, inputs, legacy, _, _ = inquiry_v2.runtime(PROJECT)
+    if source.is_file():
+        from rop_checkpoints import load
+        checkpoint, entry = load(source,request['base_run_key'],request['known_at'],binding)
+        state=checkpoint['state']
+        day=state['day']
+        accepted={'state_hash':checkpoint['stateSHA256']}
+        if state['public_purchases'] or prepared['scope']['base_run_key']!=entry['PlanningRunKey']:
+            raise ValueError('Checkpoint scenario is incompatible with this inquiry')
+    else:
+        scope = read(source/'scope.json')
+        state = read(source/'solves'/f"{(date.fromisoformat(request['known_at'])-date.fromisoformat(scope['start'])).days:04d}"/'state.json')
+        day = state['day']
+        accepted = read(source/'decisions'/f'{day:04d}.json')
+        _, _, _, inputs, legacy, _, _ = inquiry_v2.runtime(PROJECT)
+        if (scope['known_at'] != request['known_at'] or scope['base_run_key'] != request['base_run_key']
+            or scope['synthetic_orders'] or read(source/'prefix_proof.json')['status'] != 'PASSED'
+            or legacy.digest(state) != accepted['state_hash']
+            or read(source.parents[2]/'input_binding.json') != binding or state['public_purchases']):
+            raise ValueError('Opening state/input identity mismatch')
+        if prepared['spec'] != state['spec'] or prepared['scope']['base_run_code'] != scope['base_run_code']:
+            raise ValueError('Source state configuration changed')
     data = inputs.prepare(prepared['snapshot'], prepared['spec'])
     oid = prepared['scope']['synthetic_sales_order_ids'][0]
     book = OrderBook([l for l in data['lines'] if l['SalesOrderID']==oid], data['P'], data['external_ids'],

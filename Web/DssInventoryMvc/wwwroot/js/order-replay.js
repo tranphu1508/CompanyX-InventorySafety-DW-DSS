@@ -366,7 +366,25 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
     const btn = $('searchDeadlineButton');
     const controls = ['product','quantity','receivedDate','dueDate','runSelect'].map($).filter(Boolean);
     controls.forEach(control => control.disabled = true);
-    if (btn) btn.disabled = true;
+    const originalButtonContent = btn ? Array.from(btn.childNodes) : [];
+    const startedAt = performance.now();
+    let elapsedTimer;
+    if (btn) {
+      btn.disabled = true;
+      btn.setAttribute('aria-busy', 'true');
+      const label = element('span');
+      label.style.fontVariantNumeric = 'tabular-nums';
+      const spinner = element('span', null, 'spinner-border spinner-border-sm ms-2');
+      spinner.setAttribute('aria-hidden', 'true');
+      btn.replaceChildren(label, spinner);
+      const updateElapsed = () => {
+        const seconds = Math.floor((performance.now() - startedAt) / 1000);
+        label.textContent = 'Đang giải: ' + String(Math.floor(seconds / 60)).padStart(2, '0') +
+          ':' + String(seconds % 60).padStart(2, '0');
+      };
+      updateElapsed();
+      elapsedTimer = setInterval(updateElapsed, 250);
+    }
     showSearchMessage('Đang đọc phương án đã mô phỏng từ SIM warehouse…');
     try {
       await refresh();
@@ -404,7 +422,12 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
     } finally {
       reading = false;
       controls.forEach(control => control.disabled = false);
-      if (btn) btn.disabled = false;
+      clearInterval(elapsedTimer);
+      if (btn) {
+        btn.replaceChildren(...originalButtonContent);
+        btn.removeAttribute('aria-busy');
+        btn.disabled = false;
+      }
     }
   });
   refresh().catch(() => {});

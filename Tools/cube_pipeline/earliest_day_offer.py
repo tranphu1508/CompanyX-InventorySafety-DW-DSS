@@ -2,7 +2,8 @@
 
 The new order is not forced in the final objective solve; old due dates are protected. Every candidate is
 solved independently from the same verified, frozen ROP decision state.
-A1/A2/C priority plans are prepared after the deadline search and saved in the same SIM offer group.
+A1/A2/C and the sequential B search run in parallel and are saved in one SIM offer group.
+No preliminary original-deadline optimization is needed.
 """
 from __future__ import annotations
 
@@ -16,64 +17,13 @@ import sys
 import traceback
 
 from settings import DEMO, GPT, OUTPUT, read, save, sql
-from day_offer_plan import solve, validate_input
+from dss_bridge import validate_input
 
 
 def progress(folder: Path, **fields):
     save(folder / 'progress.json', fields)
     detail = fields.get('message') or fields.get('state', '')
     print(detail, flush=True)
-
-
-def find_opening_source(run: int, known: str, binding: dict) -> Path:
-    """Find an existing, verified, no-inquiry decision at KnownAt for this ROP run."""
-    root = OUTPUT / 'runs'
-    matches = []
-    for file in sorted(root.glob('*/candidates/*/artifacts/scope.json')):
-        try:
-            scope = read(file)
-            source = file.parent
-            if not (scope.get('candidate_kind') == 'BASELINE'
-                    and scope.get('initialization_mode') == 'BASELINE_AT_START'
-                    and scope.get('known_at') == known
-                    and int(scope.get('base_run_key', -1)) == run
-                    and not scope.get('synthetic_orders')):
-                continue
-            if read(source / 'prefix_proof.json').get('status') != 'PASSED':
-                continue
-            if read(source.parents[2] / 'input_binding.json') != binding:
-                continue
-            matches.append(source)
-        except (OSError, ValueError, KeyError, TypeError):
-            continue
-    if not matches:
-        raise ValueError(
-            'Chua co nhanh BASELINE khong don moi da duoc xac minh tai ngay biet don '
-            f'{known} cho RunKey={run}, hoac snapshot ACT da thay doi. '
-            'Can chay inquiry BASELINE truoc, theo pipeline hien co.'
-        )
-    return matches[-1]
-
-
-def prepare_opening_source(run: int, known: str, folder: Path) -> Path:
-    """Create the verified no-inquiry state through the existing SIM publication pipeline."""
-    from uuid import uuid4
-    from dss_bridge import run_request
-    catalog = read(DEMO / 'RuntimeData/reference/catalog.json')
-    entry = next(b for b in catalog['baselines']
-                 if b['PlanningRunKey'] == run and b['status'] == 'READY')
-    rid = 'web-opening-' + uuid4().hex
-    request = dict(schema='companyx.inquiry.request.v2', request_id=rid, inquiry_id=rid,
-                   base_run_key=run, known_at=known, analysis_end=known,
-                   solver_name='GUROBI', solver_seconds=900, threads=8, penalties={},
-                   scenario_index=entry['scenario_index'], baseline_id=entry['baseline_id'],
-                   initialization_mode='BASELINE_AT_START', initial_stock_rule=entry['initial_stock_rule'],
-                   candidates=[dict(candidate_id='BASELINE', kind='BASELINE', tranches=[])])
-    path = folder / 'opening-request.json'
-    save(path, request)
-    progress(folder, state='running', message='Dang chuan bi trang thai nen va luu vao SIM.')
-    run_request(path)
-    return find_opening_source(run, known, validate_input())
 
 
 def request_for_day(original: dict, product: int, qty: int, due: date, slot: str) -> dict:
@@ -93,28 +43,28 @@ def request_for_day(original: dict, product: int, qty: int, due: date, slot: str
     return request
 
 
-def one_day(source: Path, original: dict, binding: dict, folder: Path,
-            product: int, qty: int, due: date, slot: str, decision_day: int) -> dict:
-    request = request_for_day(original, product, qty, due, slot)
-    results = solve(source, request, folder, binding)
-    if len(results) != 1:
-        raise ValueError('The per-day solve must produce exactly one FULL candidate.')
-    result = results[0]
-    decision_file = folder / request['candidates'][1]['candidate_id'] / 'decisions' / f'{decision_day:04d}.json'
-    decision = read(decision_file)
-    if decision['solver']['status'] != 'OPTIMAL':
-        raise RuntimeError(f"Day {due}: solver status {decision['solver']['status']} is not OPTIMAL; "
-                           'cannot assert earliest under this objective.')
-    if result['plannedShip'] + result['plannedLoss'] != qty:
-        raise ValueError('Invalid complete settlement returned by the MILP.')
-    result['slot'] = slot  # The SIM table has a CHAR(1) Slot ('A' or 'B').
-    return result
-
-
-def prepare_priority(source, original, product, qty, due, folder):
-    from priority_offer_plan import run as run_priority
-    request = request_for_day(original, product, qty, date.fromisoformat(due), 'A')
-    run_priority(source, request, folder / 'priority')
+def offer_group(priority: dict, qty: int, known: str, due: str, binding: dict) -> dict:
+    """Storage envelope for verified variants; not an extra simulated A plan."""
+    variants = priority.get('variants', [])
+    if len(variants) != 3 or {v.get('variant') for v in variants} != {'A1', 'A2', 'C'}:
+        raise ValueError('Expected exactly A1, A2 and C before publication.')
+    state_hash = priority.get('sourceStateHash')
+    if (not state_hash or priority.get('sourceSnapshotId') != binding['snapshot_id']
+            or priority.get('knownAt') != known or priority.get('newOrderDue') != due):
+        raise ValueError('Offer bundle does not match the requested state, snapshot or dates.')
+    for variant in variants:
+        mode, status = variant['variant'], variant.get('status')
+        if variant.get('baseStateHash') != state_hash or variant.get('due') != due:
+            raise ValueError('Offer variants do not share the requested state and deadline.')
+        if status == 'INFEASIBLE' and mode != 'C':
+            continue
+        if status != 'OPTIMAL':
+            raise ValueError('All variants require an optimum or an infeasibility certificate.')
+        expected = (0, qty) if mode == 'C' else (qty, 0)
+        if (variant.get('plannedShip'), variant.get('plannedLoss')) != expected:
+            raise ValueError('Invalid whole-order settlement in offer variant.')
+    return dict(schema='companyx.day-offer-group.v2', slot='A', due=due,
+                baseStateHash=state_hash, snapshotId=binding['snapshot_id'], priority=priority)
 
 
 def publish(run: int, product: int, qty: int, known: str,
@@ -122,7 +72,7 @@ def publish(run: int, product: int, qty: int, known: str,
             source: Path, folder: Path, status: str) -> None:
     """Atomically replace only this one A/B offer group; back up prior rows to JSON."""
     if not results or results[0]['slot'] != 'A':
-        raise ValueError('A must be evaluated before publication.')
+        raise ValueError('The A1/A2/C storage group is required before publication.')
     if len(results) > 2 or (len(results) == 2 and results[1]['slot'] != 'B'):
         raise ValueError('Only A and the first chosen B may be published.')
     if len({r['baseStateHash'] for r in results}) != 1:
@@ -172,24 +122,27 @@ def run_search(run: int, product: int, qty: int, known: str,
     if original_due < known_date:
         raise ValueError('Due date must not precede the date the order was known.')
     binding = validate_input()
-    source = source_override or find_opening_source(run, known, binding)
-    source = source.resolve()
-    if not source.is_relative_to(OUTPUT / 'runs') or not source.is_dir():
-        raise ValueError('Opening candidate must be an existing run under GPT/output/.../runs.')
-    scope = read(source / 'scope.json')
-    if (scope.get('known_at') != known or int(scope.get('base_run_key', -1)) != run
-            or scope.get('candidate_kind') != 'BASELINE'
-            or scope.get('synthetic_orders')
-            or read(source / 'prefix_proof.json').get('status') != 'PASSED'
-            or read(source.parents[2] / 'input_binding.json') != binding):
-        raise ValueError('Opening BASELINE does not match run, known date or current ACT snapshot.')
-    original = read(source.parents[2] / 'request.json')
-    if (original['known_at'] != known or original['base_run_key'] != run
-            or original.get('initialization_mode') != 'BASELINE_AT_START'):
-        raise ValueError('Opening request is incompatible with this search.')
-    # Extend the inquiry analysis window, if needed, only up to the VERIFIED
-    # full-history ROP baseline end. All dates share this one fixed end date.
-    baseline_end = date.fromisoformat(scope['original_base_end'])
+    from rop_checkpoints import lookup, request_base
+    source = Path(source_override or lookup(run,known,binding)).resolve()
+    if source.is_file():
+        original, baseline_end = request_base(source,run,known,binding)
+    else:
+        if not source.is_relative_to(OUTPUT / 'runs') or not source.is_dir():
+            raise ValueError('Opening candidate must be an existing run under GPT/output/.../runs.')
+        scope = read(source / 'scope.json')
+        if (scope.get('known_at') != known or int(scope.get('base_run_key', -1)) != run
+                or scope.get('candidate_kind') != 'BASELINE'
+                or scope.get('synthetic_orders')
+                or read(source / 'prefix_proof.json').get('status') != 'PASSED'
+                or read(source.parents[2] / 'input_binding.json') != binding):
+            raise ValueError('Opening BASELINE does not match run, known date or current ACT snapshot.')
+        original = read(source.parents[2] / 'request.json')
+        if (original['known_at'] != known or original['base_run_key'] != run
+                or original.get('initialization_mode') != 'BASELINE_AT_START'):
+            raise ValueError('Opening request is incompatible with this search.')
+        # Extend the inquiry analysis window, if needed, only up to the VERIFIED
+        # full-history ROP baseline end. All dates share this one fixed end date.
+        baseline_end = date.fromisoformat(scope['original_base_end'])
     last_day = min(baseline_end, original_due + timedelta(days=max_days))
     if last_day < original_due:
         raise ValueError('Original deadline is beyond the verified ROP baseline end.')
@@ -202,15 +155,15 @@ def run_search(run: int, product: int, qty: int, known: str,
     request = request_for_day(original, product, qty, original_due, 'A')
     progress(folder, state='running', tested=0, currentDue=due,
              message='Dang toi uu A1/A2/C va tim B giu dung han toan bo don cu.')
-    day_index = (known_date - date.fromisoformat(scope['start'])).days
-    a = one_day(source, original, binding, folder/'original-due',
-                product, qty, original_due, 'A', day_index)
     priority, b = parallel_run(source, request, folder/'parallel',
                                max_days=(last_day-original_due).days)
-    a['priority'] = priority
-    results = [a]
+    results = [offer_group(priority, qty, known, due, binding)]
     attempts = b['search']['attempts']
     if b['status'] != 'NO_B':
+        if (b['status'] != 'OPTIMAL' or b.get('snapshotId') != binding['snapshot_id']
+                or b.get('baseStateHash') != results[0]['baseStateHash']
+                or (b.get('plannedShip'), b.get('plannedLoss')) != (qty, 0)):
+            raise ValueError('Invalid verified B settlement or source identity.')
         selected_due = b['due']
         if selected_due != due:
             b['slot'] = 'B'
@@ -234,7 +187,7 @@ def main() -> int:
     parser.add_argument('--due', required=True)
     parser.add_argument('--max-days', type=int, default=45)
     parser.add_argument('--folder', type=Path, required=True)
-    parser.add_argument('--prepare-opening', action='store_true', help='Prepare a missing opening state through the SIM pipeline')
+    parser.add_argument('--prepare-opening', action='store_true', help='Ensure a verified daily ROP checkpoint family exists; never republish historical facts')
     parser.add_argument('--source', type=Path, help='Optional verified no-inquiry BASELINE artifact folder')
     args = parser.parse_args()
     folder = args.folder.resolve()
@@ -247,11 +200,9 @@ def main() -> int:
         os.environ.setdefault('GRB_LICENSE_FILE', str(license_file))
     try:
         if args.prepare_opening and args.source is None:
-            binding = validate_input()
-            try:
-                args.source = find_opening_source(args.run, args.known, binding)
-            except ValueError:
-                args.source = prepare_opening_source(args.run, args.known, folder)
+            from rop_checkpoints import lookup
+            progress(folder,state='running',message='Dang nap checkpoint ROP da xac minh tu SIM.')
+            args.source = lookup(args.run,args.known,validate_input(),prepare=True)
         run_search(args.run, args.product, args.qty, args.known, args.due,
                    args.max_days, folder, args.source)
         return 0

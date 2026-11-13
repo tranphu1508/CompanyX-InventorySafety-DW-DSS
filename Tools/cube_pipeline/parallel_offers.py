@@ -40,7 +40,7 @@ def run(source, request, folder, max_days=45):
     ctx=context(source,request)
     _,meta,_=model_for(ctx,'A1')
     initial_horizon=meta['H']
-    threads=min(ctx['spec']['solver']['threads'],max(1,(os.cpu_count() or 1)//4))
+    threads=12  # Per-solve cap requested for the four parallel offer branches.
     save(folder/'execution.json',dict(workers=4,threadsPerWorker=threads,
                                     initialHorizon=initial_horizon,policy='A1_A2_C_B_PARALLEL_B_DATES_SEQUENTIAL'))
     with ProcessPoolExecutor(max_workers=4,mp_context=multiprocessing.get_context('spawn')) as pool:

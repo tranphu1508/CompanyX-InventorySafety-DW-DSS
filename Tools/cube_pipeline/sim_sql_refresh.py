@@ -6,6 +6,8 @@ sys.path.insert(0,str(DEMO/'DSS/control'))
 from publish.operation_gate import publish_operation_gate
 
 def refresh_sim():
+ from rop_checkpoints import install
+ install()
  from publish.active_sql_scope import refresh_active_sql_scope
  folder=evidence(OUTPUT/'refresh-sim'/(datetime.now().strftime('%Y%m%dT%H%M%S')+'-'+uuid.uuid4().hex[:8]))
  with sql('SIM') as version_lock,lease(version_lock),publish_operation_gate():

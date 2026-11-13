@@ -20,7 +20,7 @@ def executor_identity():
     return checkpoint_io.digest({'execution_files':{p.name:hashlib.sha256(p.read_bytes()).hexdigest()
         for p in (Path(__file__),Path(checkpoint_io.__file__))},'optimizer_release':release_identity()})
 
-def simulate(data,spec,controller=None,sink=None,progress=None,folder=None,*,checkpoint=None,checkpoint_sink=None):
+def simulate(data,spec,controller=None,sink=None,progress=None,folder=None,*,checkpoint=None,checkpoint_sink=None,decision_sink=None):
     P=data['P'];raw=data['raw'];stock=set(P)|raw;bom=data['bom'];start=data['start'];end=data['end']
     if (spec['policy']=='QUETSCHLICH_ADAPT')!=(controller is not None):raise ValueError('Policy/controller mismatch')
     case='7B' if spec['allow_backorders'] else '7C'
@@ -116,6 +116,11 @@ def simulate(data,spec,controller=None,sink=None,progress=None,folder=None,*,che
             if o['due']==today:
                 for x in o['lines']:due[x['p']]+=x['remaining']
         offset=len(ob.delivery);action=None
+        if decision_sink is not None:
+            # Same boundary/arguments as controller.decide: receipts and reveal are complete,
+            # customer dispatch and today's ROP production decisions have not occurred.
+            decision_sink(t,inv.copy(),deepcopy(dict(pipe)),ob.manufactured_book(),
+                          deepcopy(queue),ob.snapshot(),supply)
         if controller:
             action=controller.decide(t,inv.copy(),deepcopy(dict(pipe)),ob.manufactured_book(),deepcopy(queue),ob.snapshot(),supply)
             if action['day']!=t:raise ValueError('Decision day mismatch')

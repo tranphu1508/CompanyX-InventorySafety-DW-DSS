@@ -4,7 +4,15 @@ MỞ PROJECT
 Visual Studio 2022: CompanyX.ACT_SIM.sln (extension SSIS và Analysis Services Projects).
 Web local: http://localhost:5087
 Chạy web từ thư mục project: dotnet run --project Web/DssInventoryMvc --launch-profile http
-Web đọc phương án đã lưu trong SQL SIM. Khi bấm Tìm phương án mà chưa có kết quả, web xếp hàng chạy bộ giải Python; bộ giải công bố vào SIM rồi web đọc lại SQL SIM. Trạng thái và log tác vụ nằm trong _local/web-jobs/. Sau khi chuẩn bị trạng thái nền, A1/A2/C/B chạy trong tối đa 4 tiến trình độc lập; mỗi tiến trình dùng min(threads cấu hình, số CPU logic chia 4), tối thiểu 1 luồng. Các lần thử ngày của B và tìm độ trễ của A2 vẫn tuần tự. Nếu A2 mở rộng kỳ đánh giá, các nhánh liên quan được tính lại trước khi công bố đồng bộ vào SIM. Web vẫn xử lý lần lượt từng đơn.
+Web đọc phương án đã lưu trong SQL SIM. Khi bấm Tìm phương án mà chưa có kết quả, web lấy checkpoint ROP đã xác minh của ngày biết đơn, chạy A1/A2/C/B song song rồi công bố kết quả vào SIM để web đọc lại. Không dựng lại hay công bố lại lịch sử ROP cho từng ngày nhập mới. Tối đa 4 tiến trình, mỗi lần giải trần 12 luồng; các lần thử ngày của B và tìm độ trễ của A2 vẫn tuần tự. Nếu A2 mở rộng kỳ đánh giá, các nhánh liên quan được tính lại trước khi lưu đồng bộ. Web xử lý lần lượt từng đơn; log nằm trong _local/web-jobs/.
+
+CHECKPOINT NỀN ROP
+Chuẩn bị một lần cho hai lượt ROP đã có: .venv\Scripts\python.exe -B Tools/cube_pipeline/rop_checkpoints.py build
+Mỗi ngày chụp sau nhận hàng và nhận diện đơn, trước giao hàng và quyết định sản xuất. Bộ tạo đối chiếu toàn bộ tồn kho/ngày và sự kiện với archive ROP đã xác minh; chỉ sau khi khớp mới công bố registry trong một giao dịch.
+SIM chỉ thêm bảng cxsim.ROPDecisionCheckpoint gồm 6 cột: BaseRunKey, DecisionDate, InputIdentity, CheckpointPath, FileSHA256, ManifestSHA256. Không thêm planning run, inquiry hoặc ghi lại fact lịch sử. File nén và bằng chứng đối chiếu nằm trong _local/rop-checkpoints/; đường dẫn trong SQL là tương đối với checkout.
+Khi ACT snapshot, baseline hay phiên bản thực thi thay đổi, bộ checkpoint cũ không được dùng lẫn. Có thể chạy lại lệnh chuẩn bị; nếu bộ hiện hành đã đủ ngày thì tái sử dụng. Luồng web có thể chuẩn bị cả bộ một lần nếu chưa có; không chuẩn bị riêng và nạp lại lịch sử theo từng đơn.
+Dữ liệu checkpoint hỏng hoặc sai kịch bản/ngày bị từ chối. Không sửa file checkpoint đã đăng ký. Script cài bảng: Database/Setup/ROPDecisionCheckpoint.sql; refresh SIM SQL cũng cài bảng nếu chưa tồn tại.
+
 
 CẤU TRÚC
 Database/, SSIS/, CompanyX.Split.Integration/: nguồn và ETL/điều phối.
