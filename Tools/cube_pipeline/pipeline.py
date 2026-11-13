@@ -4,7 +4,7 @@ from datetime import datetime
 from settings import *
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('--stage',required=True,choices=['etl-act','prepare-act','export-act','dss','process-sim','validate-request']);p.add_argument('--request',type=Path);p.add_argument('--purpose',choices=['ORDER_INQUIRY','PIPELINE_SMOKE'],default='ORDER_INQUIRY');a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--stage',required=True,choices=['etl-act','prepare-act','export-act','dss','refresh-sim','validate-request']);p.add_argument('--request',type=Path);p.add_argument('--purpose',choices=['ORDER_INQUIRY','PIPELINE_SMOKE'],default='ORDER_INQUIRY');a=p.parse_args()
  folder=evidence(OUTPUT/'pipeline-attempts'/(datetime.now().strftime('%Y%m%dT%H%M%S')+'-'+a.stage+'-'+uuid.uuid4().hex[:8]))
  status={'stage':a.stage,'status':'RUNNING','log':str(folder/'stage.log')};save(folder/'status.json',status)
  try:
@@ -21,9 +21,9 @@ def main():
    elif a.stage=='dss':
     from dss_bridge import run_request
     run_request(a.request,a.purpose)
-   elif a.stage=='process-sim':
-    from dss_bridge import process_sim
-    process_sim()
+   elif a.stage=='refresh-sim':
+    from sim_sql_refresh import refresh_sim
+    refresh_sim()
    else:
     if a.request is None or not a.request.is_file() or GPT not in a.request.resolve().parents:raise ValueError('Choose a request JSON inside E:/Study-BKU/GPT before running the full flow')
     from dss_bridge import inquiry_v2

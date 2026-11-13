@@ -1,4 +1,4 @@
-"""Active procurement scope for the owned cube; historical facts stay immutable."""
+"""Active procurement scope for SQL SIM web queries; historical facts stay immutable."""
 from pathlib import Path
 from datetime import datetime,timezone
 from contextlib import nullcontext
@@ -63,7 +63,7 @@ def classify_specs(conn,policy):
         rows.append({'PlanningRunKey':key,'ExecutionSpecHash':expected,'SupplyMode':mode,'AllowBackorders':backorders,'IsActive':mode==policy['required_supply_mode']})
     return rows
 
-def refresh_active_cube_scope(output_file,*,project_root=None,gate_held=False):
+def refresh_active_sql_scope(output_file,*,project_root=None,gate_held=False):
     project=Path(project_root).resolve() if project_root else PROJECT
     output_file=Path(output_file).resolve();output_file.relative_to(project/'_local')
     if output_file.exists():raise ValueError('Scope receipt must be new')
@@ -88,11 +88,11 @@ def refresh_active_cube_scope(output_file,*,project_root=None,gate_held=False):
             if actual!=expected:raise ValueError('Active run scope differs from verified execution specs')
             if sha(policy_path)!=policy_hash:raise ValueError('Active policy changed during refresh')
             conn.commit()
-    result={'schema':'companyx.active-cube-scope.v1','status':'VERIFIED','at':datetime.now(timezone.utc).isoformat(),'policy_id':policy['policy_id'],'policy_sha256':policy_hash,'active_run_keys':expected,'retired_run_keys':[r['PlanningRunKey'] for r in rows if not r['IsActive']],'detail_ineligible_run_keys':[r['PlanningRunKey'] for r in rows if r['IsActive'] and r['PlanningRunKey'] not in detail_ready],'required_detail_contract':'companyx.execution-detail.v1','decisions':rows,'gate':gate_receipt,'historical_facts_modified':False,'production_duration_policy':'PRESERVE_EXISTING'}
+    result={'schema':'companyx.active-sql-scope.v1','status':'VERIFIED','at':datetime.now(timezone.utc).isoformat(),'policy_id':policy['policy_id'],'policy_sha256':policy_hash,'active_run_keys':expected,'retired_run_keys':[r['PlanningRunKey'] for r in rows if not r['IsActive']],'detail_ineligible_run_keys':[r['PlanningRunKey'] for r in rows if r['IsActive'] and r['PlanningRunKey'] not in detail_ready],'required_detail_contract':'companyx.execution-detail.v1','decisions':rows,'gate':gate_receipt,'historical_facts_modified':False,'production_duration_policy':'PRESERVE_EXISTING'}
     output_file.parent.mkdir(parents=True,exist_ok=True);output_file.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
     return result
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--output',required=True,type=Path);p.add_argument('--gate-held',action='store_true');args=p.parse_args()
-    result=refresh_active_cube_scope(args.output,gate_held=args.gate_held)
+    result=refresh_active_sql_scope(args.output,gate_held=args.gate_held)
     print(json.dumps({k:result[k] for k in ('status','policy_id','active_run_keys','retired_run_keys')}))

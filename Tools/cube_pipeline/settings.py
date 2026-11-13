@@ -12,7 +12,10 @@ OWNER='companyx-split-20261107'
 SQL_SERVER='localhost'
 SSAS_SERVER=r'localhost\COMPANYXOLAP'
 DATABASES={r:'CompanyX_DW_'+r+'_20261107' for r in ('ACT','SIM')}
-CUBES={r:'CompanyX_'+r+'_20261107' for r in ('ACT','SIM')}
+CUBES={'ACT':'CompanyX_ACT_20261107'}
+
+def require_cube_role(role):
+ if role not in CUBES:raise ValueError('Only ACT has an SSAS cube; SIM uses SQL refresh')
 SQL_DATA=DEMO/'Warehouse/Data'
 CONTRACT=DEMO/'Warehouse/Split/input-contract.json'
 

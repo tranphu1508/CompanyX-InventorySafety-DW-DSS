@@ -8,7 +8,6 @@ from simulation import baseline_inputs,inquiry_v2
 from publish.inquiry_storage import prepare_candidate_storage
 from publish.inquiry_v2_publisher import publish_v2
 from publish.operation_gate import publish_operation_gate
-from ssas import process
 
 def canonical(value):return json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(',',':'),allow_nan=False)
 def digest(value):return hashlib.sha256(canonical(value).encode()).hexdigest()
@@ -65,24 +64,11 @@ def run_request(path,purpose='ORDER_INQUIRY'):
   result={'status':'PUBLISHED','input_binding':binding,'candidates':results}
   save(folder/'result.json',result);print('All candidates published only to SIM.',flush=True);return result
 
-def process_sim():
- from publish.active_cube_scope import refresh_active_cube_scope
- folder=evidence(OUTPUT/'process-sim'/datetime.now().strftime('%Y%m%dT%H%M%S'))
- with sql('SIM') as version_lock,lease(version_lock),publish_operation_gate():
-  with sql('SIM') as cn:
-   for name in ('FactSourceCache.sql','BaselineActivitySourceCache.sql','RunDayCache.sql','ControlSourcePreflight.sql','RefreshOrderCache.sql'):
-    script=(DEMO/'DSS/control/publish'/name).read_text(encoding='utf-8-sig')
-    # GO is a SQL client batch delimiter, not a T-SQL statement.
-    for batch in re.split(r'(?im)^[ \t]*GO[ \t]*(?:--[^\r\n]*)?$',script):
-     if batch.strip():
-      cursor=cn.execute(batch)
-      while cursor.nextset():pass
-  refresh_active_cube_scope(folder/'active-scope.json',project_root=PROJECT,gate_held=True)
-  receipt=process('SIM');save(folder/'process.json',receipt);return receipt
-
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('action',choices=['run','validate-input','process-sim']);p.add_argument('--request',type=Path);p.add_argument('--purpose',choices=['ORDER_INQUIRY','PIPELINE_SMOKE'],default='ORDER_INQUIRY');a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('action',choices=['run','validate-input','refresh-sim']);p.add_argument('--request',type=Path);p.add_argument('--purpose',choices=['ORDER_INQUIRY','PIPELINE_SMOKE'],default='ORDER_INQUIRY');a=p.parse_args()
  evidence(TMP/'dss')
  if a.action=='run':run_request(a.request,a.purpose)
  elif a.action=='validate-input':print(json.dumps(validate_input(),indent=2))
- else:process_sim()
+ else:
+  from sim_sql_refresh import refresh_sim
+  refresh_sim()

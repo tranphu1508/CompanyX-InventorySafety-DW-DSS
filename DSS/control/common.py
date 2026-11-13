@@ -18,7 +18,7 @@ def demo_folder(project=PROJECT):
 DEMO = demo_folder()
 PYTHON = DEMO / '.venv/Scripts/python.exe'
 DTEXEC = Path(r'C:\Program Files\Microsoft SQL Server\160\DTS\Binn\DTExec.exe')
-CONTROL_PACKAGE = DEMO / 'CompanyX.Split.Integration/80_DSS_to_SIM_Cube.dtsx'
+CONTROL_PACKAGE = DEMO / 'CompanyX.Split.Integration/80_DSS_to_SIM_Warehouse.dtsx'
 WORKFLOW_RUNTIME = 'ssis-python-act-sim-v1'
 
 def stamp(): return datetime.now(timezone.utc).isoformat()

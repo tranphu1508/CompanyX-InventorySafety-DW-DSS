@@ -1,4 +1,4 @@
-"""Build native ACT business MOLAP and SIM scenario cubes using existing providers."""
+"""Build native ACT business MOLAP using existing providers."""
 from copy import deepcopy
 from pathlib import Path
 import re,json,uuid,xml.etree.ElementTree as ET
@@ -18,8 +18,9 @@ def sqlq(name):return '['+name.replace(']',']]')+']'
 
 
 def prune(base,role):
+ require_cube_role(role)
  db=deepcopy(base);set_text(db,'ID',CUBES[role]);set_text(db,'Name',CUBES[role])
- set_text(db,'Description',('Actual operational warehouse analytics and versioned DSS input export.' if role=='ACT' else 'Simulation results only; scenario comparisons and detailed rolling-horizon plan analysis.'))
+ set_text(db,'Description','Actual operational warehouse analytics and versioned DSS input export.')
  ann=one(db,'Annotations');ann.clear()
  for name,value in (('CompanyXSplitOwner',OWNER),('CompanyXSplitRole',role)):
   a=add(ann,'Annotation');add(a,'Name',name);add(a,'Value',value)
@@ -75,7 +76,7 @@ def prune(base,role):
  for tag in ('Perspectives','Actions','Kpis','Translations'):
   element=cube.find('{*}'+tag)
   if element is not None:cube.remove(element)
- set_text(cube,'DefaultMeasure','[Measures].['+('Actual Sales Line Count' if role=='ACT' else 'Published Simulation Run Count')+']')
+ set_text(cube,'DefaultMeasure','[Measures].[Actual Sales Line Count]')
  # DSV schema must contain only actual dependencies of this cube and dimensions.
  used={n.text for d in [cube,*list(dimensions)] for n in d.findall('.//{*}TableID')}
  dsv=db.find('./{*}DataSourceViews/{*}DataSourceView')
@@ -86,7 +87,6 @@ def prune(base,role):
   tid=table.get('name')
   if role=='ACT' and tid in ('DimDate','DimProduct','DimLocation','DimUnit'):
    table.set('{'+MSPROP+'}DbSchemaName','cxolap')
-  if role=='SIM' and tid=='DimRun':table.set('{'+MSPROP+'}DbSchemaName','cxsim')
  for constraint in list(dataset):
   if constraint.tag in ('{'+XS+'}unique','{'+XS+'}keyref','{'+XS+'}key'):
    selector=constraint.find('{'+XS+'}selector')
@@ -125,6 +125,7 @@ def perspective(cube,name,gids,calculated):
  if default is not None:add(p,'DefaultMeasure','[Measures].['+default.findtext('{*}ID')+']')
 
 def export_native(db,role):
+ require_cube_role(role)
  target=DEMO/'MOLAP'/('CompanyX.'+role+'.Analysis');target.mkdir(parents=True,exist_ok=True)
  name='CompanyX.'+role+'.Analysis';project=ET.parse(TEMPLATE/'Template.dwproj').getroot()
  for tag in ('Dimensions','Cubes','DataSources','DataSourceViews','Miscellaneous','Roles'):project.find(tag).clear()
@@ -159,29 +160,14 @@ def export_native(db,role):
    e=opts.find(key)
    if e is None:e=ET.SubElement(opts,key)
    e.text=value
- ET.ElementTree(project).write(target/((CUBES[role] if role=='ACT' else name)+'.dwproj'),encoding='utf-8',xml_declaration=True)
- return target/((CUBES[role] if role=='ACT' else name)+'.dwproj')
+ ET.ElementTree(project).write(target/(CUBES[role]+'.dwproj'),encoding='utf-8',xml_declaration=True)
+ return target/(CUBES[role]+'.dwproj')
 
-def add_sim_lineage(db,cube):
- dsv=db.find('./{*}DataSourceViews/{*}DataSourceView')
- row=dsv.find('.//{'+XS+'}choice/{'+XS+'}element[@name="DimRun"]')
- seq=row.find('./{'+XS+'}complexType/{'+XS+'}sequence')
- dim=next(d for d in db.findall('./{*}Dimensions/{*}Dimension') if d.findtext('{*}ID')=='Run')
- key=next(a for a in dim.findall('./{*}Attributes/{*}Attribute') if a.findtext('{*}Usage')=='Key')
- role=next(d for d in cube.findall('./{*}Dimensions/{*}Dimension') if d.findtext('{*}ID')=='Run')
- for column,attribute,size in [('InputOrigin','Input Origin',40),('ACTSnapshotID','ACT Input Snapshot',64)]:
-  el=ET.SubElement(seq,'{'+XS+'}element',{'name':column})
-  st=ET.SubElement(el,'{'+XS+'}simpleType');rest=ET.SubElement(st,'{'+XS+'}restriction',{'base':'xs:string'});ET.SubElement(rest,'{'+XS+'}maxLength',{'value':str(size)})
-  meta={'DimRun':{column:dict(sql_type='nvarchar',max_length=size*2,nullable=False)}}
-  a=add(dim.find('{*}Attributes'),'Attribute');add(a,'ID',attribute);add(a,'Name',attribute)
-  data_item(add(a,'KeyColumns'),'DimRun',column,meta,'KeyColumn');data_item(a,'DimRun',column,meta,'NameColumn')
-  add(add(one(key,'AttributeRelationships'),'AttributeRelationship'),'AttributeID',attribute)
-  add(add(role.find('{*}Attributes'),'Attribute'),'AttributeID',attribute)
-
-
-def build(roles=('ACT','SIM')):
+def build(roles=('ACT',)):
+ roles=tuple(roles)
+ for role in roles:require_cube_role(role)
  # Version 2 uses natural business grains, not Input_* row-token subjects.
- base=ET.parse(SOURCE).find('./{*}ObjectDefinition/{*}Database');report=read(OUTPUT/'cube-models.json') if (OUTPUT/'cube-models.json').exists() else {}
+ base=ET.parse(SOURCE).find('./{*}ObjectDefinition/{*}Database');report={}
  for role in roles:
   db,cube,calculated=prune(base,role)
   if role=='ACT':
@@ -193,14 +179,6 @@ def build(roles=('ACT','SIM')):
      cn.commit()
     except BaseException:cn.rollback();raise
    save(CONTRACT,contract)
-  else:
-   add_sim_lineage(db,cube)
-   from sim_business import simplify_sim
-   calculated,cleanup=simplify_sim(db,cube)
-   gids={g.findtext('{*}ID') for g in cube.findall('./{*}MeasureGroups/{*}MeasureGroup')}
-   overview={'SimulationDaily','OrderLineService','OrderService','RunDay','RunSummary','OrderDaily','OrderLineDaily'}
-   perspective(cube,'SIM Scenario Comparison',gids & overview,calculated)
-   perspective(cube,'SIM Order and Production',gids,calculated)
   command=ET.Element('{'+E+'}Create',{'AllowOverwrite':'false'});add(command,'ObjectDefinition').append(db)
   target=DEMO/'MOLAP'/('CompanyX.'+role+'.create.xmla');target.parent.mkdir(parents=True,exist_ok=True)
   ET.ElementTree(command).write(target,encoding='utf-8',xml_declaration=True)

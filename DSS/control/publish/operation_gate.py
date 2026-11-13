@@ -1,4 +1,4 @@
-"""Serialize final warehouse publication with new-cube snapshot processing."""
+"""Serialize final warehouse publication with SIM SQL cache/scope refresh."""
 from contextlib import contextmanager
 import math
 

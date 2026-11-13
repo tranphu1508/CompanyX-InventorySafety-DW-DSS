@@ -1,4 +1,4 @@
-"""Deploy/process only the isolated ACT/SIM SSAS databases."""
+"""Deploy/process only the isolated ACT SSAS database."""
 import argparse,xml.etree.ElementTree as ET
 from datetime import datetime,timezone
 from settings import *
@@ -6,6 +6,7 @@ from msolap import connect,query,read_recordset
 E='http://schemas.microsoft.com/analysisservices/2003/engine'
 
 def metadata(cn,role):
+ require_cube_role(role)
  with cn.call('OpenSchema',-1,[CUBES[role]],'{3444B255-171E-4CB9-AD98-19E57888A75F}') as rs:
   names,rows=read_recordset(rs)
  if len(rows)!=1:raise ValueError('Expected one isolated SSAS database')
@@ -27,6 +28,7 @@ def execute(cn,xml):
   raise RuntimeError(str(original)+'\n'+'\n'.join(descriptions)) from original
 
 def deploy(role):
+ require_cube_role(role)
  file=DEMO/'MOLAP'/('CompanyX.'+role+'.create.xmla')
  root=ET.parse(file).getroot();db=root.find('./{*}ObjectDefinition/{*}Database')
  if db.findtext('{*}ID')!=CUBES[role]:raise ValueError('Unexpected XMLA target')
@@ -43,6 +45,7 @@ def deploy(role):
  print('Deployed '+CUBES[role],flush=True)
 
 def process(role):
+ require_cube_role(role)
  with connect(SSAS_SERVER,CUBES[role]) as cn:
   metadata(cn,role)
   command=f'<Batch xmlns="{E}" Transaction="true"><Parallel MaxParallel="2"><Process><Object><DatabaseID>{CUBES[role]}</DatabaseID></Object><Type>ProcessFull</Type></Process></Parallel></Batch>'
@@ -55,6 +58,6 @@ def process(role):
   print(receipt,flush=True);return receipt
 
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('action',choices=['deploy','process']);p.add_argument('role',choices=['ACT','SIM']);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('action',choices=['deploy','process']);p.add_argument('role',choices=['ACT']);a=p.parse_args()
  evidence(TMP/'ssas')
  (deploy if a.action=='deploy' else process)(a.role)
