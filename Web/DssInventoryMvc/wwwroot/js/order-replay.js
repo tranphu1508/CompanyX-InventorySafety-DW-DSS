@@ -445,11 +445,97 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
   }
   for (const p of catalog.products || [])
     $('product').add(new Option(p.name + ' · ' + p.number, String(p.productId)));
+  const productSelect = $('product');
+  productSelect.hidden = true;
+  const picker = element('div', null, 'product-picker');
+  const pickerButton = element('button', 'Chọn mẫu xe đạp', 'form-select product-picker-button');
+  pickerButton.id = 'productPicker';
+  pickerButton.type = 'button';
+  pickerButton.setAttribute('aria-expanded', 'false');
+  pickerButton.setAttribute('aria-controls', 'productPickerPanel');
+  document.querySelector('label[for="product"]').htmlFor = pickerButton.id;
+  const pickerPanel = element('div', null, 'product-picker-panel');
+  pickerPanel.id = 'productPickerPanel';
+  pickerPanel.hidden = true;
+  const productSearch = element('input', null, 'form-control product-picker-search');
+  productSearch.id = 'productSearch';
+  productSearch.type = 'search';
+  productSearch.placeholder = 'Tìm tên, mã hoặc ProductID…';
+  productSearch.setAttribute('aria-label', 'Tìm sản phẩm theo tên, mã hoặc ProductID');
+  productSearch.autocomplete = 'off';
+  const productMatches = element('small', '', 'product-search-status');
+  productMatches.setAttribute('role', 'status');
+  const productResults = element('div', null, 'product-picker-results');
+  pickerPanel.append(productSearch, productMatches, productResults);
+  picker.append(pickerButton, pickerPanel);
+  productSelect.after(picker);
+  const normalizeProduct = text => String(text).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/đ/g, 'd');
+  function syncProductPicker() {
+    pickerButton.textContent = productSelect.selectedOptions[0]?.textContent || 'Chọn mẫu xe đạp';
+  }
+  function closeProductPicker(returnFocus = false) {
+    pickerPanel.hidden = true;
+    pickerButton.setAttribute('aria-expanded', 'false');
+    if (returnFocus) pickerButton.focus();
+  }
+  function filterProducts() {
+    const terms = normalizeProduct(productSearch.value).trim().split(/\s+/).filter(Boolean);
+    const matches = catalog.products.filter(p => {
+      const text = normalizeProduct(p.name + ' ' + p.number + ' ' + p.productId);
+      return terms.every(term => text.includes(term));
+    });
+    productResults.replaceChildren();
+    productResults.scrollTop = 0;
+    productMatches.textContent = matches.length ? matches.length + ' sản phẩm' : 'Không tìm thấy sản phẩm';
+    matches.forEach(p => {
+      const option = element('button', null, 'product-picker-option');
+      option.type = 'button';
+      option.dataset.productId = p.productId;
+      option.classList.toggle('selected', String(p.productId) === productSelect.value);
+      option.append(element('span', p.name), element('small', p.number + ' · ID ' + p.productId));
+      option.addEventListener('click', () => {
+        productSelect.value = String(p.productId);
+        syncProductPicker();
+        closeProductPicker(true);
+        productSelect.dispatchEvent(new Event('input', {bubbles: true}));
+        productSelect.dispatchEvent(new Event('change', {bubbles: true}));
+      });
+      productResults.append(option);
+    });
+  }
+  pickerButton.addEventListener('click', () => {
+    if (!pickerPanel.hidden) return closeProductPicker();
+    productSearch.value = '';
+    filterProducts();
+    pickerPanel.hidden = false;
+    pickerButton.setAttribute('aria-expanded', 'true');
+    productSearch.focus();
+  });
+  productSearch.addEventListener('input', filterProducts);
+  productSelect.addEventListener('change', syncProductPicker);
+  picker.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); closeProductPicker(true); }
+    if (!pickerPanel.hidden && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
+      e.preventDefault();
+      const items = Array.from(productResults.children), index = items.indexOf(document.activeElement);
+      if (e.key === 'ArrowDown') items[Math.min(index + 1, items.length - 1)]?.focus();
+      else if (index <= 0) productSearch.focus();
+      else items[index - 1].focus();
+    }
+    if (e.target === productSearch && e.key === 'Enter') {
+      e.preventDefault();
+      if (productResults.children.length === 1) productResults.firstElementChild.click();
+      else productResults.firstElementChild?.focus();
+    }
+  });
+  document.addEventListener('pointerdown', e => { if (!picker.contains(e.target)) closeProductPicker(); });
+  picker.addEventListener('focusout', e => { if (!picker.contains(e.relatedTarget)) closeProductPicker(); });
   // The presentation scenario can be opened directly using the URL printed by the batch.
   const demo = new URLSearchParams(window.location.search);
   const demoProduct = demo.get('demoProduct');
   if (demoProduct && Array.from($('product').options).some(x => x.value === demoProduct))
     $('product').value = demoProduct;
+  syncProductPicker();
   if (demo.has('demoQty')) $('quantity').value = demo.get('demoQty');
   $('receivedDate').value = demo.get('demoKnown') || '2013-07-01';
   if (demo.has('demoDue')) $('dueDate').value = demo.get('demoDue');
@@ -491,7 +577,7 @@ window.startOrderReplay = async function ({catalog, runId, api}) {
     }
     reading = true;
     const btn = $('searchDeadlineButton');
-    const controls = ['product','quantity','receivedDate','dueDate','runSelect'].map($).filter(Boolean);
+    const controls = ['productPicker','productSearch','product','quantity','receivedDate','dueDate','runSelect'].map($).filter(Boolean);
     controls.forEach(control => control.disabled = true);
     const originalButtonContent = btn ? Array.from(btn.childNodes) : [];
     const startedAt = performance.now();
